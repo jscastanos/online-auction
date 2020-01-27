@@ -9,7 +9,7 @@ Project pre-requisites: (Please visit the links if you are stuck or confused wit
 - [.Net Framework](https://dotnet.microsoft.com/) v4.5 to run.
 - [Git](https://git-scm.com/) for Version Control
 - [Visual Studio](https://marketplace.visualstudio.com) 2013 or [Visual Code](https://visualstudio.microsoft.com)
-- [PostMan]() for web api testing (Optional)
+- [PostMan](https://www.getpostman.com/) for web api testing (Optional)
 
 Clone the project repository.
 
