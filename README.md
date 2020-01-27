@@ -61,7 +61,7 @@ Add your files to the designated folders according to its functionality.
 If you feel confuse please don't hesitate to ask [me](https://www.facebook.com/js.castanos)
 
 #### Commit/Upload Changes
-If you're ready to [commit](https://git-scm.com/docs/git-commit) your changes to our repository please read the following steps to avoid any errors and head aches.
+If you're ready to [commit](https://git-scm.com/docs/git-commit) your changes to the repository please read the following steps to avoid any errors and headaches.
 
 1\. Always, always and always check the local repo status. Examine and review all staged/unstage files.
 
