@@ -1,0 +1,39 @@
+﻿<!-- Main navbar -->
+<div class="navbar navbar-default navbar-fixed-top header-highlight nonprintable">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="">
+            @*<img src="@Url.Content("~/images/logo_light.png")" />*@
+            
+        </a>
+
+        <ul class="nav navbar-nav visible-xs-block">
+            <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+            <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+            <li><a class="sidebar-mobile-detached-toggle"><i class="icon-filter3"></i></a></li>
+        </ul>
+    </div>
+
+    <div class="navbar-collapse collapse" id="navbar-mobile" @*ng-controller="main"*@>
+        <ul class="nav navbar-nav">
+            <li>
+                <a class="sidebar-control sidebar-main-toggle" ng-click="nav()">
+                    <i class="icon-paragraph-justify3"></i>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown dropdown-user">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="@Url.Content("~/images/image.png")" />
+                    <span class="text-uppercase">@*@Session["name"]*@ Mike Jec Hello</span>
+                    <i class="caret"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="~/account/logout"><i class="icon-switch2"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- /main navbar -->

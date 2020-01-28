@@ -1,0 +1,57 @@
+﻿@*@using DDN_RMS.Modules;*@
+<div class="sidebar sidebar-main sidebar-fixed nonprintable">
+    <div class="sidebar-content">
+        <div class="sidebar-user">
+            <div class="category-content">
+                <div class="media">
+                    <a href="" class="media-left"><img src="~/images/image.png" class="img-circle img-sm" alt=""></a>
+                    <div class="media-body">
+                        <span class="media-heading text-semibold">@*@Session["name"].ToString().ToUpper()*@ Mike Jec Hello</span>
+                        <div class="text-size-mini text-muted">
+                            <i class="icon-user-tie text-size-small"></i> &nbsp;@*@Session["pos"]*@ Computer Programmer II
+                        </div>
+                    </div>
+                    <div class="media-right media-middle">
+                        <ul class="icons-list">
+                            <li>
+                                <a href=""><i class="icon-cog3"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-category sidebar-category-visible" @*ng-controller="main"*@>
+            <div class="category-content no-padding">
+                <ul class="navigation navigation-main navigation-accordion">
+                    <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
+                    <li ng-class="{'active':($parent.active=='dashboard')}"><a href="@Url.Action("Dashboard", "Home")"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
+                    
+                    <li>
+                        <a href="#"><i class="icon-equalizer"></i> <span>Control Panel</span></a>
+                        <ul>
+                            <li ng-class="{'active':($parent.active=='admin')}"><a href="@Url.Action("admin", "UserManagement")">@*<i class="icon-home4"></i>*@ <span>User Management</span></a></li>
+                            <li ng-class="{'active':($parent.active=='roles')}"><a href="@Url.Action("roles", "UserManagement")">@*<i class="icon-home4"></i>*@ <span>Role Management</span></a></li>
+                            
+                        </ul>
+                    </li>
+                    <!-- Main -->
+                    @*@foreach (var item in (List<DDN_RMS.Models.menuUser>)Session["MenuList"])
+                    {
+                        <li id="@item.GroupCode">
+                            <a href="#"><i class="@item.GroupIcon"></i> <span>@item.GroupName</span></a>
+                            <ul>
+                                @foreach (var menu in item.Menus)
+                                {
+                                    <li id="@menu.menuCode" class="@Html.IsActive(@menu.menuController, @menu.menuAction)"><a href="@Url.Action(@menu.menuAction, @menu.menuController)@(menu.menuParameters != null ?  "?t=" + @menu.menuParameters : "" )">@menu.menuName</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }*@
+
+                    <!-- /page kits -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

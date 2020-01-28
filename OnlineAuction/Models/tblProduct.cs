@@ -15,16 +15,16 @@ namespace OnlineAuction.Models
     public partial class tblProduct
     {
         public int recNo { get; set; }
+        public string ProductId { get; set; }
+        public string ProductName { get; set; }
+        public Nullable<decimal> AskPrice { get; set; }
+        public Nullable<System.DateTime> DateTimeLimit { get; set; }
+        public string CategoryId { get; set; }
+        public string BranchId { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> DateUpdated { get; set; }
         public string UpdatedBy { get; set; }
-        public string ProductId { get; set; }
-        public string ProductName { get; set; }
-        public string CategoryId { get; set; }
-        public Nullable<decimal> AskPrice { get; set; }
-        public string BranchId { get; set; }
-        public Nullable<System.DateTime> DateTimeLimit { get; set; }
         public Nullable<int> Status { get; set; }
     }
 }
