@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - AUCTION</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    @Styles.Render("~/css")
+    @Scripts.Render("~/js")
+    <script>
+        //$(function () {
+        //    $("body").addClass(localStorage.getItem("miniSidebar"));
+        //    Pace.on('done', function () {
+        //        $("body").unblock();
+        //    });
+
+        //    $("body").block({
+        //        message: '<i class="icon-spinner spinner"></i>',
+        //        overlayCSS: {
+        //            backgroundColor: '#fff',
+        //            opacity: 0.8,
+        //            cursor: 'wait'
+        //        },
+        //        css: {
+        //            border: 0,
+        //            padding: 0,
+        //            backgroundColor: 'none'
+        //        }
+        //    });
+        //});
+
+    </script>
+</head>
+<body class="login-container login-cover">
+    <div class="page-container">
+        <div class="page-content">
+            @RenderBody()
+            <script>
+                console.log("%c ALERT !", "color:rgba(255,0,150,1); font-weight:bold; font-size:50pt;text-shadow:2px 2px 1px black,4px 4px 1px green,6px 6px 1px yellow,8px 8px 1px orange,10px 10px 1px blue;")
+            </script>
+        </div>
+    </div>
+</body>
+</html>
