@@ -123,6 +123,7 @@
   <ItemGroup>
     <Folder Include="API\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GuardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Filters\CustomAuthorize.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -188,16 +190,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\OnlineAuction.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <LastGenOutput>OnlineAuction.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\OnlineAuction.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <LastGenOutput>OnlineAuction.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -206,8 +198,18 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Models\OnlineAuction.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <LastGenOutput>OnlineAuction.Context.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\OnlineAuction.edmx.diagram">
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\OnlineAuction.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <LastGenOutput>OnlineAuction.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\disable-back-button.js" />

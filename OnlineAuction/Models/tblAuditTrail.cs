@@ -18,6 +18,7 @@ namespace OnlineAuction.Models
         public string ProductId { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
+        public string Remarks { get; set; }
         public Nullable<int> Status { get; set; }
     }
 }
