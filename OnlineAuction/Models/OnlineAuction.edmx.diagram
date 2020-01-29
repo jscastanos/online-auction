@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c3fe9ff07bf64f14b1efd7e0fd3db2c1" Name="Diagram1">
+      <Diagram DiagramId="c3fe9ff07bf64f14b1efd7e0fd3db2c1" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="OnlineAuctionModel.tblAuction" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblAuditTrail" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblBiddersInfo" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
@@ -14,6 +14,7 @@
         <EntityTypeShape EntityType="OnlineAuctionModel.tblProductCategory" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblUserManagement" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblUsersRole" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAuctionModel.vProduct" Width="1.5" PointX="0.75" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
