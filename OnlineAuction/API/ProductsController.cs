@@ -22,17 +22,23 @@ namespace OnlineAuction.API
         {
             db.tblProducts.Where(a => a.recNo == id).ToList().ForEach(b => b.Status = 1);
             db.SaveChanges();
-            return Ok();
+
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // GET: api/Products
         public IHttpActionResult GettblProducts(int id, string key)
         {
-            var data = db.tblProducts.Where(a => a.recNo > id);
+            //if (id == 0)
+            //{
+            //    id = db.vProducts.Max(a => a.rowNum);
+            //}
+
+            var data = db.vProducts.Where(a => a.rowNum > id);
 
             if (key != null && key != "")
             {
-                data = data.Where(w => w.ProductName.Contains(key));
+                data = data.Where(a => a.ProductName.Contains(key));
             }
 
             return Json(data.Take(10));
@@ -96,6 +102,10 @@ namespace OnlineAuction.API
                 return BadRequest(ModelState);
             }
 
+            tblProduct.ProductId = Guid.NewGuid().ToString("N").Substring(0, 5).ToUpper();
+            tblProduct.DateCreated = DateTime.Now;
+            tblProduct.Status = 0;
+ 
             db.tblProducts.Add(tblProduct);
             db.SaveChanges();
 
