@@ -17,5 +17,6 @@ namespace OnlineAuction.Models
         public int recNo { get; set; }
         public string RoleId { get; set; }
         public string RoleName { get; set; }
+        public Nullable<int> status { get; set; }
     }
 }

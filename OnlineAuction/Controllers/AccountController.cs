@@ -18,7 +18,10 @@ namespace OnlineAuction.Controllers
             return RedirectToAction("Login");
         }
 
-
+        public ActionResult Register()
+        {
+            return View();
+        }
         public ActionResult Login()
         {
             if (FormsAuthentication.FormsCookieName != null)

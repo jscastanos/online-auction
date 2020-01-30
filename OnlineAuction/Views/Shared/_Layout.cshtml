@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title – AUCTION</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-    @Styles.Render("~/css")
-    @Scripts.Render("~/js")
-    <link href="~/Content/kendo.default-v2.min.css" rel="stylesheet" />
-    <link href="~/Scripts/angucomplete.css" rel="stylesheet" />
-    <script src="~/Scripts/angucomplete.js"></script>
-    <script src="~/Scripts/sweetalert2.js"></script>
-    <script src="~/Scripts/kendo/kendo.all.min.js"></script>  
-    @RenderSection("jsHead", required: false)
-    @RenderSection("css", required: false)
+   @Styles.Render("~/css")
+@Scripts.Render("~/js")
+<link href="~/Content/kendo.default-v2.min.css" rel="stylesheet" />
+<script src="~/Scripts/smart-table.min.js"></script>
+<link href="~/Scripts/angucomplete.css" rel="stylesheet" />
+<script src="~/Scripts/angucomplete.js"></script>
+<script src="~/Scripts/angular-barcode.js"></script>
+<script src="~/AngularJS/jcs-auto-validate.min.js"></script>
+<script src="~/Scripts/sweetalert2.js"></script>
+<script src="~/Scripts/kendo/kendo.all.min.js"></script> 
 </head>
 <body class="has-detached-left navbar-top">
     @Html.Partial("_navbar")
@@ -22,6 +23,7 @@
         <div class="page-content">
             @Html.Partial("_sidebar")
             <div class="content-wrapper">
+                <p>dsdasda</p>
                 @RenderBody()
                 <script>
                     console.log("%c ALERT !", "color:red; font-weight:bold; font-size:50pt;text-shadow:2px 2px 1px black,4px 4px 1px green,6px 6px 1px yellow,8px 8px 1px orange,10px 10px 1px blue;")
@@ -29,8 +31,6 @@
             </div>
         </div>
     </div>
-    <script src="~/Scripts/layout_fixed_custom.js"></script>
-    <script src="~/Scripts/layout_navbar_hideable_sidebar.js"></script>
     @RenderSection("jsFoot", required: false)
 </body>
 </html>

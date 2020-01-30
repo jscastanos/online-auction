@@ -90,12 +90,13 @@ namespace OnlineAuction.API
         // POST: api/Products
         [ResponseType(typeof(tblProduct))]
         public IHttpActionResult PosttblProduct(tblProduct tblProduct)
+
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+            tblProduct.DateCreated =  DateTime.Now;
             db.tblProducts.Add(tblProduct);
             db.SaveChanges();
 
