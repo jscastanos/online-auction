@@ -1,5 +1,6 @@
 ﻿app.controller('productManagement', ['$scope', '$http', function (s, h) {
 
+    s.name = "testdis";
     s.title = "Product Management";
     s.tempArr = {};
     s.filter = {};
@@ -9,10 +10,13 @@
     s.update = false;
     s.productData = [];
     s.filter.productName = "";
+    s.test = "";
+
 
     getAuctionData();
 
     function getAuctionData() {
+        console.log(s.test)
         s.isLoading = true;
        
         h.get("../api/products?id=" + s.lastId + "&key=" + s.filter.productName).then(function (d) {
@@ -22,6 +26,7 @@
             }
             console.log(s.lastId)
             s.productData = s.productData.concat(d.data);
+            console.log(d.data);
         });
     }
 
@@ -66,8 +71,13 @@
     s.addProduct = function () {
         var date = new Date($("#monthpicker").val());
         s.tempArr.DateTimeLimit = date;
+<<<<<<< HEAD
+      
+        h.post("../api/products", s.tempArr ).then(function (d) {
+=======
 
         h.post("../api/products", s.tempArr).then(function (d) {
+>>>>>>> b5fb01568d806d6234214d307128c4e53e63d1a0
             s.tempArr = {};
             s.productData = [];
             s.lastId = 0;

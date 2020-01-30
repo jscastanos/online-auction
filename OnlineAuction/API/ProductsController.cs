@@ -96,6 +96,7 @@ namespace OnlineAuction.API
         // POST: api/Products
         [ResponseType(typeof(tblProduct))]
         public IHttpActionResult PosttblProduct(tblProduct tblProduct)
+
         {
             if (!ModelState.IsValid)
             {

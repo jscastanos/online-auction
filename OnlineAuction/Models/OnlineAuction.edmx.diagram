@@ -9,12 +9,15 @@
         <EntityTypeShape EntityType="OnlineAuctionModel.tblAuditTrail" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblBiddersInfo" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblBranchShop" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAuctionModel.tblEmployeesInfo" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblProduct" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblProductCategory" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblUserManagement" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblUsersRole" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+<<<<<<< HEAD
+        <EntityTypeShape EntityType="OnlineAuctionModel.tblEmployeesInfo" Width="1.5" PointX="0.75" PointY="8.75" />
+=======
         <EntityTypeShape EntityType="OnlineAuctionModel.vProduct" Width="1.5" PointX="0.75" PointY="8.75" />
+>>>>>>> b5fb01568d806d6234214d307128c4e53e63d1a0
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

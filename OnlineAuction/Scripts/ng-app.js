@@ -1,6 +1,6 @@
 
 var app = angular.module("app", [
-    "kendo.directives",
+    "kendo.directives","angucomplete"
 ]);
 
 app.filter('dateFilter', ['$filter',function ($filter) {
