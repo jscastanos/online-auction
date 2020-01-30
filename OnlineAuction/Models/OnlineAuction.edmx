@@ -120,6 +120,22 @@
           <Property Name="RoleName" Type="varchar" MaxLength="50" />
           <Property Name="status" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vProduct">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="rowNum" Type="bigint" />
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="AskPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DateTimeLimit" Type="datetime" />
+          <Property Name="CategoryId" Type="varchar" MaxLength="5" />
+          <Property Name="BranchId" Type="varchar" MaxLength="5" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
         <EntityContainer Name="OnlineAuctionModelStoreContainer">
           <EntitySet Name="tblAuction" EntityType="Self.tblAuction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblAuditTrail" EntityType="Self.tblAuditTrail" Schema="dbo" store:Type="Tables" />
@@ -130,6 +146,19 @@
           <EntitySet Name="tblProductCategory" EntityType="Self.tblProductCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserManagement" EntityType="Self.tblUserManagement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUsersRole" EntityType="Self.tblUsersRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vProduct" EntityType="Self.vProduct" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vProduct].[rowNum] AS [rowNum], 
+    [vProduct].[recNo] AS [recNo], 
+    [vProduct].[ProductName] AS [ProductName], 
+    [vProduct].[AskPrice] AS [AskPrice], 
+    [vProduct].[DateTimeLimit] AS [DateTimeLimit], 
+    [vProduct].[CategoryId] AS [CategoryId], 
+    [vProduct].[BranchId] AS [BranchId], 
+    [vProduct].[DateCreated] AS [DateCreated], 
+    [vProduct].[Status] AS [Status]
+    FROM [dbo].[vProduct] AS [vProduct]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -244,6 +273,7 @@
           <EntitySet Name="tblProductCategories" EntityType="Self.tblProductCategory" />
           <EntitySet Name="tblUserManagements" EntityType="Self.tblUserManagement" />
           <EntitySet Name="tblUsersRoles" EntityType="Self.tblUsersRole" />
+<<<<<<< HEAD
           <EntitySet Name="tblEmployeesInfoes" EntityType="OnlineAuctionModel.tblEmployeesInfo" />
         </EntityContainer>
         <EntityType Name="tblEmployeesInfo">
@@ -259,6 +289,22 @@
           <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Bdate" Type="DateTime" Precision="0" />
+=======
+          <EntitySet Name="vProducts" EntityType="OnlineAuctionModel.vProduct" />
+        </EntityContainer>
+        <EntityType Name="vProduct">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="rowNum" Type="Int64" />
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AskPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DateTimeLimit" Type="DateTime" Precision="3" />
+          <Property Name="CategoryId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="BranchId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+>>>>>>> b5fb01568d806d6234214d307128c4e53e63d1a0
           <Property Name="Status" Type="Int32" />
         </EntityType>
       </Schema>
@@ -375,6 +421,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+<<<<<<< HEAD
           <EntitySetMapping Name="tblEmployeesInfoes">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblEmployeesInfo">
               <MappingFragment StoreEntitySet="tblEmployeesInfo">
@@ -388,6 +435,20 @@
                 <ScalarProperty Name="BranchId" ColumnName="BranchId" />
                 <ScalarProperty Name="EmpId" ColumnName="EmpId" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
+=======
+          <EntitySetMapping Name="vProducts">
+            <EntityTypeMapping TypeName="OnlineAuctionModel.vProduct">
+              <MappingFragment StoreEntitySet="vProduct">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
+                <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="rowNum" ColumnName="rowNum" />
+>>>>>>> b5fb01568d806d6234214d307128c4e53e63d1a0
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
