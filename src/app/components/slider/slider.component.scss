@@ -1,0 +1,20 @@
+ion-card{
+    box-shadow: none !important;
+    
+    ion-card-title{
+        font-size: 14px;
+        padding: 10px 0px;
+    }
+    
+    &.circle  img{
+        border-radius: 50%;
+        width: 100%;
+        border: 2px solid #c9c9c9;
+    }
+
+    &.box  img{
+        border-radius: 5px;
+        width: 100%;
+        border: 2px solid #c9c9c9;
+    }
+}

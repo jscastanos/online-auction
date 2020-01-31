@@ -1,0 +1,48 @@
+<ion-content class="no-scroll">
+  <div class="overlay">
+    <form #form="ngForm" (ngSubmit)="login(form)">
+      <ion-grid>
+        <ion-row>
+          <ion-col size-xs="12">
+            <ion-text>
+              <h1>AUCTION</h1>
+            </ion-text>
+          </ion-col>
+          <ion-col>
+            <ion-text size-xs="12">
+              <h5>Create an account</h5>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size-xs="12" class="ion-align-self-center">
+            <div class="ion-padding">
+              <ion-item class="ion-margin-top">
+                <ion-icon name="person"></ion-icon>
+                <ion-input type="text" required ngModel name="username" placeholder="Username"></ion-input>
+              </ion-item>
+              <ion-item class="ion-margin-top">
+                <ion-icon name="key"></ion-icon>
+                <ion-input type="password" required ngModel name="password" placeholder="Password"></ion-input>
+              </ion-item>
+              <ion-item class="ion-margin-top">
+                <ion-icon name="key"></ion-icon>
+                <ion-input type="password" required ngModel name="repassword" placeholder="Confirm Password">
+                </ion-input>
+              </ion-item>
+            </div>
+            <div class="ion-padding">
+              <ion-button color="primary" size="md" type="submit" expand="full">REGISTER</ion-button>
+            </div>
+          </ion-col>
+          <ion-col>
+            <ion-text>
+              <h5>Already have an account.
+                <a [routerLink]="['../login']">Log In</a> </h5>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>
