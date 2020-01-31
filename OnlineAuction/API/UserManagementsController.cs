@@ -21,17 +21,14 @@ namespace OnlineAuction.API
             public string key { get; set; }
         }
 
-        //public ActionResult nameList(string key)
-        //{
-        //    var snamelist = db.tPersonInfoes.Where(a => a.fname.Contains(key) || a.lname.Contains(key))
-        //        .Select(x => new
-        //        {
-        //            x.personID,
-        //            x.personalName
-        //        }).Take(5)
-        //        .ToList();
-        //    return Json(snamelist, JsonRequestBehavior.AllowGet);
-        //}
+        [Route("api/UserManagements/uRolechangeName")]
+        public IHttpActionResult PutuRolechangeName(tblUserManagement tblUserManagement)
+        {
+            tblUserManagement.DateUpdated = DateTime.Now;
+            db.Entry(tblUserManagement).State = EntityState.Modified;
+            db.SaveChanges();
+            return Json("success");
+        }
 
         [Route("api/UserManagements/tblEmpList")]
         public IHttpActionResult PosttblEmpList(searchemp s)
@@ -51,16 +48,38 @@ namespace OnlineAuction.API
             return db.tblUsersRoles;
         }
 
+        //api/UserManagements
          public IHttpActionResult GettblUserManagement(int id, string key)
          {
-             //var data = db.tblUserManagements.Where(u => u.recNo > id)
-             //    .Select(k => new
-             //    {
-                     
+             var data = db.tblUserManagements.Where(u => u.recNo > id)
+                 .Select(k => new
+                 {
+                     k.recNo,
+                     k.UsersId,
+                     k.CreatedBy,
+                     k.DateCreated,
+                     k.UserName,
+                     k.Password,
+                     k.Status,
+                     k.RoleId,
+                     nameDisplay = db.tblEmployeesInfoes.Where(l => l.EmpId == k.UsersId)
+                            .Select(c => new
+                            {
+                                subName = c.FirstName + " " + c.MiddleName + " " + c.LastName
+                            }),
+                     nameFirst = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).FirstName,
+                     nameMiddle = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).MiddleName,
+                     nameLast = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).LastName,
+                     roleDisplay = db.tblUsersRoles.FirstOrDefault(h => h.RoleId == k.RoleId).RoleName,
+                     conName = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).FirstName + " "+ db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).MiddleName +" " + db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).LastName
+                 });
 
+             if (key != null && key != "")
+             {
+                 data = data.Where(w => w.nameFirst.Contains(key) || w.nameMiddle.Contains(key) || w.nameLast.Contains(key));
+             }
 
-             //    });
-             return Ok();
+             return Json(data.Take(10));
 
          } 
 
