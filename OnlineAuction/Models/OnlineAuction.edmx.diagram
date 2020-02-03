@@ -4,20 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c3fe9ff07bf64f14b1efd7e0fd3db2c1" Name="Diagram1" ZoomLevel="74">
+      <Diagram DiagramId="16e00edbcd5b45689e5d04a717d12263" Name="Diagram1">
         <EntityTypeShape EntityType="OnlineAuctionModel.tblAuction" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblAuditTrail" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblBiddersInfo" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblBranchShop" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAuctionModel.tblEmployeesInfo" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblProduct" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblProductCategory" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAuctionModel.tblUserManagement" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAuctionModel.tblUsersRole" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
-<<<<<<< HEAD
-        <EntityTypeShape EntityType="OnlineAuctionModel.tblEmployeesInfo" Width="1.5" PointX="0.75" PointY="8.75" />
-=======
-        <EntityTypeShape EntityType="OnlineAuctionModel.vProduct" Width="1.5" PointX="0.75" PointY="8.75" />
->>>>>>> b5fb01568d806d6234214d307128c4e53e63d1a0
+        <EntityTypeShape EntityType="OnlineAuctionModel.tblRating" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAuctionModel.tblUserManagement" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAuctionModel.tblUsersRole" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAuctionModel.vProduct" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

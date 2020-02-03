@@ -182,6 +182,9 @@
     <Compile Include="Models\tblProductCategory.cs">
       <DependentUpon>OnlineAuction.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tblRating.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tblUserManagement.cs">
       <DependentUpon>OnlineAuction.tt</DependentUpon>
     </Compile>
@@ -206,6 +209,7 @@
     <Content Include="AngularJS\pnotify.min.js" />
     <Content Include="AngularJS\ProfileInfo.js" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\colors.css" />
     <Content Include="Content\components.css" />
     <Content Include="Content\core.css" />
@@ -240,6 +244,16 @@
     <Content Include="Images\producer\68.jpeg" />
     <Content Include="Images\producer\69.jpeg" />
     <Content Include="Images\producer\70.jpeg" />
+    <Content Include="Models\OnlineAuction.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <LastGenOutput>OnlineAuction.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\OnlineAuction.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <LastGenOutput>OnlineAuction.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\AgentsSummary.js" />
     <Content Include="Scripts\angucomplete.css" />
     <Content Include="Scripts\angucomplete.js" />
@@ -250,23 +264,6 @@
     <Content Include="Scripts\blockui.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\OnlineAuction.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\OnlineAuction.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <LastGenOutput>OnlineAuction.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\OnlineAuction.edmx.diagram">
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\OnlineAuction.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <LastGenOutput>OnlineAuction.cs</LastGenOutput>
-    </Content>
     <Content Include="fonts\fontawesome-webfont5b62.eot" />
     <Content Include="fonts\fontawesome-webfont5b62.ttf" />
     <Content Include="fonts\fontawesome-webfont5b62.woff" />
@@ -277,6 +274,13 @@
     <Content Include="fonts\icomoone627.ttf" />
     <Content Include="fonts\icomoone627.woff" />
     <Content Include="Images\Background\VSMacros.vsix" />
+    <EntityDeploy Include="Models\OnlineAuction.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\OnlineAuction.edmx.diagram">
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />
     <Content Include="Scripts\chart-widgets.js" />
@@ -310,9 +314,6 @@
     <Content Include="Scripts\navs.js" />
     <Content Include="Scripts\ng-app.js" />
     <Content Include="Scripts\ng-product.js" />
-    <Content Include="Scripts\ngpManagement.js" />
-    <Content Include="Scripts\ngRoles.js" />
-    <Content Include="Scripts\ngtRole.js" />
     <Content Include="Scripts\nicescroll.min.js" />
     <Content Include="Scripts\pace.min.js" />
     <Content Include="Scripts\pnotify.min.js" />
@@ -340,6 +341,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -358,9 +360,11 @@
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Shared\_navbar.cshtml" />
     <Content Include="Views\Shared\_sidebar.cshtml" />
-    <Content Include="Views\Role\roleManagement.cshtml" />
+    <Content Include="Views\Product\AuctionManagement.cshtml" />
     <Content Include="Views\Personel\PersonMgt.cshtml" />
+    <Content Include="Views\Role\roleManagement.cshtml" />
     <Content Include="Views\UserManagement\TagRole.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
