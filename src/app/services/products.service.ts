@@ -19,4 +19,12 @@ export class ProductsService {
   getCategories() {
     return this.route.get(this.env.API_URL + 'category');
   }
+
+  getDisplayItems(index) {
+    return this.route.get(this.env.API_URL + 'products?id=' + index + '&key')
+  }
+
+  getAuctionItems(index) {
+    return this.route.get(this.env.API_URL + 'products/auctiondata?id=' + index + '&key')
+  }
 }

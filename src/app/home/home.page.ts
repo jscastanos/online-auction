@@ -1,12 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ProductsService } from '../services/products.service';
+import { IonInfiniteScroll } from '@ionic/angular';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  @ViewChild(IonInfiniteScroll, { static: false }) infiniteScroll: IonInfiniteScroll;
 
-  displayItems;
+  displayItems = [];
+  auctionItems = [];
+  activeItems;
+  lazyLoadIndex = {
+    auction: 0,
+    display: 0
+  };
+  currItemStatus = 1;
 
   categorySliderOpts = {
     sliderOpts: {
@@ -39,68 +50,55 @@ export class HomePage {
   }
 
 
-  constructor() {
-    this.displayItems = this.itemNames
+  constructor(private productsService: ProductsService) {
+
+  }
+
+  loadData(event) {
+    setTimeout(() => {
+      let service;
+
+      if (this.currItemStatus == 0)
+        service = this.productsService.getDisplayItems(this.lazyLoadIndex.display);
+      else
+        service = this.productsService.getAuctionItems(this.lazyLoadIndex.auction);
+
+      service.subscribe(params => {
+
+        if (this.currItemStatus == 0) {
+          for (let index in params) {
+            this.displayItems.push(params[index])
+            this.lazyLoadIndex.display = params[index]["rowNum"];
+          }
+
+          this.activeItems = this.displayItems;
+        }
+        else {
+          for (let index in params) {
+            this.auctionItems.push(params[index])
+            this.lazyLoadIndex.auction = params[index]["rowNum"];
+          }
+
+          this.activeItems = this.auctionItems
+        }
+
+        event.target.complete();
+      });
+
+    }, 500);
   }
 
   segmentChanged(e) {
-    if (e.detail.value == 'display')
-      this.displayItems = this.DisplayItems;
-    else
-      this.displayItems = this.itemNames;
+    if (e.detail.value == 'display') {
+      this.activeItems = this.displayItems;
+      this.currItemStatus = 0;
+
+    }
+    else {
+      this.activeItems = this.auctionItems;
+      this.currItemStatus = 1;
+    }
   }
 
-  itemNames = [
-    {
-      'itemID': 1,
-      'itemName': 'Kawat na Cell phone 444 4444 asda  asd asd asd asd asd',
-      'NoOfBidders': 14,
-      'CurrentBidPrice': 23000
-    }, {
-      'itemID': 2,
-      'itemName': 'Samsung Toilet',
-      'NoOfBidders': 5,
-      'CurrentBidPrice': 1000
-    }, {
-      'itemID': 3,
-      'itemName': 'Lush Last Least',
-      'NoOfBidders': 6,
-      'CurrentBidPrice': 12000
-    }, {
-      'itemID': 4,
-      'itemName': 'Kawat na Puso',
-      'NoOfBidders': 14,
-      'CurrentBidPrice': 23000
-    }, {
-      'itemID': 5,
-      'itemName': 'Kawat na Pusa',
-      'NoOfBidders': 14,
-      'CurrentBidPrice': 23000
-    },
-  ];
-
-  DisplayItems = [
-    {
-      'itemID': 1,
-      'itemName': 'Display Something',
-      'NoOfDays': 5
-    }, {
-      'itemID': 2,
-      'itemName': 'Display Something 2',
-      'NoOfDays': 25
-    }, {
-      'itemID': 3,
-      'itemName': 'Display Something 5',
-      'NoOfDays': 12
-    }, {
-      'itemID': 4,
-      'itemName': 'Display Something 6',
-      'NoOfDays': 15
-    }, {
-      'itemID': 5,
-      'itemName': 'Kawat na Pusa',
-      'NoOfDays': 69
-    },
-  ];
 
 }
