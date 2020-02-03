@@ -1,12 +1,14 @@
-﻿
-@{
+﻿@{
+    
     ViewBag.Title = "TagRole";
 }
 <style>
-a {
-  color: hotpink;
-}
+    a {
+        color: hotpink;
+    }
 </style>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/daterangepicker.js"></script>
 <script src="~/Scripts/ngtRole.js"></script>
 <div ng-controller="tManagement">
     <div class="page-header">
@@ -40,7 +42,8 @@ a {
                     <div class="col-md-3 col-md-offset-1 mb-20">
                         <span class="text-semibold">
                             <button type="button" class="btn bg-teal-400 btn-block text-size-large text-uppercase" data-toggle="modal" ng-click="rdata()">
-                                <i class="icon-new-tab2"></i>&nbsp;New User
+                                <i class=" icon-new-tab2">
+                                </i>&nbsp;New User
                             </button>
                         </span>
                     </div>
@@ -55,32 +58,32 @@ a {
                             <tr class="bg-teal-400">
                                 <td>#</td>
                                 <th>Name</th>
-                                <th>Address</th>
-                                <th>Birthday</th>
+                                <th>Date Created</th>
                                 <th>Position</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="i in alldata">
                                 <td>{{$index+1}}</td>
-                                <td>{{i.ConcatName| uppercase}}</td>
-                                <td>{{i.Address| uppercase}}</td>
-                                <td>{{i.Bdate | date:'MMM dd, yyyy' }}</td>
-                                <td>{{i.Position| uppercase}}</td>
+                                <td>{{i.conName| uppercase}}</td>
+                                <td>{{i.DateCreated| date:'MMM dd, yyyy'}}</td>
+                                <td>{{i.roleDisplay | uppercase }}</td>
+
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-sm btn-icon" data-toggle="modal" ng-click="editName(i)"><i class="icon-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger btn-sm btn-icon" ng-click="openModal(i)"><i class="icon-trash"></i></button>
+                                    <div class="checkbox checkbox-switchery">
+                                        <label>
+                                            <input type="checkbox" ng-click="cStatus(i)" ng-show="{{i.Status == 1 }}"class="switchery" checked>
+                                            <input type="checkbox" ng-click="cStatus(i)" ng-show="{{i.Status == 0 }}" class="switchery">
+                                        </label>
+                                    </div>
                                 </td>
 
-                                @*<td>{{i.amount  | absolute | number:2}}</td>*@
-                                @*<td {{i.tag == 1? 'bg-danger': i.tag == 0 ? 'bg-success': ''}}>{{i.tag == 1? "WITHDRAW" :"DEPOSIT"}}</td>*@
-                                @*<td>
-                                        <span ng-show="x.isRemoved == 1" class="text-italic" style="border:1px dashed #888;text-decoration:line-through; color: #888; padding: 4px 6px;">Removed</span>
-                                        <button ng-show="!x.isRemoved" style="padding: 4px 7px;" type="button" class="btn btn-success btn-sm btn-icon" data-toggle="modal" data-target="#Edit" ng-click="editName(x)"><i class="icon-pencil"></i></button>
-                                        <button ng-show="!x.isRemoved" style="padding: 4px 7px;" type="button" class="btn btn-danger btn-sm btn-icon" ng-click="openModal(x)"><i class="icon-bin2"></i></button>
-                                        <span ng-show="!x.isRemoved" ng-click="viewDetail(x)" style="cursor:pointer" data-toggle="tooltip" title="Details" class="ml-5"><i class="icon-question3"></i></span>
-                                    </td>*@
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm btn-icon" data-toggle="modal" ng-click="editName(i)"><i class="icon-pencil"></i></button>
+                                    @*<button type="button" class="btn btn-danger btn-sm btn-icon" ng-click="openModal(i)"><i class="icon-trash"></i></button>*@
+                                </td>
                             </tr>
                             <tr ng-if="lengthdata== 0">
                                 <td colspan="5" class="text-center text-muted text-italic text-semibold">NO RESULT FOUND</td>
@@ -92,10 +95,10 @@ a {
         </div>
     </div>
 
-    <div id="tMgt" class="modal fade">
+    <div id="Add" class="modal fade">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
-                <form ng-submit="addUsr(empList.EmpId)">
+                <form ng-submit="addUsr(adata,empList.EmpId)">
                     <div class="modal-header bg-success">
                         <button type="button" class="close" ng-click="refresh()" data-dismiss="modal">&times;</button>
                         <h6 class="modal-title">
@@ -111,8 +114,6 @@ a {
                                             <div class="input-group" style="width:100%">
                                                 <angucomplete id="personalName"
                                                               placeholder="Employee Name"
-                                                              pause="100"
-                                                              searchstr="{{adata.FirstName}}"
                                                               searchvar="ConcatName"
                                                               selectedobject="personalNameBtn"
                                                               selectedvalue="empList.EmpId"
@@ -152,8 +153,62 @@ a {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn bg-teal-400" ng-if="add">Save</button>
-                        <button type="submit" class="btn bg-teal-400" ng-if="update">Update</button>
+                        <button type="submit" class="btn btn-success btn-block">Continue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="Edit" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <form ng-submit="saveUOF(selected)">
+                    <div class="modal-header bg-success">
+                        <button type="button" class="close" ng-click="refresh()" data-dismiss="modal">&times;</button>
+                        <h6 class="modal-title">
+                            <i class="icon-add-to-list"></i> Role
+                        </h6>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="row mt-10">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input type="text" ng-model="selected.conName" disabled class="form-control" placeholder="Name" required>
+                                                    <span class="input-group-addon"><i class="icon-user"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" ng-model="selected.UserName" placeholder="Username" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-user"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="password" ng-model="selected.Password" placeholder="Password" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-user-lock"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <select ng-model="selected.RoleId" ng-options="item.RoleId as item.RoleName for item in newItem"
+                                                        class="form-control" required></select>
+                                                <span class="input-group-addon"><i class="icon-insert-template"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-block">Continue</button>
                     </div>
                 </form>
             </div>
