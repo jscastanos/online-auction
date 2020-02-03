@@ -121,6 +121,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AngularJS\" />
     <Folder Include="App_Data\" />
     <Folder Include="Images\products\" />
   </ItemGroup>
@@ -146,19 +147,19 @@
     </Compile>
     <Compile Include="Models\IdentityModel.cs" />
     <Compile Include="Models\OnlineAuction.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>OnlineAuction.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\OnlineAuction.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\OnlineAuction.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\tblAuction.cs">
@@ -197,6 +198,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\jcs-auto-validate.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\colors.css" />
@@ -209,10 +211,23 @@
     <Content Include="Content\kendo.material.min.css" />
     <Content Include="Content\kendo.material.mobile.min.css" />
     <Content Include="Content\select2.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont5b62.eot" />
     <Content Include="fonts\fontawesome-webfont5b62.svg" />
+    <Content Include="fonts\fontawesome-webfont5b62.ttf" />
+    <Content Include="fonts\fontawesome-webfont5b62.woff" />
+    <Content Include="fonts\fontawesome-webfont5b62.woff2" />
+    <Content Include="fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\icomoond41d.eot" />
+    <Content Include="fonts\icomoone627.eot" />
     <Content Include="fonts\icomoone627.svg" />
+    <Content Include="fonts\icomoone627.ttf" />
+    <Content Include="fonts\icomoone627.woff" />
     <Content Include="Global.asax" />
     <Content Include="Images\add_user.png" />
     <Content Include="Images\backgrounds\boxed_bg.png" />
@@ -220,6 +235,7 @@
     <Content Include="Images\backgrounds\panel_bg.png" />
     <Content Include="Images\backgrounds\seamless.png" />
     <Content Include="Images\Background\money-background-02-high.jpg" />
+    <Content Include="Images\Background\VSMacros.vsix" />
     <Content Include="Images\image.png" />
     <Content Include="Images\login_cover.jpg" />
     <Content Include="Images\logo_icon_light.png" />
@@ -234,13 +250,16 @@
     <Content Include="Images\producer\69.jpeg" />
     <Content Include="Images\producer\70.jpeg" />
     <Content Include="Models\OnlineAuction.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>OnlineAuction.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\OnlineAuction.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
+    <Content Include="Models\OnlineAuction.edmx.diagram">
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\OnlineAuction.tt">
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>OnlineAuction.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\AgentsSummary.js" />
@@ -253,34 +272,6 @@
     <Content Include="Scripts\blockui.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="fonts\fontawesome-webfont5b62.eot" />
-    <Content Include="fonts\fontawesome-webfont5b62.ttf" />
-    <Content Include="fonts\fontawesome-webfont5b62.woff" />
-    <Content Include="fonts\fontawesome-webfont5b62.woff2" />
-    <Content Include="fonts\fontawesome-webfontd41d.eot" />
-    <Content Include="fonts\icomoond41d.eot" />
-    <Content Include="fonts\icomoone627.eot" />
-    <Content Include="fonts\icomoone627.ttf" />
-    <Content Include="fonts\icomoone627.woff" />
-    <Content Include="Images\Background\VSMacros.vsix" />
-    <Content Include="Scripts\AgentsSummary.js" />
-    <Content Include="Scripts\angucomplete.css" />
-    <Content Include="Scripts\angucomplete.js" />
-    <Content Include="Scripts\angular-barcode.js" />
-    <Content Include="Scripts\angular-chart.min.js" />
-    <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\app.js" />
-    <Content Include="Scripts\blockui.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\OnlineAuction.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\OnlineAuction.edmx.diagram">
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-    </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />
     <Content Include="Scripts\chart-widgets.js" />
     <Content Include="Scripts\chart.min.js" />
@@ -292,11 +283,29 @@
     <Content Include="Scripts\css\core.css" />
     <Content Include="Scripts\css\croppie.css" />
     <Content Include="Scripts\css\extras\animate.min.css" />
+    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.eot" />
     <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.svg" />
+    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.ttf" />
+    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.woff" />
+    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.woff2" />
+    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfontd41d.eot" />
     <Content Include="Scripts\css\icons\fontawesome\styles.min.css" />
+    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="Scripts\css\icons\icomoon\fonts\icomoond41d.eot" />
+    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.eot" />
     <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.svg" />
+    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.ttf" />
+    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.woff" />
     <Content Include="Scripts\css\icons\icomoon\styles.css" />
+    <Content Include="Scripts\css\icons\summernote\summernoted41d.eot" />
+    <Content Include="Scripts\css\icons\summernote\summernotef534.eot" />
+    <Content Include="Scripts\css\icons\summernote\summernotef534.ttf" />
+    <Content Include="Scripts\css\icons\summernote\summernotef534.woff" />
     <Content Include="Scripts\d3.min.js" />
     <Content Include="Scripts\d3_tooltip.js" />
     <Content Include="Scripts\datepicker.js" />
@@ -831,7 +840,27 @@
     <Content Include="Scripts\template.js" />
     <Content Include="Scripts\uniform.min.js" />
     <Content Include="Scripts\xlsx.full.min.js" />
-    <None Include="Scripts\_references.js" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Guard\Unauthorized.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\SuperAdmin.cshtml" />
+    <Content Include="Views\Home\User.cshtml" />
+    <Content Include="Views\Personel\PersonMgt.cshtml" />
+    <Content Include="Views\Product\AuctionManagement.cshtml" />
+    <Content Include="Views\Product\ProductManagement.cshtml" />
+    <Content Include="Views\Role\roleManagement.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Shared\_navbar.cshtml" />
+    <Content Include="Views\Shared\_sidebar.cshtml" />
+    <Content Include="Views\UserManagement\TagRole.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -841,57 +870,20 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Guard\Unauthorized.cshtml" />
-    <Content Include="Views\Home\User.cshtml" />
-    <Content Include="Views\Home\Admin.cshtml" />
-    <Content Include="Views\Home\SuperAdmin.cshtml" />
-    <Content Include="Views\Product\ProductManagement.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginLayout.cshtml" />
-    <Content Include="Views\Shared\_navbar.cshtml" />
-    <Content Include="Views\Shared\_sidebar.cshtml" />
-    <Content Include="Views\Product\AuctionManagement.cshtml" />
-    <Content Include="Views\Personel\PersonMgt.cshtml" />
-    <Content Include="Views\Role\roleManagement.cshtml" />
-    <Content Include="Views\UserManagement\TagRole.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.eot" />
-    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.ttf" />
-    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.woff" />
-    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.woff2" />
-    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfontd41d.eot" />
-    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.eot" />
-    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.ttf" />
-    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.woff" />
-    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.woff2" />
-    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regulard41d.eot" />
-    <Content Include="Scripts\css\icons\icomoon\fonts\icomoond41d.eot" />
-    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.eot" />
-    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.ttf" />
-    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.woff" />
-    <Content Include="Scripts\css\icons\summernote\summernoted41d.eot" />
-    <Content Include="Scripts\css\icons\summernote\summernotef534.eot" />
-    <Content Include="Scripts\css\icons\summernote\summernotef534.ttf" />
-    <Content Include="Scripts\css\icons\summernote\summernotef534.woff" />
+    <EntityDeploy Include="Models\OnlineAuction.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
   </ItemGroup>
   <PropertyGroup>
