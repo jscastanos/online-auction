@@ -243,23 +243,6 @@
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
       <LastGenOutput>OnlineAuction.cs</LastGenOutput>
     </Content>
-    <Content Include="fonts\fontawesome-webfont5b62.eot" />
-    <Content Include="fonts\fontawesome-webfont5b62.ttf" />
-    <Content Include="fonts\fontawesome-webfont5b62.woff" />
-    <Content Include="fonts\fontawesome-webfont5b62.woff2" />
-    <Content Include="fonts\fontawesome-webfontd41d.eot" />
-    <Content Include="fonts\icomoond41d.eot" />
-    <Content Include="fonts\icomoone627.eot" />
-    <Content Include="fonts\icomoone627.ttf" />
-    <Content Include="fonts\icomoone627.woff" />
-    <Content Include="Images\Background\VSMacros.vsix" />
-    <EntityDeploy Include="Models\OnlineAuction.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\OnlineAuction.edmx.diagram">
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-    </Content>
     <Content Include="Scripts\AgentsSummary.js" />
     <Content Include="Scripts\angucomplete.css" />
     <Content Include="Scripts\angucomplete.js" />
@@ -270,6 +253,34 @@
     <Content Include="Scripts\blockui.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\fontawesome-webfont5b62.eot" />
+    <Content Include="fonts\fontawesome-webfont5b62.ttf" />
+    <Content Include="fonts\fontawesome-webfont5b62.woff" />
+    <Content Include="fonts\fontawesome-webfont5b62.woff2" />
+    <Content Include="fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="fonts\icomoond41d.eot" />
+    <Content Include="fonts\icomoone627.eot" />
+    <Content Include="fonts\icomoone627.ttf" />
+    <Content Include="fonts\icomoone627.woff" />
+    <Content Include="Images\Background\VSMacros.vsix" />
+    <Content Include="Scripts\AgentsSummary.js" />
+    <Content Include="Scripts\angucomplete.css" />
+    <Content Include="Scripts\angucomplete.js" />
+    <Content Include="Scripts\angular-barcode.js" />
+    <Content Include="Scripts\angular-chart.min.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\blockui.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\OnlineAuction.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\OnlineAuction.edmx.diagram">
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />
     <Content Include="Scripts\chart-widgets.js" />
     <Content Include="Scripts\chart.min.js" />
