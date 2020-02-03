@@ -25,7 +25,7 @@
                     <div class="col-md-8">
                         <div class="form-group">
                             <div class="has-feedback has-feedback-left">
-                                <input style="width:100%;" ng-model="sdata" ng-change="testsearch(sdata)" id="searchinput" class="form-control" type="text" placeholder="Search Employee" />
+                                <input style="width:100%;" ng-model="sdata" ng-change="testsearch(sdata)" id="searchinput" class="form-control" type="text" placeholder="Search Personel" />
                                 <div class="form-control-feedback">
                                     <i class="icon-search4 text-size-large text-muted"></i>
                                 </div>
@@ -88,7 +88,7 @@
             </div>
         </div>
     </div>
-    <div id="Edit" class="modal fade">
+    @*<div id="Edit" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form ng-submit="saveUOF(selected)">
@@ -156,16 +156,142 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn bg-teal-400" @*ng-disabled="adata.RoleName.length <= 4 || adata.RoleName == null "*@>Update</button>
+                        <button type="submit" class="btn bg-teal-400">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>*@
+    <div id="Edit" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <form ng-submit="saveOUF(selected)">
+                    <div class="modal-header bg-success">
+                        <button type="button" class="close" ng-click="refresh()" data-dismiss="modal">&times;</button>
+                        <h6 class="modal-title">
+                            <i class="icon-add-to-list"></i> Edit Name
+                        </h6>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="row mt-10">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" ng-model="selected.FirstName" placeholder="First Name" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-user-check"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" ng-model="selected.MiddleName" placeholder="Middle Name" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-user-check"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" ng-model="selected.LastName" placeholder="Last Name" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-user-check"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="date" ng-model="selected.Bdate" placeholder="" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" ng-model="selected.Address" placeholder="Address" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-location4"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" ng-model="selected.Position" placeholder="Position" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-portfolio"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-block">Continue</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <div id="Add" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <form ng-submit="addEmp(adata)">
+                    <div class="modal-header bg-success">
+                        <button type="button" class="close" ng-click="refresh()" data-dismiss="modal">&times;</button>
+                        <h6 class="modal-title">
+                            <i class="icon-add-to-list"></i> Add Role
+                        </h6>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="row mt-10">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" ng-model="adata.FirstName" placeholder="First Name" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-user-check"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" ng-model="adata.MiddleName" placeholder="Middle Name" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-user-check"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" ng-model="adata.LastName" placeholder="Last Name" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-user-check"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="date" ng-model="adata.Bdate" placeholder="" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" ng-model="adata.Address" placeholder="Address" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-location4"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" ng-model="adata.Position" placeholder="Position" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-portfolio"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-block">Continue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @*<div id="Add" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form ng-submit="addEmp()">
+                <form ng-submit="addEmp(adata)">
                     <div class="modal-header bg-success">
                         <button type="button" class="close" ng-click="refresh()" data-dismiss="modal">&times;</button>
                         <h6 class="modal-title"><i class="icon-user-plus"></i>Add User</h6>
@@ -235,6 +361,6 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div>*@
 </div>
 

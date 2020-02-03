@@ -145,51 +145,51 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModel.cs" />
-    <Compile Include="Models\OnlineAuction.Context.cs">
+    <Compile Include="Models\OlnAuction.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OnlineAuction.Context.tt</DependentUpon>
+      <DependentUpon>OlnAuction.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OnlineAuction.cs">
+    <Compile Include="Models\OlnAuction.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>OlnAuction.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OnlineAuction.Designer.cs">
+    <Compile Include="Models\OlnAuction.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <DependentUpon>OlnAuction.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\tblAuction.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>OlnAuction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblAuditTrail.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>OlnAuction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblBiddersInfo.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>OlnAuction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblBranchShop.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>OlnAuction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblEmployeesInfo.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>OlnAuction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblProduct.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>OlnAuction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblProductCategory.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>OlnAuction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblUserManagement.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>OlnAuction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblUsersRole.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>OlnAuction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vProduct.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>OlnAuction.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -250,23 +250,6 @@
     <Content Include="Scripts\blockui.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\OnlineAuction.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\OnlineAuction.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <LastGenOutput>OnlineAuction.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\OnlineAuction.edmx.diagram">
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\OnlineAuction.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <LastGenOutput>OnlineAuction.cs</LastGenOutput>
-    </Content>
     <Content Include="fonts\fontawesome-webfont5b62.eot" />
     <Content Include="fonts\fontawesome-webfont5b62.ttf" />
     <Content Include="fonts\fontawesome-webfont5b62.woff" />
@@ -277,6 +260,23 @@
     <Content Include="fonts\icomoone627.ttf" />
     <Content Include="fonts\icomoone627.woff" />
     <Content Include="Images\Background\VSMacros.vsix" />
+    <EntityDeploy Include="Models\OlnAuction.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OlnAuction.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\OlnAuction.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OlnAuction.edmx</DependentUpon>
+      <LastGenOutput>OlnAuction.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\OlnAuction.edmx.diagram">
+      <DependentUpon>OlnAuction.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\OlnAuction.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OlnAuction.edmx</DependentUpon>
+      <LastGenOutput>OlnAuction.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />
     <Content Include="Scripts\chart-widgets.js" />

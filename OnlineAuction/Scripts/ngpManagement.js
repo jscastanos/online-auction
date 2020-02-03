@@ -66,6 +66,7 @@
 
 
     s.addEmp = function (adata) {
+        console.log(adata);
         r.post("../api/EmployeesInfoes", adata)
     .then(function (d) {
         lastId = 0;
@@ -73,7 +74,7 @@
         loaddata();
         swal({
             title: 'success',
-            text: 'Role added successfully!',
+            text: 'Personel added successfully!',
             type: 'success'
         }).then(function () {
             $('#Add').modal('hide');

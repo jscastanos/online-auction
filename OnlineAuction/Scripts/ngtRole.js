@@ -1,5 +1,5 @@
 ﻿app.controller('tManagement', ['$scope', '$http', function (s, r) {
-    s.name = "checked";
+    s.name = " ";
     s.alldata;
     s.alldata = [];
     s.isLoading = false;
@@ -34,9 +34,22 @@
              console.log(s.alldata);
          })
     }
+    s.switchID = {}
+    s.cStatus = function (Sstatus) {
+        s.switchID = Sstatus
+        console.log(s.switchID)
+        r.put("../api/UserManagements/sStatus", s.switchID)
+
+        .then(function (d) {
+            s.alldata = [];
+            lastId = 0;
+            loaddata();
+            console.log(d.data)
+        })
+    }
 
     function loadposition() {
-        r.get("../api/UserManagements/UsersRoles")
+        r.get("../api/UserManagements/GetAllPosition")
         .then(function (d) {
             console.log(d.data);
             s.newItem = d.data;
@@ -122,8 +135,6 @@
 
 
     s.refresh = function () {
-        s.add = false;
-        s.update = false;
         s.alldata = [];
         lastId = 0;
         loaddata();

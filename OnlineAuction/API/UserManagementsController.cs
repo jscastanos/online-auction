@@ -21,6 +21,26 @@ namespace OnlineAuction.API
             public string key { get; set; }
         }
 
+
+        [Route("api/UserManagements/sStatus")]
+        public IHttpActionResult PutsStatus(tblUserManagement tblUserManagement)
+        {
+            if (tblUserManagement.Status != 1)
+            {
+                tblUserManagement.Status = 1;
+
+            }
+            else
+            {
+                tblUserManagement.Status = 0;
+            }
+            
+            tblUserManagement.DateUpdated = DateTime.Now;
+            var switchery = db.Entry(tblUserManagement).State = EntityState.Modified;
+            db.SaveChanges();
+            return Json("success");
+        }
+
         [Route("api/UserManagements/uRolechangeName")]
         public IHttpActionResult PutuRolechangeName(tblUserManagement tblUserManagement)
         {
@@ -41,6 +61,15 @@ namespace OnlineAuction.API
                 }).Take(5).ToList();
             return Json(empList);
         }
+
+
+        [Route("api/UserManagements/GetAllPosition")]
+        public IHttpActionResult GetAllPosition()
+        {
+            var availablepos = db.tblUsersRoles.Where(l => l.recNo > 3).ToList();
+            return Json(availablepos);
+        }
+        
 
          [Route("api/UserManagements/UsersRoles")]
         public IQueryable<tblUsersRole> GetUsersRoles()
