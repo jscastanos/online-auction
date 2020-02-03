@@ -77,6 +77,7 @@
           </Key>
           <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductId" Type="varchar" MaxLength="5" />
+          <Property Name="ProductImg" Type="varbinary(max)" />
           <Property Name="ProductName" Type="varchar" MaxLength="50" />
           <Property Name="AskPrice" Type="decimal" Precision="18" Scale="2" />
           <Property Name="DateTimeLimit" Type="datetime" />
@@ -245,6 +246,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="DateUpdated" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Int32" />
+          <Property Name="ProductImg" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="tblProductCategory">
           <Key>
@@ -383,6 +385,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <EntitySetMapping Name="tblProducts">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblProduct">
               <MappingFragment StoreEntitySet="tblProduct">
+                <ScalarProperty Name="ProductImg" ColumnName="ProductImg" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />

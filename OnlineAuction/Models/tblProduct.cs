@@ -26,5 +26,6 @@ namespace OnlineAuction.Models
         public Nullable<System.DateTime> DateUpdated { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<int> Status { get; set; }
+        public byte[] ProductImg { get; set; }
     }
 }

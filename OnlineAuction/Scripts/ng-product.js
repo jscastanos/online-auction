@@ -4,13 +4,16 @@
     s.tempArr = {};
     s.filter = {};
     s.lastId = 0;
+    s.auctionlastId = 0;
     s.isLoading = false;
     s.add = true;
     s.update = false;
     s.productData = [];
+    s.auctionData = [];
     s.filter.productName = "";
 
     getAuctionData();
+    getAuctionedData();
 
     function getAuctionData() {
         s.isLoading = true;
@@ -22,6 +25,18 @@
             }
             console.log(s.lastId)
             s.productData = s.productData.concat(d.data);
+        });
+    }
+
+    function getAuctionedData() {
+        s.isLoading = true;
+        h.get("../api/products/auctionData?id=" + s.auctionlastId + "&key=" + s.filter.productName).then(function (d) {
+            s.isLoading = false;
+            if (d.data.length > 0) {
+                s.auctionlastId = d.data[d.data.length - 1].rowNum
+            }
+            console.log(s.auctionlastId)
+            s.auctionData = s.auctionData.concat(d.data);
         });
     }
 
@@ -63,16 +78,43 @@
         dateInput: true
     });
 
+    $("#auctionpicker").kendoDateTimePicker({
+        value: new Date(),
+        format: "MMMM dd, yyyy hh:mm",
+        dateInput: true
+    });
+
     s.addProduct = function () {
         var date = new Date($("#monthpicker").val());
         s.tempArr.DateTimeLimit = date;
 
-        h.post("../api/products", s.tempArr).then(function (d) {
-            s.tempArr = {};
-            s.productData = [];
-            s.lastId = 0;
-            getAuctionData();
-        });
+        var blobFile = $('#filechooser').files[0];
+        var formData = new FormData();
+        formData.append("fileToUpload", blobFile);
+
+
+        alert(JSON.stringify(formData));
+
+        //$.ajax({
+        //    //url: "upload.php",
+        //    type: "POST",
+        //    data: formData,
+        //    processData: false,
+        //    contentType: false,
+        //    success: function (response) {
+        //        // .. do something
+        //    },
+        //    error: function (jqXHR, textStatus, errorMessage) {
+        //        console.log(errorMessage); // Optional
+        //    }
+        //});
+
+        //h.post("../api/products", s.tempArr).then(function (d) {
+        //    s.tempArr = {};
+        //    s.productData = [];
+        //    s.lastId = 0;
+        //    getAuctionData();
+        //});
     }
 
     s.openAddProductModal = function () {
@@ -99,12 +141,29 @@
         getAuctionData()
     }
 
-    s.setToAuction = function (id) {
-        h.put("../api/products/auctionstatus?id=" + id ).then(function (d) {
+    s.setToAuction = function () {
+        h.put("../api/products/auctionstatus?id=" + s.auctionRecno).then(function (d) {
             s.lastId = 0;
             s.productData = [];
             getAuctionData()
+
+            $("#auctionProduct").modal("hide");
         });
+    }
+
+    s.removeProduct = function (id) {
+        h.put("../api/products/removeProduct?id=" + id).then(function (d) {
+            s.lastId = 0;
+            s.productData = [];
+            getAuctionData()
+
+            $("#auctionProduct").modal("hide");
+        });
+    }
+    s.openModal = function (recno) {
+        s.auctionRecno = recno;
+        $("#auctionProduct").modal("show");
+
     }
 
 }])

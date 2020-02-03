@@ -26,6 +26,15 @@ namespace OnlineAuction.API
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [Route("api/products/removeProduct")]
+        public IHttpActionResult PutRemoveProduct(int id)
+        {
+            db.tblProducts.Where(a => a.recNo == id).ToList().ForEach(b => b.Status = 3);
+            db.SaveChanges();
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
         // GET: api/Products
         public IHttpActionResult GettblProducts(int id, string key)
         {
@@ -34,15 +43,34 @@ namespace OnlineAuction.API
             //    id = db.vProducts.Max(a => a.rowNum);
             //}
 
-            var data = db.vProducts.Where(a => a.rowNum > id);
+            var data = db.vProducts.Where(a => a.rowNum > id && a.Status == 0);
 
             if (key != null && key != "")
             {
                 data = data.Where(a => a.ProductName.Contains(key));
             }
 
-            return Json(data.Take(10));
+            return Json(data.Take(20));
           
+        }
+
+        [Route("api/products/auctionData")]
+        public IHttpActionResult GetAuctionData(int id, string key)
+        {
+            //if (id == 0)
+            //{
+            //    id = db.vProducts.Max(a => a.rowNum);
+            //}
+
+            var data = db.vProducts.Where(a => a.rowNum > id && a.Status == 1);
+
+            if (key != null && key != "")
+            {
+                data = data.Where(a => a.ProductName.Contains(key));
+            }
+
+            return Json(data.Take(20));
+
         }
 
         // GET: api/Products/5

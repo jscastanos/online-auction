@@ -6,6 +6,15 @@
 <script src="~/Scripts/ng-product.js"></script>
 <script src="~/Scripts/datepicker.js"></script>
 <script src="~/Scripts/kendo/kendo.all.min.js"></script>
+
+<script src="~/Scripts/cropper.min.js"></script>
+<script src="~/Scripts/js/cropper.js"></script>
+<script src="~/Scripts/js/plugins/forms/styling/switchery.min.js"></script>
+<script src="~/Scripts/js/assets_js_switchery_switchery.min.js"></script>
+
+<script src="~/Scripts/js/core/app.js"></script>
+<script src="~/Scripts/js/pages/extension_image_cropper.js"></script>
+
 <style>
     .scroll-to-top {
         position: fixed;
@@ -80,6 +89,26 @@
                                 </div>
                             </div>
                         </div>
+
+                        <hr />
+
+                        @*<div class="form-group">
+                            <div class="checkbox">
+                                <label class="display-block">
+                                    <input ng-change="loadkey()" id="price" type="checkbox" ng-model="filter.noPrice" class="styled">
+                                    NO PRICE
+                                    <span class="badge bg-orange-400 pull-right" style="font-size:xx-small">{{dataIncomplete.price}}</span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label class="display-block">
+                                    <input ng-change="loadkey()" type="checkbox" ng-model="filter.noCategory" class="styled">
+                                    NO CATEGORY
+                                    <span class="badge bg-orange-400 pull-right" style="font-size:xx-small">{{dataIncomplete.category}}</span>
+                                </label>
+                            </div>
+
+                        </div>*@
                         <button type="button" ng-click="clearFilter()" class="btn btn-success btn-block">
                             CLEAR FILTER
                         </button>
@@ -93,24 +122,28 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr class="bg-teal-400 border-blue">
-                                    <th class="text-center">PRODUCT NAME</th>
-                                    <th class="text-center">MININUM BID</th>
+                                    <th>PRODUCT NAME</th>
+                                    <th class="text-right">MININUM BID</th>
                                     <th class="text-center">CATEGORY</th>
-                                    <th class="text-center">DATE AUCTION LIMIT</th>
                                     <th class="text-center">ACTION</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="a in productData" ng-class="{'bg-success': a.Status=='1'}">
                                     <td>{{a.ProductName}}</td>
-                                    <td>{{a.AskPrice}}</td>
-                                    <td>{{a.categoryName}}</td>
-                                    <td>{{dateFormat(a.DateTimeLimit)}}</td>
-                                    <td>
+                                    <td class="text-right">{{a.AskPrice}}</td>
+                                    <td class="text-center">{{a.categoryName}}</td>
+                                    <td class="text-center">
                                         <button type="button" class="btn btn-success" ng-click="updateProduct(a.recNo)"><i class="fa fa-pencil"></i></button>
-                                        <button type="button" class="btn btn-info" ng-click="setToAuction(a.recNo)"><i class="fa fa-legal"></i></button>
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        <button type="button" class="btn btn-info" ng-click="openModal(a.recNo)"><i class="fa fa-legal"></i></button>
+                                        <button type="button" class="btn btn-danger" ng-click="removeProduct(a.recNo)"><i class="fa fa-trash"></i></button>
                                     </td>
+                                </tr>
+                                <tr ng-if="productData.length == 0">
+                                    <td class="text-center" colspan="5">
+                                        <i>NO PRODUCT</i>
+                                    </td>
+
                                 </tr>
                             </tbody>
 
@@ -141,6 +174,7 @@
                 <div class="modal-body">
                     <form ng-submit="addProduct()">
                         <div class="form-group">
+                            <input type="file" id="filechooser">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Product Name" ng-model="tempArr.ProductName" required>
                                 <span class="input-group-addon bg-blue" ng-if="add"><i class="icon-check"></i></span>
@@ -154,24 +188,51 @@
                                 <span class="input-group-addon bg-success" ng-if="update"><i class="icon-coins"></i></span>
                             </div>
                         </div><div class="form-group">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Category" ng-model="tempArr.CategoryID" required>
-                                <span class="input-group-addon bg-blue" ng-if="add"><i class="icon-stack3"></i></span>
-                                <span class="input-group-addon bg-success" ng-if="update"><i class="icon-stack3"></i></span>
-                            </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Category" ng-model="tempArr.CategoryID" required>
+                            <span class="input-group-addon bg-blue" ng-if="add"><i class="icon-stack3"></i></span>
+                            <span class="input-group-addon bg-success" ng-if="update"><i class="icon-stack3"></i></span>
                         </div>
-                        <div class="form-group">
+                        </div>
+                        @*<div class="form-group">
                             <div class="input-group">
                                 <input id="monthpicker" ng-model="temparr.DateTimeLimit" style="width:149%" />
-                                @* <input type="date" class="form-control" placeholder="Date Auction Limit" ng-model="tempArr.DateTimeLimit" id="dateLimit" required>*@
-                                @* <span class="input-group-addon"><i class="icon-calendar"></i></span>*@
+                                 <input type="date" class="form-control" placeholder="Date Auction Limit" ng-model="tempArr.DateTimeLimit" id="dateLimit" required>
+                                 <span class="input-group-addon"><i class="icon-calendar"></i></span>
                             </div>
-                        </div>
+                        </div>*@
 
                         <div class="row">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary" style="width:100%" ng-if="add">Save Data</button>
                                 <button type="submit" class="btn btn-success" style="width:100%" ng-if="update">Save Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="auctionProduct" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h6 class="modal-title"><i class="fa fa-pencil"></i>&nbsp;&nbsp; SET DATE & TIME AUCTION LIMIT</h6>
+                </div>
+
+                <div class="modal-body">
+                    <form ng-submit="setToAuction()">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input id="auctionpicker" ng-model="dateTimeLimit" style="width:149%" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                                <button type="submit" class="btn btn-info" style="width:100%">Auction Product</button>
                             </div>
                         </div>
                     </form>
