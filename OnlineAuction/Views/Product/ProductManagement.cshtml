@@ -101,7 +101,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="a in productData">
+                                <tr ng-repeat="a in productData" ng-class="{'bg-success': a.Status=='1'}">
                                     <td>{{a.ProductName}}</td>
                                     <td>{{a.AskPrice}}</td>
                                     <td>{{a.categoryName}}</td>

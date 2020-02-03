@@ -22,8 +22,9 @@
         h.get("../api/products?id=" + s.lastId + "&key=" + s.filter.productName).then(function (d) {
             s.isLoading = false;
             if (d.data.length > 0) {
-                s.lastId = d.data[d.data.length - 1].recNo
+                s.lastId = d.data[d.data.length - 1].rowNum
             }
+            console.log(s.lastId)
             s.productData = s.productData.concat(d.data);
             console.log(d.data);
         });
@@ -70,10 +71,16 @@
     s.addProduct = function () {
         var date = new Date($("#monthpicker").val());
         s.tempArr.DateTimeLimit = date;
+<<<<<<< HEAD
       
         h.post("../api/products", s.tempArr ).then(function (d) {
+=======
+
+        h.post("../api/products", s.tempArr).then(function (d) {
+>>>>>>> b5fb01568d806d6234214d307128c4e53e63d1a0
             s.tempArr = {};
-            alert(d.data);
+            s.productData = [];
+            s.lastId = 0;
             getAuctionData();
         });
     }
@@ -104,7 +111,9 @@
 
     s.setToAuction = function (id) {
         h.put("../api/products/auctionstatus?id=" + id ).then(function (d) {
-           alert(d.status);
+            s.lastId = 0;
+            s.productData = [];
+            getAuctionData()
         });
     }
 

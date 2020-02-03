@@ -90,7 +90,7 @@ $(function() {
             else {
 
                 // Init scrollbar
-                initScroll();
+                //initScroll();
             }
         }, 100);
     }).resize();
