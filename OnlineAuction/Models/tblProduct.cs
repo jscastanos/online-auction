@@ -27,6 +27,5 @@ namespace OnlineAuction.Models
         public Nullable<System.DateTime> DateTimeLimit { get; set; }
         public Nullable<int> Status { get; set; }
         public byte[] ProductImg { get; set; }
-        public string RateId { get; set; }
     }
 }

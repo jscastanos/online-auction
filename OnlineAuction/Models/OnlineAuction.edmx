@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OnlineAuctionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineAuctionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblAuction">
           <Key>
             <PropertyRef Name="recNo" />
@@ -59,7 +59,7 @@
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
-          <Property Name="recNo" Type="int" Nullable="false" />
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmpId" Type="varchar" MaxLength="5" />
           <Property Name="BranchId" Type="varchar" MaxLength="5" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
@@ -87,7 +87,6 @@
           <Property Name="DateTimeLimit" Type="datetime" />
           <Property Name="Status" Type="int" />
           <Property Name="ProductImg" Type="varbinary" MaxLength="50" />
-          <Property Name="RateId" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblProductCategory">
           <Key>
@@ -173,8 +172,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
     FROM [dbo].[vProduct] AS [vProduct]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OnlineAuctionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -260,7 +258,6 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="DateTimeLimit" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Int32" />
           <Property Name="ProductImg" Type="Binary" MaxLength="50" FixedLength="false" />
-          <Property Name="RateId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tblProductCategory">
           <Key>
@@ -424,7 +421,6 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
                 <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ProductImg" ColumnName="ProductImg" />
-                <ScalarProperty Name="RateId" ColumnName="RateId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
