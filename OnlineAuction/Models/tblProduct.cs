@@ -26,5 +26,6 @@ namespace OnlineAuction.Models
         public string BranchId { get; set; }
         public Nullable<System.DateTime> DateTimeLimit { get; set; }
         public Nullable<int> Status { get; set; }
+        public byte[] ProductImg { get; set; }
     }
 }
