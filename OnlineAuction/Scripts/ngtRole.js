@@ -24,6 +24,7 @@
 
              angular.forEach(d.data, function (v, key) {
                  v.DateCreated = new Date(v.DateCreated)
+                 v.conName = v.nameFirst + " " + v.nameMiddle.slice(0, 1) + ". " + v.nameLast;
              })
              
              s.alldata = s.alldata.concat(d.data)
@@ -41,9 +42,9 @@
         r.put("../api/UserManagements/sStatus", s.switchID)
 
         .then(function (d) {
-            s.alldata = [];
-            lastId = 0;
-            loaddata();
+            //s.alldata = [];
+            //lastId = 0;
+            //loaddata();
             console.log(d.data)
         })
     }
@@ -101,6 +102,9 @@
                     type: 'success'
                 }).then(function () {
                     $('#Add').modal('hide');
+                    $('#usrnm').val('');
+                    $('#psswrd').val('');
+                  //  $('#slctrole').reset();
                 })
             }
 
@@ -117,6 +121,7 @@
             if (d.data == "success") {
                 lastId = 0;
                 s.alldata = [];
+                s.newItem = [];
                 loaddata();
                 swal({
                     title: 'Success',

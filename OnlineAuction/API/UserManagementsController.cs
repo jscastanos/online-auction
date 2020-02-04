@@ -80,7 +80,8 @@ namespace OnlineAuction.API
         //api/UserManagements
          public IHttpActionResult GettblUserManagement(int id, string key)
          {
-             var data = db.tblUserManagements.Where(u => u.recNo > id)
+             
+             var predata = db.tblUserManagements.Where(u => u.recNo > id)
                  .Select(k => new
                  {
                      k.recNo,
@@ -91,6 +92,7 @@ namespace OnlineAuction.API
                      k.Password,
                      k.Status,
                      k.RoleId,
+                     prestatus = db.tblEmployeesInfoes.FirstOrDefault(o => o.EmpId == k.UsersId).Status,
                      nameDisplay = db.tblEmployeesInfoes.Where(l => l.EmpId == k.UsersId)
                             .Select(c => new
                             {
@@ -102,6 +104,7 @@ namespace OnlineAuction.API
                      roleDisplay = db.tblUsersRoles.FirstOrDefault(h => h.RoleId == k.RoleId).RoleName,
                      conName = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).FirstName + " "+ db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).MiddleName +" " + db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).LastName
                  });
+             var data = predata.Where(k => k.prestatus != 1);
 
              if (key != null && key != "")
              {

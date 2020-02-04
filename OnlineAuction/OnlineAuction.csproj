@@ -208,7 +208,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\colors.css" />
     <Content Include="Content\components.css" />
-    <Content Include="Content\core.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\icomoon.css" />
     <Content Include="Content\kendo.common-material.min.css" />
