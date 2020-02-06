@@ -34,7 +34,8 @@ namespace OnlineAuction.API
             {
                 tblUserManagement.Status = 0;
             }
-            
+
+            tblUserManagement.UpdatedBy = "UPDBY";
             tblUserManagement.DateUpdated = DateTime.Now;
             var switchery = db.Entry(tblUserManagement).State = EntityState.Modified;
             db.SaveChanges();
@@ -44,6 +45,7 @@ namespace OnlineAuction.API
         [Route("api/UserManagements/uRolechangeName")]
         public IHttpActionResult PutuRolechangeName(tblUserManagement tblUserManagement)
         {
+            tblUserManagement.UpdatedBy = "UPDBY";
             tblUserManagement.DateUpdated = DateTime.Now;
             db.Entry(tblUserManagement).State = EntityState.Modified;
             db.SaveChanges();
@@ -69,7 +71,13 @@ namespace OnlineAuction.API
             var availablepos = db.tblUsersRoles.Where(l => l.recNo > 3).ToList();
             return Json(availablepos);
         }
-        
+
+        [Route("api/UserManagements/Personel")]
+        public IHttpActionResult GetPersonel()
+        {
+            var availableper = db.tblEmployeesInfoes.ToList();
+            return Json(availableper.Count());
+        }
 
          [Route("api/UserManagements/UsersRoles")]
         public IQueryable<tblUsersRole> GetUsersRoles()
@@ -178,14 +186,20 @@ namespace OnlineAuction.API
             {
                 return BadRequest(ModelState);
             }
-
+            var preuser = db.tblEmployeesInfoes.ToList();
             var exist = db.tblUserManagements.Where(u => u.UsersId == tblUserManagement.UsersId);
-            if (exist.Count() > 0)
+
+            if (preuser.Count() <= 0)
+            {
+                return Json("no user");
+            }
+            if (exist.Count() > 0 )
             {
                 return Json("exist");
             }
             else
             {
+                tblUserManagement.CreatedBy = "CRTBY";
                 tblUserManagement.DateCreated = DateTime.Now;
                 tblUserManagement.Status = 0;
                 var aRole = db.tblUserManagements.Add(tblUserManagement);

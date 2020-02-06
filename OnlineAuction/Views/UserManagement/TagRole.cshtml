@@ -7,6 +7,8 @@
         color: hotpink;
     }
 </style>
+<script src="~/Scripts/switch.min.js"></script>
+<script src="~/Scripts/switchery.min.js"></script>
 <script src="~/Scripts/moment.min.js"></script>
 <script src="~/Scripts/daterangepicker.js"></script>
 <script src="~/Scripts/ngtRole.js"></script>
@@ -74,8 +76,8 @@
                                 <td>
                                     <div class="checkbox checkbox-switchery switchery-sm">
                                         <label>
-                                            <input type="checkbox" ng-click="cStatus(i)" ng-show="{{i.Status == 1 }}" class="switchery" checked>
-                                            <input type="checkbox" ng-click="cStatus(i)" ng-show="{{i.Status == 0 }}" class="switchery">
+                                            <input type="checkbox" ng-checked="i.Status" ng-click="cStatus(i)" @*ng-show="{{i.Status == 1 }}"*@ class="switchery">
+                                            @*<input type="checkbox" ng-click="cStatus(i)" ng-show="{{i.Status == 0 }}" class="switchery">*@
                                         </label>
                                     </div>
                                 </td>

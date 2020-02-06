@@ -26,5 +26,9 @@ namespace OnlineAuction.Models
         public string UserName { get; set; }
         public string Password { get; set; }
         public Nullable<int> Status { get; set; }
+        public Nullable<int> ViolationCount { get; set; }
+        public byte[] UserImg { get; set; }
+        public byte[] CardImgFront { get; set; }
+        public byte[] CardImgBack { get; set; }
     }
 }

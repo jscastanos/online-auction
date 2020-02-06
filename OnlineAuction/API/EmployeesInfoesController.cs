@@ -147,6 +147,7 @@ namespace OnlineAuction.API
             }
             else
             {
+                tblEmployeesInfo.BranchId = "SESSN";
                 tblEmployeesInfo.Status = 0;
                 tblEmployeesInfo.EmpId= cID;
                 var aRole = db.tblEmployeesInfoes.Add(tblEmployeesInfo);
