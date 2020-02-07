@@ -39,7 +39,7 @@
 
              angular.forEach(d.data, function (v, key) {
                  v.DateCreated = new Date(v.DateCreated)
-                 v.conName = v.nameFirst + " " + v.nameMiddle.slice(0, 1) + ". " + v.nameLast;
+               //  v.conName = v.nameFirst + " " + v.nameMiddle.slice(0, 1) + ". " + v.nameLast;
              })
 
              s.alldata = s.alldata.concat(d.data)
@@ -47,7 +47,7 @@
              if (d.data.length > 0) {
                  lastId = d.data[d.data.length - 1].recNo;
              }
-             console.log(s.alldata);
+            console.log(s.alldata);
              setTimeout(function () {
 
                  switchery()
@@ -120,8 +120,8 @@
         loaddata();
         if (d.data == "no user") {
             swal({
-                title: 'No available personel',
-                text: 'Please add personel at Record Management!',
+                title: 'Personel not recognize',
+                text: 'Please see personel at Record Management!',
                 type: 'error'
             })
         }

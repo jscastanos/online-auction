@@ -70,14 +70,7 @@
                                     <button type="button" class="btn btn-ladda btn-sm btn-icon" ng-click="openModal(i)"><i class="icon-trash"></i></button>
                                 </td>
 
-                                @*<td>{{i.amount  | absolute | number:2}}</td>*@
-                                @*<td {{i.tag == 1? 'bg-danger': i.tag == 0 ? 'bg-success': ''}}>{{i.tag == 1? "WITHDRAW" :"DEPOSIT"}}</td>*@
-                                @*<td>
-                                        <span ng-show="x.isRemoved == 1" class="text-italic" style="border:1px dashed #888;text-decoration:line-through; color: #888; padding: 4px 6px;">Removed</span>
-                                        <button ng-show="!x.isRemoved" style="padding: 4px 7px;" type="button" class="btn btn-success btn-sm btn-icon" data-toggle="modal" data-target="#Edit" ng-click="editName(x)"><i class="icon-pencil"></i></button>
-                                        <button ng-show="!x.isRemoved" style="padding: 4px 7px;" type="button" class="btn btn-danger btn-sm btn-icon" ng-click="openModal(x)"><i class="icon-bin2"></i></button>
-                                        <span ng-show="!x.isRemoved" ng-click="viewDetail(x)" style="cursor:pointer" data-toggle="tooltip" title="Details" class="ml-5"><i class="icon-question3"></i></span>
-                                    </td>*@
+                               
                             </tr>
                             <tr ng-if="lengthdata== 0">
                                 <td colspan="5" class="text-center text-muted text-italic text-semibold">NO RESULT FOUND</td>
@@ -88,80 +81,9 @@
             </div>
         </div>
     </div>
-    @*<div id="Edit" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form ng-submit="saveUOF(selected)">
-                    <div class="modal-header bg-success">
-                        <button type="button" class="close" ng-click="refresh()" data-dismiss="modal">&times;</button>
-                        <h6 class="modal-title"><i class="icon-user-plus"></i>Add User</h6>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-10">
-                                        <input ng-model="selected.FirstName" type="text" class="form-control" placeholder="First Name" required />
-                                        <span class="input-group-addon"><i class="icon-user-check"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-10">
-                                        <input ng-model="selected.MiddleName" type="text" class="form-control" placeholder="Middle Name" required />
-                                        <span class="input-group-addon"><i class="icon-user-check"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-10">
-                                        <input ng-model="selected.LastName" type="text" id="lname" class="form-control" placeholder="Last Name" required />
-                                        <span class="input-group-addon"><i class="icon-user-check"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-10">
-                                        <input type="date" class="form-control" id="date-input" ng-model="selected.Bdate" required>
-                                        <span class="input-group-addon"><span class="icon-calendar"></span> </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-10">
-                                        <input ng-model="selected.Address" type="text" id="address" class="form-control" placeholder="Address" required>
-                                        <span class="input-group-addon"><i class="icon-address-book"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-10">
-                                        <input ng-model="selected.Position" type="text" id="Position" class="form-control" placeholder="Position" required>
-                                        <span class="input-group-addon"><i class="icon-portfolio"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn bg-teal-400">Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>*@
+
     <div id="Edit" class="modal fade">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -288,79 +210,6 @@
             </div>
         </div>
     </div>
-    @*<div id="Add" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form ng-submit="addEmp(adata)">
-                    <div class="modal-header bg-success">
-                        <button type="button" class="close" ng-click="refresh()" data-dismiss="modal">&times;</button>
-                        <h6 class="modal-title"><i class="icon-user-plus"></i>Add User</h6>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-10">
-                                        <input ng-model="adata.FirstName" type="text" class="form-control" placeholder="First Name" required/>
-                                        <span class="input-group-addon"><i class="icon-user-check"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-10">
-                                        <input ng-model="adata.MiddleName" type="text" class="form-control" placeholder="Middle Name" required/>
-                                        <span class="input-group-addon"><i class="icon-user-check"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-10">
-                                        <input ng-model="adata.LastName" type="text" class="form-control" placeholder="Last Name" required/>
-                                        <span class="input-group-addon"><i class="icon-user-check"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-10">
-                                        <input type="date" class="form-control" ng-model="adata.Bdate" required>
-                                        <span class="input-group-addon"><span class="icon-calendar"></span> </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-10">
-                                        <input ng-model="adata.Address" type="text" class="form-control" placeholder="Address" required>
-                                        <span class="input-group-addon"><i class="icon-address-book"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-10">
-                                        <input ng-model="adata.Position" type="text" class="form-control" placeholder="Position" required>
-                                        <span class="input-group-addon"><i class="icon-portfolio"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" ng-click="refresh()" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn bg-teal-400">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>*@
+   
 </div>
 

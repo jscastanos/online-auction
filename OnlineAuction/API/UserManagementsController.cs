@@ -186,10 +186,11 @@ namespace OnlineAuction.API
             {
                 return BadRequest(ModelState);
             }
+            bool traceID = db.tblEmployeesInfoes.Any(k => k.EmpId == tblUserManagement.UsersId);
             var preuser = db.tblEmployeesInfoes.ToList();
             var exist = db.tblUserManagements.Where(u => u.UsersId == tblUserManagement.UsersId);
 
-            if (preuser.Count() <= 0)
+            if (preuser.Count() <= 0 || !traceID)
             {
                 return Json("no user");
             }
