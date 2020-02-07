@@ -121,8 +121,9 @@ let CompanyViewPage = class CompanyViewPage {
     constructor(route) {
         this.route = route;
         this.route.queryParams.subscribe(params => {
-            this.companyId = params.companyId;
-            this.companyName = params.companyName;
+            let data = JSON.parse(params.q.toString());
+            this.companyId = data.id;
+            this.companyName = data.name;
         });
     }
     ngOnInit() {

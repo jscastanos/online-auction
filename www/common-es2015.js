@@ -681,16 +681,279 @@ const findCheckedOption = (el, tagName) => {
 
 /***/ }),
 
-/***/ "./src/app/services/category-products.service.ts":
+/***/ "./node_modules/raw-loader/index.js!./src/app/components/camera/camera.component.html":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/components/camera/camera.component.html ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ion-row>\n  <ion-col size=\"8\" offset=\"2\">\n    <img [src]=\"'data:image/png;base64,' + cameraService.photo.base64\" alt=\"\"\n      onerror=\"this.onerror=null; this.src='../assets/placeholder.png'\" />\n  </ion-col>\n</ion-row>\n<ion-row>\n  <ion-col size=\"6\">\n    <ion-button (click)=\"capture()\" shape=\"round\">\n      <ion-icon name=\"camera\"></ion-icon>\n      <ion-label>Capture</ion-label>\n    </ion-button>\n  </ion-col>\n  <ion-col size=\"6\">\n    <ion-button (click)=\"upload()\" shape=\"round\">\n      <ion-icon name=\"images\"></ion-icon>\n      <ion-label>Upload </ion-label>\n    </ion-button>\n  </ion-col>\n</ion-row>"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/components/slider/slider.component.html":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/components/slider/slider.component.html ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ion-slides [options]=\"options.sliderOpts\">\n  <ion-slide *ngFor=\"let i of items\">\n    <ion-card (click)=\"openDetails(i)\" [ngClass]='[options.style]'>\n      <ion-header>\n        <img src=\"https://dummyimage.com/sqrpop\" alt=\"\"\n          onerror=\"this.onerror=null;this.src='../assets/placeholder.png'\">\n        <ion-card-title>{{ i[options.dataObject.name] }}</ion-card-title>\n      </ion-header>\n    </ion-card>\n  </ion-slide>\n  <ion-slide>\n    <ion-card [ngClass]='[options.style]' (click)=\"openAll(options.sliderId)\">\n      <ion-header>\n        <img src=\"../../../assets/plus.png\" />\n        <ion-card-title>{{options.sliderBrowseAllText}}</ion-card-title>\n      </ion-header>\n    </ion-card>\n  </ion-slide>\n</ion-slides>"
+
+/***/ }),
+
+/***/ "./src/app/auth/auth.scss":
+/*!********************************!*\
+  !*** ./src/app/auth/auth.scss ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "form {\n  margin-top: 5%;\n}\nform.login {\n  margin-top: 20%;\n}\nform h1 {\n  font-size: 45px;\n}\nform ion-text {\n  text-align: center !important;\n}\nform ion-icon {\n  margin-right: 10px;\n}\nform.getting-started h2 {\n  font-size: 18px;\n}\nform.getting-started h1 {\n  font-size: 25px;\n}\nion-fab {\n  margin-bottom: 20px;\n  margin-right: 20px;\n}\nion-fab ion-icon {\n  margin: 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXV0aC9EOlxcd29ya1xcUHJvamVjdHNcXEFjY1JlYWxTb2Z0XFxNb2JpbGVcXG9ubGluZWF1Y3Rpb25hcHAvc3JjXFxhcHBcXGF1dGhcXGF1dGguc2NzcyIsInNyYy9hcHAvYXV0aC9hdXRoLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFBO0FDQ0o7QURDSTtFQUNJLGVBQUE7QUNDUjtBREVJO0VBQ0ksZUFBQTtBQ0FSO0FER0k7RUFDSSw2QkFBQTtBQ0RSO0FES0k7RUFDSSxrQkFBQTtBQ0hSO0FET1E7RUFFSSxlQUFBO0FDTlo7QURRUTtFQUVJLGVBQUE7QUNQWjtBRGVBO0VBQ0ksbUJBQUE7RUFDQSxrQkFBQTtBQ1pKO0FEY0k7RUFDSSxTQUFBO0FDWlIiLCJmaWxlIjoic3JjL2FwcC9hdXRoL2F1dGguc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImZvcm17XHJcbiAgICBtYXJnaW4tdG9wOiA1JTtcclxuXHJcbiAgICAmLmxvZ2lue1xyXG4gICAgICAgIG1hcmdpbi10b3A6IDIwJTtcclxuICAgIH1cclxuICAgIFxyXG4gICAgaDF7XHJcbiAgICAgICAgZm9udC1zaXplOiA0NXB4O1xyXG4gICAgfVxyXG4gICAgXHJcbiAgICBpb24tdGV4dHtcclxuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXIgIWltcG9ydGFudDtcclxuICAgIH1cclxuXHJcblxyXG4gICAgaW9uLWljb257XHJcbiAgICAgICAgbWFyZ2luLXJpZ2h0OiAxMHB4XHJcbiAgICB9XHJcblxyXG4gICAgJi5nZXR0aW5nLXN0YXJ0ZWR7XHJcbiAgICAgICAgaDJ7XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgICAgICBmb250LXNpemU6IDE4cHg7XHJcbiAgICAgICAgfVxyXG4gICAgICAgIGgxe1xyXG4gICAgICAgICAgICBcclxuICAgICAgICAgICAgZm9udC1zaXplOiAyNXB4O1xyXG4gICAgICAgIH1cclxuICAgIH1cclxuXHJcbn1cclxuXHJcblxyXG5cclxuaW9uLWZhYntcclxuICAgIG1hcmdpbi1ib3R0b206IDIwcHg7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDIwcHg7XHJcbiAgICBcclxuICAgIGlvbi1pY29ue1xyXG4gICAgICAgIG1hcmdpbjogMDtcclxuICAgIH1cclxufVxyXG5cclxuXHJcbiIsImZvcm0ge1xuICBtYXJnaW4tdG9wOiA1JTtcbn1cbmZvcm0ubG9naW4ge1xuICBtYXJnaW4tdG9wOiAyMCU7XG59XG5mb3JtIGgxIHtcbiAgZm9udC1zaXplOiA0NXB4O1xufVxuZm9ybSBpb24tdGV4dCB7XG4gIHRleHQtYWxpZ246IGNlbnRlciAhaW1wb3J0YW50O1xufVxuZm9ybSBpb24taWNvbiB7XG4gIG1hcmdpbi1yaWdodDogMTBweDtcbn1cbmZvcm0uZ2V0dGluZy1zdGFydGVkIGgyIHtcbiAgZm9udC1zaXplOiAxOHB4O1xufVxuZm9ybS5nZXR0aW5nLXN0YXJ0ZWQgaDEge1xuICBmb250LXNpemU6IDI1cHg7XG59XG5cbmlvbi1mYWIge1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xuICBtYXJnaW4tcmlnaHQ6IDIwcHg7XG59XG5pb24tZmFiIGlvbi1pY29uIHtcbiAgbWFyZ2luOiAwO1xufSJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/components/camera/camera.component.scss":
+/*!*********************************************************!*\
+  !*** ./src/app/components/camera/camera.component.scss ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "img {\n  width: 200px;\n  height: 200px;\n  margin: 0 auto !important;\n}\n\nion-icon {\n  padding-right: 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYW1lcmEvRDpcXHdvcmtcXFByb2plY3RzXFxBY2NSZWFsU29mdFxcTW9iaWxlXFxvbmxpbmVhdWN0aW9uYXBwL3NyY1xcYXBwXFxjb21wb25lbnRzXFxjYW1lcmFcXGNhbWVyYS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29tcG9uZW50cy9jYW1lcmEvY2FtZXJhLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksWUFBQTtFQUNBLGFBQUE7RUFDQSx5QkFBQTtBQ0NKOztBREVBO0VBQ0ksa0JBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvY2FtZXJhL2NhbWVyYS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImltZ3tcclxuICAgIHdpZHRoOiAyMDBweDtcclxuICAgIGhlaWdodDogMjAwcHg7XHJcbiAgICBtYXJnaW46IDAgYXV0byAhaW1wb3J0YW50O1xyXG59XHJcblxyXG5pb24taWNvbntcclxuICAgIHBhZGRpbmctcmlnaHQ6IDVweDtcclxufSIsImltZyB7XG4gIHdpZHRoOiAyMDBweDtcbiAgaGVpZ2h0OiAyMDBweDtcbiAgbWFyZ2luOiAwIGF1dG8gIWltcG9ydGFudDtcbn1cblxuaW9uLWljb24ge1xuICBwYWRkaW5nLXJpZ2h0OiA1cHg7XG59Il19 */"
+
+/***/ }),
+
+/***/ "./src/app/components/camera/camera.component.ts":
 /*!*******************************************************!*\
-  !*** ./src/app/services/category-products.service.ts ***!
+  !*** ./src/app/components/camera/camera.component.ts ***!
   \*******************************************************/
-/*! exports provided: CategoryProductsService */
+/*! exports provided: CameraComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CategoryProductsService", function() { return CategoryProductsService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CameraComponent", function() { return CameraComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var src_app_services_camera_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/camera.service */ "./src/app/services/camera.service.ts");
+
+
+
+let CameraComponent = class CameraComponent {
+    constructor(cameraService) {
+        this.cameraService = cameraService;
+    }
+    capture() {
+        this.cameraService.takePhoto();
+    }
+    upload() {
+        this.cameraService.uploadPhoto();
+    }
+};
+CameraComponent.ctorParameters = () => [
+    { type: src_app_services_camera_service__WEBPACK_IMPORTED_MODULE_2__["CameraService"] }
+];
+CameraComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-camera',
+        template: __webpack_require__(/*! raw-loader!./camera.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/camera/camera.component.html"),
+        styles: [__webpack_require__(/*! ./camera.component.scss */ "./src/app/components/camera/camera.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_camera_service__WEBPACK_IMPORTED_MODULE_2__["CameraService"]])
+], CameraComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/components.module.ts":
+/*!*************************************************!*\
+  !*** ./src/app/components/components.module.ts ***!
+  \*************************************************/
+/*! exports provided: ComponentsModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ComponentsModule", function() { return ComponentsModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var _slider_slider_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./slider/slider.component */ "./src/app/components/slider/slider.component.ts");
+/* harmony import */ var _camera_camera_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./camera/camera.component */ "./src/app/components/camera/camera.component.ts");
+
+
+
+
+
+
+let ComponentsModule = class ComponentsModule {
+};
+ComponentsModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+        declarations: [_slider_slider_component__WEBPACK_IMPORTED_MODULE_4__["SliderComponent"], _camera_camera_component__WEBPACK_IMPORTED_MODULE_5__["CameraComponent"]],
+        exports: [_slider_slider_component__WEBPACK_IMPORTED_MODULE_4__["SliderComponent"], _camera_camera_component__WEBPACK_IMPORTED_MODULE_5__["CameraComponent"]],
+        imports: [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonicModule"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"]]
+    })
+], ComponentsModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/slider/slider.component.scss":
+/*!*********************************************************!*\
+  !*** ./src/app/components/slider/slider.component.scss ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "ion-card {\n  box-shadow: none !important;\n}\nion-card ion-card-title {\n  font-size: 14px;\n  padding: 10px 0px;\n}\nion-card.circle img {\n  border-radius: 50%;\n  width: 100%;\n  border: 2px solid #c9c9c9;\n}\nion-card.box img {\n  border-radius: 5px;\n  width: 100%;\n  border: 2px solid #c9c9c9;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9zbGlkZXIvRDpcXHdvcmtcXFByb2plY3RzXFxBY2NSZWFsU29mdFxcTW9iaWxlXFxvbmxpbmVhdWN0aW9uYXBwL3NyY1xcYXBwXFxjb21wb25lbnRzXFxzbGlkZXJcXHNsaWRlci5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29tcG9uZW50cy9zbGlkZXIvc2xpZGVyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksMkJBQUE7QUNDSjtBRENJO0VBQ0ksZUFBQTtFQUNBLGlCQUFBO0FDQ1I7QURFSTtFQUNJLGtCQUFBO0VBQ0EsV0FBQTtFQUNBLHlCQUFBO0FDQVI7QURHSTtFQUNJLGtCQUFBO0VBQ0EsV0FBQTtFQUNBLHlCQUFBO0FDRFIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL3NsaWRlci9zbGlkZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY2FyZHtcclxuICAgIGJveC1zaGFkb3c6IG5vbmUgIWltcG9ydGFudDtcclxuICAgIFxyXG4gICAgaW9uLWNhcmQtdGl0bGV7XHJcbiAgICAgICAgZm9udC1zaXplOiAxNHB4O1xyXG4gICAgICAgIHBhZGRpbmc6IDEwcHggMHB4O1xyXG4gICAgfVxyXG4gICAgXHJcbiAgICAmLmNpcmNsZSAgaW1ne1xyXG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDUwJTtcclxuICAgICAgICB3aWR0aDogMTAwJTtcclxuICAgICAgICBib3JkZXI6IDJweCBzb2xpZCAjYzljOWM5O1xyXG4gICAgfVxyXG5cclxuICAgICYuYm94ICBpbWd7XHJcbiAgICAgICAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gICAgICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgICAgIGJvcmRlcjogMnB4IHNvbGlkICNjOWM5Yzk7XHJcbiAgICB9XHJcbn0iLCJpb24tY2FyZCB7XG4gIGJveC1zaGFkb3c6IG5vbmUgIWltcG9ydGFudDtcbn1cbmlvbi1jYXJkIGlvbi1jYXJkLXRpdGxlIHtcbiAgZm9udC1zaXplOiAxNHB4O1xuICBwYWRkaW5nOiAxMHB4IDBweDtcbn1cbmlvbi1jYXJkLmNpcmNsZSBpbWcge1xuICBib3JkZXItcmFkaXVzOiA1MCU7XG4gIHdpZHRoOiAxMDAlO1xuICBib3JkZXI6IDJweCBzb2xpZCAjYzljOWM5O1xufVxuaW9uLWNhcmQuYm94IGltZyB7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgd2lkdGg6IDEwMCU7XG4gIGJvcmRlcjogMnB4IHNvbGlkICNjOWM5Yzk7XG59Il19 */"
+
+/***/ }),
+
+/***/ "./src/app/components/slider/slider.component.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/components/slider/slider.component.ts ***!
+  \*******************************************************/
+/*! exports provided: SliderComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SliderComponent", function() { return SliderComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var src_app_services_slider_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/slider.service */ "./src/app/services/slider.service.ts");
+
+
+
+
+let SliderComponent = class SliderComponent {
+    constructor(router, sliderService) {
+        this.router = router;
+        this.sliderService = sliderService;
+    }
+    ngOnInit() {
+        this.sliderService.getData(this.options.requestUrl)
+            .subscribe(data => {
+            this.items = data;
+        });
+    }
+    openDetails(item) {
+        let data = {
+            id: item[this.options.dataObject.id],
+            name: item[this.options.dataObject.name]
+        };
+        let params = {
+            queryParams: {
+                q: JSON.stringify(data)
+            }
+        };
+        this.router.navigate([this.options.slideRedirect], params);
+    }
+    openAll() {
+        this.router.navigate(['/browse-by-all']);
+    }
+};
+SliderComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+    { type: src_app_services_slider_service__WEBPACK_IMPORTED_MODULE_3__["SliderService"] }
+];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], SliderComponent.prototype, "options", void 0);
+SliderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-slider',
+        template: __webpack_require__(/*! raw-loader!./slider.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/slider/slider.component.html"),
+        styles: [__webpack_require__(/*! ./slider.component.scss */ "./src/app/components/slider/slider.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], src_app_services_slider_service__WEBPACK_IMPORTED_MODULE_3__["SliderService"]])
+], SliderComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/camera.service.ts":
+/*!********************************************!*\
+  !*** ./src/app/services/camera.service.ts ***!
+  \********************************************/
+/*! exports provided: CameraService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CameraService", function() { return CameraService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
+
+
+
+const { Camera } = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"];
+let CameraService = class CameraService {
+    constructor() {
+        this.photo = {
+            base64: ""
+        };
+    }
+    takePhoto() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const capturedPhoto = yield Camera.getPhoto({
+                resultType: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraResultType"].Base64,
+                source: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraSource"].Camera,
+                quality: 100,
+                width: 200,
+                height: 200,
+            });
+            this.photo = {
+                base64: capturedPhoto.base64String
+            };
+        });
+    }
+    uploadPhoto() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const capturedPhoto = yield Camera.getPhoto({
+                resultType: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraResultType"].Base64,
+                source: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraSource"].Photos,
+                quality: 100,
+                width: 200,
+                height: 200,
+            });
+            this.photo = {
+                base64: capturedPhoto.base64String
+            };
+        });
+    }
+};
+CameraService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+], CameraService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/products.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/services/products.service.ts ***!
+  \**********************************************/
+/*! exports provided: ProductsService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductsService", function() { return ProductsService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
@@ -699,7 +962,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let CategoryProductsService = class CategoryProductsService {
+let ProductsService = class ProductsService {
     constructor(route, env) {
         this.route = route;
         this.env = env;
@@ -710,47 +973,110 @@ let CategoryProductsService = class CategoryProductsService {
     getCategories() {
         return this.route.get(this.env.API_URL + 'category');
     }
+    getDisplayItems(index) {
+        return this.route.get(this.env.API_URL + 'products?id=' + index + '&key');
+    }
+    getAuctionItems(index) {
+        return this.route.get(this.env.API_URL + 'products/auctiondata?id=' + index + '&key');
+    }
 };
-CategoryProductsService.ctorParameters = () => [
+ProductsService.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
     { type: _env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"] }
 ];
-CategoryProductsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+ProductsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
         providedIn: 'root'
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"]])
-], CategoryProductsService);
+], ProductsService);
 
 
 
 /***/ }),
 
-/***/ "./src/app/services/env.service.ts":
-/*!*****************************************!*\
-  !*** ./src/app/services/env.service.ts ***!
-  \*****************************************/
-/*! exports provided: EnvService */
+/***/ "./src/app/services/profile.service.ts":
+/*!*********************************************!*\
+  !*** ./src/app/services/profile.service.ts ***!
+  \*********************************************/
+/*! exports provided: ProfileService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EnvService", function() { return EnvService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileService", function() { return ProfileService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _env_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./env.service */ "./src/app/services/env.service.ts");
 
 
-let EnvService = class EnvService {
-    constructor() {
-        this.API_URL = 'http://192.168.1.6:69/api/';
+
+
+let ProfileService = class ProfileService {
+    constructor(http, env) {
+        this.http = http;
+        this.env = env;
+    }
+    checkUsernameAvailability(username) {
+        return this.http.get(this.env.API_URL + 'auth/username/check?username=' + username);
+    }
+    updateProfile(id, profile) {
+        return this.http.put(this.env.API_URL + 'auth/profile/update/' + id, profile);
     }
 };
-EnvService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+ProfileService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+    { type: _env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"] }
+];
+ProfileService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
         providedIn: 'root'
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-], EnvService);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"]])
+], ProfileService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/slider.service.ts":
+/*!********************************************!*\
+  !*** ./src/app/services/slider.service.ts ***!
+  \********************************************/
+/*! exports provided: SliderService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SliderService", function() { return SliderService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _env_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./env.service */ "./src/app/services/env.service.ts");
+
+
+
+
+let SliderService = class SliderService {
+    constructor(http, env) {
+        this.http = http;
+        this.env = env;
+    }
+    getData(reqUrl) {
+        return this.http.get(this.env.API_URL + reqUrl);
+    }
+};
+SliderService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+    { type: _env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"] }
+];
+SliderService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"]])
+], SliderService);
 
 
 

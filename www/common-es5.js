@@ -403,16 +403,27 @@ var findCheckedOption = function (el, tagName) {
 
 /***/ }),
 
-/***/ "./src/app/services/category-products.service.ts":
-/*!*******************************************************!*\
-  !*** ./src/app/services/category-products.service.ts ***!
-  \*******************************************************/
-/*! exports provided: CategoryProductsService */
+/***/ "./src/app/auth/auth.scss":
+/*!********************************!*\
+  !*** ./src/app/auth/auth.scss ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "form {\n  margin-top: 5%;\n}\nform.login {\n  margin-top: 20%;\n}\nform h1 {\n  font-size: 45px;\n}\nform ion-text {\n  text-align: center !important;\n}\nform ion-icon {\n  margin-right: 10px;\n}\nform.getting-started h2 {\n  font-size: 18px;\n}\nform.getting-started h1 {\n  font-size: 25px;\n}\nion-fab {\n  margin-bottom: 20px;\n  margin-right: 20px;\n}\nion-fab ion-icon {\n  margin: 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXV0aC9EOlxcd29ya1xcUHJvamVjdHNcXEFjY1JlYWxTb2Z0XFxNb2JpbGVcXG9ubGluZWF1Y3Rpb25hcHAvc3JjXFxhcHBcXGF1dGhcXGF1dGguc2NzcyIsInNyYy9hcHAvYXV0aC9hdXRoLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFBO0FDQ0o7QURDSTtFQUNJLGVBQUE7QUNDUjtBREVJO0VBQ0ksZUFBQTtBQ0FSO0FER0k7RUFDSSw2QkFBQTtBQ0RSO0FES0k7RUFDSSxrQkFBQTtBQ0hSO0FET1E7RUFFSSxlQUFBO0FDTlo7QURRUTtFQUVJLGVBQUE7QUNQWjtBRGVBO0VBQ0ksbUJBQUE7RUFDQSxrQkFBQTtBQ1pKO0FEY0k7RUFDSSxTQUFBO0FDWlIiLCJmaWxlIjoic3JjL2FwcC9hdXRoL2F1dGguc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImZvcm17XHJcbiAgICBtYXJnaW4tdG9wOiA1JTtcclxuXHJcbiAgICAmLmxvZ2lue1xyXG4gICAgICAgIG1hcmdpbi10b3A6IDIwJTtcclxuICAgIH1cclxuICAgIFxyXG4gICAgaDF7XHJcbiAgICAgICAgZm9udC1zaXplOiA0NXB4O1xyXG4gICAgfVxyXG4gICAgXHJcbiAgICBpb24tdGV4dHtcclxuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXIgIWltcG9ydGFudDtcclxuICAgIH1cclxuXHJcblxyXG4gICAgaW9uLWljb257XHJcbiAgICAgICAgbWFyZ2luLXJpZ2h0OiAxMHB4XHJcbiAgICB9XHJcblxyXG4gICAgJi5nZXR0aW5nLXN0YXJ0ZWR7XHJcbiAgICAgICAgaDJ7XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgICAgICBmb250LXNpemU6IDE4cHg7XHJcbiAgICAgICAgfVxyXG4gICAgICAgIGgxe1xyXG4gICAgICAgICAgICBcclxuICAgICAgICAgICAgZm9udC1zaXplOiAyNXB4O1xyXG4gICAgICAgIH1cclxuICAgIH1cclxuXHJcbn1cclxuXHJcblxyXG5cclxuaW9uLWZhYntcclxuICAgIG1hcmdpbi1ib3R0b206IDIwcHg7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDIwcHg7XHJcbiAgICBcclxuICAgIGlvbi1pY29ue1xyXG4gICAgICAgIG1hcmdpbjogMDtcclxuICAgIH1cclxufVxyXG5cclxuXHJcbiIsImZvcm0ge1xuICBtYXJnaW4tdG9wOiA1JTtcbn1cbmZvcm0ubG9naW4ge1xuICBtYXJnaW4tdG9wOiAyMCU7XG59XG5mb3JtIGgxIHtcbiAgZm9udC1zaXplOiA0NXB4O1xufVxuZm9ybSBpb24tdGV4dCB7XG4gIHRleHQtYWxpZ246IGNlbnRlciAhaW1wb3J0YW50O1xufVxuZm9ybSBpb24taWNvbiB7XG4gIG1hcmdpbi1yaWdodDogMTBweDtcbn1cbmZvcm0uZ2V0dGluZy1zdGFydGVkIGgyIHtcbiAgZm9udC1zaXplOiAxOHB4O1xufVxuZm9ybS5nZXR0aW5nLXN0YXJ0ZWQgaDEge1xuICBmb250LXNpemU6IDI1cHg7XG59XG5cbmlvbi1mYWIge1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xuICBtYXJnaW4tcmlnaHQ6IDIwcHg7XG59XG5pb24tZmFiIGlvbi1pY29uIHtcbiAgbWFyZ2luOiAwO1xufSJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/services/products.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/services/products.service.ts ***!
+  \**********************************************/
+/*! exports provided: ProductsService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CategoryProductsService", function() { return CategoryProductsService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductsService", function() { return ProductsService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
@@ -421,59 +432,80 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var CategoryProductsService = /** @class */ (function () {
-    function CategoryProductsService(route, env) {
+var ProductsService = /** @class */ (function () {
+    function ProductsService(route, env) {
         this.route = route;
         this.env = env;
     }
-    CategoryProductsService.prototype.getProductsFromCategory = function (categoryId) {
+    ProductsService.prototype.getProductsFromCategory = function (categoryId) {
         return this.route.get(this.env.API_URL + 'category/' + categoryId + '/products');
     };
-    CategoryProductsService.prototype.getCategories = function () {
+    ProductsService.prototype.getCategories = function () {
         return this.route.get(this.env.API_URL + 'category');
     };
-    CategoryProductsService.ctorParameters = function () { return [
+    ProductsService.prototype.getDisplayItems = function (index) {
+        return this.route.get(this.env.API_URL + 'products?id=' + index + '&key');
+    };
+    ProductsService.prototype.getAuctionItems = function (index) {
+        return this.route.get(this.env.API_URL + 'products/auctiondata?id=' + index + '&key');
+    };
+    ProductsService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
         { type: _env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"] }
     ]; };
-    CategoryProductsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    ProductsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"]])
-    ], CategoryProductsService);
-    return CategoryProductsService;
+    ], ProductsService);
+    return ProductsService;
 }());
 
 
 
 /***/ }),
 
-/***/ "./src/app/services/env.service.ts":
-/*!*****************************************!*\
-  !*** ./src/app/services/env.service.ts ***!
-  \*****************************************/
-/*! exports provided: EnvService */
+/***/ "./src/app/services/profile.service.ts":
+/*!*********************************************!*\
+  !*** ./src/app/services/profile.service.ts ***!
+  \*********************************************/
+/*! exports provided: ProfileService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EnvService", function() { return EnvService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileService", function() { return ProfileService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _env_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./env.service */ "./src/app/services/env.service.ts");
 
 
-var EnvService = /** @class */ (function () {
-    function EnvService() {
-        this.API_URL = 'http://192.168.1.6:69/api/';
+
+
+var ProfileService = /** @class */ (function () {
+    function ProfileService(http, env) {
+        this.http = http;
+        this.env = env;
     }
-    EnvService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    ProfileService.prototype.checkUsernameAvailability = function (username) {
+        return this.http.get(this.env.API_URL + 'auth/username/check?username=' + username);
+    };
+    ProfileService.prototype.updateProfile = function (id, profile) {
+        return this.http.put(this.env.API_URL + 'auth/profile/update/' + id, profile);
+    };
+    ProfileService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+        { type: _env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"] }
+    ]; };
+    ProfileService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], EnvService);
-    return EnvService;
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"]])
+    ], ProfileService);
+    return ProfileService;
 }());
 
 

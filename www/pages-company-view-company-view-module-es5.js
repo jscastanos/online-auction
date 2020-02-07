@@ -128,8 +128,9 @@ var CompanyViewPage = /** @class */ (function () {
         var _this = this;
         this.route = route;
         this.route.queryParams.subscribe(function (params) {
-            _this.companyId = params.companyId;
-            _this.companyName = params.companyName;
+            var data = JSON.parse(params.q.toString());
+            _this.companyId = data.id;
+            _this.companyName = data.name;
         });
     }
     CompanyViewPage.prototype.ngOnInit = function () {

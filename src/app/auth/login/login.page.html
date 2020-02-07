@@ -1,5 +1,5 @@
 <ion-content class="no-scroll">
-  <form #form="ngForm" (ngSubmit)="login(form)">
+  <form #form="ngForm" (ngSubmit)="login(form)" class="login">
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -21,7 +21,7 @@
             </ion-item>
           </div>
           <div class="ion-padding">
-            <ion-button color="primary" size="md" type="submit" expand="full">LOG
+            <ion-button color="primary" shape="round" size="md" type="submit" expand="full">LOG
               IN</ion-button>
           </div>
         </ion-col>

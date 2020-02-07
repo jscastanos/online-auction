@@ -120,7 +120,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _services_category_products_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/category-products.service */ "./src/app/services/category-products.service.ts");
+/* harmony import */ var _services_products_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/products.service */ "./src/app/services/products.service.ts");
 
 
 
@@ -131,8 +131,9 @@ var CategoryViewPage = /** @class */ (function () {
         this.route = route;
         this.categoryService = categoryService;
         this.route.queryParams.subscribe(function (params) {
-            _this.categoryId = params.categoryId;
-            _this.categoryName = params.categoryName;
+            var data = JSON.parse(params.q.toString());
+            _this.categoryId = data.id;
+            _this.categoryName = data.name;
         });
     }
     CategoryViewPage.prototype.ngOnInit = function () {
@@ -147,7 +148,7 @@ var CategoryViewPage = /** @class */ (function () {
     };
     CategoryViewPage.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
-        { type: _services_category_products_service__WEBPACK_IMPORTED_MODULE_3__["CategoryProductsService"] }
+        { type: _services_products_service__WEBPACK_IMPORTED_MODULE_3__["ProductsService"] }
     ]; };
     CategoryViewPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -155,7 +156,7 @@ var CategoryViewPage = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./category-view.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/category-view/category-view.page.html"),
             styles: [__webpack_require__(/*! ./category-view.page.scss */ "./src/app/pages/category-view/category-view.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _services_category_products_service__WEBPACK_IMPORTED_MODULE_3__["CategoryProductsService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _services_products_service__WEBPACK_IMPORTED_MODULE_3__["ProductsService"]])
     ], CategoryViewPage);
     return CategoryViewPage;
 }());

@@ -6158,8 +6158,8 @@ window.__Zone_disable_customElements = true;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\labs\ionic\AuctionApp\src\polyfills.ts */"./src/polyfills.ts");
-module.exports = __webpack_require__(/*! D:\labs\ionic\AuctionApp\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
+__webpack_require__(/*! D:\work\Projects\AccRealSoft\Mobile\onlineauctionapp\src\polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! D:\work\Projects\AccRealSoft\Mobile\onlineauctionapp\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
 
 
 /***/ })

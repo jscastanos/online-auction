@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { get, remove } from './services/storage.service';
 import { Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,18 +13,6 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  public appPages = [
-    {
-      title: 'Home',
-      url: '/home',
-      icon: 'home'
-    },
-    {
-      title: 'Active Bidings',
-      url: '/list',
-      icon: 'list'
-    }
-  ];
 
   userID;
 
@@ -32,15 +21,16 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) {
     this.getUserID();
     this.initializeApp();
   }
 
   async getUserID() {
-    this.userID = await get("userID");
-
+    let data = await this.auth.checkId();
+    this.userID = data != null ? data["id"] : null;
     if (this.userID == null) {
       this.router.navigateByUrl('/login')
     } else {
@@ -48,10 +38,6 @@ export class AppComponent {
     }
   }
 
-  logout() {
-    remove("userID");
-    this.router.navigateByUrl('/login')
-  }
 
   initializeApp() {
     this.platform.ready().then(() => {

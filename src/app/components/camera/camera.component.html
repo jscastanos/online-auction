@@ -1,0 +1,20 @@
+<ion-row>
+  <ion-col size="8" offset="2">
+    <img [src]="'data:image/png;base64,' + cameraService.photo.base64" alt=""
+      onerror="this.onerror=null; this.src='../assets/placeholder.png'" />
+  </ion-col>
+</ion-row>
+<ion-row>
+  <ion-col size="6">
+    <ion-button (click)="capture()" shape="round">
+      <ion-icon name="camera"></ion-icon>
+      <ion-label>Capture</ion-label>
+    </ion-button>
+  </ion-col>
+  <ion-col size="6">
+    <ion-button (click)="upload()" shape="round">
+      <ion-icon name="images"></ion-icon>
+      <ion-label>Upload </ion-label>
+    </ion-button>
+  </ion-col>
+</ion-row>

@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { IonInfiniteScroll } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ export class HomePage {
 
   displayItems = [];
   auctionItems = [];
-  activeItems;
+  activeItems = [];
   lazyLoadIndex = {
     auction: 0,
     display: 0
@@ -49,44 +50,56 @@ export class HomePage {
     }
   }
 
-
-  constructor(private productsService: ProductsService) {
+  userID;
+  constructor(private productsService: ProductsService, private auth: AuthService) {
+    this.fetchDisplay();
+    this.fetchAuction();
+    this.init();
 
   }
 
-  loadData(event) {
+  async init() {
+    let data = await this.auth.checkId();
+    this.userID = data["id"]
+  }
+
+  loadData() {
     setTimeout(() => {
-      let service;
 
       if (this.currItemStatus == 0)
-        service = this.productsService.getDisplayItems(this.lazyLoadIndex.display);
+        this.fetchDisplay();
       else
-        service = this.productsService.getAuctionItems(this.lazyLoadIndex.auction);
+        this.fetchAuction();
 
-      service.subscribe(params => {
+      this.infiniteScroll.complete();
 
-        if (this.currItemStatus == 0) {
-          for (let index in params) {
-            this.displayItems.push(params[index])
-            this.lazyLoadIndex.display = params[index]["rowNum"];
-          }
+    }, 300);
 
-          this.activeItems = this.displayItems;
-        }
-        else {
-          for (let index in params) {
-            this.auctionItems.push(params[index])
-            this.lazyLoadIndex.auction = params[index]["rowNum"];
-          }
-
-          this.activeItems = this.auctionItems
-        }
-
-        event.target.complete();
-      });
-
-    }, 500);
   }
+
+  fetchDisplay() {
+    this.productsService.getDisplayItems(this.lazyLoadIndex.display)
+      .subscribe(data => {
+        for (let index in data) {
+          this.displayItems.push(data[index]);
+          this.lazyLoadIndex.display = data[index]["rowNum"];
+        }
+        this.activeItems = this.displayItems
+
+
+      });
+  };
+
+  fetchAuction() {
+    this.productsService.getAuctionItems(this.lazyLoadIndex.auction)
+      .subscribe(data => {
+        for (let index in data) {
+          this.auctionItems.push(data[index]);
+          this.lazyLoadIndex.auction = data[index]["rowNum"];
+        }
+        this.activeItems = this.auctionItems
+      })
+  };
 
   segmentChanged(e) {
     if (e.detail.value == 'display') {

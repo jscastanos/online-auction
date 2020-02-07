@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content class=\"no-scroll\">\n  <div class=\"overlay\">\n    <form #form=\"ngForm\" (ngSubmit)=\"login(form)\">\n      <ion-grid>\n        <ion-row>\n          <ion-col size-xs=\"12\">\n            <ion-text>\n              <h1>AUCTION</h1>\n            </ion-text>\n          </ion-col>\n          <ion-col>\n            <ion-text size-xs=\"12\">\n              <h5>Create an account</h5>\n            </ion-text>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col size-xs=\"12\" class=\"ion-align-self-center\">\n            <div class=\"ion-padding\">\n              <ion-item class=\"ion-margin-top\">\n                <ion-icon name=\"person\"></ion-icon>\n                <ion-input type=\"text\" required ngModel name=\"username\" placeholder=\"Username\"></ion-input>\n              </ion-item>\n              <ion-item class=\"ion-margin-top\">\n                <ion-icon name=\"key\"></ion-icon>\n                <ion-input type=\"password\" required ngModel name=\"password\" placeholder=\"Password\"></ion-input>\n              </ion-item>\n              <ion-item class=\"ion-margin-top\">\n                <ion-icon name=\"key\"></ion-icon>\n                <ion-input type=\"password\" required ngModel name=\"repassword\" placeholder=\"Confirm Password\">\n                </ion-input>\n              </ion-item>\n            </div>\n            <div class=\"ion-padding\">\n              <ion-button color=\"primary\" size=\"md\" type=\"submit\" expand=\"full\">REGISTER</ion-button>\n            </div>\n          </ion-col>\n          <ion-col>\n            <ion-text>\n              <h5>Already have an account.\n                <a [routerLink]=\"['../login']\">Log In</a> </h5>\n            </ion-text>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </form>\n  </div>\n</ion-content>"
+module.exports = "<ion-content>\n  <div class=\"overlay\">\n    <form [formGroup]=\"registerForm\" (ngSubmit)=\"register(registerForm)\">\n      <ion-grid>\n        <ion-row>\n          <ion-col size-xs=\"12\">\n            <ion-text>\n              <h1>AUCTION</h1>\n            </ion-text>\n          </ion-col>\n          <ion-col>\n            <ion-text size-xs=\"12\">\n              <h5>Create an account</h5>\n            </ion-text>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col size-xs=\"12\" class=\"ion-align-self-center\">\n            <div class=\"ion-padding\">\n              <ion-item class=\"ion-margin-top\">\n                <ion-icon name=\"person\"></ion-icon>\n                <ion-input type=\"text\" required formControlName=\"username\" placeholder=\"Username\"\n                  (keyup)=\"updateValidation('username')\"></ion-input>\n              </ion-item>\n              <ion-label color=\"danger\" *ngIf=\"validations.username_available\">\n                * Username Not Available\n              </ion-label>\n              <br />\n              <ion-label color=\"danger\" *ngIf=\"validations.username\">\n                * Please Provide Username\n              </ion-label>\n\n\n              <ion-item class=\"ion-margin-top\">\n                <ion-icon name=\"key\"></ion-icon>\n                <ion-input type=\"password\" required formControlName=\"password\" placeholder=\"Password\"\n                  (keyup)=\"updateValidation('password')\"></ion-input>\n              </ion-item>\n              <ion-label color=\"danger\" *ngIf=\"validations.password\">\n                * Please Provide Password\n              </ion-label>\n              <ion-item class=\"ion-margin-top\">\n                <ion-icon name=\"key\"></ion-icon>\n                <ion-input type=\"password\" required formControlName=\"confirm_password\" placeholder=\"Confirm Password\"\n                  (keyup)=\"updateValidation('confirm_password')\">\n                </ion-input>\n              </ion-item>\n              <ion-label color=\"danger\" *ngIf=\"validations.confirm_password\">\n                * Please Re-Type Password\n              </ion-label>\n              <ion-label color=\"danger\"\n                *ngIf=\"!registerForm.get('confirm_password').errors && registerForm.hasError('passwordNotMatch')\">\n                * Password and Confirm Password don't match\n              </ion-label>\n\n              <ion-item class=\"ion-margin-top\">\n                <ion-icon name=\"calendar\"></ion-icon>\n                <ion-datetime displayFormat=\"D MMM YYYY\" formControlName=\"DOB\" placeholder=\"Date Of Birth\"\n                  (ionChange)=\"updateValidation('DOB')\">\n                </ion-datetime>\n              </ion-item>\n              <ion-label color=\"danger\" *ngIf=\"validations.DOB\">\n                * You must provide your date of birth\n              </ion-label>\n\n              <ion-label color=\"danger\" *ngIf=\"validations.underAge\">\n                * You are a minor. You can't join this app.\n              </ion-label>\n\n              <div style=\"margin-top: 50px;\">\n                <ion-label>\n                  <ion-checkbox formControlName=\"readTAC\" (ionChange)=\"updateValidation('readTAC')\"></ion-checkbox> I\n                  have read the terms and conditions\n                </ion-label>\n                <br />\n                <ion-label *ngIf=\"!validations.readTAC\" color=\"danger\">\n                  * You need to agree with our terms and conditions\n                </ion-label>\n              </div>\n\n            </div>\n\n            <div class=\"ion-padding\">\n              <ion-button color=\"primary\" shape=\"round\" size=\"md\" type=\"submit\" expand=\"full\">REGISTER</ion-button>\n            </div>\n          </ion-col>\n          <ion-col>\n            <ion-text>\n              <h5>Already have an account.\n                <a [routerLink]=\"['../login']\">Log In</a> </h5>\n            </ion-text>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </form>\n  </div>\n</ion-content>"
 
 /***/ }),
 
@@ -84,7 +84,8 @@ var RegisterPageModule = /** @class */ (function () {
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
                 _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
-                _register_routing_module__WEBPACK_IMPORTED_MODULE_5__["RegisterPageRoutingModule"]
+                _register_routing_module__WEBPACK_IMPORTED_MODULE_5__["RegisterPageRoutingModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"]
             ],
             declarations: [_register_page__WEBPACK_IMPORTED_MODULE_6__["RegisterPage"]]
         })
@@ -93,17 +94,6 @@ var RegisterPageModule = /** @class */ (function () {
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/auth/register/register.page.scss":
-/*!**************************************************!*\
-  !*** ./src/app/auth/register/register.page.scss ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "form {\n  margin-top: 20%;\n}\n\nh1 {\n  font-size: 45px;\n}\n\nion-text {\n  text-align: center;\n}\n\nion-content {\n  padding: 0;\n}\n\nion-icon {\n  margin-right: 10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXV0aC9yZWdpc3Rlci9EOlxcbGFic1xcaW9uaWNcXEF1Y3Rpb25BcHAvc3JjXFxhcHBcXGF1dGhcXHJlZ2lzdGVyXFxyZWdpc3Rlci5wYWdlLnNjc3MiLCJzcmMvYXBwL2F1dGgvcmVnaXN0ZXIvcmVnaXN0ZXIucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZUFBQTtBQ0NKOztBREVBO0VBQ0ksZUFBQTtBQ0NKOztBREVBO0VBQ0ksa0JBQUE7QUNDSjs7QURFQTtFQUNJLFVBQUE7QUNDSjs7QURFQTtFQUNJLGtCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9hdXRoL3JlZ2lzdGVyL3JlZ2lzdGVyLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImZvcm17XHJcbiAgICBtYXJnaW4tdG9wOiAyMCU7XHJcbn1cclxuXHJcbmgxe1xyXG4gICAgZm9udC1zaXplOiA0NXB4O1xyXG59XHJcblxyXG5pb24tdGV4dHtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuaW9uLWNvbnRlbnR7XHJcbiAgICBwYWRkaW5nOiAwO1xyXG59XHJcblxyXG5pb24taWNvbntcclxuICAgIG1hcmdpbi1yaWdodDogMTBweFxyXG59IiwiZm9ybSB7XG4gIG1hcmdpbi10b3A6IDIwJTtcbn1cblxuaDEge1xuICBmb250LXNpemU6IDQ1cHg7XG59XG5cbmlvbi10ZXh0IHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG5pb24tY29udGVudCB7XG4gIHBhZGRpbmc6IDA7XG59XG5cbmlvbi1pY29uIHtcbiAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xufSJdfQ== */"
 
 /***/ }),
 
@@ -119,20 +109,161 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterPage", function() { return RegisterPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var src_app_services_profile_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/profile.service */ "./src/app/services/profile.service.ts");
+/* harmony import */ var src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
+
+
 
 
 var RegisterPage = /** @class */ (function () {
-    function RegisterPage() {
+    function RegisterPage(formBuilder, profileService, authService, toast, router) {
+        this.formBuilder = formBuilder;
+        this.profileService = profileService;
+        this.authService = authService;
+        this.toast = toast;
+        this.router = router;
+        this.validations = {
+            username: false,
+            username_available: false,
+            password: false,
+            confirm_password: false,
+            DOB: false,
+            readTAC: false,
+            underAge: false
+        };
+        this.createForm();
     }
     RegisterPage.prototype.ngOnInit = function () {
     };
+    RegisterPage.prototype.initToast = function (message, duration) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var initToast;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.toast.create({
+                            message: message,
+                            duration: duration
+                        })];
+                    case 1:
+                        initToast = _a.sent();
+                        initToast.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RegisterPage.prototype.createForm = function () {
+        this.registerForm = this.formBuilder.group({
+            'username': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            'password': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            'confirm_password': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            'DOB': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            'readTAC': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](false),
+            'underAge': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](false)
+        }, {
+            validators: [
+                this.checkpassword.bind(this),
+                this.checkUsernameAvailability.bind(this)
+            ]
+        });
+    };
+    RegisterPage.prototype.checkpassword = function (formGroup) {
+        var password = formGroup.get('password').value;
+        var confirm_password = formGroup.get('confirm_password').value;
+        return password === confirm_password ? null : { passwordNotMatch: true };
+    };
+    RegisterPage.prototype.checkUsernameAvailability = function (formGroup) {
+        var _this = this;
+        var username = formGroup.get('username').value;
+        if (username != null && username != "") {
+            this.profileService.checkUsernameAvailability(username)
+                .subscribe(function (data) {
+                _this.validations.username_available = !data;
+            });
+            return this.validations.username_available ? null : { usernameNotAvailable: true };
+        }
+        else {
+            return null;
+        }
+    };
+    RegisterPage.prototype.defaultValues = function (validations) {
+        for (var key in validations) {
+            this.validations[key] = false;
+        }
+    };
+    RegisterPage.prototype.updateValidation = function (e) {
+        if (e == "readTAC") {
+            this.validations[e] = this.registerForm.value[e];
+            return;
+        }
+        if (e == "DOB") {
+            var age = this.getAge(this.registerForm.value[e]);
+            if (age >= 18)
+                this.validations["underAge"] = false;
+            else
+                this.validations["underAge"] = true;
+            return;
+        }
+        this.validations[e] = this.registerForm.value[e].length > 0 ? false : true;
+    };
+    RegisterPage.prototype.register = function (form) {
+        var _this = this;
+        //check validations 
+        this.validations.username = !form.value.username ? true : false;
+        this.validations.password = !form.value.password ? true : false;
+        this.validations.confirm_password = !form.value.confirm_password ? true : false;
+        this.validations.DOB = !form.value.DOB ? true : false;
+        this.validations.readTAC = form.value.readTAC;
+        if (form.value.username != "" &&
+            form.value.password != "" &&
+            form.value.confirm_password != "" &&
+            form.value.DOB != "" &&
+            form.value.readTAC &&
+            this.validations.underAge == false) {
+            this.userData = {
+                username: form.value.username,
+                password: form.value.password,
+                Bdate: form.value.DOB
+            };
+            this.authService.register(this.userData).subscribe(function (data) {
+                var params = {
+                    queryParams: {
+                        id: JSON.stringify(data)
+                    }
+                };
+                _this.defaultValues(_this.validations);
+                _this.router.navigate(["/getting-started"], params);
+            }, function (response) {
+                _this.initToast("Error in saving. Please try again", 2000);
+            });
+        }
+        else {
+            this.initToast("Please provide your information above", 2000);
+        }
+    };
+    RegisterPage.prototype.getAge = function (dob) {
+        return Math.floor((new Date().getTime() - new Date(dob).getTime()) / 3.15576e+10);
+    };
+    RegisterPage.ctorParameters = function () { return [
+        { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
+        { type: src_app_services_profile_service__WEBPACK_IMPORTED_MODULE_3__["ProfileService"] },
+        { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ToastController"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] }
+    ]; };
     RegisterPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-register',
             template: __webpack_require__(/*! raw-loader!./register.page.html */ "./node_modules/raw-loader/index.js!./src/app/auth/register/register.page.html"),
-            styles: [__webpack_require__(/*! ./register.page.scss */ "./src/app/auth/register/register.page.scss")]
+            styles: [__webpack_require__(/*! ../auth.scss */ "./src/app/auth/auth.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], src_app_services_profile_service__WEBPACK_IMPORTED_MODULE_3__["ProfileService"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ToastController"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]])
     ], RegisterPage);
     return RegisterPage;
 }());
