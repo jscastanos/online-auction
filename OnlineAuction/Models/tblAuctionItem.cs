@@ -12,12 +12,15 @@ namespace OnlineAuction.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblAuditTrail
+    public partial class tblAuctionItem
     {
         public int recNo { get; set; }
-        public string ProductId { get; set; }
+        public string AuctionId { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<int> Status { get; set; }
+        public string ProductId { get; set; }
+        public Nullable<double> AskPrice { get; set; }
+        public Nullable<System.DateTime> DateTimeLimit { get; set; }
     }
 }

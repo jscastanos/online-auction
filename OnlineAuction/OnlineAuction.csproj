@@ -135,6 +135,7 @@
     <Folder Include="Images\products\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\AuthController.cs" />
     <Compile Include="API\EmployeesInfoesController.cs" />
     <Compile Include="API\ProductsController.cs" />
     <Compile Include="API\UserManagementsController.cs" />
@@ -156,28 +157,28 @@
     </Compile>
     <Compile Include="Models\IdentityModel.cs" />
     <Compile Include="Models\OnlineAuction.Context.cs">
-      <DependentUpon>OnlineAuction.Context.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OnlineAuction.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OnlineAuction.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OnlineAuction.Designer.cs">
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\RoleModel.cs" />
-    <Compile Include="Models\tblAuction.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblAuditTrail.cs">
+    <Compile Include="Models\tblAuctionItem.cs">
       <DependentUpon>OnlineAuction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblBiddersInfo.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblBidding.cs">
       <DependentUpon>OnlineAuction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblBranchShop.cs">
@@ -207,6 +208,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Models\OnlineAuction.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <LastGenOutput>OnlineAuction.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\OnlineAuction.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <LastGenOutput>OnlineAuction.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\jcs-auto-validate.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -258,19 +269,6 @@
     <Content Include="Images\producer\68.jpeg" />
     <Content Include="Images\producer\69.jpeg" />
     <Content Include="Images\producer\70.jpeg" />
-    <Content Include="Models\OnlineAuction.Context.tt">
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>OnlineAuction.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\OnlineAuction.edmx.diagram">
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\OnlineAuction.tt">
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>OnlineAuction.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\AgentsSummary.js" />
     <Content Include="Scripts\angucomplete.css" />
     <Content Include="Scripts\angucomplete.js" />
@@ -891,8 +889,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Models\OnlineAuction.edmx.diagram">
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
   </ItemGroup>
   <PropertyGroup>
