@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Plugins, CameraResultType, CameraSource, Filesystem } from '@capacitor/core'
+import { Plugins, CameraResultType, CameraSource } from '@capacitor/core'
+import { HttpClient } from '@angular/common/http';
+import { EnvService } from './env.service';
 const { Camera } = Plugins;
 
 interface Photo {
@@ -13,7 +15,7 @@ interface Photo {
 
 export class CameraService {
   public photo: Photo = {
-    base64: ""
+    base64: null
   };
 
   constructor() { }
@@ -24,7 +26,7 @@ export class CameraService {
       source: CameraSource.Camera,
       quality: 100,
       width: 200,
-      height: 200,
+      height: 200
 
     });
 
@@ -39,13 +41,13 @@ export class CameraService {
       source: CameraSource.Photos,
       quality: 100,
       width: 200,
-      height: 200,
+      height: 200
 
     });
 
     this.photo = {
       base64: capturedPhoto.base64String
     }
-
   }
+
 }

@@ -493,7 +493,13 @@ var ProfileService = /** @class */ (function () {
         return this.http.get(this.env.API_URL + 'auth/username/check?username=' + username);
     };
     ProfileService.prototype.updateProfile = function (id, profile) {
-        return this.http.put(this.env.API_URL + 'auth/profile/update/' + id, profile);
+        return this.http.put(this.env.API_URL + 'auth/profile/' + id + "/update/", profile);
+    };
+    ProfileService.prototype.saveImage = function (id, imageBase64, type) {
+        return this.http.post(this.env.API_URL + "auth/profile/" + id + "/image", {
+            imageBase64: imageBase64,
+            type: type
+        });
     };
     ProfileService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },

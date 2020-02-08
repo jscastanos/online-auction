@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { RegisterPageRoutingModule } from './register-routing.module';
 
 import { RegisterPage } from './register.page';
+import { TermsAndConditionsPageModule } from 'src/app/pages/terms-and-conditions/terms-and-conditions.module';
+
 
 @NgModule({
   imports: [
@@ -14,7 +16,8 @@ import { RegisterPage } from './register.page';
     FormsModule,
     IonicModule,
     RegisterPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TermsAndConditionsPageModule
   ],
   declarations: [RegisterPage]
 })

@@ -11,5 +11,4 @@ export class Profile {
     ContactNo: string;
     Address: string;
     Occupation: string;
-    UserImg: string;
 }

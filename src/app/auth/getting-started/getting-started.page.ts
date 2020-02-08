@@ -25,7 +25,6 @@ export class GettingStartedPage implements OnInit {
     Address: "",
     ContactNo: "",
     Occupation: "",
-    UserImg: ""
   };
 
   constructor(public toast: ToastController, private router: Router, private route: ActivatedRoute, private profileService: ProfileService) {
@@ -39,7 +38,7 @@ export class GettingStartedPage implements OnInit {
   ngOnInit() {
   }
 
-  async initToast(msg, duration) {
+  async presentToast(msg, duration) {
     const toast = await this.toast.create({
       message: msg,
       duration: 2000,
@@ -47,6 +46,7 @@ export class GettingStartedPage implements OnInit {
 
     toast.present();
   }
+
 
   formWizard(form: NgForm) {
     this.step++;
@@ -70,13 +70,21 @@ export class GettingStartedPage implements OnInit {
   }
 
   sendData() {
-    this.updateData.UserImg = this.camera.cameraService.photo["base64"];
+    let userImg = this.camera.cameraService.photo["base64"];
 
+    if (userImg != null) {
+      this.profileService.saveImage(this.id, userImg, 0).subscribe();
+    }
     this.profileService.updateProfile(this.id, this.updateData).subscribe(params => {
-      this.router.navigateByUrl("/");
+      this.presentToast("Your profile is being updated. Please wait", 2000);
+
+
+      setTimeout(() => {
+        this.router.navigateByUrl("/");
+      }, 3000);
 
     }, response => {
-      this.initToast("Error saving file. Please try again", 2000);
+      this.presentToast("Error saving file. Please try again", 2000);
     })
   }
 

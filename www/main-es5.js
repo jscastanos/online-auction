@@ -505,7 +505,7 @@ module.exports = "<ion-router-outlet>\n</ion-router-outlet>"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle>\n            <ion-item routerDirection=\"'root'\" (click)=\"logout()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>Log Out</ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\">\n    </ion-router-outlet>\n  </ion-split-pane>\n</ion-app>"
+module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar color=\"{{statusColor}}\">\n          <ion-menu-toggle>\n            <img src=\"{{url}}/account/retrieveImage?id={{userID}}&type=0\" [routerLink]=\"['/profile']\" />\n          </ion-menu-toggle>\n          <span>{{username}}</span>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle>\n            <ion-item routerDirection=\"'root'\" [routerLink]=\"['/home']\">\n              <ion-icon slot=\"start\" name=\"home\"></ion-icon>\n              <ion-label>Dashboard</ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <div *ngIf=\"status !=0\">\n            <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n              <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n                <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n                <ion-label>\n                  {{p.title}}\n                </ion-label>\n              </ion-item>\n            </ion-menu-toggle>\n          </div>\n          <ion-menu-toggle>\n            <ion-item routerDirection=\"'root'\" (click)=\"logout()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>Log Out</ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\">\n    </ion-router-outlet>\n  </ion-split-pane>\n</ion-app>"
 
 /***/ }),
 
@@ -577,6 +577,10 @@ var routes = [
                 path: 'category-view',
                 loadChildren: function () { return Promise.all(/*! import() | pages-category-view-category-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-category-view-category-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/category-view/category-view.module */ "./src/app/pages/category-view/category-view.module.ts")).then(function (m) { return m.CategoryViewPageModule; }); }
             },
+            {
+                path: 'profile',
+                loadChildren: function () { return __webpack_require__.e(/*! import() | pages-profile-profile-module */ "pages-profile-profile-module").then(__webpack_require__.bind(null, /*! ./pages/profile/profile.module */ "./src/app/pages/profile/profile.module.ts")).then(function (m) { return m.ProfilePageModule; }); }
+            },
         ]
     },
     //AUTH
@@ -586,7 +590,7 @@ var routes = [
         children: [
             {
                 path: 'register',
-                loadChildren: function () { return Promise.all(/*! import() | auth-register-register-module */[__webpack_require__.e("common"), __webpack_require__.e("auth-register-register-module")]).then(__webpack_require__.bind(null, /*! ./auth/register/register.module */ "./src/app/auth/register/register.module.ts")).then(function (m) { return m.RegisterPageModule; }); }
+                loadChildren: function () { return Promise.all(/*! import() | auth-register-register-module */[__webpack_require__.e("default~auth-register-register-module~pages-terms-and-conditions-terms-and-conditions-module"), __webpack_require__.e("common"), __webpack_require__.e("auth-register-register-module")]).then(__webpack_require__.bind(null, /*! ./auth/register/register.module */ "./src/app/auth/register/register.module.ts")).then(function (m) { return m.RegisterPageModule; }); }
             },
             {
                 path: 'login',
@@ -596,8 +600,12 @@ var routes = [
                 path: 'getting-started',
                 loadChildren: function () { return Promise.all(/*! import() | auth-getting-started-getting-started-module */[__webpack_require__.e("default~auth-getting-started-getting-started-module~home-home-module"), __webpack_require__.e("common"), __webpack_require__.e("auth-getting-started-getting-started-module")]).then(__webpack_require__.bind(null, /*! ./auth/getting-started/getting-started.module */ "./src/app/auth/getting-started/getting-started.module.ts")).then(function (m) { return m.GettingStartedPageModule; }); }
             },
+            {
+                path: 'terms-and-conditions',
+                loadChildren: function () { return __webpack_require__.e(/*! import() | pages-terms-and-conditions-terms-and-conditions-module */ "default~auth-register-register-module~pages-terms-and-conditions-terms-and-conditions-module").then(__webpack_require__.bind(null, /*! ./pages/terms-and-conditions/terms-and-conditions.module */ "./src/app/pages/terms-and-conditions/terms-and-conditions.module.ts")).then(function (m) { return m.TermsAndConditionsPageModule; }); }
+            },
         ]
-    }
+    },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -784,7 +792,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2xheW91dC9hcHAtbGF5b3V0L2FwcC1sYXlvdXQuY29tcG9uZW50LnNjc3MifQ== */"
+module.exports = "img {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  float: left;\n  margin-right: 20px;\n  margin-left: 20px;\n}\n\nspan {\n  line-height: 40px;\n  white-space: nowrap;\n  word-wrap: ellipsis;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbGF5b3V0L2FwcC1sYXlvdXQvRDpcXHdvcmtcXFByb2plY3RzXFxBY2NSZWFsU29mdFxcTW9iaWxlXFxvbmxpbmVhdWN0aW9uYXBwL3NyY1xcYXBwXFxsYXlvdXRcXGFwcC1sYXlvdXRcXGFwcC1sYXlvdXQuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2xheW91dC9hcHAtbGF5b3V0L2FwcC1sYXlvdXQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxXQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0VBQ0EsV0FBQTtFQUNBLGtCQUFBO0VBQ0EsaUJBQUE7QUNDSjs7QURFQTtFQUNJLGlCQUFBO0VBQ0EsbUJBQUE7RUFDQSxtQkFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvbGF5b3V0L2FwcC1sYXlvdXQvYXBwLWxheW91dC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImltZ3tcclxuICAgIHdpZHRoOiA0MHB4O1xyXG4gICAgaGVpZ2h0OiA0MHB4O1xyXG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gICAgZmxvYXQ6IGxlZnQ7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDIwcHg7XHJcbiAgICBtYXJnaW4tbGVmdDogMjBweDtcclxufVxyXG5cclxuc3BhbntcclxuICAgIGxpbmUtaGVpZ2h0OiA0MHB4O1xyXG4gICAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcclxuICAgIHdvcmQtd3JhcDogZWxsaXBzaXM7XHJcbn0iLCJpbWcge1xuICB3aWR0aDogNDBweDtcbiAgaGVpZ2h0OiA0MHB4O1xuICBib3JkZXItcmFkaXVzOiA1MCU7XG4gIGZsb2F0OiBsZWZ0O1xuICBtYXJnaW4tcmlnaHQ6IDIwcHg7XG4gIG1hcmdpbi1sZWZ0OiAyMHB4O1xufVxuXG5zcGFuIHtcbiAgbGluZS1oZWlnaHQ6IDQwcHg7XG4gIHdoaXRlLXNwYWNlOiBub3dyYXA7XG4gIHdvcmQtd3JhcDogZWxsaXBzaXM7XG59Il19 */"
 
 /***/ }),
 
@@ -803,27 +811,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/storage.service */ "./src/app/services/storage.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var src_app_services_env_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/env.service */ "./src/app/services/env.service.ts");
+
 
 
 
 
 
 var AppLayoutComponent = /** @class */ (function () {
-    function AppLayoutComponent(router, auth) {
+    function AppLayoutComponent(router, auth, env) {
         this.router = router;
         this.auth = auth;
-        this.appPages = [
-            {
-                title: 'Home',
-                url: '/home',
-                icon: 'home'
-            },
-            {
+        this.env = env;
+        this.appPages = [{
                 title: 'Active Bidings',
                 url: '/list',
                 icon: 'list'
             }
         ];
+        this.statusColor = 'medium';
+        this.url = env.URL;
     }
     AppLayoutComponent.prototype.checkId = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
@@ -833,12 +840,23 @@ var AppLayoutComponent = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.auth.checkId()];
                     case 1:
                         data = _a.sent();
+                        this.userID = data["id"];
+                        this.status = data["status"];
+                        this.username = data["user"];
+                        if (this.status == 0) {
+                            this.statusColor = "danger";
+                        }
+                        else {
+                            this.statusColor = "primary";
+                        }
                         return [2 /*return*/];
                 }
             });
         });
     };
-    AppLayoutComponent.prototype.ngOnInit = function () { };
+    AppLayoutComponent.prototype.ngOnInit = function () {
+        this.checkId();
+    };
     AppLayoutComponent.prototype.logout = function () {
         Object(_services_storage_service__WEBPACK_IMPORTED_MODULE_2__["remove"])("auction_data");
         this.userID = null;
@@ -846,7 +864,8 @@ var AppLayoutComponent = /** @class */ (function () {
     };
     AppLayoutComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
-        { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] }
+        { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] },
+        { type: src_app_services_env_service__WEBPACK_IMPORTED_MODULE_5__["EnvService"] }
     ]; };
     AppLayoutComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -854,7 +873,7 @@ var AppLayoutComponent = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./app-layout.component.html */ "./node_modules/raw-loader/index.js!./src/app/layout/app-layout/app-layout.component.html"),
             styles: [__webpack_require__(/*! ./app-layout.component.scss */ "./src/app/layout/app-layout/app-layout.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], src_app_services_env_service__WEBPACK_IMPORTED_MODULE_5__["EnvService"]])
     ], AppLayoutComponent);
     return AppLayoutComponent;
 }());
@@ -980,6 +999,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var EnvService = /** @class */ (function () {
     function EnvService() {
+        this.URL = 'http://192.168.1.5:69';
         this.API_URL = 'http://192.168.1.5:69/api/';
     }
     EnvService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

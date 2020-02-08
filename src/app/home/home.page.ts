@@ -50,7 +50,11 @@ export class HomePage {
     }
   }
 
+  //user data
   userID;
+  status;
+  statusColor = "medium";
+
   constructor(private productsService: ProductsService, private auth: AuthService) {
     this.fetchDisplay();
     this.fetchAuction();
@@ -61,6 +65,13 @@ export class HomePage {
   async init() {
     let data = await this.auth.checkId();
     this.userID = data["id"]
+    this.status = data["status"];
+
+    if (this.status == 0) {
+      this.statusColor = "danger";
+    } else {
+      this.statusColor = "primary"
+    }
   }
 
   loadData() {

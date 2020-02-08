@@ -16,7 +16,15 @@ export class ProfileService {
 
 
   updateProfile(id, profile) {
-    return this.http.put(this.env.API_URL + 'auth/profile/update/' + id, profile
+    return this.http.put(this.env.API_URL + 'auth/profile/' + id + "/update/", profile
     )
+  }
+
+
+  public saveImage(id, imageBase64, type) {
+    return this.http.post(this.env.API_URL + "auth/profile/" + id + "/image", {
+      imageBase64: imageBase64,
+      type: type
+    });
   }
 }

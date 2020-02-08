@@ -1,9 +1,11 @@
-img{
-    width: 200px;
-    height: 200px;
-    margin: 0 auto !important;
-}
-
 ion-icon{
     padding-right: 5px;
+}
+
+img{
+    width: 100%;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px #3880FF dashed;
+    margin-bottom: 20px;
 }

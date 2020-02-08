@@ -1,15 +1,17 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="{{statusColor}}">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end">
+      <ion-badge color="light" *ngIf="status == 0">Unverified</ion-badge>
       <ion-button fill="clear">
         <ion-icon slot="icon-only" name="notifications"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar color="primary">
+
+  <ion-toolbar color="{{statusColor}}">
     <ion-searchbar placeholder="Search Items"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
@@ -30,7 +32,7 @@
 
   <ion-list lines="none" class="itemList">
     <ion-segment value="auction" (ionChange)="segmentChanged($event)" color="primary">
-      <ion-segment-button size-xs="6" value="auction">
+      <ion-segment-button size-xs="6" value="auction" *ngIf="status != 0">
         <ion-label>Auction</ion-label>
       </ion-segment-button>
       <ion-segment-button size-xs="6" value="display">

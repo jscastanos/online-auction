@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { CameraService } from 'src/app/services/camera.service';
 
 
@@ -8,8 +8,10 @@ import { CameraService } from 'src/app/services/camera.service';
   styleUrls: ['./camera.component.scss'],
 })
 export class CameraComponent {
+  croppedImage;
 
-  constructor(public cameraService: CameraService) { }
+  constructor(public cameraService: CameraService) {
+  }
 
   capture() {
     this.cameraService.takePhoto();
@@ -18,6 +20,5 @@ export class CameraComponent {
   upload() {
     this.cameraService.uploadPhoto();
   }
-
 
 }

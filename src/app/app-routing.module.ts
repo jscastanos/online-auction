@@ -42,6 +42,10 @@ const routes: Routes = [
         path: 'category-view',
         loadChildren: () => import('./pages/category-view/category-view.module').then(m => m.CategoryViewPageModule)
       },
+      {
+        path: 'profile',
+        loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule)
+      },
     ]
   },
 
@@ -62,8 +66,12 @@ const routes: Routes = [
         path: 'getting-started',
         loadChildren: () => import('./auth/getting-started/getting-started.module').then(m => m.GettingStartedPageModule)
       },
+      {
+        path: 'terms-and-conditions',
+        loadChildren: () => import('./pages/terms-and-conditions/terms-and-conditions.module').then(m => m.TermsAndConditionsPageModule)
+      },
     ]
-  }
+  },
 
 ];
 

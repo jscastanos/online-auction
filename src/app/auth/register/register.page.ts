@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProfileService } from 'src/app/services/profile.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
-import { ToastController } from '@ionic/angular';
+import { ToastController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { JsonPipe } from '@angular/common';
+import { TermsAndConditionsPage } from 'src/app/pages/terms-and-conditions/terms-and-conditions.page';
+import { set } from '../../services/storage.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ import { JsonPipe } from '@angular/common';
 })
 export class RegisterPage implements OnInit {
   registerForm;
-
+  btnDisabled = false; // submit button
   validations = {
     username: false,
     username_available: false,
@@ -28,20 +29,29 @@ export class RegisterPage implements OnInit {
 
   userData: User;
 
-  constructor(public formBuilder: FormBuilder, private profileService: ProfileService, private authService: AuthService, public toast: ToastController, public router: Router) {
+  constructor(public formBuilder: FormBuilder, private profileService: ProfileService, private authService: AuthService, public toast: ToastController, public router: Router, public modal: ModalController) {
     this.createForm();
   }
 
   ngOnInit() {
   }
 
-  async initToast(message, duration) {
+  async presentToast(message, duration) {
     const initToast = await this.toast.create({
       message: message,
       duration: duration
     });
 
     initToast.present();
+  }
+
+
+  async presentModal() {
+    const modal = await this.modal.create({
+      component: TermsAndConditionsPage
+    })
+
+    return await modal.present();
   }
 
   private createForm() {
@@ -134,6 +144,9 @@ export class RegisterPage implements OnInit {
         Bdate: form.value.DOB
       }
 
+      //disabled button on submit
+      this.btnDisabled = true;
+
       this.authService.register(this.userData).subscribe(data => {
         let params = {
           queryParams: {
@@ -142,18 +155,30 @@ export class RegisterPage implements OnInit {
         }
 
         this.defaultValues(this.validations);
-        this.router.navigate(["/getting-started"], params);
+
+        this.presentToast("We're checking some stuff! Please wait patiently", 2000);
+
+        //set up local storage
+        set("auction_data", {
+          id: data,
+          user: form.value.username,
+          status: 0
+        });
+
+        setTimeout(() => {
+          this.router.navigate(["/getting-started"], params);
+        }, 3000);
       },
-        response => {
-          this.initToast("Error in saving. Please try again", 2000);
+        error => {
+          //enable submit button
+          this.btnDisabled = false;
+          this.presentToast(error, 2000);
         })
 
     } else {
 
-      this.initToast("Please provide your information above", 2000);
+      this.presentToast("Please provide your information above", 2000);
     }
-
-
 
   }
 
@@ -163,5 +188,7 @@ export class RegisterPage implements OnInit {
 
   }
 
-
+  openTAC() {
+    this.presentModal();
+  }
 }

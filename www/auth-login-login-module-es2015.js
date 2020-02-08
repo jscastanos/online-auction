@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content class=\"no-scroll\">\n  <form #form=\"ngForm\" (ngSubmit)=\"login(form)\" class=\"login\">\n    <ion-grid>\n      <ion-row>\n        <ion-col>\n          <ion-text>\n            <h1>AUCTION</h1>\n          </ion-text>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col size-xs=\"12\">\n          <div class=\"ion-padding\">\n            <ion-item class=\"ion-margin-top\">\n              <ion-icon name=\"person\"></ion-icon>\n              <ion-input type=\"text\" required ngModel name=\"username\" placeholder=\"Username\"></ion-input>\n            </ion-item>\n            <ion-item class=\"ion-margin-top\">\n              <ion-icon name=\"key\"></ion-icon>\n              <ion-input type=\"password\" required ngModel name=\"password\" placeholder=\"Password\"></ion-input>\n            </ion-item>\n          </div>\n          <div class=\"ion-padding\">\n            <ion-button color=\"primary\" shape=\"round\" size=\"md\" type=\"submit\" expand=\"full\">LOG\n              IN</ion-button>\n          </div>\n        </ion-col>\n        <ion-col>\n          <ion-text>\n            <h5>Don't have an account?\n              <a [routerLink]=\"['../register']\">Sign Up</a> </h5>\n          </ion-text>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>"
+module.exports = "<ion-content class=\"no-scroll\">\n  <form #form=\"ngForm\" (ngSubmit)=\"login(form)\" class=\"login\">\n    <ion-grid>\n      <ion-row>\n        <ion-col>\n          <ion-text>\n            <h1>AUCTION</h1>\n          </ion-text>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col size-xs=\"12\">\n          <div class=\"ion-padding\">\n            <ion-item class=\"ion-margin-top\">\n              <ion-icon name=\"person\"></ion-icon>\n              <ion-input type=\"text\" required ngModel name=\"username\" placeholder=\"Username\"></ion-input>\n            </ion-item>\n            <ion-item class=\"ion-margin-top\">\n              <ion-icon name=\"key\"></ion-icon>\n              <ion-input type=\"password\" required ngModel name=\"password\" placeholder=\"Password\"></ion-input>\n            </ion-item>\n          </div>\n          <div class=\"ion-padding\">\n            <ion-button disabled=\"{{btnDisabled}}\" color=\"primary\" shape=\"round\" size=\"md\" type=\"submit\" expand=\"full\">\n              LOG\n              IN</ion-button>\n          </div>\n        </ion-col>\n        <ion-col>\n          <ion-text>\n            <h5>Don't have an account?\n              <a [routerLink]=\"['../register']\">Sign Up</a> </h5>\n          </ion-text>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>"
 
 /***/ }),
 
@@ -117,6 +117,7 @@ let LoginPage = class LoginPage {
         this.router = router;
         this.authService = authService;
         this.toastController = toastController;
+        this.btnDisabled = false; // submit button
     }
     presentToast(m) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
@@ -128,24 +129,30 @@ let LoginPage = class LoginPage {
         });
     }
     login(form) {
+        this.btnDisabled = true;
         this.authService.login(form.value)
             .subscribe(data => {
             if (data != 0) {
                 Object(_services_storage_service__WEBPACK_IMPORTED_MODULE_3__["set"])("auction_data", {
                     id: data["id"],
-                    urn: data["URN"],
-                    user: form.value["username"]
+                    user: form.value["username"],
+                    status: data["status"]
                 });
                 if (Object(_services_storage_service__WEBPACK_IMPORTED_MODULE_3__["get"])("auction_data") != null) {
                     this.router.navigateByUrl('/home');
+                    this.btnDisabled = false;
                 }
                 else {
                     this.router.navigateByUrl('./login');
                 }
             }
             else {
+                this.btnDisabled = false;
                 this.presentToast("Please check your username or password");
             }
+        }, error => {
+            this.btnDisabled = false;
+            this.presentToast(error);
         });
     }
 };

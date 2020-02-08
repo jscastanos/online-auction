@@ -12,7 +12,7 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['../auth.scss'],
 })
 export class LoginPage {
-
+  btnDisabled = false; // submit button
   constructor(private router: Router, private authService: AuthService, private toastController: ToastController) { }
 
 
@@ -26,26 +26,33 @@ export class LoginPage {
 
 
   login(form: NgForm) {
+    this.btnDisabled = true;
     this.authService.login(form.value)
       .subscribe(
         data => {
           if (data != 0) {
             set("auction_data", {
               id: data["id"],
-              urn: data["URN"],
-              user: form.value["username"]
+              user: form.value["username"],
+              status: data["status"]
             });
 
             if (get("auction_data") != null) {
               this.router.navigateByUrl('/home');
-
+              this.btnDisabled = false;
             } else {
               this.router.navigateByUrl('./login')
             }
           } else {
+            this.btnDisabled = false;
             this.presentToast("Please check your username or password");
           }
 
+        },
+
+        error => {
+          this.btnDisabled = false;
+          this.presentToast(error);
         }
 
       )

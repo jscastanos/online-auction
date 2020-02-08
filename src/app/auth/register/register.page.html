@@ -70,7 +70,7 @@
               <div style="margin-top: 50px;">
                 <ion-label>
                   <ion-checkbox formControlName="readTAC" (ionChange)="updateValidation('readTAC')"></ion-checkbox> I
-                  have read the terms and conditions
+                  have read the <a (click)="openTAC()">terms and conditions</a>
                 </ion-label>
                 <br />
                 <ion-label *ngIf="!validations.readTAC" color="danger">
@@ -81,7 +81,9 @@
             </div>
 
             <div class="ion-padding">
-              <ion-button color="primary" shape="round" size="md" type="submit" expand="full">REGISTER</ion-button>
+              <ion-button disabled={{btnDisabled}} color="primary" shape="round" size="md" type="submit" expand="full">
+                REGISTER
+              </ion-button>
             </div>
           </ion-col>
           <ion-col>

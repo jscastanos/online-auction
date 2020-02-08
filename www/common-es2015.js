@@ -688,7 +688,7 @@ const findCheckedOption = (el, tagName) => {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-row>\n  <ion-col size=\"8\" offset=\"2\">\n    <img [src]=\"'data:image/png;base64,' + cameraService.photo.base64\" alt=\"\"\n      onerror=\"this.onerror=null; this.src='../assets/placeholder.png'\" />\n  </ion-col>\n</ion-row>\n<ion-row>\n  <ion-col size=\"6\">\n    <ion-button (click)=\"capture()\" shape=\"round\">\n      <ion-icon name=\"camera\"></ion-icon>\n      <ion-label>Capture</ion-label>\n    </ion-button>\n  </ion-col>\n  <ion-col size=\"6\">\n    <ion-button (click)=\"upload()\" shape=\"round\">\n      <ion-icon name=\"images\"></ion-icon>\n      <ion-label>Upload </ion-label>\n    </ion-button>\n  </ion-col>\n</ion-row>"
+module.exports = "<ion-row>\n  <ion-col size-xs=\"8\" offset-xs=\"2\" size-md=\"6\" offset-md=\"3\">\n    <img [src]=\"'data:image/png;base64,' + cameraService.photo.base64\" alt=\"\"\n      onerror=\"this.onerror=null; this.src='../assets/placeholder.png'\" />\n  </ion-col>\n</ion-row>\n<ion-row>\n  <ion-col size-xs=\"6\" size-lg=\"4\" offset-lg=\"2\">\n    <ion-button (click)=\"capture()\" shape=\"round\" expand=\"full\">\n      <ion-icon name=\"camera\"></ion-icon>\n      <ion-label>Capture</ion-label>\n    </ion-button>\n  </ion-col>\n  <ion-col size=\"6\" size-lg=\"4\">\n    <ion-button (click)=\"upload()\" shape=\"round\" expand=\"full\">\n      <ion-icon name=\"images\"></ion-icon>\n      <ion-label>Upload </ion-label>\n    </ion-button>\n  </ion-col>\n</ion-row>"
 
 /***/ }),
 
@@ -721,7 +721,7 @@ module.exports = "form {\n  margin-top: 5%;\n}\nform.login {\n  margin-top: 20%;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "img {\n  width: 200px;\n  height: 200px;\n  margin: 0 auto !important;\n}\n\nion-icon {\n  padding-right: 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYW1lcmEvRDpcXHdvcmtcXFByb2plY3RzXFxBY2NSZWFsU29mdFxcTW9iaWxlXFxvbmxpbmVhdWN0aW9uYXBwL3NyY1xcYXBwXFxjb21wb25lbnRzXFxjYW1lcmFcXGNhbWVyYS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29tcG9uZW50cy9jYW1lcmEvY2FtZXJhLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksWUFBQTtFQUNBLGFBQUE7RUFDQSx5QkFBQTtBQ0NKOztBREVBO0VBQ0ksa0JBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvY2FtZXJhL2NhbWVyYS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImltZ3tcclxuICAgIHdpZHRoOiAyMDBweDtcclxuICAgIGhlaWdodDogMjAwcHg7XHJcbiAgICBtYXJnaW46IDAgYXV0byAhaW1wb3J0YW50O1xyXG59XHJcblxyXG5pb24taWNvbntcclxuICAgIHBhZGRpbmctcmlnaHQ6IDVweDtcclxufSIsImltZyB7XG4gIHdpZHRoOiAyMDBweDtcbiAgaGVpZ2h0OiAyMDBweDtcbiAgbWFyZ2luOiAwIGF1dG8gIWltcG9ydGFudDtcbn1cblxuaW9uLWljb24ge1xuICBwYWRkaW5nLXJpZ2h0OiA1cHg7XG59Il19 */"
+module.exports = "ion-icon {\n  padding-right: 5px;\n}\n\nimg {\n  width: 100%;\n  height: 200px;\n  border-radius: 50%;\n  border: 3px #3880FF dashed;\n  margin-bottom: 20px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYW1lcmEvRDpcXHdvcmtcXFByb2plY3RzXFxBY2NSZWFsU29mdFxcTW9iaWxlXFxvbmxpbmVhdWN0aW9uYXBwL3NyY1xcYXBwXFxjb21wb25lbnRzXFxjYW1lcmFcXGNhbWVyYS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29tcG9uZW50cy9jYW1lcmEvY2FtZXJhLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0JBQUE7QUNDSjs7QURFQTtFQUNJLFdBQUE7RUFDQSxhQUFBO0VBQ0Esa0JBQUE7RUFDQSwwQkFBQTtFQUNBLG1CQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2NhbWVyYS9jYW1lcmEuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24taWNvbntcclxuICAgIHBhZGRpbmctcmlnaHQ6IDVweDtcclxufVxyXG5cclxuaW1ne1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBoZWlnaHQ6IDIwMHB4O1xyXG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gICAgYm9yZGVyOiAzcHggIzM4ODBGRiBkYXNoZWQ7XHJcbiAgICBtYXJnaW4tYm90dG9tOiAyMHB4O1xyXG59IiwiaW9uLWljb24ge1xuICBwYWRkaW5nLXJpZ2h0OiA1cHg7XG59XG5cbmltZyB7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDIwMHB4O1xuICBib3JkZXItcmFkaXVzOiA1MCU7XG4gIGJvcmRlcjogM3B4ICMzODgwRkYgZGFzaGVkO1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xufSJdfQ== */"
 
 /***/ }),
 
@@ -901,7 +901,7 @@ const { Camera } = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"];
 let CameraService = class CameraService {
     constructor() {
         this.photo = {
-            base64: ""
+            base64: null
         };
     }
     takePhoto() {
@@ -911,7 +911,7 @@ let CameraService = class CameraService {
                 source: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraSource"].Camera,
                 quality: 100,
                 width: 200,
-                height: 200,
+                height: 200
             });
             this.photo = {
                 base64: capturedPhoto.base64String
@@ -925,7 +925,7 @@ let CameraService = class CameraService {
                 source: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraSource"].Photos,
                 quality: 100,
                 width: 200,
-                height: 200,
+                height: 200
             });
             this.photo = {
                 base64: capturedPhoto.base64String
@@ -1022,7 +1022,13 @@ let ProfileService = class ProfileService {
         return this.http.get(this.env.API_URL + 'auth/username/check?username=' + username);
     }
     updateProfile(id, profile) {
-        return this.http.put(this.env.API_URL + 'auth/profile/update/' + id, profile);
+        return this.http.put(this.env.API_URL + 'auth/profile/' + id + "/update/", profile);
+    }
+    saveImage(id, imageBase64, type) {
+        return this.http.post(this.env.API_URL + "auth/profile/" + id + "/image", {
+            imageBase64: imageBase64,
+            type: type
+        });
     }
 };
 ProfileService.ctorParameters = () => [
