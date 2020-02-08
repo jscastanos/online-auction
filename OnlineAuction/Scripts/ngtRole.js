@@ -16,6 +16,21 @@
         loaddata()
     }
 
+    function switchery() {
+        if (Array.prototype.forEach) {
+            var elems = Array.prototype.slice.call(document.querySelectorAll('.switchery'));
+            elems.forEach(function (html) {
+                var switchery = new Switchery(html);
+            });
+        }
+        else {
+            var elems = document.querySelectorAll('.switchery');
+            for (var i = 0; i < elems.length; i++) {
+                var switchery = new Switchery(elems[i]);
+            }
+        }
+    }
+
     function loaddata() {
         s.isLoading = true;
         r.get("../api/UserManagements/?id=" + lastId + "&key=" + s.sdata)
@@ -24,14 +39,19 @@
 
              angular.forEach(d.data, function (v, key) {
                  v.DateCreated = new Date(v.DateCreated)
+               //  v.conName = v.nameFirst + " " + v.nameMiddle.slice(0, 1) + ". " + v.nameLast;
              })
-             
+
              s.alldata = s.alldata.concat(d.data)
              s.isLoading = false;
              if (d.data.length > 0) {
                  lastId = d.data[d.data.length - 1].recNo;
              }
-             console.log(s.alldata);
+            console.log(s.alldata);
+             setTimeout(function () {
+
+                 switchery()
+             }, 10)
          })
     }
     s.switchID = {}
@@ -51,24 +71,34 @@
     function loadposition() {
         r.get("../api/UserManagements/GetAllPosition")
         .then(function (d) {
-            console.log(d.data);
             s.newItem = d.data;
+            //console.log(s.newItem)
         })
     }
 
+    function loadpersonel() {
+        r.get("../api/UserManagements/Personel")
+        .then(function (d) {
+            s.personelCount = d.data;
+            // console.log(s.personelCount)
+        })
+    }
+
+    // s.personelCount = null;
     s.newItem = [];
     s.rdata = function () {
         loadposition()
-        if (s.newItem == null) {
-            swal({
-                title: 'No user',
-                text: 'Please Add Personel at Record Management',
-                type: 'error'
-            })
-        } else {
+        //if (s.newItem == 0) {
+        //    swal({
+        //        title: 'No Role',
+        //        text: 'Please Add Role at Control Panel',
+        //        type: 'error'
+        //    })
+
+        //}
+        //else {
             $('#Add').modal('show');
-        }
-      
+       // }
     }
 
     s.addUsr = function (adata, empdata) {
@@ -81,31 +111,41 @@
         } else {
             adata.UsersId = empdata;
         }
-      
-        console.log(adata);
-            r.post("../api/UserManagements", adata)
-        .then(function (d) {
-            lastId = 0;
-            s.alldata = [];
-            loaddata();
-            if (d.data == "exist") {
-                swal({
-                    title: 'exist',
-                    text: 'this person is already registered!',
-                    type: 'error'
-                })
-            } if (d.data == "good") {
-                swal({
-                    title: 'success',
-                    text: 'Account updated successfully!',
-                    type: 'success'
-                }).then(function () {
-                    $('#Add').modal('hide');
-                })
-            }
 
-        })
-        
+        console.log(adata);
+        r.post("../api/UserManagements", adata)
+    .then(function (d) {
+        lastId = 0;
+        s.alldata = [];
+        loaddata();
+        if (d.data == "no user") {
+            swal({
+                title: 'Personel not recognize',
+                text: 'Please see personel at Record Management!',
+                type: 'error'
+            })
+        }
+        if (d.data == "exist") {
+            swal({
+                title: 'exist',
+                text: 'this person is already registered!',
+                type: 'error'
+            })
+        } if (d.data == "good") {
+            swal({
+                title: 'success',
+                text: 'Account updated successfully!',
+                type: 'success'
+            }).then(function () {
+                $('#Add').modal('hide');
+                $('#usrnm').val('');
+                $('#psswrd').val('');
+                //  $('#slctrole').reset();
+            })
+        }
+
+    })
+
     }
     //s.selected = {};
     s.saveUOF = function (selected) {
@@ -117,6 +157,7 @@
             if (d.data == "success") {
                 lastId = 0;
                 s.alldata = [];
+                s.newItem = [];
                 loaddata();
                 swal({
                     title: 'Success',
@@ -155,8 +196,8 @@
             text: "You won't be able to revert this!",
             type: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
             confirmButtonText: 'Yes, delete it!',
             showLoaderOnConfirm: true,
             preConfirm: function () {

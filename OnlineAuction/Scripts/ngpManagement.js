@@ -22,10 +22,13 @@
          .then(function (d) {
              
              angular.forEach(d.data, function (v, key) {
-                 v.Bdate = new Date( (v.Bdate).split('T')[0])
+                 v.Bdate = new Date((v.Bdate).split('T')[0])
+                 v.ConcatName = v.FirstName + " " + v.MiddleName.slice(0, 1) + ". " + v.LastName;
+                 
                  
              })
 
+             
              s.alldata = s.alldata.concat(d.data)
              s.isLoading = false;
              if (d.data.length > 0) {
@@ -78,6 +81,12 @@
             type: 'success'
         }).then(function () {
             $('#Add').modal('hide');
+            $('#fname').val('');
+            $('#mname').val('');
+            $('#lname').val('');
+            $('#bdate').val('');
+            $('#addrss').val('');
+            $('#position').val('');
         })
         console.log(d.data);
     })
@@ -112,8 +121,8 @@
             text: "You won't be able to revert this!",
             type: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
             confirmButtonText: 'Yes, delete it!',
             showLoaderOnConfirm: true,
             preConfirm: function () {

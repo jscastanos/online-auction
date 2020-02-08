@@ -132,7 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\products\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\AuthController.cs" />
@@ -208,19 +207,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\OnlineAuction.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <LastGenOutput>OnlineAuction.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\OnlineAuction.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <LastGenOutput>OnlineAuction.cs</LastGenOutput>
-    </Content>
-    <Content Include="Scripts\jcs-auto-validate.min.js" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\colors.css" />
     <Content Include="Content\components.css" />
     <Content Include="Content\core.css" />
@@ -231,8 +218,6 @@
     <Content Include="Content\kendo.material.min.css" />
     <Content Include="Content\kendo.material.mobile.min.css" />
     <Content Include="Content\select2.min.css" />
-    <Content Include="Content\Site.css" />
-    <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont5b62.eot" />
     <Content Include="fonts\fontawesome-webfont5b62.svg" />
     <Content Include="fonts\fontawesome-webfont5b62.ttf" />
@@ -248,27 +233,18 @@
     <Content Include="fonts\icomoone627.svg" />
     <Content Include="fonts\icomoone627.ttf" />
     <Content Include="fonts\icomoone627.woff" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Images\add_user.png" />
-    <Content Include="Images\backgrounds\boxed_bg.png" />
-    <Content Include="Images\backgrounds\boxed_bg_retina.png" />
-    <Content Include="Images\backgrounds\panel_bg.png" />
-    <Content Include="Images\backgrounds\seamless.png" />
-    <Content Include="Images\Background\money-background-02-high.jpg" />
-    <Content Include="Images\Background\VSMacros.vsix" />
-    <Content Include="Images\image.png" />
-    <Content Include="Images\login_cover.jpg" />
-    <Content Include="Images\logo_icon_light.png" />
-    <Content Include="Images\logo_light.png" />
-    <Content Include="Images\personnel\1011.jpg" />
-    <Content Include="Images\personnel\18.jpg" />
-    <Content Include="Images\personnel\5.jpg" />
-    <Content Include="Images\personnel\7.jpg" />
-    <Content Include="Images\producer\1.jpeg" />
-    <Content Include="Images\producer\2.jpeg" />
-    <Content Include="Images\producer\68.jpeg" />
-    <Content Include="Images\producer\69.jpeg" />
-    <Content Include="Images\producer\70.jpeg" />
+    <Content Include="Models\OnlineAuction.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <LastGenOutput>OnlineAuction.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\OnlineAuction.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <LastGenOutput>OnlineAuction.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\AgentsSummary.js" />
     <Content Include="Scripts\angucomplete.css" />
     <Content Include="Scripts\angucomplete.js" />
@@ -322,6 +298,7 @@
     <Content Include="Scripts\general_widgets_stats.js" />
     <Content Include="Scripts\headroom.min.js" />
     <Content Include="Scripts\headroom_jquery.min.js" />
+    <Content Include="Scripts\jcs-auto-validate.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -861,7 +838,9 @@
     <Content Include="Views\Role\roleManagement.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Shared\_navbar.cshtml" />
     <Content Include="Views\Shared\_sidebar.cshtml" />
@@ -870,12 +849,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -893,6 +866,12 @@
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

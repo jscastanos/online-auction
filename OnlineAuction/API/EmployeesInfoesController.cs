@@ -32,6 +32,26 @@ namespace OnlineAuction.API
             return Json("Done");
         }
 
+        //[Route("api/EmployeesInfoes/EmployeesDeleteName")]
+        //public IHttpActionResult PutEmployeesDeleteName(int r)
+        //{
+        //    var swabe = db.tblEmployeesInfoes.Any(k => k.recNo == r);
+
+        //    if (!swabe)
+        //    {
+        //        return Json("wala uy");
+        //    }
+        //    else
+        //    {
+        //        var data = db.tblEmployeesInfoes.Where(l => l.recNo == r).SingleOrDefault();
+        //        data.Status = 0;
+        //        db.Entry(data).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return Json(data);
+        //    }
+           
+        //}
+
         [Route("api/EmployeesInfoes/EmployeeschangeName")]
         public IHttpActionResult PutEmployeeschangeName(tblEmployeesInfo r)
         {
@@ -147,6 +167,7 @@ namespace OnlineAuction.API
             }
             else
             {
+                tblEmployeesInfo.BranchId = "SESSN";
                 tblEmployeesInfo.Status = 0;
                 tblEmployeesInfo.EmpId= cID;
                 var aRole = db.tblEmployeesInfoes.Add(tblEmployeesInfo);
