@@ -22,7 +22,7 @@
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
-          <Property Name="recNo" Type="int" Nullable="false" />
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BiddersId" Type="varchar" MaxLength="5" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="MiddleName" Type="varchar" MaxLength="50" />
@@ -146,6 +146,8 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="rowNum" Type="bigint" />
           <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="AskPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DateTimeLimit" Type="datetime" />
           <Property Name="CategoryId" Type="varchar" MaxLength="5" />
           <Property Name="BranchId" Type="varchar" MaxLength="5" />
           <Property Name="DateCreated" Type="datetime" />
@@ -167,6 +169,8 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
     [vProduct].[rowNum] AS [rowNum], 
     [vProduct].[recNo] AS [recNo], 
     [vProduct].[ProductName] AS [ProductName], 
+    [vProduct].[AskPrice] AS [AskPrice], 
+    [vProduct].[DateTimeLimit] AS [DateTimeLimit], 
     [vProduct].[CategoryId] AS [CategoryId], 
     [vProduct].[BranchId] AS [BranchId], 
     [vProduct].[DateCreated] AS [DateCreated], 
@@ -196,7 +200,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
-          <Property Name="recNo" Type="Int32" Nullable="false" />
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BiddersId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -318,6 +322,8 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="rowNum" Type="Int64" />
           <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AskPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DateTimeLimit" Type="DateTime" Precision="3" />
           <Property Name="CategoryId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="BranchId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
@@ -490,6 +496,8 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
                 <ScalarProperty Name="rowNum" ColumnName="rowNum" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
+                <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="BranchId" ColumnName="BranchId" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
