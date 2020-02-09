@@ -61,7 +61,7 @@ export class GettingStartedPage implements OnInit, OnDestroy {
 
     for (let key of Object.keys(form.value)) {
       if (key == "add" || key == "barangay" || key == "city") {
-        completeAddress += form.value[key]
+        completeAddress += (form.value[key] + ", ")
 
       } else if (key == "province") {
         completeAddress += form.value["province"];
@@ -79,7 +79,7 @@ export class GettingStartedPage implements OnInit, OnDestroy {
     if (userImg != null) {
       this.saveImage = this.profileService.saveImage(this.id, userImg, 0).subscribe();
     }
-    this.updateProfile = this.profileService.updateProfile(this.id, this.updateData).subscribe(params => {
+    this.updateProfile = this.profileService.updateProfile(this.id, this.updateData).subscribe(result => {
       this.presentToast("Your profile is being updated. Please wait", 2000);
 
 

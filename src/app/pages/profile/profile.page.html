@@ -1,7 +1,9 @@
 <ion-header>
-  <ion-toolbar color="{{statusColor}}">
+  <ion-toolbar color="{{user.statusColor}}">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-button [routerLink]="['/home']">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>User Profile</ion-title>
   </ion-toolbar>
@@ -10,9 +12,155 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="12" class="profileImage">
-        <img src="{{url}}/account/retrieveImage?id={{userID}}&type=0" />
+      <ion-col size="12" class="profileImage text-center">
+        <img [ngClass]="(user.status == 0) ? 'danger' : 'primary'"
+          src="{{url}}/account/retrieveImage?id={{user.id}}&type=0" />
+      </ion-col>
+      <ion-col class="text-center">
+        <h4>{{userData.FirstName}} {{userData.MiddleName}} {{userData.LastName}}</h4>
+        <ion-label>
+          @{{user.username}}
+        </ion-label>
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <!-- ID -->
+  <ion-card *ngIf="user.status == 0" color="danger">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="alert"></ion-icon>
+        <ion-label>
+          Your account is unverified
+        </ion-label>
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-text>Due to our strict policy for new users. We require users to provide any valid ID card for us to verify
+        that your account details are legit and valid.
+      </ion-text>
+      <ion-button color="light" expand="full" shape="round" style="margin-top: 15px"
+        (click)="openBidderSupportingIdModal()">
+        Submit Now
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Profile details -->
+  <ion-list style="margin: 10px 0 30px 0">
+    <ion-list-header>
+      <ion-label>
+        About Me
+      </ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-icon name="person"></ion-icon>
+      <p>{{userData.FirstName}} {{userData.MiddleName}} {{userData.LastName}}</p>
+      <ion-icon slot="end" name="create" *ngIf="currForm != 0" (click)="openForm(0)"></ion-icon>
+    </ion-item>
+    <div class="edit-form" *ngIf="currForm == 0">
+      <form (ngSubmit)="update(name, 0)" #name="ngForm">
+        <ion-item>
+          <ion-input type="text" [ngModel]="userData.FirstName" name="FirstName" placeholder="First Name">
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" [ngModel]="userData.MiddleName" name="MiddleName" placeholder="Middle Name">
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" [ngModel]="userData.LastName" name="LastName" placeholder="Last Name"></ion-input>
+        </ion-item>
+        <br>
+        <ion-buttons>
+          <ion-button type="submit">
+            Submit
+          </ion-button>
+          <ion-button (click)="resetForm()">
+            Cancel
+          </ion-button>
+        </ion-buttons>
+      </form>
+    </div>
+    <ion-item>
+      <ion-icon name="home"></ion-icon>
+      <p>{{userData.Address}}</p>
+      <ion-icon slot="end" name="create" *ngIf="currForm != 1" (click)="openForm(1)"></ion-icon>
+    </ion-item>
+    <div class="edit-form" *ngIf="currForm == 1">
+      <form (ngSubmit)="update(address, 1)" #address="ngForm">
+        <ion-item>
+          <ion-input type="text" [ngModel]="newAddress[0]" name="add" placeholder="Block No.\Street No.\House No. ">
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" [ngModel]="newAddress[1]" name="barangay" placeholder="Barangay">
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" [ngModel]="newAddress[2]" name="city" placeholder="City">
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" [ngModel]="newAddress[3]" name="province" placeholder="Province">
+          </ion-input>
+        </ion-item>
+        <br>
+        <ion-buttons>
+          <ion-button type="submit">
+            Submit
+          </ion-button>
+          <ion-button (click)="resetForm()">
+            Cancel
+          </ion-button>
+        </ion-buttons>
+      </form>
+    </div>
+    <ion-item>
+      <ion-icon name="call"></ion-icon>
+      <p>{{userData.ContactNo}}</p>
+      <ion-icon slot="end" name="create" *ngIf="currForm != 2" (click)="openForm(2)"></ion-icon>
+    </ion-item>
+    <div class="edit-form" *ngIf="currForm == 2">
+      <form (ngSubmit)="update(contactNo, 2)" #contactNo="ngForm">
+        <ion-item>
+          <ion-input type="number" [ngModel]="userData.ContactNo" name="ContactNo" placeholder="ContactNo">
+          </ion-input>
+        </ion-item>
+        <br>
+        <ion-buttons>
+          <ion-button type="submit">
+            Submit
+          </ion-button>
+          <ion-button (click)="resetForm()">
+            Cancel
+          </ion-button>
+        </ion-buttons>
+      </form>
+    </div>
+    <ion-item>
+      <ion-icon name="briefcase"></ion-icon>
+      <p>{{userData.Occupation}}</p>
+      <ion-icon slot="end" name="create" *ngIf="currForm != 3" (click)="openForm(3)"></ion-icon>
+    </ion-item>
+    <div class="edit-form" *ngIf="currForm == 3">
+      <form (ngSubmit)="update(occupation, 3)" #occupation="ngForm">
+        <ion-item>
+          <ion-input type="text" [ngModel]="userData.Occupation" name="Occupation" placeholder="Occupation">
+          </ion-input>
+        </ion-item>
+        <br>
+        <ion-buttons>
+          <ion-button type="submit">
+            Submit
+          </ion-button>
+          <ion-button (click)="resetForm()">
+            Cancel
+          </ion-button>
+        </ion-buttons>
+      </form>
+    </div>
+  </ion-list>
+
 </ion-content>

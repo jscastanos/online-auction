@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { get, set } from '../../services/storage.service';
 import { AuthService } from '../../services/auth.service';
 import { ToastController } from '@ionic/angular';
+import { CommonService } from 'src/app/services/common.service';
 
 
 @Component({
@@ -13,7 +14,12 @@ import { ToastController } from '@ionic/angular';
 })
 export class LoginPage implements OnDestroy {
   btnDisabled = false; // submit button
-  constructor(private router: Router, private authService: AuthService, private toastController: ToastController) { }
+  //common
+  user;
+
+  constructor(private router: Router, private authService: AuthService, private toastController: ToastController, private common: CommonService) {
+    this.user = this.common.user;
+  }
 
 
   async presentToast(m) {
@@ -39,6 +45,16 @@ export class LoginPage implements OnDestroy {
             });
 
             if (get("auction_data") != null) {
+              //update common
+              this.user.id = data["id"];
+              this.user.username = form.value["username"];
+              this.user.status = data["status"];
+              this.user.statusColor = data["status"] == 0 ? "danger" : "primary";
+
+              //reset form
+              form.resetForm();
+
+              //redirect
               this.router.navigateByUrl('/home');
               this.btnDisabled = false;
             } else {

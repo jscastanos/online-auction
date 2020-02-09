@@ -499,7 +499,7 @@ module.exports = "<ion-router-outlet>\n</ion-router-outlet>"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar color=\"{{statusColor}}\">\n          <ion-menu-toggle>\n            <img src=\"{{url}}/account/retrieveImage?id={{userID}}&type=0\" [routerLink]=\"['/profile']\" />\n          </ion-menu-toggle>\n          <span>{{username}}</span>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle>\n            <ion-item routerDirection=\"'root'\" [routerLink]=\"['/home']\">\n              <ion-icon slot=\"start\" name=\"home\"></ion-icon>\n              <ion-label>Dashboard</ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <div *ngIf=\"status !=0\">\n            <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n              <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n                <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n                <ion-label>\n                  {{p.title}}\n                </ion-label>\n              </ion-item>\n            </ion-menu-toggle>\n          </div>\n          <ion-menu-toggle>\n            <ion-item routerDirection=\"'root'\" (click)=\"logout()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>Log Out</ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\">\n    </ion-router-outlet>\n  </ion-split-pane>\n</ion-app>"
+module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar color=\"{{user.statusColor}}\">\n          <ion-menu-toggle>\n            <img src=\"{{url}}/account/retrieveImage?id={{user.id}}&type=0\" [routerLink]=\"['/profile']\" />\n          </ion-menu-toggle>\n          <span>{{user.username}}</span>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle>\n            <ion-item routerDirection=\"'root'\" [routerLink]=\"['/home']\">\n              <ion-icon slot=\"start\" name=\"home\"></ion-icon>\n              <ion-label>Dashboard</ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <div *ngIf=\"user.status !=0\">\n            <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n              <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n                <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n                <ion-label>\n                  {{p.title}}\n                </ion-label>\n              </ion-item>\n            </ion-menu-toggle>\n          </div>\n          <ion-menu-toggle>\n            <ion-item routerDirection=\"'root'\" (click)=\"logout()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>Log Out</ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\">\n    </ion-router-outlet>\n  </ion-split-pane>\n</ion-app>"
 
 /***/ }),
 
@@ -573,7 +573,7 @@ const routes = [
             },
             {
                 path: 'profile',
-                loadChildren: () => __webpack_require__.e(/*! import() | pages-profile-profile-module */ "pages-profile-profile-module").then(__webpack_require__.bind(null, /*! ./pages/profile/profile.module */ "./src/app/pages/profile/profile.module.ts")).then(m => m.ProfilePageModule)
+                loadChildren: () => Promise.all(/*! import() | pages-profile-profile-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/profile/profile.module */ "./src/app/pages/profile/profile.module.ts")).then(m => m.ProfilePageModule)
             },
         ]
     },
@@ -644,6 +644,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _services_common_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/common.service */ "./src/app/services/common.service.ts");
+
 
 
 
@@ -652,26 +654,45 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppComponent = class AppComponent {
-    constructor(platform, splashScreen, statusBar, router, auth) {
+    constructor(platform, splashScreen, statusBar, router, auth, common) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
         this.router = router;
         this.auth = auth;
-        this.getUserID();
+        this.common = common;
+        this.checkAppUserData();
         this.initializeApp();
     }
-    getUserID() {
+    // get user details on next app init
+    checkAppUserData() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            let data = yield this.auth.checkId();
-            this.userID = data != null ? data["id"] : null;
-            if (this.userID == null) {
-                this.router.navigateByUrl('/login');
-            }
-            else {
-                this.router.navigateByUrl('/');
+            const data = yield this.fetchDataFromLocalStorage();
+            const state = yield this.validateUser(data);
+            if (state != null) {
+                if (state)
+                    this.router.navigateByUrl('/profile');
+                else
+                    this.router.navigateByUrl('/login');
             }
         });
+    }
+    fetchDataFromLocalStorage() {
+        return this.auth.checkId();
+    }
+    validateUser(data) {
+        let state;
+        state = data != null ? true : false;
+        if (state) {
+            //update global values
+            this.common.user = {
+                id: data["id"],
+                username: data["user"],
+                status: data["status"],
+                statusColor: data["status"] == 0 ? "danger" : "primary"
+            };
+        }
+        return state;
     }
     initializeApp() {
         this.platform.ready().then(() => {
@@ -685,7 +706,8 @@ AppComponent.ctorParameters = () => [
     { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
     { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
-    { type: _services_auth_service__WEBPACK_IMPORTED_MODULE_6__["AuthService"] }
+    { type: _services_auth_service__WEBPACK_IMPORTED_MODULE_6__["AuthService"] },
+    { type: _services_common_service__WEBPACK_IMPORTED_MODULE_7__["CommonService"] }
 ];
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -697,7 +719,8 @@ AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"],
         _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"],
         _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
-        _services_auth_service__WEBPACK_IMPORTED_MODULE_6__["AuthService"]])
+        _services_auth_service__WEBPACK_IMPORTED_MODULE_6__["AuthService"],
+        _services_common_service__WEBPACK_IMPORTED_MODULE_7__["CommonService"]])
 ], AppComponent);
 
 
@@ -790,6 +813,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/auth.service */ "./src/app/services/auth.service.ts");
 /* harmony import */ var src_app_services_env_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/env.service */ "./src/app/services/env.service.ts");
+/* harmony import */ var src_app_services_common_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/services/common.service */ "./src/app/services/common.service.ts");
+
 
 
 
@@ -797,46 +822,29 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppLayoutComponent = class AppLayoutComponent {
-    constructor(router, auth, env) {
+    constructor(router, auth, env, common) {
         this.router = router;
         this.auth = auth;
         this.env = env;
+        this.common = common;
         this.appPages = [{
                 title: 'Active Bidings',
                 url: '/list',
                 icon: 'list'
-            }
-        ];
-        this.statusColor = 'medium';
-        this.url = env.URL;
-    }
-    checkId() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            let data = yield this.auth.checkId();
-            this.userID = data["id"];
-            this.status = data["status"];
-            this.username = data["user"];
-            if (this.status == 0) {
-                this.statusColor = "danger";
-            }
-            else {
-                this.statusColor = "primary";
-            }
-        });
-    }
-    ngOnInit() {
-        this.checkId();
+            }];
+        this.user = this.common.user;
+        this.url = this.env.URL;
     }
     logout() {
         Object(_services_storage_service__WEBPACK_IMPORTED_MODULE_2__["remove"])("auction_data");
-        this.userID = null;
         this.router.navigateByUrl('/login');
     }
 };
 AppLayoutComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
     { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] },
-    { type: src_app_services_env_service__WEBPACK_IMPORTED_MODULE_5__["EnvService"] }
+    { type: src_app_services_env_service__WEBPACK_IMPORTED_MODULE_5__["EnvService"] },
+    { type: src_app_services_common_service__WEBPACK_IMPORTED_MODULE_6__["CommonService"] }
 ];
 AppLayoutComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -844,7 +852,7 @@ AppLayoutComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./app-layout.component.html */ "./node_modules/raw-loader/index.js!./src/app/layout/app-layout/app-layout.component.html"),
         styles: [__webpack_require__(/*! ./app-layout.component.scss */ "./src/app/layout/app-layout/app-layout.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], src_app_services_env_service__WEBPACK_IMPORTED_MODULE_5__["EnvService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], src_app_services_env_service__WEBPACK_IMPORTED_MODULE_5__["EnvService"], src_app_services_common_service__WEBPACK_IMPORTED_MODULE_6__["CommonService"]])
 ], AppLayoutComponent);
 
 
@@ -922,13 +930,6 @@ let AuthService = class AuthService {
     login(user) {
         return this.http.post(this.env.API_URL + 'auth/verify', { username: user.username, password: user.password });
     }
-    register(user) {
-        return this.http.post(this.env.API_URL + 'auth/register', {
-            UserName: user.username,
-            Password: user.password,
-            Bdate: user.Bdate
-        });
-    }
     checkId() {
         return Object(_storage_service__WEBPACK_IMPORTED_MODULE_4__["get"])("auction_data");
     }
@@ -944,6 +945,41 @@ AuthService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"],
         _env_service__WEBPACK_IMPORTED_MODULE_2__["EnvService"]])
 ], AuthService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/common.service.ts":
+/*!********************************************!*\
+  !*** ./src/app/services/common.service.ts ***!
+  \********************************************/
+/*! exports provided: CommonService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CommonService", function() { return CommonService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let CommonService = class CommonService {
+    constructor() {
+        this.user = {
+            id: null,
+            username: null,
+            status: null,
+            statusColor: 'medium'
+        };
+    }
+};
+CommonService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+], CommonService);
 
 
 

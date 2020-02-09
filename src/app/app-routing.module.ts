@@ -72,6 +72,10 @@ const routes: Routes = [
       },
     ]
   },
+  {
+    path: 'bidder-supporting-id',
+    loadChildren: () => import('./pages/bidder-supporting-id/bidder-supporting-id.module').then( m => m.BidderSupportingIdPageModule)
+  },
 
 ];
 

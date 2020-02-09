@@ -22,14 +22,6 @@ export class AuthService {
 
   }
 
-  register(user: User) {
-    return this.http.post(this.env.API_URL + 'auth/register', {
-      UserName: user.username,
-      Password: user.password,
-      Bdate: user.Bdate
-    })
-  }
-
   checkId() {
     return get("auction_data");
   }

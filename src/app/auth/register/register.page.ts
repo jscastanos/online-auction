@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProfileService } from 'src/app/services/profile.service';
-import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 import { ToastController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { TermsAndConditionsPage } from 'src/app/pages/terms-and-conditions/terms-and-conditions.page';
 import { set } from '../../services/storage.service';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-register',
@@ -32,12 +32,15 @@ export class RegisterPage implements OnInit, OnDestroy {
   registerUser: any;
   usernameAvailability: any;
 
+  //common
+  user;
 
-  constructor(public formBuilder: FormBuilder, private profileService: ProfileService, private authService: AuthService, public toast: ToastController, public router: Router, public modal: ModalController) {
-    this.createForm();
+  constructor(public formBuilder: FormBuilder, private profileService: ProfileService, public toast: ToastController, public router: Router, public modal: ModalController, private common: CommonService) {
+    this.user = this.common.user;
   }
 
   ngOnInit() {
+    this.createForm();
   }
 
   async presentToast(message, duration) {
@@ -55,7 +58,7 @@ export class RegisterPage implements OnInit, OnDestroy {
       component: TermsAndConditionsPage
     })
 
-    return await modal.present();
+    return modal.present();
   }
 
   private createForm() {
@@ -126,7 +129,7 @@ export class RegisterPage implements OnInit, OnDestroy {
     this.validations[e] = this.registerForm.value[e].length > 0 ? false : true;
   }
 
-  register(form) {
+  register(form, formDirective) {
 
     //check validations 
     this.validations.username = !form.value.username ? true : false;
@@ -151,7 +154,7 @@ export class RegisterPage implements OnInit, OnDestroy {
       //disabled button on submit
       this.btnDisabled = true;
 
-      this.registerUser = this.authService.register(this.userData).subscribe(data => {
+      this.registerUser = this.profileService.register(this.userData).subscribe(data => {
         let params = {
           queryParams: {
             id: JSON.stringify(data)
@@ -168,6 +171,16 @@ export class RegisterPage implements OnInit, OnDestroy {
           user: form.value.username,
           status: 0
         });
+
+        //update global values
+        this.user.id = data;
+        this.user.username = form.value.username;
+        this.user.status = 0;
+        this.user.statusColor = "danger"
+
+        //reset form
+        formDirective.resetForm();
+        this.registerForm.reset();
 
         setTimeout(() => {
           this.router.navigate(["/getting-started"], params);
@@ -197,8 +210,11 @@ export class RegisterPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.usernameAvailability.unsubscribe();
-    this.registerUser.unsubscribe();
+    if (this.usernameAvailability != null)
+      this.usernameAvailability.unsubscribe();
+
+    if (this.registerUser != null)
+      this.registerUser.unsubscribe();
   }
 }
 

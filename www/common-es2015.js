@@ -344,9 +344,9 @@ const blockedTags = ['script', 'style', 'iframe', 'meta', 'link', 'object', 'emb
 
 /***/ }),
 
-/***/ "./node_modules/@ionic/core/dist/esm/index-4d91f03a.js":
+/***/ "./node_modules/@ionic/core/dist/esm/index-6826f2f6.js":
 /*!*************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/index-4d91f03a.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/index-6826f2f6.js ***!
   \*************************************************************/
 /*! exports provided: d, g, l, s, t */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -358,16 +358,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return lifecycle; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return setPageHidden; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return transition; });
-/* harmony import */ var _core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core-feeeff0d.js */ "./node_modules/@ionic/core/dist/esm/core-feeeff0d.js");
+/* harmony import */ var _core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core-ca0488fc.js */ "./node_modules/@ionic/core/dist/esm/core-ca0488fc.js");
 /* harmony import */ var _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants-3c3e1099.js */ "./node_modules/@ionic/core/dist/esm/constants-3c3e1099.js");
 
 
 
-const iosTransitionAnimation = () => __webpack_require__.e(/*! import() | ios-transition-504cdd09-js */ "ios-transition-504cdd09-js").then(__webpack_require__.bind(null, /*! ./ios.transition-504cdd09.js */ "./node_modules/@ionic/core/dist/esm/ios.transition-504cdd09.js"));
-const mdTransitionAnimation = () => __webpack_require__.e(/*! import() | md-transition-fea2bbfb-js */ "md-transition-fea2bbfb-js").then(__webpack_require__.bind(null, /*! ./md.transition-fea2bbfb.js */ "./node_modules/@ionic/core/dist/esm/md.transition-fea2bbfb.js"));
+const iosTransitionAnimation = () => __webpack_require__.e(/*! import() | ios-transition-071bd421-js */ "ios-transition-071bd421-js").then(__webpack_require__.bind(null, /*! ./ios.transition-071bd421.js */ "./node_modules/@ionic/core/dist/esm/ios.transition-071bd421.js"));
+const mdTransitionAnimation = () => __webpack_require__.e(/*! import() | md-transition-15a81b08-js */ "md-transition-15a81b08-js").then(__webpack_require__.bind(null, /*! ./md.transition-15a81b08.js */ "./node_modules/@ionic/core/dist/esm/md.transition-15a81b08.js"));
 const transition = (opts) => {
     return new Promise((resolve, reject) => {
-        Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["w"])(() => {
+        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["w"])(() => {
             beforeTransition(opts);
             runTransition(opts).then(result => {
                 if (result.animation) {
@@ -688,7 +688,7 @@ const findCheckedOption = (el, tagName) => {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-row>\n  <ion-col size-xs=\"8\" offset-xs=\"2\" size-md=\"6\" offset-md=\"3\">\n    <img [src]=\"'data:image/png;base64,' + cameraService.photo.base64\" alt=\"\"\n      onerror=\"this.onerror=null; this.src='../assets/placeholder.png'\" />\n  </ion-col>\n</ion-row>\n<ion-row>\n  <ion-col size-xs=\"6\" size-lg=\"4\" offset-lg=\"2\">\n    <ion-button (click)=\"capture()\" shape=\"round\" expand=\"full\">\n      <ion-icon name=\"camera\"></ion-icon>\n      <ion-label>Capture</ion-label>\n    </ion-button>\n  </ion-col>\n  <ion-col size=\"6\" size-lg=\"4\">\n    <ion-button (click)=\"upload()\" shape=\"round\" expand=\"full\">\n      <ion-icon name=\"images\"></ion-icon>\n      <ion-label>Upload </ion-label>\n    </ion-button>\n  </ion-col>\n</ion-row>"
+module.exports = "<ion-row>\n  <ion-col class=\"image\" size-xs=\"8\" offset-xs=\"2\" size-md=\"6\" offset-md=\"3\">\n    <img [src]=\"'data:image/png;base64,' + cameraService.photo.base64\" alt=\"\"\n      onerror=\"this.onerror=null; this.src='../assets/placeholder.png'\" />\n  </ion-col>\n</ion-row>\n<ion-row>\n  <ion-col size-xs=\"6\" size-lg=\"4\" offset-lg=\"2\">\n    <ion-button (click)=\"capture()\" shape=\"round\" expand=\"full\">\n      <ion-icon name=\"camera\"></ion-icon>\n      <ion-label>Capture</ion-label>\n    </ion-button>\n  </ion-col>\n  <ion-col size=\"6\" size-lg=\"4\">\n    <ion-button (click)=\"upload()\" shape=\"round\" expand=\"full\">\n      <ion-icon name=\"images\"></ion-icon>\n      <ion-label>Upload </ion-label>\n    </ion-button>\n  </ion-col>\n</ion-row>"
 
 /***/ }),
 
@@ -710,7 +710,7 @@ module.exports = "<ion-slides [options]=\"options.sliderOpts\">\n  <ion-slide *n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "form {\n  margin-top: 5%;\n}\nform.login {\n  margin-top: 20%;\n}\nform h1 {\n  font-size: 45px;\n}\nform ion-text {\n  text-align: center !important;\n}\nform ion-icon {\n  margin-right: 10px;\n}\nform.getting-started h2 {\n  font-size: 18px;\n}\nform.getting-started h1 {\n  font-size: 25px;\n}\nion-fab {\n  margin-bottom: 20px;\n  margin-right: 20px;\n}\nion-fab ion-icon {\n  margin: 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXV0aC9EOlxcd29ya1xcUHJvamVjdHNcXEFjY1JlYWxTb2Z0XFxNb2JpbGVcXG9ubGluZWF1Y3Rpb25hcHAvc3JjXFxhcHBcXGF1dGhcXGF1dGguc2NzcyIsInNyYy9hcHAvYXV0aC9hdXRoLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFBO0FDQ0o7QURDSTtFQUNJLGVBQUE7QUNDUjtBREVJO0VBQ0ksZUFBQTtBQ0FSO0FER0k7RUFDSSw2QkFBQTtBQ0RSO0FES0k7RUFDSSxrQkFBQTtBQ0hSO0FET1E7RUFFSSxlQUFBO0FDTlo7QURRUTtFQUVJLGVBQUE7QUNQWjtBRGVBO0VBQ0ksbUJBQUE7RUFDQSxrQkFBQTtBQ1pKO0FEY0k7RUFDSSxTQUFBO0FDWlIiLCJmaWxlIjoic3JjL2FwcC9hdXRoL2F1dGguc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImZvcm17XHJcbiAgICBtYXJnaW4tdG9wOiA1JTtcclxuXHJcbiAgICAmLmxvZ2lue1xyXG4gICAgICAgIG1hcmdpbi10b3A6IDIwJTtcclxuICAgIH1cclxuICAgIFxyXG4gICAgaDF7XHJcbiAgICAgICAgZm9udC1zaXplOiA0NXB4O1xyXG4gICAgfVxyXG4gICAgXHJcbiAgICBpb24tdGV4dHtcclxuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXIgIWltcG9ydGFudDtcclxuICAgIH1cclxuXHJcblxyXG4gICAgaW9uLWljb257XHJcbiAgICAgICAgbWFyZ2luLXJpZ2h0OiAxMHB4XHJcbiAgICB9XHJcblxyXG4gICAgJi5nZXR0aW5nLXN0YXJ0ZWR7XHJcbiAgICAgICAgaDJ7XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgICAgICBmb250LXNpemU6IDE4cHg7XHJcbiAgICAgICAgfVxyXG4gICAgICAgIGgxe1xyXG4gICAgICAgICAgICBcclxuICAgICAgICAgICAgZm9udC1zaXplOiAyNXB4O1xyXG4gICAgICAgIH1cclxuICAgIH1cclxuXHJcbn1cclxuXHJcblxyXG5cclxuaW9uLWZhYntcclxuICAgIG1hcmdpbi1ib3R0b206IDIwcHg7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDIwcHg7XHJcbiAgICBcclxuICAgIGlvbi1pY29ue1xyXG4gICAgICAgIG1hcmdpbjogMDtcclxuICAgIH1cclxufVxyXG5cclxuXHJcbiIsImZvcm0ge1xuICBtYXJnaW4tdG9wOiA1JTtcbn1cbmZvcm0ubG9naW4ge1xuICBtYXJnaW4tdG9wOiAyMCU7XG59XG5mb3JtIGgxIHtcbiAgZm9udC1zaXplOiA0NXB4O1xufVxuZm9ybSBpb24tdGV4dCB7XG4gIHRleHQtYWxpZ246IGNlbnRlciAhaW1wb3J0YW50O1xufVxuZm9ybSBpb24taWNvbiB7XG4gIG1hcmdpbi1yaWdodDogMTBweDtcbn1cbmZvcm0uZ2V0dGluZy1zdGFydGVkIGgyIHtcbiAgZm9udC1zaXplOiAxOHB4O1xufVxuZm9ybS5nZXR0aW5nLXN0YXJ0ZWQgaDEge1xuICBmb250LXNpemU6IDI1cHg7XG59XG5cbmlvbi1mYWIge1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xuICBtYXJnaW4tcmlnaHQ6IDIwcHg7XG59XG5pb24tZmFiIGlvbi1pY29uIHtcbiAgbWFyZ2luOiAwO1xufSJdfQ== */"
+module.exports = "form {\n  height: 100vh !important;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  vertical-align: center;\n}\nform.register {\n  margin-top: 50px;\n}\nform h1 {\n  font-size: 45px;\n}\nform ion-text {\n  text-align: center !important;\n}\nform ion-icon {\n  margin-right: 10px;\n}\nform.getting-started h2 {\n  font-size: 18px;\n}\nform.getting-started h1 {\n  font-size: 25px;\n}\nion-fab {\n  margin-bottom: 20px;\n  margin-right: 20px;\n}\nion-fab ion-icon {\n  margin: 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXV0aC9EOlxcd29ya1xcUHJvamVjdHNcXEFjY1JlYWxTb2Z0XFxNb2JpbGVcXG9ubGluZWF1Y3Rpb25hcHAvc3JjXFxhcHBcXGF1dGhcXGF1dGguc2NzcyIsInNyYy9hcHAvYXV0aC9hdXRoLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFFSSx3QkFBQTtFQUNBLG9CQUFBO0VBQUEsYUFBQTtFQUNBLHlCQUFBO1VBQUEsbUJBQUE7RUFDQSxzQkFBQTtBQ0FKO0FERUk7RUFDSSxnQkFBQTtBQ0FSO0FER0k7RUFDSSxlQUFBO0FDRFI7QURJSTtFQUNJLDZCQUFBO0FDRlI7QURNSTtFQUNJLGtCQUFBO0FDSlI7QURRUTtFQUVJLGVBQUE7QUNQWjtBRFNRO0VBRUksZUFBQTtBQ1JaO0FEZ0JBO0VBQ0ksbUJBQUE7RUFDQSxrQkFBQTtBQ2JKO0FEZUk7RUFDSSxTQUFBO0FDYlIiLCJmaWxlIjoic3JjL2FwcC9hdXRoL2F1dGguc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImZvcm17XHJcblxyXG4gICAgaGVpZ2h0OiAxMDB2aCAhaW1wb3J0YW50O1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICB2ZXJ0aWNhbC1hbGlnbjogY2VudGVyO1xyXG5cclxuICAgICYucmVnaXN0ZXJ7XHJcbiAgICAgICAgbWFyZ2luLXRvcDogNTBweDtcclxuICAgIH1cclxuXHJcbiAgICBoMXtcclxuICAgICAgICBmb250LXNpemU6IDQ1cHg7XHJcbiAgICB9XHJcbiAgICBcclxuICAgIGlvbi10ZXh0e1xyXG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlciAhaW1wb3J0YW50O1xyXG4gICAgfVxyXG5cclxuXHJcbiAgICBpb24taWNvbntcclxuICAgICAgICBtYXJnaW4tcmlnaHQ6IDEwcHhcclxuICAgIH1cclxuXHJcbiAgICAmLmdldHRpbmctc3RhcnRlZHtcclxuICAgICAgICBoMntcclxuICAgICAgICAgICAgXHJcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogMThweDtcclxuICAgICAgICB9XHJcbiAgICAgICAgaDF7XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgICAgICBmb250LXNpemU6IDI1cHg7XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG5cclxufVxyXG5cclxuXHJcblxyXG5pb24tZmFie1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMjBweDtcclxuICAgIG1hcmdpbi1yaWdodDogMjBweDtcclxuICAgIFxyXG4gICAgaW9uLWljb257XHJcbiAgICAgICAgbWFyZ2luOiAwO1xyXG4gICAgfVxyXG59IiwiZm9ybSB7XG4gIGhlaWdodDogMTAwdmggIWltcG9ydGFudDtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgdmVydGljYWwtYWxpZ246IGNlbnRlcjtcbn1cbmZvcm0ucmVnaXN0ZXIge1xuICBtYXJnaW4tdG9wOiA1MHB4O1xufVxuZm9ybSBoMSB7XG4gIGZvbnQtc2l6ZTogNDVweDtcbn1cbmZvcm0gaW9uLXRleHQge1xuICB0ZXh0LWFsaWduOiBjZW50ZXIgIWltcG9ydGFudDtcbn1cbmZvcm0gaW9uLWljb24ge1xuICBtYXJnaW4tcmlnaHQ6IDEwcHg7XG59XG5mb3JtLmdldHRpbmctc3RhcnRlZCBoMiB7XG4gIGZvbnQtc2l6ZTogMThweDtcbn1cbmZvcm0uZ2V0dGluZy1zdGFydGVkIGgxIHtcbiAgZm9udC1zaXplOiAyNXB4O1xufVxuXG5pb24tZmFiIHtcbiAgbWFyZ2luLWJvdHRvbTogMjBweDtcbiAgbWFyZ2luLXJpZ2h0OiAyMHB4O1xufVxuaW9uLWZhYiBpb24taWNvbiB7XG4gIG1hcmdpbjogMDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -721,7 +721,7 @@ module.exports = "form {\n  margin-top: 5%;\n}\nform.login {\n  margin-top: 20%;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ion-icon {\n  padding-right: 5px;\n}\n\nimg {\n  width: 100%;\n  height: 200px;\n  border-radius: 50%;\n  border: 3px #3880FF dashed;\n  margin-bottom: 20px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYW1lcmEvRDpcXHdvcmtcXFByb2plY3RzXFxBY2NSZWFsU29mdFxcTW9iaWxlXFxvbmxpbmVhdWN0aW9uYXBwL3NyY1xcYXBwXFxjb21wb25lbnRzXFxjYW1lcmFcXGNhbWVyYS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29tcG9uZW50cy9jYW1lcmEvY2FtZXJhLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0JBQUE7QUNDSjs7QURFQTtFQUNJLFdBQUE7RUFDQSxhQUFBO0VBQ0Esa0JBQUE7RUFDQSwwQkFBQTtFQUNBLG1CQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2NhbWVyYS9jYW1lcmEuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24taWNvbntcclxuICAgIHBhZGRpbmctcmlnaHQ6IDVweDtcclxufVxyXG5cclxuaW1ne1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBoZWlnaHQ6IDIwMHB4O1xyXG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gICAgYm9yZGVyOiAzcHggIzM4ODBGRiBkYXNoZWQ7XHJcbiAgICBtYXJnaW4tYm90dG9tOiAyMHB4O1xyXG59IiwiaW9uLWljb24ge1xuICBwYWRkaW5nLXJpZ2h0OiA1cHg7XG59XG5cbmltZyB7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDIwMHB4O1xuICBib3JkZXItcmFkaXVzOiA1MCU7XG4gIGJvcmRlcjogM3B4ICMzODgwRkYgZGFzaGVkO1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xufSJdfQ== */"
+module.exports = "ion-icon {\n  padding-right: 5px;\n}\n\nimg {\n  width: 200px;\n  height: 200px;\n  border-radius: 50%;\n  border: 3px #3880FF dashed;\n  margin-bottom: 20px;\n}\n\n.image {\n  text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYW1lcmEvRDpcXHdvcmtcXFByb2plY3RzXFxBY2NSZWFsU29mdFxcTW9iaWxlXFxvbmxpbmVhdWN0aW9uYXBwL3NyY1xcYXBwXFxjb21wb25lbnRzXFxjYW1lcmFcXGNhbWVyYS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29tcG9uZW50cy9jYW1lcmEvY2FtZXJhLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0JBQUE7QUNDSjs7QURFQTtFQUNJLFlBQUE7RUFDQSxhQUFBO0VBQ0Esa0JBQUE7RUFDQSwwQkFBQTtFQUNBLG1CQUFBO0FDQ0o7O0FERUE7RUFDSSxrQkFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9jYW1lcmEvY2FtZXJhLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWljb257XHJcbiAgICBwYWRkaW5nLXJpZ2h0OiA1cHg7XHJcbn1cclxuXHJcbmltZ3tcclxuICAgIHdpZHRoOiAyMDBweDtcclxuICAgIGhlaWdodDogMjAwcHg7XHJcbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgICBib3JkZXI6IDNweCAjMzg4MEZGIGRhc2hlZDtcclxuICAgIG1hcmdpbi1ib3R0b206IDIwcHg7XHJcbn1cclxuXHJcbi5pbWFnZXtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxufSIsImlvbi1pY29uIHtcbiAgcGFkZGluZy1yaWdodDogNXB4O1xufVxuXG5pbWcge1xuICB3aWR0aDogMjAwcHg7XG4gIGhlaWdodDogMjAwcHg7XG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcbiAgYm9yZGVyOiAzcHggIzM4ODBGRiBkYXNoZWQ7XG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XG59XG5cbi5pbWFnZSB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn0iXX0= */"
 
 /***/ }),
 
@@ -1018,17 +1018,27 @@ let ProfileService = class ProfileService {
         this.http = http;
         this.env = env;
     }
+    register(user) {
+        return this.http.post(this.env.API_URL + 'bidder/register', {
+            UserName: user.username,
+            Password: user.password,
+            Bdate: user.Bdate
+        });
+    }
     checkUsernameAvailability(username) {
-        return this.http.get(this.env.API_URL + 'auth/username/check?username=' + username);
+        return this.http.get(this.env.API_URL + 'bidder/username/check?username=' + username);
     }
     updateProfile(id, profile) {
-        return this.http.put(this.env.API_URL + 'auth/profile/' + id + "/update/", profile);
+        return this.http.put(this.env.API_URL + 'bidder/profile/' + id + "/update/", profile);
     }
     saveImage(id, imageBase64, type) {
-        return this.http.post(this.env.API_URL + "auth/profile/" + id + "/image", {
+        return this.http.post(this.env.API_URL + "bidder/profile/" + id + "/image", {
             imageBase64: imageBase64,
             type: type
         });
+    }
+    getUserData(id) {
+        return this.http.get(this.env.API_URL + 'bidder/profile/' + id);
     }
 };
 ProfileService.ctorParameters = () => [

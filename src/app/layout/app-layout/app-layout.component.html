@@ -2,11 +2,11 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-header>
-        <ion-toolbar color="{{statusColor}}">
+        <ion-toolbar color="{{user.statusColor}}">
           <ion-menu-toggle>
-            <img src="{{url}}/account/retrieveImage?id={{userID}}&type=0" [routerLink]="['/profile']" />
+            <img src="{{url}}/account/retrieveImage?id={{user.id}}&type=0" [routerLink]="['/profile']" />
           </ion-menu-toggle>
-          <span>{{username}}</span>
+          <span>{{user.username}}</span>
         </ion-toolbar>
       </ion-header>
       <ion-content>
@@ -17,7 +17,7 @@
               <ion-label>Dashboard</ion-label>
             </ion-item>
           </ion-menu-toggle>
-          <div *ngIf="status !=0">
+          <div *ngIf="user.status !=0">
             <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
               <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
                 <ion-icon slot="start" [name]="p.icon"></ion-icon>

@@ -1,6 +1,7 @@
 <ion-content>
   <div class="overlay">
-    <form class="register" [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
+    <form class="register" [formGroup]="registerForm" (ngSubmit)="register(registerForm, formDirective)"
+      #formDirective="ngForm">
       <ion-grid>
         <ion-row>
           <ion-col size-xs="12">

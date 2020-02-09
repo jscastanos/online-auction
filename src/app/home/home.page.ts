@@ -1,23 +1,26 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnDestroy {
   @ViewChild(IonInfiniteScroll, { static: false }) infiniteScroll: IonInfiniteScroll;
 
   displayItems = [];
   auctionItems = [];
   activeItems = [];
+
   lazyLoadIndex = {
     auction: 0,
     display: 0
   };
+
   currItemStatus = 1;
 
   categorySliderOpts = {
@@ -50,46 +53,34 @@ export class HomePage {
     }
   }
 
-  //user data
-  userID;
-  status;
-  statusColor = "medium";
+  //api
+  fetchDisplayService;
+  fetchAuctionService;
 
-  constructor(private productsService: ProductsService, private auth: AuthService) {
-    this.fetchDisplay();
+  //common
+  user;
+
+  constructor(private productsService: ProductsService, private auth: AuthService, public common: CommonService) {
+    this.user = this.common.user;
+  }
+
+  ngOnInit() {
     this.fetchAuction();
-    this.init();
-
+    this.fetchDisplay();
   }
 
-  async init() {
-    let data = await this.auth.checkId();
-    this.userID = data["id"]
-    this.status = data["status"];
+  async loadData() {
+    if (this.currItemStatus == 0)
+      await this.fetchDisplay();
+    else
+      await this.fetchAuction();
 
-    if (this.status == 0) {
-      this.statusColor = "danger";
-    } else {
-      this.statusColor = "primary"
-    }
-  }
-
-  loadData() {
-    setTimeout(() => {
-
-      if (this.currItemStatus == 0)
-        this.fetchDisplay();
-      else
-        this.fetchAuction();
-
-      this.infiniteScroll.complete();
-
-    }, 300);
+    this.infiniteScroll.complete();
 
   }
 
   fetchDisplay() {
-    this.productsService.getDisplayItems(this.lazyLoadIndex.display)
+    this.fetchDisplayService = this.productsService.getDisplayItems(this.lazyLoadIndex.display)
       .subscribe(data => {
         for (let index in data) {
           this.displayItems.push(data[index]);
@@ -97,19 +88,21 @@ export class HomePage {
         }
         this.activeItems = this.displayItems
 
-
+        this.fetchDisplayService.unsubscribe();
       });
   };
 
   fetchAuction() {
-    this.productsService.getAuctionItems(this.lazyLoadIndex.auction)
+    this.fetchAuctionService = this.productsService.getAuctionItems(this.lazyLoadIndex.auction)
       .subscribe(data => {
         for (let index in data) {
           this.auctionItems.push(data[index]);
           this.lazyLoadIndex.auction = data[index]["rowNum"];
         }
         this.activeItems = this.auctionItems
-      })
+
+        this.fetchAuctionService.unsubscribe();
+      });
   };
 
   segmentChanged(e) {
@@ -124,5 +117,10 @@ export class HomePage {
     }
   }
 
+  ngOnDestroy() {
+
+    this.fetchDisplayService.unsubscribe();
+    this.fetchAuctionService.unsubscribe();
+  }
 
 }

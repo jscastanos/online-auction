@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"{{statusColor}}\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-buttons slot=\"end\">\n      <ion-badge color=\"light\" *ngIf=\"status == 0\">Unverified</ion-badge>\n      <ion-button fill=\"clear\">\n        <ion-icon slot=\"icon-only\" name=\"notifications\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n\n  <ion-toolbar color=\"{{statusColor}}\">\n    <ion-searchbar placeholder=\"Search Items\"></ion-searchbar>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-list lines=\"none\">\n    <ion-list-header>\n      <ion-label>browse by categories</ion-label>\n    </ion-list-header>\n    <app-slider [options]=\"categorySliderOpts\"></app-slider>\n  </ion-list>\n\n  <ion-list lines=\"none\">\n    <ion-list-header>\n      <ion-label>browse by company</ion-label>\n    </ion-list-header>\n    <app-slider [options]=\"companySliderOpts\"></app-slider>\n  </ion-list>\n\n  <ion-list lines=\"none\" class=\"itemList\">\n    <ion-segment value=\"auction\" (ionChange)=\"segmentChanged($event)\" color=\"primary\">\n      <ion-segment-button size-xs=\"6\" value=\"auction\" *ngIf=\"status != 0\">\n        <ion-label>Auction</ion-label>\n      </ion-segment-button>\n      <ion-segment-button size-xs=\"6\" value=\"display\">\n        <ion-label>On Display</ion-label>\n      </ion-segment-button>\n    </ion-segment>\n\n    <ion-grid>\n      <ion-row>\n        <ion-col size-xs=\"6\" *ngFor=\"let items of activeItems\" class=\"item\">\n          <div class=\"badgeHolder\">\n            <div class=\"bidBadge\">\n              {{items.NoOfBidders ? (items.NoOfBidders + ' Bidders') : (items.NoOfDays + ' Days Left')}}\n            </div>\n          </div>\n          <img src=\"../../assets/shapes.svg\" onerror=\"this.onerror = null; this.src = '../assets/placeholder.png'\" />\n          <ion-text>\n            <h1>{{items.rowNum}}</h1>\n            <h5>{{items.productName}}</h5>\n            <h5 class=\"price\"> {{items.CurrentBidPrice | currency : '&#8369; '}}</h5>\n          </ion-text>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-list>\n\n  <ion-infinite-scroll threshold=\"10px\" (ionInfinite)=\"loadData()\">\n    <ion-infinite-scroll-content style=\"padding-top: 10px;\" loadingSpinner=\"crescent\">\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar color=\"{{user.statusColor}}\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-buttons slot=\"end\">\n      <ion-badge color=\"light\" *ngIf=\"user.status == 0\" [routerLink]=\"['/profile']\">\n        Unverified</ion-badge>\n      <ion-button fill=\"clear\">\n        <ion-icon slot=\"icon-only\" name=\"notifications\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n\n  <ion-toolbar color=\"{{user.statusColor}}\">\n    <ion-searchbar placeholder=\"Search Items\"></ion-searchbar>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-list lines=\"none\">\n    <ion-list-header>\n      <ion-label>browse by categories</ion-label>\n    </ion-list-header>\n    <app-slider [options]=\"categorySliderOpts\"></app-slider>\n  </ion-list>\n\n  <ion-list lines=\"none\">\n    <ion-list-header>\n      <ion-label>browse by company</ion-label>\n    </ion-list-header>\n    <app-slider [options]=\"companySliderOpts\"></app-slider>\n  </ion-list>\n\n  <ion-list lines=\"none\" class=\"itemList\">\n    <ion-segment value=\"auction\" (ionChange)=\"segmentChanged($event)\" color=\"primary\">\n      <ion-segment-button size-xs=\"6\" value=\"auction\" *ngIf=\"user.status != 0\">\n        <ion-label>Auction</ion-label>\n      </ion-segment-button>\n      <ion-segment-button size-xs=\"6\" value=\"display\">\n        <ion-label>On Display</ion-label>\n      </ion-segment-button>\n    </ion-segment>\n\n    <ion-grid>\n      <ion-row>\n        <ion-col size-xs=\"6\" *ngFor=\"let items of activeItems\" class=\"item\">\n          <div class=\"badgeHolder\">\n            <div class=\"bidBadge\">\n              {{items.NoOfBidders ? (items.NoOfBidders + ' Bidders') : (items.NoOfDays + ' Days Left')}}\n            </div>\n          </div>\n          <img src=\"../../assets/shapes.svg\" onerror=\"this.onerror = null; this.src = '../assets/placeholder.png'\" />\n          <ion-text>\n            <h1>{{items.rowNum}}</h1>\n            <h5>{{items.productName}}</h5>\n            <h5 class=\"price\"> {{items.CurrentBidPrice | currency : '&#8369; '}}</h5>\n          </ion-text>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-list>\n\n  <ion-infinite-scroll threshold=\"10px\" (ionInfinite)=\"loadData()\">\n    <ion-infinite-scroll-content style=\"padding-top: 10px;\" loadingSpinner=\"crescent\">\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n</ion-content>"
 
 /***/ }),
 
@@ -90,15 +90,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_products_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/products.service */ "./src/app/services/products.service.ts");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _services_common_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/common.service */ "./src/app/services/common.service.ts");
+
 
 
 
 
 
 var HomePage = /** @class */ (function () {
-    function HomePage(productsService, auth) {
+    function HomePage(productsService, auth, common) {
         this.productsService = productsService;
         this.auth = auth;
+        this.common = common;
         this.displayItems = [];
         this.auctionItems = [];
         this.activeItems = [];
@@ -135,63 +138,56 @@ var HomePage = /** @class */ (function () {
                 name: 'BranchName'
             }
         };
-        this.statusColor = "medium";
-        this.fetchDisplay();
-        this.fetchAuction();
-        this.init();
+        this.user = this.common.user;
     }
-    HomePage.prototype.init = function () {
+    HomePage.prototype.ngOnInit = function () {
+        this.fetchAuction();
+        this.fetchDisplay();
+    };
+    HomePage.prototype.loadData = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var data;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.auth.checkId()];
+                    case 0:
+                        if (!(this.currItemStatus == 0)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.fetchDisplay()];
                     case 1:
-                        data = _a.sent();
-                        this.userID = data["id"];
-                        this.status = data["status"];
-                        if (this.status == 0) {
-                            this.statusColor = "danger";
-                        }
-                        else {
-                            this.statusColor = "primary";
-                        }
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 2: return [4 /*yield*/, this.fetchAuction()];
+                    case 3:
+                        _a.sent();
+                        _a.label = 4;
+                    case 4:
+                        this.infiniteScroll.complete();
                         return [2 /*return*/];
                 }
             });
         });
     };
-    HomePage.prototype.loadData = function () {
-        var _this = this;
-        setTimeout(function () {
-            if (_this.currItemStatus == 0)
-                _this.fetchDisplay();
-            else
-                _this.fetchAuction();
-            _this.infiniteScroll.complete();
-        }, 300);
-    };
     HomePage.prototype.fetchDisplay = function () {
         var _this = this;
-        this.productsService.getDisplayItems(this.lazyLoadIndex.display)
+        this.fetchDisplayService = this.productsService.getDisplayItems(this.lazyLoadIndex.display)
             .subscribe(function (data) {
             for (var index in data) {
                 _this.displayItems.push(data[index]);
                 _this.lazyLoadIndex.display = data[index]["rowNum"];
             }
             _this.activeItems = _this.displayItems;
+            _this.fetchDisplayService.unsubscribe();
         });
     };
     ;
     HomePage.prototype.fetchAuction = function () {
         var _this = this;
-        this.productsService.getAuctionItems(this.lazyLoadIndex.auction)
+        this.fetchAuctionService = this.productsService.getAuctionItems(this.lazyLoadIndex.auction)
             .subscribe(function (data) {
             for (var index in data) {
                 _this.auctionItems.push(data[index]);
                 _this.lazyLoadIndex.auction = data[index]["rowNum"];
             }
             _this.activeItems = _this.auctionItems;
+            _this.fetchAuctionService.unsubscribe();
         });
     };
     ;
@@ -205,9 +201,14 @@ var HomePage = /** @class */ (function () {
             this.currItemStatus = 1;
         }
     };
+    HomePage.prototype.ngOnDestroy = function () {
+        this.fetchDisplayService.unsubscribe();
+        this.fetchAuctionService.unsubscribe();
+    };
     HomePage.ctorParameters = function () { return [
         { type: _services_products_service__WEBPACK_IMPORTED_MODULE_2__["ProductsService"] },
-        { type: _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] }
+        { type: _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] },
+        { type: _services_common_service__WEBPACK_IMPORTED_MODULE_5__["CommonService"] }
     ]; };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonInfiniteScroll"], { static: false }),
@@ -219,7 +220,7 @@ var HomePage = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./home.page.html */ "./node_modules/raw-loader/index.js!./src/app/home/home.page.html"),
             styles: [__webpack_require__(/*! ./home.page.scss */ "./src/app/home/home.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_products_service__WEBPACK_IMPORTED_MODULE_2__["ProductsService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_products_service__WEBPACK_IMPORTED_MODULE_2__["ProductsService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _services_common_service__WEBPACK_IMPORTED_MODULE_5__["CommonService"]])
     ], HomePage);
     return HomePage;
 }());

@@ -410,7 +410,7 @@ var findCheckedOption = function (el, tagName) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "form {\n  margin-top: 5%;\n}\nform.login {\n  margin-top: 20%;\n}\nform h1 {\n  font-size: 45px;\n}\nform ion-text {\n  text-align: center !important;\n}\nform ion-icon {\n  margin-right: 10px;\n}\nform.getting-started h2 {\n  font-size: 18px;\n}\nform.getting-started h1 {\n  font-size: 25px;\n}\nion-fab {\n  margin-bottom: 20px;\n  margin-right: 20px;\n}\nion-fab ion-icon {\n  margin: 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXV0aC9EOlxcd29ya1xcUHJvamVjdHNcXEFjY1JlYWxTb2Z0XFxNb2JpbGVcXG9ubGluZWF1Y3Rpb25hcHAvc3JjXFxhcHBcXGF1dGhcXGF1dGguc2NzcyIsInNyYy9hcHAvYXV0aC9hdXRoLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFBO0FDQ0o7QURDSTtFQUNJLGVBQUE7QUNDUjtBREVJO0VBQ0ksZUFBQTtBQ0FSO0FER0k7RUFDSSw2QkFBQTtBQ0RSO0FES0k7RUFDSSxrQkFBQTtBQ0hSO0FET1E7RUFFSSxlQUFBO0FDTlo7QURRUTtFQUVJLGVBQUE7QUNQWjtBRGVBO0VBQ0ksbUJBQUE7RUFDQSxrQkFBQTtBQ1pKO0FEY0k7RUFDSSxTQUFBO0FDWlIiLCJmaWxlIjoic3JjL2FwcC9hdXRoL2F1dGguc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImZvcm17XHJcbiAgICBtYXJnaW4tdG9wOiA1JTtcclxuXHJcbiAgICAmLmxvZ2lue1xyXG4gICAgICAgIG1hcmdpbi10b3A6IDIwJTtcclxuICAgIH1cclxuICAgIFxyXG4gICAgaDF7XHJcbiAgICAgICAgZm9udC1zaXplOiA0NXB4O1xyXG4gICAgfVxyXG4gICAgXHJcbiAgICBpb24tdGV4dHtcclxuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXIgIWltcG9ydGFudDtcclxuICAgIH1cclxuXHJcblxyXG4gICAgaW9uLWljb257XHJcbiAgICAgICAgbWFyZ2luLXJpZ2h0OiAxMHB4XHJcbiAgICB9XHJcblxyXG4gICAgJi5nZXR0aW5nLXN0YXJ0ZWR7XHJcbiAgICAgICAgaDJ7XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgICAgICBmb250LXNpemU6IDE4cHg7XHJcbiAgICAgICAgfVxyXG4gICAgICAgIGgxe1xyXG4gICAgICAgICAgICBcclxuICAgICAgICAgICAgZm9udC1zaXplOiAyNXB4O1xyXG4gICAgICAgIH1cclxuICAgIH1cclxuXHJcbn1cclxuXHJcblxyXG5cclxuaW9uLWZhYntcclxuICAgIG1hcmdpbi1ib3R0b206IDIwcHg7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDIwcHg7XHJcbiAgICBcclxuICAgIGlvbi1pY29ue1xyXG4gICAgICAgIG1hcmdpbjogMDtcclxuICAgIH1cclxufVxyXG5cclxuXHJcbiIsImZvcm0ge1xuICBtYXJnaW4tdG9wOiA1JTtcbn1cbmZvcm0ubG9naW4ge1xuICBtYXJnaW4tdG9wOiAyMCU7XG59XG5mb3JtIGgxIHtcbiAgZm9udC1zaXplOiA0NXB4O1xufVxuZm9ybSBpb24tdGV4dCB7XG4gIHRleHQtYWxpZ246IGNlbnRlciAhaW1wb3J0YW50O1xufVxuZm9ybSBpb24taWNvbiB7XG4gIG1hcmdpbi1yaWdodDogMTBweDtcbn1cbmZvcm0uZ2V0dGluZy1zdGFydGVkIGgyIHtcbiAgZm9udC1zaXplOiAxOHB4O1xufVxuZm9ybS5nZXR0aW5nLXN0YXJ0ZWQgaDEge1xuICBmb250LXNpemU6IDI1cHg7XG59XG5cbmlvbi1mYWIge1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xuICBtYXJnaW4tcmlnaHQ6IDIwcHg7XG59XG5pb24tZmFiIGlvbi1pY29uIHtcbiAgbWFyZ2luOiAwO1xufSJdfQ== */"
+module.exports = "form {\n  height: 100vh !important;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  vertical-align: center;\n}\nform.register {\n  margin-top: 50px;\n}\nform h1 {\n  font-size: 45px;\n}\nform ion-text {\n  text-align: center !important;\n}\nform ion-icon {\n  margin-right: 10px;\n}\nform.getting-started h2 {\n  font-size: 18px;\n}\nform.getting-started h1 {\n  font-size: 25px;\n}\nion-fab {\n  margin-bottom: 20px;\n  margin-right: 20px;\n}\nion-fab ion-icon {\n  margin: 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXV0aC9EOlxcd29ya1xcUHJvamVjdHNcXEFjY1JlYWxTb2Z0XFxNb2JpbGVcXG9ubGluZWF1Y3Rpb25hcHAvc3JjXFxhcHBcXGF1dGhcXGF1dGguc2NzcyIsInNyYy9hcHAvYXV0aC9hdXRoLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFFSSx3QkFBQTtFQUNBLG9CQUFBO0VBQUEsYUFBQTtFQUNBLHlCQUFBO1VBQUEsbUJBQUE7RUFDQSxzQkFBQTtBQ0FKO0FERUk7RUFDSSxnQkFBQTtBQ0FSO0FER0k7RUFDSSxlQUFBO0FDRFI7QURJSTtFQUNJLDZCQUFBO0FDRlI7QURNSTtFQUNJLGtCQUFBO0FDSlI7QURRUTtFQUVJLGVBQUE7QUNQWjtBRFNRO0VBRUksZUFBQTtBQ1JaO0FEZ0JBO0VBQ0ksbUJBQUE7RUFDQSxrQkFBQTtBQ2JKO0FEZUk7RUFDSSxTQUFBO0FDYlIiLCJmaWxlIjoic3JjL2FwcC9hdXRoL2F1dGguc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImZvcm17XHJcblxyXG4gICAgaGVpZ2h0OiAxMDB2aCAhaW1wb3J0YW50O1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICB2ZXJ0aWNhbC1hbGlnbjogY2VudGVyO1xyXG5cclxuICAgICYucmVnaXN0ZXJ7XHJcbiAgICAgICAgbWFyZ2luLXRvcDogNTBweDtcclxuICAgIH1cclxuXHJcbiAgICBoMXtcclxuICAgICAgICBmb250LXNpemU6IDQ1cHg7XHJcbiAgICB9XHJcbiAgICBcclxuICAgIGlvbi10ZXh0e1xyXG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlciAhaW1wb3J0YW50O1xyXG4gICAgfVxyXG5cclxuXHJcbiAgICBpb24taWNvbntcclxuICAgICAgICBtYXJnaW4tcmlnaHQ6IDEwcHhcclxuICAgIH1cclxuXHJcbiAgICAmLmdldHRpbmctc3RhcnRlZHtcclxuICAgICAgICBoMntcclxuICAgICAgICAgICAgXHJcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogMThweDtcclxuICAgICAgICB9XHJcbiAgICAgICAgaDF7XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgICAgICBmb250LXNpemU6IDI1cHg7XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG5cclxufVxyXG5cclxuXHJcblxyXG5pb24tZmFie1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMjBweDtcclxuICAgIG1hcmdpbi1yaWdodDogMjBweDtcclxuICAgIFxyXG4gICAgaW9uLWljb257XHJcbiAgICAgICAgbWFyZ2luOiAwO1xyXG4gICAgfVxyXG59IiwiZm9ybSB7XG4gIGhlaWdodDogMTAwdmggIWltcG9ydGFudDtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgdmVydGljYWwtYWxpZ246IGNlbnRlcjtcbn1cbmZvcm0ucmVnaXN0ZXIge1xuICBtYXJnaW4tdG9wOiA1MHB4O1xufVxuZm9ybSBoMSB7XG4gIGZvbnQtc2l6ZTogNDVweDtcbn1cbmZvcm0gaW9uLXRleHQge1xuICB0ZXh0LWFsaWduOiBjZW50ZXIgIWltcG9ydGFudDtcbn1cbmZvcm0gaW9uLWljb24ge1xuICBtYXJnaW4tcmlnaHQ6IDEwcHg7XG59XG5mb3JtLmdldHRpbmctc3RhcnRlZCBoMiB7XG4gIGZvbnQtc2l6ZTogMThweDtcbn1cbmZvcm0uZ2V0dGluZy1zdGFydGVkIGgxIHtcbiAgZm9udC1zaXplOiAyNXB4O1xufVxuXG5pb24tZmFiIHtcbiAgbWFyZ2luLWJvdHRvbTogMjBweDtcbiAgbWFyZ2luLXJpZ2h0OiAyMHB4O1xufVxuaW9uLWZhYiBpb24taWNvbiB7XG4gIG1hcmdpbjogMDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -489,17 +489,27 @@ var ProfileService = /** @class */ (function () {
         this.http = http;
         this.env = env;
     }
+    ProfileService.prototype.register = function (user) {
+        return this.http.post(this.env.API_URL + 'bidder/register', {
+            UserName: user.username,
+            Password: user.password,
+            Bdate: user.Bdate
+        });
+    };
     ProfileService.prototype.checkUsernameAvailability = function (username) {
-        return this.http.get(this.env.API_URL + 'auth/username/check?username=' + username);
+        return this.http.get(this.env.API_URL + 'bidder/username/check?username=' + username);
     };
     ProfileService.prototype.updateProfile = function (id, profile) {
-        return this.http.put(this.env.API_URL + 'auth/profile/' + id + "/update/", profile);
+        return this.http.put(this.env.API_URL + 'bidder/profile/' + id + "/update/", profile);
     };
     ProfileService.prototype.saveImage = function (id, imageBase64, type) {
-        return this.http.post(this.env.API_URL + "auth/profile/" + id + "/image", {
+        return this.http.post(this.env.API_URL + "bidder/profile/" + id + "/image", {
             imageBase64: imageBase64,
             type: type
         });
+    };
+    ProfileService.prototype.getUserData = function (id) {
+        return this.http.get(this.env.API_URL + 'bidder/profile/' + id);
     };
     ProfileService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
