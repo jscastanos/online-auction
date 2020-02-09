@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { get, set } from '../../services/storage.service';
@@ -11,7 +11,7 @@ import { ToastController } from '@ionic/angular';
   templateUrl: './login.page.html',
   styleUrls: ['../auth.scss'],
 })
-export class LoginPage {
+export class LoginPage implements OnDestroy {
   btnDisabled = false; // submit button
   constructor(private router: Router, private authService: AuthService, private toastController: ToastController) { }
 
@@ -24,10 +24,11 @@ export class LoginPage {
     toast.present();
   }
 
+  loginService: any;
 
   login(form: NgForm) {
     this.btnDisabled = true;
-    this.authService.login(form.value)
+    this.loginService = this.authService.login(form.value)
       .subscribe(
         data => {
           if (data != 0) {
@@ -56,5 +57,9 @@ export class LoginPage {
         }
 
       )
+  }
+
+  ngOnDestroy() {
+    this.loginService.unsubscribe();
   }
 }

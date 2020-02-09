@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProfileService } from 'src/app/services/profile.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -13,7 +13,7 @@ import { set } from '../../services/storage.service';
   templateUrl: './register.page.html',
   styleUrls: ['../auth.scss'],
 })
-export class RegisterPage implements OnInit {
+export class RegisterPage implements OnInit, OnDestroy {
   registerForm;
   btnDisabled = false; // submit button
   validations = {
@@ -28,6 +28,10 @@ export class RegisterPage implements OnInit {
 
 
   userData: User;
+  //api
+  registerUser: any;
+  usernameAvailability: any;
+
 
   constructor(public formBuilder: FormBuilder, private profileService: ProfileService, private authService: AuthService, public toast: ToastController, public router: Router, public modal: ModalController) {
     this.createForm();
@@ -84,7 +88,7 @@ export class RegisterPage implements OnInit {
 
     if (username != null && username != "") {
 
-      this.profileService.checkUsernameAvailability(username)
+      this.usernameAvailability = this.profileService.checkUsernameAvailability(username)
         .subscribe(data => {
           this.validations.username_available = !<boolean>data;
         });
@@ -147,7 +151,7 @@ export class RegisterPage implements OnInit {
       //disabled button on submit
       this.btnDisabled = true;
 
-      this.authService.register(this.userData).subscribe(data => {
+      this.registerUser = this.authService.register(this.userData).subscribe(data => {
         let params = {
           queryParams: {
             id: JSON.stringify(data)
@@ -191,4 +195,11 @@ export class RegisterPage implements OnInit {
   openTAC() {
     this.presentModal();
   }
+
+  ngOnDestroy() {
+    this.usernameAvailability.unsubscribe();
+    this.registerUser.unsubscribe();
+  }
 }
+
+

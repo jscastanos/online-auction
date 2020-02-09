@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
@@ -11,7 +11,7 @@ import { CameraComponent } from 'src/app/components/camera/camera.component';
   templateUrl: './getting-started.page.html',
   styleUrls: ['../auth.scss'],
 })
-export class GettingStartedPage implements OnInit {
+export class GettingStartedPage implements OnInit, OnDestroy {
   @ViewChild(CameraComponent, { static: false }) camera;
   step = 0;
   titles = ["Personal Information", "Address Details", "Additional Information", "Upload Image"];
@@ -26,6 +26,10 @@ export class GettingStartedPage implements OnInit {
     ContactNo: "",
     Occupation: "",
   };
+
+  //api
+  saveImage: any;
+  updateProfile: any;
 
   constructor(public toast: ToastController, private router: Router, private route: ActivatedRoute, private profileService: ProfileService) {
     //get params
@@ -73,9 +77,9 @@ export class GettingStartedPage implements OnInit {
     let userImg = this.camera.cameraService.photo["base64"];
 
     if (userImg != null) {
-      this.profileService.saveImage(this.id, userImg, 0).subscribe();
+      this.saveImage = this.profileService.saveImage(this.id, userImg, 0).subscribe();
     }
-    this.profileService.updateProfile(this.id, this.updateData).subscribe(params => {
+    this.updateProfile = this.profileService.updateProfile(this.id, this.updateData).subscribe(params => {
       this.presentToast("Your profile is being updated. Please wait", 2000);
 
 
@@ -88,4 +92,9 @@ export class GettingStartedPage implements OnInit {
     })
   }
 
+  ngOnDestroy() {
+    this.updateProfile.unsubscribe();
+    if (this.saveImage != null)
+      this.saveImage.unsubscribe();
+  }
 }

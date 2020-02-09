@@ -1,10 +1,14 @@
 form{
-    margin-top: 5%;
 
-    &.login{
-        margin-top: 20%;
+    height: 100vh !important;
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+
+    &.register{
+        margin-top: 50px;
     }
-    
+
     h1{
         font-size: 45px;
     }
@@ -41,5 +45,3 @@ ion-fab{
         margin: 0;
     }
 }
-
-
