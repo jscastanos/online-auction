@@ -1,0 +1,69 @@
+﻿
+    .act {
+        display: block !important;
+    }
+
+    /*.slide-image {
+        display: none;    
+    }*/
+
+
+
+.slide-add {
+    position: absolute;
+    top: 91px;
+    -moz-transition: 0.6s;
+    -o-transition: 0.6s;
+    -webkit-transition: 0.6s;
+    transition: 0.6s;
+    width: 120px;
+    height: 120px;
+    border: 1px solid red;
+}
+
+    .flipper {
+        /*-webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);*/
+        -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    }
+
+    /*.flipper {
+        -webkit-transition: 0.6s;
+        -moz-transition: 0.6s;
+        -o-transition: 0.6s;
+        transition: 0.6s;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        position: relative;
+    }*/
+
+    .front, .back {
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        backface-visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+.front {
+    z-index: 1;
+    background: #3498db;
+}
+
+    .flip-container.horizontal .back {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }

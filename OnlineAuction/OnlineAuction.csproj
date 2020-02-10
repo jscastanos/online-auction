@@ -124,12 +124,16 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\BiddersController.cs" />
+    <Compile Include="API\BranchController.cs" />
     <Compile Include="API\ProductsController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BranchController.cs" />
     <Compile Include="Controllers\GuardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -137,49 +141,49 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Auction.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Auction.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Auction.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Auction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Auction.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Auction.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModel.cs" />
-    <Compile Include="Models\OnlineAuction.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OnlineAuction.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OnlineAuction.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OnlineAuction.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\tblAuction.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>Auction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblAuditTrail.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>Auction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblBiddersInfo.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>Auction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblBranchShop.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>Auction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblEmployeesInfo.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>Auction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblProduct.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>Auction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblProductCategory.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>Auction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblUserManagement.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>Auction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblUsersRole.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DependentUpon>Auction.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -189,6 +193,7 @@
     <Content Include="Content\colors.css" />
     <Content Include="Content\components.css" />
     <Content Include="Content\core.css" />
+    <Content Include="Content\customFlip.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\icomoon.css" />
     <Content Include="Content\kendo.common-material.min.css" />
@@ -201,33 +206,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\icomoone627.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\AgentsSummary.js" />
-    <Content Include="Scripts\angucomplete.css" />
-    <Content Include="Scripts\angucomplete.js" />
-    <Content Include="Scripts\angular-barcode.js" />
-    <Content Include="Scripts\angular-chart.min.js" />
+    <Content Include="Images\nophoto.png" />
+    <Content Include="Scripts\Admin\index.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\blockui.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\OnlineAuction.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\OnlineAuction.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <LastGenOutput>OnlineAuction.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\OnlineAuction.edmx.diagram">
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\OnlineAuction.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <LastGenOutput>OnlineAuction.cs</LastGenOutput>
-    </Content>
     <Content Include="fonts\fontawesome-webfont5b62.eot" />
     <Content Include="fonts\fontawesome-webfont5b62.ttf" />
     <Content Include="fonts\fontawesome-webfont5b62.woff" />
@@ -237,25 +222,34 @@
     <Content Include="fonts\icomoone627.eot" />
     <Content Include="fonts\icomoone627.ttf" />
     <Content Include="fonts\icomoone627.woff" />
+    <EntityDeploy Include="Models\Auction.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Auction.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Auction.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Auction.edmx</DependentUpon>
+      <LastGenOutput>Auction.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Auction.edmx.diagram">
+      <DependentUpon>Auction.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Auction.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Auction.edmx</DependentUpon>
+      <LastGenOutput>Auction.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />
-    <Content Include="Scripts\chart-widgets.js" />
-    <Content Include="Scripts\chart.min.js" />
-    <Content Include="Scripts\components_popups.js" />
     <Content Include="Scripts\cropper.min.js" />
     <Content Include="Scripts\d3.min.js" />
     <Content Include="Scripts\d3_tooltip.js" />
     <Content Include="Scripts\datepicker.js" />
     <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\disable-back-button.js" />
-    <Content Include="Scripts\fancybox.min.js" />
-    <Content Include="Scripts\general_widgets_stats.js" />
-    <Content Include="Scripts\headroom.min.js" />
-    <Content Include="Scripts\headroom_jquery.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.min.js" />
-    <Content Include="Scripts\JsBarcode.all.min.js" />
     <Content Include="Scripts\kendo\inspector.js" />
     <Content Include="Scripts\kendo\kendo-dojo.js" />
     <Content Include="Scripts\kendo\kendo.all.min.js" />
@@ -264,27 +258,22 @@
     <Content Include="Scripts\kendo\web-examples.js" />
     <Content Include="Scripts\layout_fixed_custom.js" />
     <Content Include="Scripts\layout_navbar_hideable_sidebar.js" />
+    <Content Include="Scripts\Branch\bidders.js" />
+    <Content Include="Scripts\Branch\branch.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\mynavs.js" />
     <Content Include="Scripts\navs.js" />
     <Content Include="Scripts\ng-app.js" />
     <Content Include="Scripts\ng-product.js" />
-    <Content Include="Scripts\nicescroll.min.js" />
     <Content Include="Scripts\pace.min.js" />
-    <Content Include="Scripts\pnotify.min.js" />
-    <Content Include="Scripts\progressbar.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\roles.js" />
     <Content Include="Scripts\select2.min.js" />
-    <Content Include="Scripts\selectboxit.min.js" />
     <Content Include="Scripts\session_timeout.min.js" />
-    <Content Include="Scripts\smart-table.min.js" />
     <Content Include="Scripts\sweetalert2.js" />
     <Content Include="Scripts\sweet_alert.min.js" />
-    <Content Include="Scripts\switch.min.js" />
-    <Content Include="Scripts\switchery.min.js" />
     <Content Include="Scripts\template.js" />
     <Content Include="Scripts\uniform.min.js" />
     <Content Include="Scripts\xlsx.full.min.js" />
@@ -316,6 +305,14 @@
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Shared\_navbar.cshtml" />
     <Content Include="Views\Shared\_sidebar.cshtml" />
+    <Content Include="Views\Branch\Index.cshtml" />
+    <Content Include="Views\Branch\_addBidders.cshtml" />
+    <Content Include="Views\Branch\_addBranch.cshtml" />
+    <Content Include="Views\Branch\_biddersList.cshtml" />
+    <Content Include="Views\Branch\_branchList.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\_ListView.cshtml" />
+    <Content Include="Views\Admin\_GridView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -344,7 +341,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1051</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1051/</IISUrl>
+          <IISUrl>http://localhost:1052/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
