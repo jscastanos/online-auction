@@ -1,0 +1,64 @@
+﻿
+<div ng-controller="managementCtrl">
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title"><a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+            <div class="heading-elements">
+                @*<ul class="icons-list">
+                        <li><a data-action="collapse"></a></li>
+                        <li><a data-action="close"></a></li>
+                    </ul>*@
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <form action="#" class="main-search">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="content-group">
+                            <div class="has-feedback has-feedback-left">
+                                <input type="text" ng-model="branchSearch" class="form-control input-xlg" placeholder="Search branch..." style="
+    min-width: 100%;
+">
+                                <div class="form-control-feedback">
+                                    <i class="icon-search4 text-muted text-size-base"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="row search-option-buttons">
+                            <div class="col-sm-12">
+                                <ul class="list-inline no-margin-bottom">
+                                    <li class="dropdown">
+                                        <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-sort position-left"></i> Sort by <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#" ng-click="sort(1)">Branch Name</a></li>
+                                            <li><a href="#" ng-click="sort(2)">Branch Address</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><button type="button" data-toggle="modal" data-target="#branchModal" ng-click="createBranch()" class="btn btn-link"><i class="icon-add position-left"></i> Create Branch</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        @Html.Partial("_branchList")
+
+    </div>
+
+</div>
+
+
+
