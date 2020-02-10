@@ -73,6 +73,10 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -94,9 +98,6 @@
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -235,16 +236,6 @@
     <Content Include="fonts\icomoone627.woff" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Models\OnlineAuction.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <LastGenOutput>OnlineAuction.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\OnlineAuction.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <LastGenOutput>OnlineAuction.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\AgentsSummary.js" />
     <Content Include="Scripts\angucomplete.css" />
     <Content Include="Scripts\angucomplete.js" />
@@ -862,8 +853,18 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Models\OnlineAuction.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <LastGenOutput>OnlineAuction.Context.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\OnlineAuction.edmx.diagram">
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\OnlineAuction.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <LastGenOutput>OnlineAuction.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Web.Debug.config">
