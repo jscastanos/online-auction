@@ -12,19 +12,15 @@ namespace OnlineAuction.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblProduct
+    public partial class tblAuctionItem
     {
         public int recNo { get; set; }
-        public byte[] ProductImg { get; set; }
-        public string ProductId { get; set; }
-        public string ProductName { get; set; }
-        public string ProductDescription { get; set; }
-        public Nullable<System.DateTime> DateCreated { get; set; }
+        public string AuctionId { get; set; }
         public string CreatedBy { get; set; }
-        public Nullable<System.DateTime> DateUpdated { get; set; }
-        public string UpdatedBy { get; set; }
-        public string CategoryId { get; set; }
-        public string BranchId { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<int> Status { get; set; }
+        public string ProductId { get; set; }
+        public Nullable<double> AskPrice { get; set; }
+        public Nullable<System.DateTime> DateTimeLimit { get; set; }
     }
 }
