@@ -135,7 +135,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\AuthController.cs" />
-    <Compile Include="API\BidderController.cs" />
     <Compile Include="API\EmployeesInfoesController.cs" />
     <Compile Include="API\ProductsController.cs" />
     <Compile Include="API\UserManagementsController.cs" />
