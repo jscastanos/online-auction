@@ -30,9 +30,16 @@
                     <li>
                         <a href="#"><i class="icon-equalizer"></i> <span>Control Panel</span></a>
                         <ul>
-                            <li ng-class="{'active':($parent.active=='admin')}"><a href="@Url.Action("admin", "UserManagement")">@*<i class="icon-home4"></i>*@ <span>User Management</span></a></li>
-                            <li ng-class="{'active':($parent.active=='roles')}"><a href="@Url.Action("roles", "UserManagement")">@*<i class="icon-home4"></i>*@ <span>Role Management</span></a></li>
+                            <li ng-class="{'active':($parent.active=='admin')}"><a href="@Url.Action("TagRole", "UserManagement")">@*<i class="icon-home4"></i>*@ <span>User Management</span></a></li>
+                            <li ng-class="{'active':($parent.active=='roles')}"><a href="@Url.Action("roleManagement", "Role")">@*<i class="icon-home4"></i>*@ <span>Role Management</span></a></li>
                             
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-archive"></i> <span>Records Management</span></a>
+                        <ul>
+                            <li ng-class="{'active':($parent.active=='admin')}"><a href="@Url.Action("PersonMgt", "Personel")">@*<i class="icon-home4"></i>*@ <span>Personel</span></a></li>
+
                         </ul>
                     </li>
                     <!-- Main -->

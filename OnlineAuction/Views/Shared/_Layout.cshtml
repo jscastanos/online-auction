@@ -9,10 +9,12 @@
     @Styles.Render("~/css")
     @Scripts.Render("~/js")
     <link href="~/Content/kendo.default-v2.min.css" rel="stylesheet" />
-    @*<script src="~/Scripts/sweetalert2.js"></script>*@
-    <script src="~/Scripts/kendo/kendo.all.min.js"></script>
-    @*@RenderSection("jsHead", required: false)
-    @RenderSection("css", required: false)*@
+    <link href="~/Scripts/angucomplete.css" rel="stylesheet" />
+    <script src="~/Scripts/angucomplete.js"></script>
+    <script src="~/Scripts/sweetalert2.js"></script>
+    <script src="~/Scripts/kendo/kendo.all.min.js"></script>  
+    @RenderSection("jsHead", required: false)
+    @RenderSection("css", required: false)
 </head>
 <body class="has-detached-left navbar-top" ng-app="app" ng-cloak>
     @Html.Partial("_navbar")
@@ -21,11 +23,10 @@
             @Html.Partial("_sidebar")
             <div class="content-wrapper">
                 <div class="content">
-                    @RenderBody()
-                    <script>
-                        console.log("%c ALERT !", "color:red; font-weight:bold; font-size:50pt;text-shadow:2px 2px 1px black,4px 4px 1px green,6px 6px 1px yellow,8px 8px 1px orange,10px 10px 1px blue;")
-                    </script>
-                </div>
+                @RenderBody()
+                <script>
+                    console.log("%c ALERT !", "color:red; font-weight:bold; font-size:50pt;text-shadow:2px 2px 1px black,4px 4px 1px green,6px 6px 1px yellow,8px 8px 1px orange,10px 10px 1px blue;")
+                </script>
             </div>
         </div>
     </div>

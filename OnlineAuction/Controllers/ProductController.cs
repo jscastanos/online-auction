@@ -18,5 +18,9 @@ namespace OnlineAuction.Controllers
         {
             return View();
         }
+
+        public ActionResult AuctionManagement() {
+            return View();
+        }
     }
 }

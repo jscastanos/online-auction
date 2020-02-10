@@ -11,6 +11,7 @@ namespace OnlineAuction.Controllers
 {
     public class AccountController : Controller
     {
+        OnlineAuctionEntities db = new OnlineAuctionEntities();
 
         // GET: Account
         public ActionResult Index()
@@ -18,7 +19,10 @@ namespace OnlineAuction.Controllers
             return RedirectToAction("Login");
         }
 
-
+        public ActionResult Register()
+        {
+            return View();
+        }
         public ActionResult Login()
         {
             if (FormsAuthentication.FormsCookieName != null)
@@ -60,6 +64,30 @@ namespace OnlineAuction.Controllers
         }
 
 
+        public ActionResult RetrieveImage(string id, int type)
+        {
+            var data = db.tblBiddersInfoes.SingleOrDefault(x => x.BiddersId == id);
+            byte[] img = null;
+
+            switch (type)
+            {
+                case 0: img = data.UserImg;
+                    break;
+                case 1: img = data.CardImgFront;
+                    break;
+                case 2: img = data.CardImgBack;
+                    break;
+            }
+
+            if (img != null)
+            {
+                return File(img, "image/jpeg");
+            }
+            else
+            {
+                return File("~/Images/image.png", "image/png");
+            }
+        }
 
         
     }

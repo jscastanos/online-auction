@@ -1,9 +1,9 @@
 ﻿<!-- Main navbar -->
-<div class="navbar navbar-inverse navbar-fixed-top header-highlight nonprintable">
+<div class="navbar navbar-default navbar-fixed-top header-highlight nonprintable">
     <div class="navbar-header">
-        <a class="navbar-brand" href="#">
-            @*<img src="@Url.Content("~/images/logo_light.png")" />*@
-            AUCTION
+        <a class="navbar-brand" href="">
+            <img src="@Url.Content("~/images/logo_light.png")" />
+            
         </a>
 
         <ul class="nav navbar-nav visible-xs-block">
@@ -13,7 +13,7 @@
         </ul>
     </div>
 
-    <div class="navbar-collapse collapse" id="navbar-mobile" @*ng-controller="main"*@>
+    <div class="navbar-collapse collapse" id="navbar-mobile">
         <ul class="nav navbar-nav">
             <li>
                 <a class="sidebar-control sidebar-main-toggle" ng-click="nav()">
@@ -25,8 +25,8 @@
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="../Images/nophoto.png" />
-                    <span class="text-uppercase">@*@Session["name"]*@ Mike Jec Hello</span>
+                    <img src="@Url.Content("~/images/image.png")" />
+                    <span class="text-uppercase"> Mike Jec Hello</span>
                     <i class="caret"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
