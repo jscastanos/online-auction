@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -135,6 +135,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\AuthController.cs" />
+    <Compile Include="API\BidderController.cs" />
+    <Compile Include="API\BiddersController.cs" />
+    <Compile Include="API\BranchController.cs" />
     <Compile Include="API\EmployeesInfoesController.cs" />
     <Compile Include="API\ProductsController.cs" />
     <Compile Include="API\UserManagementsController.cs" />
@@ -144,6 +147,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BranchController.cs" />
     <Compile Include="Controllers\GuardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
@@ -211,6 +216,7 @@
     <Content Include="Content\colors.css" />
     <Content Include="Content\components.css" />
     <Content Include="Content\core.css" />
+    <Content Include="Content\customFlip.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\icomoon.css" />
     <Content Include="Content\kendo.common-material.min.css" />
@@ -245,6 +251,7 @@
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
       <LastGenOutput>OnlineAuction.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\Admin\index.js" />
     <Content Include="Scripts\AgentsSummary.js" />
     <Content Include="Scripts\angucomplete.css" />
     <Content Include="Scripts\angucomplete.js" />
@@ -256,6 +263,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />
+    <Content Include="Scripts\Branch\bidders.js" />
+    <Content Include="Scripts\Branch\branch.js" />
     <Content Include="Scripts\chart-widgets.js" />
     <Content Include="Scripts\chart.min.js" />
     <Content Include="Scripts\components_popups.js" />
@@ -866,6 +875,14 @@
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\_GridView.cshtml" />
+    <Content Include="Views\Admin\_ListView.cshtml" />
+    <Content Include="Views\Branch\Index.cshtml" />
+    <Content Include="Views\Branch\_addBidders.cshtml" />
+    <Content Include="Views\Branch\_addBranch.cshtml" />
+    <Content Include="Views\Branch\_biddersList.cshtml" />
+    <Content Include="Views\Branch\_branchList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -901,4 +918,10 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
 </Project>
