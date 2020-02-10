@@ -51,12 +51,28 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -73,17 +89,11 @@
     </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
@@ -122,9 +132,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\products\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\AuthController.cs" />
     <Compile Include="API\EmployeesInfoesController.cs" />
     <Compile Include="API\ProductsController.cs" />
     <Compile Include="API\UserManagementsController.cs" />
@@ -198,9 +208,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\colors.css" />
     <Content Include="Content\components.css" />
+    <Content Include="Content\core.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\icomoon.css" />
     <Content Include="Content\kendo.common-material.min.css" />
@@ -208,59 +218,42 @@
     <Content Include="Content\kendo.material.min.css" />
     <Content Include="Content\kendo.material.mobile.min.css" />
     <Content Include="Content\select2.min.css" />
-    <Content Include="favicon.ico" />
-    <Content Include="fonts\fontawesome-webfont5b62.svg" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fonts\icomoone627.svg" />
-    <Content Include="Global.asax" />
-    <Content Include="Images\add_user.png" />
-    <Content Include="Images\backgrounds\boxed_bg.png" />
-    <Content Include="Images\backgrounds\boxed_bg_retina.png" />
-    <Content Include="Images\backgrounds\panel_bg.png" />
-    <Content Include="Images\backgrounds\seamless.png" />
-    <Content Include="Images\Background\money-background-02-high.jpg" />
-    <Content Include="Images\image.png" />
-    <Content Include="Images\login_cover.jpg" />
-    <Content Include="Images\logo_icon_light.png" />
-    <Content Include="Images\logo_light.png" />
-    <Content Include="Images\personnel\1011.jpg" />
-    <Content Include="Images\personnel\18.jpg" />
-    <Content Include="Images\personnel\5.jpg" />
-    <Content Include="Images\personnel\7.jpg" />
-    <Content Include="Images\producer\1.jpeg" />
-    <Content Include="Images\producer\2.jpeg" />
-    <Content Include="Images\producer\68.jpeg" />
-    <Content Include="Images\producer\69.jpeg" />
-    <Content Include="Images\producer\70.jpeg" />
     <Content Include="fonts\fontawesome-webfont5b62.eot" />
+    <Content Include="fonts\fontawesome-webfont5b62.svg" />
     <Content Include="fonts\fontawesome-webfont5b62.ttf" />
     <Content Include="fonts\fontawesome-webfont5b62.woff" />
     <Content Include="fonts\fontawesome-webfont5b62.woff2" />
     <Content Include="fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\icomoond41d.eot" />
     <Content Include="fonts\icomoone627.eot" />
+    <Content Include="fonts\icomoone627.svg" />
     <Content Include="fonts\icomoone627.ttf" />
     <Content Include="fonts\icomoone627.woff" />
-    <Content Include="Images\Background\VSMacros.vsix" />
-    <Content Include="Scripts\AgentsSummary.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Models\OnlineAuction.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <LastGenOutput>OnlineAuction.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\OnlineAuction.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <LastGenOutput>OnlineAuction.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\AgentsSummary.js" />
     <Content Include="Scripts\angucomplete.css" />
-    <Content Include="Scripts\angucomplete.css" />
-    <Content Include="Scripts\angucomplete.js" />
     <Content Include="Scripts\angucomplete.js" />
     <Content Include="Scripts\angular-barcode.js" />
-    <Content Include="Scripts\angular-barcode.js" />
-    <Content Include="Scripts\angular-chart.min.js" />
     <Content Include="Scripts\angular-chart.min.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\blockui.min.js" />
-    <Content Include="Scripts\blockui.min.js" />
     <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />
     <Content Include="Scripts\chart-widgets.js" />
@@ -831,45 +824,37 @@
     <Content Include="Scripts\template.js" />
     <Content Include="Scripts\uniform.min.js" />
     <Content Include="Scripts\xlsx.full.min.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Content\Site.css" />
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Guard\Unauthorized.cshtml" />
-    <Content Include="Views\Home\User.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\SuperAdmin.cshtml" />
+    <Content Include="Views\Home\User.cshtml" />
+    <Content Include="Views\Personel\PersonMgt.cshtml" />
+    <Content Include="Views\Product\AuctionManagement.cshtml" />
     <Content Include="Views\Product\ProductManagement.cshtml" />
+    <Content Include="Views\Role\roleManagement.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Shared\_navbar.cshtml" />
     <Content Include="Views\Shared\_sidebar.cshtml" />
-    <Content Include="Views\Product\AuctionManagement.cshtml" />
-    <Content Include="Views\Personel\PersonMgt.cshtml" />
-    <Content Include="Views\Role\roleManagement.cshtml" />
     <Content Include="Views\UserManagement\TagRole.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -877,21 +862,16 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\OnlineAuction.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <LastGenOutput>OnlineAuction.Context.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\OnlineAuction.edmx.diagram">
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\OnlineAuction.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-      <LastGenOutput>OnlineAuction.cs</LastGenOutput>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
