@@ -1,11 +1,73 @@
 ﻿@{
     ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
+<style>
+    .login-form {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+<!-- Main content -->
+<div class="content-wrapper">
+    <!-- Content area -->
+    <div class="content pb-20">
+        <!-- Tabbed form -->
+        <div class="panel login-form width-400 no-margin">
+            <div class="tab-content panel-body">
+                <div class="tab-pane active">
+                    <form action="Login" method="POST" class="ng-pristine ng-invalid ng-invalid-required">
+                        <div class="text-center">
+                            <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+                            <h5 class="content-group">Login to your account <small class="display-block">Your credentials</small></h5>
+                        </div>
+                        <div class="form-group has-feedback has-feedback-left">
+                            <input type="text" ng-model="user" ng-keyup="login($event)" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" placeholder="Username" name="username" required="required">
+                            <div class="form-control-feedback">
+                                <i class="icon-user text-muted"></i>
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback has-feedback-left">
+                            <input type="password" ng-model="pass" ng-keyup="login($event)" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" placeholder="Password" name="password" required="required">
+                            <div class="form-control-feedback">
+                                <i class="icon-lock2 text-muted"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" id="loginBtn" ng-disabled="!user || !pass" data-toggle="modal" data-target="#checkerModal" class="btn bg-blue btn-block" disabled="disabled">Login <i class="icon-arrow-right14 position-right"></i></button>
+                        </div>
+                        <div id="checkerModal" class="modal fade" data-keyboard="false" data-backdrop="false" style=" background: rgba(0,0,0,0.6);">
+                            <div class="modal-dialog modal-sm" style="width:450px;">
+                                <div class="modal-content" style="margin-top: 30vh">
+                                    <div class="modal-header bg-success">
+                                        <button type="button" class="close" data-dismiss="modal">×</button>
+                                        <h5 class="modal-title"> Checker Verification </h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group has-feedback has-feedback-left">
+                                            <input type="password" id="checker" class="form-control" placeholder="Enter Checker Code" name="checker" required="required">
+                                            <div class="form-control-feedback">
+                                                <i class="icon-user-lock text-muted"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn bg-success-400 btn-block">Continue <i class="icon-arrow-right14 position-right"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="content-divider text-muted form-group"><span></span></div>
+                    <a href="../Home/ProductsView" class="btn btn-default btn-block content-group">Proceed to Products</a>
+                    <div class="text-danger-400 text-center"></div>
 
-<h2>Login</h2>
-
-<form action="verify" method="get">
-    <input type="text" name="username" value="" />
-    <input type="password" name="password" value="" />
-    <button type="submit">Submit</button>
-</form>
+                    <div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
+                    <a href="@Url.Content("~/Account/Register")" class="btn btn-default btn-block content-group">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

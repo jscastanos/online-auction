@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "roleManagement";
+}
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/ngRoles.js"></script>
+<script src="~/Scripts/datepicker.js"></script>
+<script src="~/Scripts/kendo/kendo.all.min.js"></script>
+
+<div ng-controller="rManagement">
+    <div class="scroll-to-top" ng-if="showScrollToTop" ng-click="scrollToTop()">
+        <button type="button" class="btn bg-warning btn-float btn-rounded"><i class="icon-arrow-up16"></i></button>
+    </div>
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-bag position-left"></i> <span class="text-semibold">Role</span></h4>
+                <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="panel panel-flat">
+            <div class="panel-body no-padding-bottom">
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <div class="has-feedback has-feedback-left">
+                                <input style="width:100%;" ng-model="sdata" ng-change="testsearch(sdata)" id="searchinput" class="form-control" type="text" placeholder="Search Role" />
+                                <div class="form-control-feedback">
+                                    <i class="icon-search4 text-size-large text-muted"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-md-offset-1 mb-20">
+                        <span class="text-semibold">
+                            <button type="button" class="btn bg-teal-400 btn-block text-size-large text-uppercase" data-toggle="modal" ng-click="rdata()" data-target="#Add">
+                                <i class="icon-new-tab2"></i>&nbsp;New Role
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-flat">
+            <div class="table-responsive" id="tablee" style="min-height:400px;">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="bg-teal-400">
+                            <th>#</th>
+                            <th>Role</th>
+                            <th class="text-center col-xs-3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in alldata">
+                            <td>{{$index+1}}</td>
+                            <td>{{x.RoleName}}</td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-primary btn-sm btn-icon" data-toggle="modal" ng-click="editName(x)"><i class="icon-pencil"></i></button>
+                                <button type="button" class="btn btn-ladda btn-sm btn-icon" ng-click="openModal(x)"><i class="icon-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @*<div id="Edit" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <form ng-submit="saveRole(selected)" novalidate="novalidate">
+                    <div class="modal-header bg-success">
+                        <button type="button" class="close" ng-click="refresh()" data-dismiss="modal">&times;</button>
+                        <h6 class="modal-title">
+                            <i class="icon-add-to-list"></i> Edit Role
+                        </h6>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="row mt-10">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="icon-insert-template"></i></span>
+                                                <input type="text" ng-model="selected.RoleName" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-block">Continue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>*@
+    <div id="theRole" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <form ng-submit="addRole(adata)">
+                    <div class="modal-header bg-success">
+                        <button type="button" class="close" ng-click="refresh()" data-dismiss="modal">&times;</button>
+                        <h6 class="modal-title">
+                            <i class="icon-add-to-list"></i> Role
+                        </h6>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="row mt-10">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="icon-insert-template"></i></span>
+                                                <input type="text" ng-model="adata.RoleName" maxlength="150" placeholder="Employee/Encoder/Cashier" class="form-control" ng-required="true">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn bg-teal-400" ng-if="add" ng-disabled="adata.RoleName.length <= 4 || adata.RoleName == null ">Save</button>
+                        <button type="submit" class="btn bg-teal-400" ng-if="update" ng-disabled="adata.RoleName.length <= 4 || adata.RoleName == null ">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

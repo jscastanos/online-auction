@@ -22,9 +22,9 @@ namespace OnlineAuction.Models
         public string ProductId { get; set; }
         public string ProductName { get; set; }
         public string CategoryId { get; set; }
-        public Nullable<decimal> AskPrice { get; set; }
         public string BranchId { get; set; }
-        public Nullable<System.DateTime> DateTimeLimit { get; set; }
+        public byte[] ProductImg { get; set; }
+        public string ProductDescription { get; set; }
         public Nullable<int> Status { get; set; }
     }
 }
