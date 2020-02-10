@@ -131,6 +131,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="API\AuthController.cs" />
     <Compile Include="API\BidderController.cs" />
     <Compile Include="API\BiddersController.cs" />
@@ -221,54 +224,23 @@
     <Content Include="Content\kendo.material.min.css" />
     <Content Include="Content\kendo.material.mobile.min.css" />
     <Content Include="Content\select2.min.css" />
-    <Content Include="favicon.ico" />
-    <Content Include="fonts\fontawesome-webfont5b62.eot" />
     <Content Include="fonts\fontawesome-webfont5b62.eot" />
     <Content Include="fonts\fontawesome-webfont5b62.svg" />
     <Content Include="fonts\fontawesome-webfont5b62.ttf" />
-    <Content Include="fonts\fontawesome-webfont5b62.ttf" />
-    <Content Include="fonts\fontawesome-webfont5b62.woff" />
     <Content Include="fonts\fontawesome-webfont5b62.woff" />
     <Content Include="fonts\fontawesome-webfont5b62.woff2" />
-    <Content Include="fonts\fontawesome-webfont5b62.woff2" />
-    <Content Include="fonts\fontawesome-webfontd41d.eot" />
     <Content Include="fonts\fontawesome-webfontd41d.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\icomoond41d.eot" />
-    <Content Include="fonts\icomoond41d.eot" />
-    <Content Include="fonts\icomoone627.eot" />
     <Content Include="fonts\icomoone627.eot" />
     <Content Include="fonts\icomoone627.svg" />
     <Content Include="fonts\icomoone627.ttf" />
-    <Content Include="fonts\icomoone627.ttf" />
     <Content Include="fonts\icomoone627.woff" />
-    <Content Include="fonts\icomoone627.woff" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Images\add_user.png" />
-    <Content Include="Images\backgrounds\boxed_bg.png" />
-    <Content Include="Images\backgrounds\boxed_bg_retina.png" />
-    <Content Include="Images\backgrounds\panel_bg.png" />
-    <Content Include="Images\backgrounds\seamless.png" />
-    <Content Include="Images\Background\money-background-02-high.jpg" />
-    <Content Include="Images\Background\VSMacros.vsix" />
-    <Content Include="Images\dm.jpeg" />
-    <Content Include="Images\image.png" />
-    <Content Include="Images\login_cover.jpg" />
-    <Content Include="Images\logo_icon_light.png" />
-    <Content Include="Images\logo_light.png" />
-    <Content Include="Images\nophoto.png" />
-    <Content Include="Images\personnel\1011.jpg" />
-    <Content Include="Images\personnel\18.jpg" />
-    <Content Include="Images\personnel\5.jpg" />
-    <Content Include="Images\personnel\7.jpg" />
-    <Content Include="Images\producer\1.jpeg" />
-    <Content Include="Images\producer\2.jpeg" />
-    <Content Include="Images\producer\68.jpeg" />
-    <Content Include="Images\producer\69.jpeg" />
-    <Content Include="Images\producer\70.jpeg" />
     <Content Include="Models\OnlineAuction.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
@@ -293,6 +265,9 @@
     <Content Include="Scripts\bootstrap_select.min.js" />
     <Content Include="Scripts\Branch\bidders.js" />
     <Content Include="Scripts\Branch\branch.js" />
+    <Content Include="Scripts\chart-widgets.js" />
+    <Content Include="Scripts\chart.min.js" />
+    <Content Include="Scripts\components_popups.js" />
     <Content Include="Scripts\cropper.min.js" />
     <Content Include="Scripts\css\bootstrap.css" />
     <Content Include="Scripts\css\colors.css" />
@@ -842,27 +817,25 @@
     <Content Include="Scripts\ngtRole.js" />
     <Content Include="Scripts\nicescroll.min.js" />
     <Content Include="Scripts\pace.min.js" />
+    <Content Include="Scripts\pnotify.min.js" />
+    <Content Include="Scripts\progressbar.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\roles.js" />
     <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\selectboxit.min.js" />
     <Content Include="Scripts\session_timeout.min.js" />
+    <Content Include="Scripts\smart-table.min.js" />
     <Content Include="Scripts\sweetalert2.js" />
     <Content Include="Scripts\sweet_alert.min.js" />
+    <Content Include="Scripts\switch.min.js" />
+    <Content Include="Scripts\switchery.min.js" />
     <Content Include="Scripts\template.js" />
     <Content Include="Scripts\uniform.min.js" />
     <Content Include="Scripts\xlsx.full.min.js" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\_GridView.cshtml" />
-    <Content Include="Views\Admin\_ListView.cshtml" />
-    <Content Include="Views\Branch\Index.cshtml" />
-    <Content Include="Views\Branch\_addBidders.cshtml" />
-    <Content Include="Views\Branch\_addBranch.cshtml" />
-    <Content Include="Views\Branch\_biddersList.cshtml" />
-    <Content Include="Views\Branch\_branchList.cshtml" />
     <Content Include="Views\Guard\Unauthorized.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -902,18 +875,20 @@
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <None Include="Scripts\_references.js" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\_GridView.cshtml" />
+    <Content Include="Views\Admin\_ListView.cshtml" />
+    <Content Include="Views\Branch\Index.cshtml" />
+    <Content Include="Views\Branch\_addBidders.cshtml" />
+    <Content Include="Views\Branch\_addBranch.cshtml" />
+    <Content Include="Views\Branch\_biddersList.cshtml" />
+    <Content Include="Views\Branch\_branchList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Images\products\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -933,7 +908,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1051</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1052/</IISUrl>
+          <IISUrl>http://localhost:1051/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
