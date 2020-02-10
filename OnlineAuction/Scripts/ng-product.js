@@ -124,6 +124,7 @@
             s.uploadImgID = false;
         }
         else {
+            alert(JSON.stringify(s.tempArr));
             h.put("../api/products/" + s.updateProductID, s.tempArr).then(function (d) {
                 swal("Successfully Updated!", "", "success");
                 s.tempArr = {};
@@ -261,7 +262,7 @@
             type: 'canvas',
             size: 'viewport'
         }).then(function (response) {
-            s.tempArr.img = response.split(',')[1];
+            s.tempArr.ProductImg = response.split(',')[1];
             $("#newProduct").modal("show");
             $("#uploadImg").modal("hide");
         })

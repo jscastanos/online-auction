@@ -152,6 +152,8 @@ warning 6002: The table/view 'OnlineAuction.dbo.vAuctionProduct' does not have a
           <Property Name="AskPrice" Type="float" />
           <Property Name="DateTimeLimit" Type="datetime" />
           <Property Name="Status" Type="int" />
+          <Property Name="total" Type="float" />
+          <Property Name="totalProductSold" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -189,7 +191,9 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
     [vAuctionProduct].[ProductId] AS [ProductId], 
     [vAuctionProduct].[AskPrice] AS [AskPrice], 
     [vAuctionProduct].[DateTimeLimit] AS [DateTimeLimit], 
-    [vAuctionProduct].[Status] AS [Status]
+    [vAuctionProduct].[Status] AS [Status], 
+    [vAuctionProduct].[total] AS [total], 
+    [vAuctionProduct].[totalProductSold] AS [totalProductSold]
     FROM [dbo].[vAuctionProduct] AS [vAuctionProduct]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vProduct" EntityType="Self.vProduct" store:Type="Views" store:Schema="dbo">
@@ -381,6 +385,8 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="AskPrice" Type="Double" />
           <Property Name="DateTimeLimit" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Int32" />
+          <Property Name="total" Type="Double" />
+          <Property Name="totalProductSold" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -547,6 +553,8 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <EntitySetMapping Name="vAuctionProducts">
             <EntityTypeMapping TypeName="OnlineAuctionModel.vAuctionProduct">
               <MappingFragment StoreEntitySet="vAuctionProduct">
+                <ScalarProperty Name="totalProductSold" ColumnName="totalProductSold" />
+                <ScalarProperty Name="total" ColumnName="total" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
                 <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />

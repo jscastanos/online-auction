@@ -138,6 +138,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuctionController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\GuardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
@@ -827,6 +828,7 @@
     <Content Include="Scripts\ng-app.js" />
     <Content Include="Scripts\ng-auction.js" />
     <Content Include="Scripts\ng-catRef.js" />
+    <Content Include="Scripts\ng-dashboard.js" />
     <Content Include="Scripts\ng-product.js" />
     <Content Include="Scripts\ngpManagement.js" />
     <Content Include="Scripts\ngRoles.js" />
@@ -883,6 +885,8 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Category\CategoryReference.cshtml" />
     <Content Include="Views\Auction\AuctionManagement.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

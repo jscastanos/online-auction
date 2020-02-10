@@ -31,5 +31,9 @@ namespace OnlineAuction.Controllers
         public ActionResult Admin(){
             return View();
         }
+        public ActionResult Dashboard() {
+            return View();
+        
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace OnlineAuction.API
             public string ProductName { get; set; }
             public string ProductDescription { get; set; }
             public string CategoryId { get; set; }
-            public string img { get; set; }
+            public string ProductImg { get; set; }
 
         }
         // GET: api/Products
@@ -69,6 +69,7 @@ namespace OnlineAuction.API
                 return BadRequest(ModelState);
             }
 
+
             db.Entry(tblproduct).State = EntityState.Modified;
 
             try
@@ -96,12 +97,17 @@ namespace OnlineAuction.API
         {
             var tblProduct = db.tblProducts.SingleOrDefault(a => a.recNo == id);
 
-            byte[] imageBytes = Convert.FromBase64String(data.img);
+            if (data.ProductImg != "")
+            {
+                byte[] imageBytes = Convert.FromBase64String(data.ProductImg);
 
-            tblProduct.ProductImg = imageBytes;
+                tblProduct.ProductImg = imageBytes;
+            }
+
             tblProduct.ProductName = data.ProductName;
             tblProduct.ProductDescription = data.ProductDescription;
             tblProduct.CategoryId = data.CategoryId;
+            tblProduct.DateUpdated = DateTime.Now;
 
             db.Entry(tblProduct).State = EntityState.Modified;
             db.SaveChanges();
@@ -115,8 +121,8 @@ namespace OnlineAuction.API
         public IHttpActionResult Postadd(imgBase64Str data)
         {
             tblProduct tblProduct = new tblProduct();
-            
-            byte[] imageBytes = Convert.FromBase64String(data.img);
+
+            byte[] imageBytes = Convert.FromBase64String(data.ProductImg);
 
             tblProduct.ProductId = Guid.NewGuid().ToString("N").Substring(0, 5).ToUpper();
             tblProduct.DateCreated = DateTime.Now;
@@ -130,6 +136,29 @@ namespace OnlineAuction.API
             db.SaveChanges();
 
             return Ok();
+        }
+
+        [Route("api/products/rateProduct")]
+        public IHttpActionResult GetrateProduct(string str) {
+            
+            int id;
+
+            if (int.TryParse(str, out id))
+            {
+                var data = db.tblProducts.Where(a => a.Status == 0).Select(b => new
+                {
+                    b.ProductId,
+                    b.ProductName,
+                    rating = db.tblRatings.Where(c => c.ProductId == b.ProductId).Sum(d => d.Rating),
+                    user = db.tblRatings.Where(c => c.ProductId == b.ProductId).Count()
+                }).ToList();
+
+                return Json(data.Take(id));
+            }
+            else {
+                return Json(int.TryParse(str, out id));
+            }
+          
         }
 
         // DELETE: api/Products/5

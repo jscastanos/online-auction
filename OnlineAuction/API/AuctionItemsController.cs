@@ -45,7 +45,7 @@ namespace OnlineAuction.API
                 data = data.Where(a => a.ProductName.Contains(key));
             }
 
-            return Json(data.Take(20));
+            return Json(new { data = data.Take(20), total = data.FirstOrDefault().total, totalSold = data.FirstOrDefault().totalProductSold });
         }
 
         [Route("api/AuctionItems/auctionstatus")]
@@ -112,6 +112,17 @@ namespace OnlineAuction.API
 
             return StatusCode(HttpStatusCode.NoContent);
         }
+
+        [Route("api/AuctionItems/claimAuction")]
+        public IHttpActionResult PutclaimAuction(int id)
+        {
+            db.tblAuctionItems.Where(a => a.recNo == id).ToList()
+                .ForEach(b => b.Status = 3);
+            db.SaveChanges();
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
 
         // POST: api/AuctionItems
         [ResponseType(typeof(tblAuctionItem))]
