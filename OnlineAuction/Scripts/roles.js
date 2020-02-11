@@ -6,47 +6,47 @@ app.controller("roles", function ($scope, $http, $interval){
         $(hash).modal('toggle');
     }
 
-    $scope.passData = function (data) {
-        $scope.returnData = data;
+    s.passData = function (data) {
+        s.returnData = data;
     }
 
-    $scope.getUsers = function () {
+    s.getUsers = function () {
         $('#userList').block({ message: null });
         $http.post("../Management/getUsers").then(function (d) {
-            $scope.users = d.data;
+            s.users = d.data;
             $('#userList').unblock();
         });
     }
 
 
-    $scope.getRoles = function () {
+    s.getRoles = function () {
         $('#roleList').block({ message: null });
         $http.post("../Management/getRoles").then(function (d) {
-            $scope.roles = d.data;
+            s.roles = d.data;
             $('#roleList').unblock();
         });
     }
 
-    $interval($scope.getRoles(), 60000);
-    $interval($scope.getUsers(), 60000);
+    $interval(s.getRoles(), 60000);
+    $interval(s.getUsers(), 60000);
 
-    $scope.saveRole = function () {
+    s.saveRole = function () {
         $('#newRoleForm').block({ message: null });
-        $http.post("../Management/newRole", { userRole: $scope.role }).then(function (d) {
+        $http.post("../Management/newRole", { userRole: s.role }).then(function (d) {
             if (d.data.atype == "success") {
                 $('#newRole').modal('hide');
-                $scope.role = null;
-                $scope.errorBody = null;
+                s.role = null;
+                s.errorBody = null;
             } else {
-                $scope.errorBody = d.data.abody;
+                s.errorBody = d.data.abody;
             }
             $('#newRoleForm').unblock();
-            $scope.getRoles();
+            s.getRoles();
         });
     }
 
 
-    $scope.removeRole = function (i, r, d) {
+    s.removeRole = function (i, r, d) {
         swal({
             title: "Are you sure?",
             text: "Your will not be able to recover this data!",
@@ -61,31 +61,31 @@ app.controller("roles", function ($scope, $http, $interval){
             $http.post("../Management/removeRole", { userRole: d }).then(function (d) {
                 $('#r' + i + r).unblock();
                 swal(d.data.ahead, d.data.abody, d.data.atype);
-                $scope.getRoles();
+                s.getRoles();
             });
         });
 
        
     }
 
-    $scope.updateRole = function (i, d) {
+    s.updateRole = function (i, d) {
         $('#editRoleForm').block({ message: null });
         $('#r' + i).block({ message: null });
         $http.post("../Management/updateRole", { userRole: d }).then(function (d) {
             if (d.data.atype == "success") {
-                $scope.errorBody = null;
+                s.errorBody = null;
                 $('#editRole').modal('hide');
-                $scope.role = null;
+                s.role = null;
                 swal(d.data.ahead, d.data.abody, d.data.atype);
             } else {
-                $scope.errorBody = d.data.abody;
+                s.errorBody = d.data.abody;
             }
             $('#editRoleForm').unblock();
             $('#r' + i).unblock();
         });
     }
 
-    $scope.setUserRole = function (i, r, d) {
+    s.setUserRole = function (i, r, d) {
         $('#setRoleForm').block({ message: null });
         $('#u' + i + r).block({ message: null });
         $http.post("../Management/setUserRole", { userRole: d }).then(function (d) {
@@ -96,7 +96,7 @@ app.controller("roles", function ($scope, $http, $interval){
             swal(d.data.ahead, d.data.abody, d.data.atype);
             $('#setRoleForm').unblock();
             $('#u' + i + r).unblock();
-            $scope.getUsers();
+            s.getUsers();
         });
     }
    
