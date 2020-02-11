@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="OnlineAuctionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="OnlineAuctionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblAuctionItems">
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
-          <Property Name="recNo" Type="int" Nullable="false" />
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AuctionId" Type="varchar" MaxLength="5" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="5" />
           <Property Name="DateCreated" Type="datetime" />
@@ -213,29 +213,16 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
     FROM [dbo].[vProduct] AS [vProduct]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OnlineAuctionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="OnlineAuctionEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tblAuctionItems" EntityType="OnlineAuctionModel.tblAuctionItem" />
-          <EntitySet Name="tblBiddersInfoes" EntityType="OnlineAuctionModel.tblBiddersInfo" />
-          <EntitySet Name="tblBiddings" EntityType="OnlineAuctionModel.tblBidding" />
-          <EntitySet Name="tblBranchShops" EntityType="OnlineAuctionModel.tblBranchShop" />
-          <EntitySet Name="tblEmployeesInfoes" EntityType="OnlineAuctionModel.tblEmployeesInfo" />
-          <EntitySet Name="tblProducts" EntityType="OnlineAuctionModel.tblProduct" />
-          <EntitySet Name="tblProductCategories" EntityType="OnlineAuctionModel.tblProductCategory" />
-          <EntitySet Name="tblRatings" EntityType="OnlineAuctionModel.tblRating" />
-          <EntitySet Name="tblUserManagements" EntityType="OnlineAuctionModel.tblUserManagement" />
-          <EntitySet Name="tblUsersRoles" EntityType="OnlineAuctionModel.tblUsersRole" />
-          <EntitySet Name="vAuctionProducts" EntityType="OnlineAuctionModel.vAuctionProduct" />
-          <EntitySet Name="vProducts" EntityType="OnlineAuctionModel.vProduct" />
-        </EntityContainer>
         <EntityType Name="tblAuctionItem">
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
-          <Property Name="recNo" Type="Int32" Nullable="false" />
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AuctionId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="CreatedBy" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
@@ -259,8 +246,8 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Bdate" Type="DateTime" Precision="0" />
           <Property Name="Occupation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Status" Type="Int32" />
           <Property Name="ViolationCount" Type="Int32" />
           <Property Name="UserImg" Type="Binary" MaxLength="Max" FixedLength="false" />
@@ -395,6 +382,20 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Int32" />
         </EntityType>
+        <EntityContainer Name="OnlineAuctionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAuctionItems" EntityType="Self.tblAuctionItem" />
+          <EntitySet Name="tblBiddersInfoes" EntityType="Self.tblBiddersInfo" />
+          <EntitySet Name="tblBiddings" EntityType="Self.tblBidding" />
+          <EntitySet Name="tblBranchShops" EntityType="Self.tblBranchShop" />
+          <EntitySet Name="tblEmployeesInfoes" EntityType="Self.tblEmployeesInfo" />
+          <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
+          <EntitySet Name="tblProductCategories" EntityType="Self.tblProductCategory" />
+          <EntitySet Name="tblRatings" EntityType="Self.tblRating" />
+          <EntitySet Name="tblUserManagements" EntityType="Self.tblUserManagement" />
+          <EntitySet Name="tblUsersRoles" EntityType="Self.tblUsersRole" />
+          <EntitySet Name="vAuctionProducts" EntityType="Self.vAuctionProduct" />
+          <EntitySet Name="vProducts" EntityType="Self.vProduct" />
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -404,176 +405,176 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <EntitySetMapping Name="tblAuctionItems">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblAuctionItem">
               <MappingFragment StoreEntitySet="tblAuctionItems">
-                <ScalarProperty Name="DateClosed" ColumnName="DateClosed" />
-                <ScalarProperty Name="WinnerId" ColumnName="WinnerId" />
-                <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
-                <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="AuctionId" ColumnName="AuctionId" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="AuctionId" ColumnName="AuctionId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
+                <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
+                <ScalarProperty Name="WinnerId" ColumnName="WinnerId" />
+                <ScalarProperty Name="DateClosed" ColumnName="DateClosed" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblBiddersInfoes">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblBiddersInfo">
               <MappingFragment StoreEntitySet="tblBiddersInfo">
-                <ScalarProperty Name="CardImgBack" ColumnName="CardImgBack" />
-                <ScalarProperty Name="CardImgFront" ColumnName="CardImgFront" />
-                <ScalarProperty Name="UserImg" ColumnName="UserImg" />
-                <ScalarProperty Name="ViolationCount" ColumnName="ViolationCount" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
-                <ScalarProperty Name="Bdate" ColumnName="Bdate" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="BiddersId" ColumnName="BiddersId" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="BiddersId" ColumnName="BiddersId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Bdate" ColumnName="Bdate" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ViolationCount" ColumnName="ViolationCount" />
+                <ScalarProperty Name="UserImg" ColumnName="UserImg" />
+                <ScalarProperty Name="CardImgFront" ColumnName="CardImgFront" />
+                <ScalarProperty Name="CardImgBack" ColumnName="CardImgBack" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblBiddings">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblBidding">
               <MappingFragment StoreEntitySet="tblBiddings">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
-                <ScalarProperty Name="BiddersId" ColumnName="BiddersId" />
-                <ScalarProperty Name="AuctionId" ColumnName="AuctionId" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="AuctionId" ColumnName="AuctionId" />
+                <ScalarProperty Name="BiddersId" ColumnName="BiddersId" />
+                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblBranchShops">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblBranchShop">
               <MappingFragment StoreEntitySet="tblBranchShop">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
-                <ScalarProperty Name="BranchContactNo" ColumnName="BranchContactNo" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
-                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="BranchContactNo" ColumnName="BranchContactNo" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblEmployeesInfoes">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblEmployeesInfo">
               <MappingFragment StoreEntitySet="tblEmployeesInfo">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Bdate" ColumnName="Bdate" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Bdate" ColumnName="Bdate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProducts">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblProduct">
               <MappingFragment StoreEntitySet="tblProduct">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-                <ScalarProperty Name="ProductImg" ColumnName="ProductImg" />
-                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="ProductImg" ColumnName="ProductImg" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProductCategories">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblProductCategory">
               <MappingFragment StoreEntitySet="tblProductCategory">
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblRatings">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblRating">
               <MappingFragment StoreEntitySet="tblRating">
-                <ScalarProperty Name="DateRated" ColumnName="DateRated" />
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="RateId" ColumnName="RateId" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="RateId" ColumnName="RateId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="DateRated" ColumnName="DateRated" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUserManagements">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblUserManagement">
               <MappingFragment StoreEntitySet="tblUserManagement">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUsersRoles">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblUsersRole">
               <MappingFragment StoreEntitySet="tblUsersRole">
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vAuctionProducts">
             <EntityTypeMapping TypeName="OnlineAuctionModel.vAuctionProduct">
               <MappingFragment StoreEntitySet="vAuctionProduct">
-                <ScalarProperty Name="totalProductSold" ColumnName="totalProductSold" />
-                <ScalarProperty Name="total" ColumnName="total" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
-                <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="recNo" ColumnName="recNo" />
                 <ScalarProperty Name="rowNum" ColumnName="rowNum" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
+                <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="totalProductSold" ColumnName="totalProductSold" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vProducts">
             <EntityTypeMapping TypeName="OnlineAuctionModel.vProduct">
               <MappingFragment StoreEntitySet="vProduct">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
-                <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="recNo" ColumnName="recNo" />
                 <ScalarProperty Name="rowNum" ColumnName="rowNum" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
+                <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
