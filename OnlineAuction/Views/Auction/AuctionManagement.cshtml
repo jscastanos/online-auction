@@ -1,10 +1,9 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Auction Management";
 }
 
 <script src="~/Scripts/moment.min.js"></script>
-<script src="~/Scripts/ng-product.js"></script>
+<script src="~/Scripts/ng-auction.js"></script>
 <script src="~/Scripts/datepicker.js"></script>
 <script src="~/Scripts/kendo/kendo.all.min.js"></script>
 
@@ -23,7 +22,7 @@
         }
 </style>
 
-<div ng-controller="productManagement">
+<div ng-controller="auctionManagement">
     <div class="scroll-to-top" ng-if="showScrollToTop" ng-click="scrollToTop()">
         <button type="button" class="btn bg-warning btn-float btn-rounded"><i class="icon-arrow-up16"></i></button>
     </div>
@@ -34,42 +33,69 @@
                 <a class="heading-elements-toggle"><i class="icon-more"></i></a>
             </div>
             @*<div class="heading-elements">
-                <div class="heading-btn-group">
-                    <button ng-click="openAddProductModal()" class="btn btn-labeled btn-labeled-right bg-success heading-btn text-uppercase">
-                        Add new product
-                        <b><i class="icon-bag"></i></b>
-                    </button>
-                </div>
-            </div>*@
+                    <div class="heading-btn-group">
+                        <button ng-click="openAddProductModal()" class="btn btn-labeled btn-labeled-right bg-success heading-btn text-uppercase">
+                            Add new product
+                            <b><i class="icon-bag"></i></b>
+                        </button>
+                    </div>
+                </div>*@
         </div>
     </div>
 
     <div class="content">
-        <div class="row">
-            @*<div class="col-lg-3 col-md-6" ng-repeat="a in auctionData">
-                <div class="thumbnail">
-                    <div class="thumb thumb-rounded">
-                        <img src="assets/images/demo/users/face1.jpg" alt="">
-                        <img src="~/Images/image.png" alt="" />
-                        <div class="caption-overflow">
-                            <span>
-                                <a href="assets/images/demo/images/3.png" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox"><i class="fa fa-pencil"></i></a>
-                                <a href="user_pages_profile.html" class="btn bg-success-400 btn-icon btn-xs"><i class="icon-link"></i></a>
-                            </span>
+        <div class="container-detached">
+            <div class="content-detached">
+                <div class="row">
+                    <div class="col-md-12" ng-if="auctionData.length == 0">
+                        <p class="text-center">
+                            <i style="font-size:25px">NO AUCTIONED PRODUCT</i>
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-sm-6" ng-repeat="a in auctionData | filter: {CategoryName : filter.category, BranchName : filter.branch}">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="thumb thumb-fixed">
+                                    <a href="../Product/RetrieveImage?id={{a.ProductId}}" data-popup="lightbox">
+                                        <img src="../Product/RetrieveImage?id={{a.ProductId}}" alt="">
+                                        <span class="zoom-image">@*<i class="icon-plus2"></i>*@</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="panel-body panel-body-accent text-center">
+                                <h6 class="text-semibold no-margin"><a href="#" class="text-default">{{a.ProductName}}</a></h6>
+
+                                <ul class="list-inline list-inline-separate mb-10">
+                                    <li><a href="#" class="text-muted">{{a.CategoryName | uppercase}}</a></li>
+                                </ul>
+
+                                <h3 class="no-margin text-semibold">{{a.AskPrice | currency : 'Php '}}</h3>
+
+                                <div class="text-nowrap">
+                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                </div>
+
+                                <div class="text-muted">85 reviews</div>
+
+                                <button ng-if="a.Status == 0" type="button" class="btn btn-danger" ng-click="removeAuction(a.ProductId)" data-toggle="tooltip" title="Claim"><i class="fa fa-hand-grab-o"></i></button>
+                                <button ng-if="a.Status == 0" type="button" class="btn btn-primary" ng-click="reAuctionModal(a.ProductId, a.recNo)" data-toggle="tooltip" title="ReAuction"><i class="fa fa-repeat"></i></button>
+                                <del ng-if="a.Status == 1">AWARDED</del>
+
+                            </div>
                         </div>
                     </div>
-
-                    <div class="caption text-center">
-                        <h6 class="text-semibold no-margin">{{a.ProductName}} <small class="display-block">Php {{a.AskPrice}}</small></h6>
-                        <ul class="icons-list mt-15">
-                            <li><a href="#" data-popup="tooltip" title="Google Drive" data-container="body"><i class="fa fa-trash"></i></a></li>
-                            <li><a href="#" data-popup="tooltip" title="Twitter" data-container="body"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#" data-popup="tooltip" title="Github" data-container="body"><i class="icon-github"></i></a></li>
-                        </ul>
-                    </div>
                 </div>
-            </div>*@
-            <div class="col-md-3">
+            </div>
+
+        </div>
+
+        <div class="sidebar-detached">
+            <div class="sidebar sidebar-default sidebar-separate">
                 <div class="panel">
                     <div class="panel-heading pt-10 pb-10 bg-teal-400">
                         <div class="panel-title text-semibold">
@@ -83,7 +109,7 @@
                         </div>
                         <div class="form-group">
                             <div class="has-feedback has-feedback-left">
-                                <input ng-change="filterChange()" ng-model="filter.productName" class="form-control" type="text" placeholder="Product Name" ng-change="searchProd()" />
+                                <input ng-model="filter.auctionName" class="form-control" type="text" placeholder="Product Name" ng-change="searchProd()" />
                                 <div class="form-control-feedback">
                                     <i class="icon-search4 text-size-large text-muted"></i>
                                 </div>
@@ -109,50 +135,51 @@
                         <hr />
 
                         <div class="form-group">
-                                <div class="checkbox">
-                                    <label class="display-block">
-                                        <input ng-change="loadkey()" id="price" type="checkbox" ng-model="filter.noPrice" class="styled">
-                                        NO PRICE
-                                        <span class="badge bg-orange-400 pull-right" style="font-size:xx-small">{{dataIncomplete.price}}</span>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label class="display-block">
-                                        <input ng-change="loadkey()" type="checkbox" ng-model="filter.noCategory" class="styled">
-                                        NO CATEGORY
-                                        <span class="badge bg-orange-400 pull-right" style="font-size:xx-small">{{dataIncomplete.category}}</span>
-                                    </label>
-                                </div>
-
+                            <div class="checkbox">
+                                <label class="display-block">
+                                    <input ng-change="loadkey()" id="price" type="checkbox" ng-model="filter.noPrice" class="styled">
+                                    NO PRICE
+                                    <span class="badge bg-orange-400 pull-right" style="font-size:xx-small">{{dataIncomplete.price}}</span>
+                                </label>
                             </div>
+                            <div class="checkbox">
+                                <label class="display-block">
+                                    <input ng-change="loadkey()" type="checkbox" ng-model="filter.noCategory" class="styled">
+                                    NO CATEGORY
+                                    <span class="badge bg-orange-400 pull-right" style="font-size:xx-small">{{dataIncomplete.category}}</span>
+                                </label>
+                            </div>
+
+                        </div>
                         <button type="button" ng-click="clearFilter()" class="btn btn-success btn-block">
                             CLEAR FILTER
                         </button>
                     </div>
                 </div>
-
             </div>
-            <div class="col-md-9 pull-right">
+            @*<div class="col-md-9 pull-right">
                 <div class="panel panel-flat no-margin no-padding">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
                                 <tr class="bg-teal-400 border-blue">
                                     <th>PRODUCT NAME</th>
-                                    <th class="text-right">MININUM BID</th>
+                                    <th class="text-right">STARTING PRICE</th>
                                     <th class="text-center">CATEGORY</th>
                                     <th class="text-center">Date Time Limit</th>
                                     <th class="text-center">ACTION</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="a in auctionData" ng-class="{'bg-success': a.Status=='1'}">
+                                <tr ng-repeat="a in auctionData">
                                     <td>{{a.ProductName}}</td>
-                                    <td class="text-right">{{a.AskPrice}}</td>
-                                    <td class="text-center">{{a.categoryName}}</td>
-                                    <th class="text-center">{{a.DateTimeLimit}}</th>
+                                    <td class="text-right">{{a.AskPrice | number}}</td>
+                                    <td class="text-center">{{a.CategoryName}}</td>
+                                    <th class="text-center">{{dateFormat(a.DateTimeLimit)}}</th>
                                     <td class="text-center">
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        <button ng-if="a.Status == 0" type="button" class="btn btn-danger" ng-click="removeAuction(a.ProductId)" data-toggle="tooltip" title="Claim"><i class="fa fa-hand-grab-o"></i></button>
+                                        <button ng-if="a.Status == 0" type="button" class="btn btn-primary" ng-click="reAuctionModal(a.ProductId)" data-toggle="tooltip" title="ReAuction"><i class="fa fa-repeat"></i></button>
+                                        <del ng-if="a.Status == 1">AWARDED</del>
                                     </td>
                                 </tr>
                                 <tr ng-if="auctionData.length == 0">
@@ -169,7 +196,7 @@
 
                 </div>
 
-            </div>
+            </div>*@
 
         </div>
 
@@ -233,11 +260,18 @@
             <div class="modal-content">
                 <div class="modal-header bg-info">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h6 class="modal-title"><i class="fa fa-pencil"></i>&nbsp;&nbsp; AUCTION PRODUCT</h6>
+                    <h6 class="modal-title"><i class="fa fa-pencil"></i>&nbsp;&nbsp; REAUCTION PRODUCT</h6>
                 </div>
 
                 <div class="modal-body">
-                    <form ng-submit="setToAuction()">
+                    <form ng-submit="reAuction()">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="number" class="form-control" placeholder="Starting Price" ng-model="tempArrAuction.AskPrice" step="0.01" required>
+                                <span class="input-group-addon bg-blue" ng-if="add"><i class="icon-coins"></i></span>
+                                <span class="input-group-addon bg-success" ng-if="update"><i class="icon-coins"></i></span>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="input-group">
                                 <input id="auctionpicker" ng-model="dateTimeLimit" style="width:149%" />
