@@ -12,12 +12,19 @@ export class ProductsService {
 
   }
 
-  getProductsFromCategory(categoryId) {
-    return this.route.get(this.env.API_URL + 'category/' + categoryId + '/products')
+  getProductsFromCategory(id, index, accountStatus) {
+    return this.route.get(this.env.API_URL + 'category/' + id + '/products?index=' + index + "&accountStatus=" + accountStatus)
   }
 
+  getProductsFromCompany(id, index, accountStatus) {
+    return this.route.get(this.env.API_URL + 'company/' + id + '/products?index=' + index + "&accountStatus=" + accountStatus)
+  }
   getCategories() {
     return this.route.get(this.env.API_URL + 'category');
+  }
+
+  getCompanies() {
+    return this.route.get(this.env.API_URL + 'branch');
   }
 
   getDisplayItems(index) {
@@ -27,4 +34,6 @@ export class ProductsService {
   getAuctionItems(index) {
     return this.route.get(this.env.API_URL + 'products/auctiondata?id=' + index + '&key')
   }
+
+
 }

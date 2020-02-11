@@ -4,7 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import { Profile } from 'src/app/models/user';
 import { NgForm } from '@angular/forms';
-import { CameraComponent } from 'src/app/components/camera/camera.component';
+import { Plugins, CameraResultType, CameraSource } from '@capacitor/core'
+const { Camera } = Plugins;
 
 @Component({
   selector: 'app-getting-started',
@@ -12,11 +13,11 @@ import { CameraComponent } from 'src/app/components/camera/camera.component';
   styleUrls: ['../auth.scss'],
 })
 export class GettingStartedPage implements OnInit, OnDestroy {
-  @ViewChild(CameraComponent, { static: false }) camera;
   step = 0;
   titles = ["Personal Information", "Address Details", "Additional Information", "Upload Image"];
   title = this.titles[this.step];
   id;
+  image = null;
 
   updateData: Profile = {
     FirstName: "",
@@ -73,11 +74,34 @@ export class GettingStartedPage implements OnInit, OnDestroy {
     }
   }
 
-  sendData() {
-    let userImg = this.camera.cameraService.photo["base64"];
 
-    if (userImg != null) {
-      this.saveImage = this.profileService.saveImage(this.id, userImg, 0).subscribe();
+  async capture() {
+    const capturedPhoto = await Camera.getPhoto({
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Camera,
+      quality: 100,
+      width: 200,
+      height: 200
+    })
+
+    this.image = capturedPhoto.base64String;
+  }
+
+  async upload() {
+    const capturedPhoto = await Camera.getPhoto({
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Photos,
+      quality: 100,
+      width: 200,
+      height: 200
+    })
+
+    this.image = capturedPhoto.base64String;
+  }
+
+  sendData() {
+    if (this.image != null) {
+      this.saveImage = this.profileService.saveImage(this.id, this.image, 0).subscribe();
     }
     this.updateProfile = this.profileService.updateProfile(this.id, this.updateData).subscribe(result => {
       this.presentToast("Your profile is being updated. Please wait", 2000);

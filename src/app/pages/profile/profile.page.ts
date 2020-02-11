@@ -34,13 +34,12 @@ export class ProfilePage implements OnInit, OnDestroy {
   getData;
   updateData;
 
-  constructor(private auth: AuthService, private env: EnvService, private common: CommonService, private profileService: ProfileService, private toast: ToastController, private modal: ModalController) {
+  constructor(private auth: AuthService, private env: EnvService, private common: CommonService, private profileService: ProfileService, private toast: ToastController) {
     this.user = this.common.user;
     this.url = this.env.URL;
   }
   ngOnInit() {
     this.loadData();
-
   }
 
   loadData() {
@@ -52,11 +51,12 @@ export class ProfilePage implements OnInit, OnDestroy {
       }
 
       //split address
-      this.newAddress = (this.userData.Address).split(", ");
+      if (this.userData.Address != null)
+        this.newAddress = (this.userData.Address).split(", ");
+
       this.getData.unsubscribe();
     });
   }
-
 
   async presentToast(message) {
     const toast = await this.toast.create({
@@ -67,20 +67,8 @@ export class ProfilePage implements OnInit, OnDestroy {
     toast.present();
   }
 
-  async presentModal(page) {
-    const modal = await this.modal.create({
-      component: page
-    })
-
-    return modal.present();
-  }
-
   openForm(formNo) {
     this.currForm = formNo;
-  }
-
-  openBidderSupportingIdModal() {
-    this.presentModal(BidderSupportingIdPage);
   }
 
   resetForm() {
@@ -120,21 +108,18 @@ export class ProfilePage implements OnInit, OnDestroy {
       .subscribe(result => {
         this.presentToast("Updated Successfully");
         this.currForm = null;
-
       },
 
         error => {
           this.presentToast("Failed to updated profile!");
           this.loadData();
         });
-
-    this.updateData.unsubscribe();
-
-
   }
 
   ngOnDestroy() {
-    this.updateData.unsubscribe();
+    if (this.updateData != null)
+      this.updateData.unsubscribe();
+
   }
 
 }

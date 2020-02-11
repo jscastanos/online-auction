@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { ProfilePageRoutingModule } from './profile-routing.module';
 
 import { ProfilePage } from './profile.page';
-import { BidderSupportingIdPageModule } from '../bidder-supporting-id/bidder-supporting-id.module';
 
 @NgModule({
   imports: [
@@ -15,7 +14,6 @@ import { BidderSupportingIdPageModule } from '../bidder-supporting-id/bidder-sup
     FormsModule,
     IonicModule,
     ProfilePageRoutingModule,
-    BidderSupportingIdPageModule
   ],
   declarations: [ProfilePage]
 })

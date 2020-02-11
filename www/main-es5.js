@@ -606,6 +606,10 @@ var routes = [
             },
         ]
     },
+    {
+        path: 'bidder-supporting-id',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-bidder-supporting-id-bidder-supporting-id-module */ "common").then(__webpack_require__.bind(null, /*! ./pages/bidder-supporting-id/bidder-supporting-id.module */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.module.ts")).then(function (m) { return m.BidderSupportingIdPageModule; }); }
+    },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1030,8 +1034,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var EnvService = /** @class */ (function () {
     function EnvService() {
-        this.URL = 'http://192.168.1.5:69';
-        this.API_URL = 'http://192.168.1.5:69/api/';
+        this.URL = 'http://192.168.1.18:69';
+        this.API_URL = 'http://192.168.1.18:69/api/';
     }
     EnvService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

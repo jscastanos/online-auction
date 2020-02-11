@@ -403,6 +403,17 @@ var findCheckedOption = function (el, tagName) {
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/index.js!./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.html":
+/*!*****************************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.html ***!
+  \*****************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>bidder_supporting_id</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n"
+
+/***/ }),
+
 /***/ "./src/app/auth/auth.scss":
 /*!********************************!*\
   !*** ./src/app/auth/auth.scss ***!
@@ -411,6 +422,136 @@ var findCheckedOption = function (el, tagName) {
 /***/ (function(module, exports) {
 
 module.exports = "form {\n  height: 100vh !important;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  vertical-align: center;\n}\nform.register {\n  margin-top: 50px;\n}\nform h1 {\n  font-size: 45px;\n}\nform ion-text {\n  text-align: center !important;\n}\nform ion-icon {\n  margin-right: 10px;\n}\nform.getting-started h2 {\n  font-size: 18px;\n}\nform.getting-started h1 {\n  font-size: 25px;\n}\nion-fab {\n  margin-bottom: 20px;\n  margin-right: 20px;\n}\nion-fab ion-icon {\n  margin: 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXV0aC9EOlxcd29ya1xcUHJvamVjdHNcXEFjY1JlYWxTb2Z0XFxNb2JpbGVcXG9ubGluZWF1Y3Rpb25hcHAvc3JjXFxhcHBcXGF1dGhcXGF1dGguc2NzcyIsInNyYy9hcHAvYXV0aC9hdXRoLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFFSSx3QkFBQTtFQUNBLG9CQUFBO0VBQUEsYUFBQTtFQUNBLHlCQUFBO1VBQUEsbUJBQUE7RUFDQSxzQkFBQTtBQ0FKO0FERUk7RUFDSSxnQkFBQTtBQ0FSO0FER0k7RUFDSSxlQUFBO0FDRFI7QURJSTtFQUNJLDZCQUFBO0FDRlI7QURNSTtFQUNJLGtCQUFBO0FDSlI7QURRUTtFQUVJLGVBQUE7QUNQWjtBRFNRO0VBRUksZUFBQTtBQ1JaO0FEZ0JBO0VBQ0ksbUJBQUE7RUFDQSxrQkFBQTtBQ2JKO0FEZUk7RUFDSSxTQUFBO0FDYlIiLCJmaWxlIjoic3JjL2FwcC9hdXRoL2F1dGguc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImZvcm17XHJcblxyXG4gICAgaGVpZ2h0OiAxMDB2aCAhaW1wb3J0YW50O1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICB2ZXJ0aWNhbC1hbGlnbjogY2VudGVyO1xyXG5cclxuICAgICYucmVnaXN0ZXJ7XHJcbiAgICAgICAgbWFyZ2luLXRvcDogNTBweDtcclxuICAgIH1cclxuXHJcbiAgICBoMXtcclxuICAgICAgICBmb250LXNpemU6IDQ1cHg7XHJcbiAgICB9XHJcbiAgICBcclxuICAgIGlvbi10ZXh0e1xyXG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlciAhaW1wb3J0YW50O1xyXG4gICAgfVxyXG5cclxuXHJcbiAgICBpb24taWNvbntcclxuICAgICAgICBtYXJnaW4tcmlnaHQ6IDEwcHhcclxuICAgIH1cclxuXHJcbiAgICAmLmdldHRpbmctc3RhcnRlZHtcclxuICAgICAgICBoMntcclxuICAgICAgICAgICAgXHJcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogMThweDtcclxuICAgICAgICB9XHJcbiAgICAgICAgaDF7XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgICAgICBmb250LXNpemU6IDI1cHg7XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG5cclxufVxyXG5cclxuXHJcblxyXG5pb24tZmFie1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMjBweDtcclxuICAgIG1hcmdpbi1yaWdodDogMjBweDtcclxuICAgIFxyXG4gICAgaW9uLWljb257XHJcbiAgICAgICAgbWFyZ2luOiAwO1xyXG4gICAgfVxyXG59IiwiZm9ybSB7XG4gIGhlaWdodDogMTAwdmggIWltcG9ydGFudDtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgdmVydGljYWwtYWxpZ246IGNlbnRlcjtcbn1cbmZvcm0ucmVnaXN0ZXIge1xuICBtYXJnaW4tdG9wOiA1MHB4O1xufVxuZm9ybSBoMSB7XG4gIGZvbnQtc2l6ZTogNDVweDtcbn1cbmZvcm0gaW9uLXRleHQge1xuICB0ZXh0LWFsaWduOiBjZW50ZXIgIWltcG9ydGFudDtcbn1cbmZvcm0gaW9uLWljb24ge1xuICBtYXJnaW4tcmlnaHQ6IDEwcHg7XG59XG5mb3JtLmdldHRpbmctc3RhcnRlZCBoMiB7XG4gIGZvbnQtc2l6ZTogMThweDtcbn1cbmZvcm0uZ2V0dGluZy1zdGFydGVkIGgxIHtcbiAgZm9udC1zaXplOiAyNXB4O1xufVxuXG5pb24tZmFiIHtcbiAgbWFyZ2luLWJvdHRvbTogMjBweDtcbiAgbWFyZ2luLXJpZ2h0OiAyMHB4O1xufVxuaW9uLWZhYiBpb24taWNvbiB7XG4gIG1hcmdpbjogMDtcbn0iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/pages/bidder-supporting-id/bidder-supporting-id-routing.module.ts":
+/*!***********************************************************************************!*\
+  !*** ./src/app/pages/bidder-supporting-id/bidder-supporting-id-routing.module.ts ***!
+  \***********************************************************************************/
+/*! exports provided: BidderSupportingIdPageRoutingModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BidderSupportingIdPageRoutingModule", function() { return BidderSupportingIdPageRoutingModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _bidder_supporting_id_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./bidder-supporting-id.page */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.ts");
+
+
+
+
+var routes = [
+    {
+        path: '',
+        component: _bidder_supporting_id_page__WEBPACK_IMPORTED_MODULE_3__["BidderSupportingIdPage"]
+    }
+];
+var BidderSupportingIdPageRoutingModule = /** @class */ (function () {
+    function BidderSupportingIdPageRoutingModule() {
+    }
+    BidderSupportingIdPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
+            exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]],
+        })
+    ], BidderSupportingIdPageRoutingModule);
+    return BidderSupportingIdPageRoutingModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.module.ts":
+/*!***************************************************************************!*\
+  !*** ./src/app/pages/bidder-supporting-id/bidder-supporting-id.module.ts ***!
+  \***************************************************************************/
+/*! exports provided: BidderSupportingIdPageModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BidderSupportingIdPageModule", function() { return BidderSupportingIdPageModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _bidder_supporting_id_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./bidder-supporting-id-routing.module */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id-routing.module.ts");
+/* harmony import */ var _bidder_supporting_id_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./bidder-supporting-id.page */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.ts");
+
+
+
+
+
+
+
+var BidderSupportingIdPageModule = /** @class */ (function () {
+    function BidderSupportingIdPageModule() {
+    }
+    BidderSupportingIdPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
+                _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
+                _bidder_supporting_id_routing_module__WEBPACK_IMPORTED_MODULE_5__["BidderSupportingIdPageRoutingModule"]
+            ],
+            declarations: [_bidder_supporting_id_page__WEBPACK_IMPORTED_MODULE_6__["BidderSupportingIdPage"]]
+        })
+    ], BidderSupportingIdPageModule);
+    return BidderSupportingIdPageModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.scss":
+/*!***************************************************************************!*\
+  !*** ./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.scss ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2JpZGRlci1zdXBwb3J0aW5nLWlkL2JpZGRlci1zdXBwb3J0aW5nLWlkLnBhZ2Uuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.ts":
+/*!*************************************************************************!*\
+  !*** ./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.ts ***!
+  \*************************************************************************/
+/*! exports provided: BidderSupportingIdPage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BidderSupportingIdPage", function() { return BidderSupportingIdPage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var BidderSupportingIdPage = /** @class */ (function () {
+    function BidderSupportingIdPage() {
+    }
+    BidderSupportingIdPage.prototype.ngOnInit = function () {
+    };
+    BidderSupportingIdPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-bidder-supporting-id',
+            template: __webpack_require__(/*! raw-loader!./bidder-supporting-id.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.html"),
+            styles: [__webpack_require__(/*! ./bidder-supporting-id.page.scss */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], BidderSupportingIdPage);
+    return BidderSupportingIdPage;
+}());
+
+
 
 /***/ }),
 

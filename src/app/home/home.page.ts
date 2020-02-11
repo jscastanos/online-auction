@@ -31,7 +31,7 @@ export class HomePage implements OnDestroy {
     sliderBrowseAllText: 'See all categories',
     slideRedirect: '/category-view',
     sliderId: 1,
-    requestUrl: '/category',
+    requestUrl: '/category?id=0&key=',
     dataObject: {
       id: 'CategoryId',
       name: 'CategoryName'
@@ -46,7 +46,7 @@ export class HomePage implements OnDestroy {
     sliderBrowseAllText: 'See all companies',
     slideRedirect: '/company-view',
     sliderId: 2,
-    requestUrl: '/company',
+    requestUrl: '/branch',
     dataObject: {
       id: 'BranchId',
       name: 'BranchName'
@@ -60,8 +60,19 @@ export class HomePage implements OnDestroy {
   //common
   user;
 
+
   constructor(private productsService: ProductsService, private auth: AuthService, public common: CommonService) {
     this.user = this.common.user;
+  }
+
+  searchResults = [];
+
+  search(q) {
+    if (q != "")
+      this.searchResults.push(q)
+    else
+      this.searchResults = []
+
   }
 
   ngOnInit() {
@@ -118,7 +129,6 @@ export class HomePage implements OnDestroy {
   }
 
   ngOnDestroy() {
-
     this.fetchDisplayService.unsubscribe();
     this.fetchAuctionService.unsubscribe();
   }

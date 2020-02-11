@@ -70,13 +70,13 @@ const routes: Routes = [
         path: 'terms-and-conditions',
         loadChildren: () => import('./pages/terms-and-conditions/terms-and-conditions.module').then(m => m.TermsAndConditionsPageModule)
       },
+      {
+        path: 'bidder-supporting-id',
+        loadChildren: () => import('./pages/bidder-supporting-id/bidder-supporting-id.module').then(m => m.BidderSupportingIdPageModule)
+      },
+
     ]
   },
-  {
-    path: 'bidder-supporting-id',
-    loadChildren: () => import('./pages/bidder-supporting-id/bidder-supporting-id.module').then( m => m.BidderSupportingIdPageModule)
-  },
-
 ];
 
 @NgModule({

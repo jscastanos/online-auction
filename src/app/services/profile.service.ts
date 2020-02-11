@@ -41,5 +41,8 @@ export class ProfileService {
     return this.http.get(this.env.API_URL + 'bidder/profile/' + id);
   }
 
+  checkCardImage(id) {
+    return this.http.get(this.env.API_URL + 'bidder/checkcardimage?id=' + id);
+  }
 
 }

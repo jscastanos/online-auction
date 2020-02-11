@@ -2,11 +2,10 @@ import { NgModule } from "@angular/core";
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { SliderComponent } from './slider/slider.component';
-import { CameraComponent } from './camera/camera.component';
 
 @NgModule({
-    declarations: [SliderComponent, CameraComponent],
-    exports: [SliderComponent, CameraComponent],
+    declarations: [SliderComponent,],
+    exports: [SliderComponent],
     imports: [IonicModule, CommonModule]
 })
 

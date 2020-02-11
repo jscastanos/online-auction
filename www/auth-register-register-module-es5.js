@@ -178,8 +178,7 @@ var RegisterPage = /** @class */ (function () {
                         })];
                     case 1:
                         modal = _a.sent();
-                        return [4 /*yield*/, modal.present()];
-                    case 2: return [2 /*return*/, _a.sent()];
+                        return [2 /*return*/, modal.present()];
                 }
             });
         });

@@ -5,6 +5,7 @@ import { get, set } from '../../services/storage.service';
 import { AuthService } from '../../services/auth.service';
 import { ToastController } from '@ionic/angular';
 import { CommonService } from 'src/app/services/common.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 
 @Component({
@@ -74,6 +75,7 @@ export class LoginPage implements OnDestroy {
 
       )
   }
+
 
   ngOnDestroy() {
     this.loginService.unsubscribe();

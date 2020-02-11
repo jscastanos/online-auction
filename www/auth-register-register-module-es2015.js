@@ -159,7 +159,7 @@ let RegisterPage = class RegisterPage {
             const modal = yield this.modal.create({
                 component: src_app_pages_terms_and_conditions_terms_and_conditions_page__WEBPACK_IMPORTED_MODULE_6__["TermsAndConditionsPage"]
             });
-            return yield modal.present();
+            return modal.present();
         });
     }
     createForm() {
