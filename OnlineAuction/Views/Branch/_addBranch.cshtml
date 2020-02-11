@@ -1,0 +1,176 @@
+﻿
+@*<div class="col-lg-8">
+    <div class="panel registration-form">
+        <div class="panel-body">
+            <div class="text-center">
+                <div class="icon-object border-success text-success"><i class="icon-plus3"></i></div>
+                <h5 class="content-group-lg">Create account <small class="display-block">All fields are required</small></h5>
+            </div>
+
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Choose username">
+                <div class="form-control-feedback">
+                    <i class="icon-user-plus text-muted"></i>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" placeholder="First name">
+                        <div class="form-control-feedback">
+                            <i class="icon-user-check text-muted"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" placeholder="Second name">
+                        <div class="form-control-feedback">
+                            <i class="icon-user-check text-muted"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group has-feedback">
+                        <input type="password" class="form-control" placeholder="Create password">
+                        <div class="form-control-feedback">
+                            <i class="icon-user-lock text-muted"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group has-feedback">
+                        <input type="password" class="form-control" placeholder="Repeat password">
+                        <div class="form-control-feedback">
+                            <i class="icon-user-lock text-muted"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group has-feedback">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <div class="form-control-feedback">
+                            <i class="icon-mention text-muted"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group has-feedback">
+                        <input type="email" class="form-control" placeholder="Repeat email">
+                        <div class="form-control-feedback">
+                            <i class="icon-mention text-muted"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <div class="checker"><span class="checked"><input type="checkbox" class="styled" checked="checked"></span></div>
+                        Send me <a href="#">test account settings</a>
+                    </label>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <div class="checker"><span class="checked"><input type="checkbox" class="styled" checked="checked"></span></div>
+                        Subscribe to monthly newsletter
+                    </label>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <div class="checker"><span><input type="checkbox" class="styled"></span></div>
+                        Accept <a href="#">terms of service</a>
+                    </label>
+                </div>
+            </div>
+
+            <div class="text-right">
+                <button type="submit" class="btn btn-link"><i class="icon-arrow-left13 position-left"></i> Back to login form</button>
+                <button type="submit" class="btn bg-teal-400 btn-labeled btn-labeled-right ml-10"><b><i class="icon-plus3"></i></b> Create account</button>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="~/Scripts/management/branch.js"></script>
+
+
+<div class="col-md-8" ng-controller="managementCtrl">
+    <div class="panel panel-flat">
+        <form class="form-horizonal" action="">
+            <fieldset class="panel-body pb-10">
+                <h6 class="text-semibold content-group">Branch details</h6>
+                <div class="form-group">
+                    <label class="control-label">Branch name: <span class="text-danger">*</span></label>
+                    <input type="text" ng-model="branch.BranchName" name="BranchName" class="form-control" placeholder="Enter branch name" required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Address: <span class="text-danger">*</span></label>
+                    <input type="text" ng-model="branch.Address" name="Address" class="form-control" placeholder="Enter address" required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Contact Number: <span class="text-danger">*</span></label>
+                    <input type="text" ng-model="branch.BranchContactNo" name="BranchContactNo" class="form-control" placeholder="Enter contact number" required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Email Address: <span class="text-danger">*</span></label>
+                    <input type="email" ng-model="branch.EmailAddress" name="EmailAddress" class="form-control" placeholder="Enter email">
+                </div>
+            </fieldset>
+            <fieldset class="panel-body panel-body-accent">
+                <ul class="list-inline list-inline-condensed no-margin">
+                    <li>
+                        <button type="button" class="btn bg-blue" ng-click="saveBranch()">
+                            <i class="icon-envelop2 position-left"></i>
+                            Submit form
+                        </button>
+                    </li>
+                    <li>
+                        <button type="reset" class="btn btn-default">
+                            Cancel
+                        </button>
+                    </li>
+                </ul>
+            </fieldset>
+        </form>
+    </div>
+</div>
