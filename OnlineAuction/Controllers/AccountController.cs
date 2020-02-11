@@ -5,13 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Linq;
+using OnlineAuction.Models;
 
 
 namespace OnlineAuction.Controllers
 {
     public class AccountController : Controller
     {
-
+        private OnlineAuctionEntities db = new OnlineAuctionEntities();
         // GET: Account
         public ActionResult Index()
         {
@@ -59,7 +60,34 @@ namespace OnlineAuction.Controllers
             }
         }
 
+        public ActionResult auth(string u, string p)
+        {
+            try
+            {
+                u = Session["username"] != null ? Session["username"].ToString() : u;
 
+                var cu = db.tblUserManagements.SingleOrDefault(ur => ur.UserName == u && ur.Password == p);
+                
+                var empl = db.tblEmployeesInfoes.SingleOrDefault(emp => emp.EmpId == cu.UsersId);
+                if (cu != null)
+                {
+                    Session["userID"] = cu.UsersId;
+                    Session["branchID"] = empl.BranchId;
+                    Session["username"] = cu.UserName;
+                    return RedirectToAction("Index", "Home");
+                } 
+                else
+                {
+                    Session["Error"] = "The username or password is incorrect.";
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+            catch (Exception)
+            {
+                Session["Error"] = "The username or password is incorrect.";
+                return RedirectToAction("logout", "Account");
+            }
+        }
 
         
     }

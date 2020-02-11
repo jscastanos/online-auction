@@ -9,7 +9,7 @@ namespace OnlineAuction.Controllers
 {
     public class HomeController : Controller
     {
-        [CustomAuthorize(Roles = "Admin, SuperAdmin, User")]
+        //[CustomAuthorize(Roles = "Admin, SuperAdmin, User")]
         public ActionResult Index()
         {
    

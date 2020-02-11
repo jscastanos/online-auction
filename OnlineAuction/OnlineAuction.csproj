@@ -206,6 +206,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\icomoone627.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\dm.jpeg" />
     <Content Include="Images\nophoto.png" />
     <Content Include="Scripts\Admin\index.js" />
     <Content Include="Scripts\angular.min.js" />
