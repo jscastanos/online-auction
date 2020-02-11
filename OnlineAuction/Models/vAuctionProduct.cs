@@ -12,16 +12,18 @@ namespace OnlineAuction.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class vProduct
+    public partial class vAuctionProduct
     {
         public Nullable<long> rowNum { get; set; }
         public int recNo { get; set; }
         public string ProductName { get; set; }
-        public Nullable<decimal> AskPrice { get; set; }
+        public string ProductDescription { get; set; }
+        public string CategoryName { get; set; }
+        public string ProductId { get; set; }
+        public Nullable<double> AskPrice { get; set; }
         public Nullable<System.DateTime> DateTimeLimit { get; set; }
-        public string CategoryId { get; set; }
-        public string BranchId { get; set; }
-        public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<int> Status { get; set; }
+        public Nullable<double> total { get; set; }
+        public Nullable<int> totalProductSold { get; set; }
     }
 }

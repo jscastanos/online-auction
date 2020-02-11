@@ -1,0 +1,82 @@
+﻿<script src="~/Scripts/Admin/index.js"></script>
+<script src="~/Scripts/sweet_alert.min.js"></script>
+<div ng-show="!grid" class="panel panel-flat">
+        <div class="datatable-scroll">
+            <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                <thead>
+                    <tr>
+                        <th style="font-weight: bold;">Bidders Name</th>
+                        <th style="font-weight: bold;" class="text-right">Address</th>
+                        <th style="font-weight: bold;" class="text-right">Contact Number</th>
+                        <th style="font-weight: bold;" class="text-right">Email Address</th>
+                        <th class="text-center" style="font-weight: bold;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="data in biddersList | filter: infoSearch">
+                        <td>
+                            <div class="media-left media-middle">
+                                <a href="" class="btn bg-teal-400 btn-rounded btn-icon btn-xs">
+                                    <span class="letter-icon">{{data.FirstName | limitTo : 1}}</span>
+                                </a>
+                            </div>
+                            <div class="media-left">
+                                <div class=""><a href="" class="text-default">{{data.FirstName}} {{data.MiddleName}} {{data.LastName}}</a></div>
+                                <div class="text-muted text-size-small">
+                                        <span class="status-mark border-{{data.Status == 0 ? 'danger' : 'success'}} position-left"></span>
+                                        {{data.Status == 0 ? "Not Verified" : "Verified"}}
+                                    </div>
+                            </div>
+                        </td>
+
+                        <td align="right"><h6 class="text-default text-right">{{data.Address}}</h6></td>
+                        <td align="right"><h6 class=" text-right">{{data.ContactNo}}</h6></td>
+                        <td align="right">
+                            <h6 class="text-right">{{data.Occupation}}</h6>
+                        </td>
+                        <td class="text-center">
+                            <ul class="icons-list">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="icon-menu9"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li ng-click="viewInfo(data.recNo, data.Status)"><a href=""><i class="icon-profile"></i>View</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="datatable-footer" style="padding:0%" ng-hide="branchList.length != 0">
+            <div class="row">
+                <div class="col-lg-4">&nbsp;</div>
+                <div class="col-lg-4">
+                    <h3 style="color:red" align="center">No Branch!</h3>
+                </div>
+                <div class="col-lg-4">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+
+@*<div class="col-lg-offset-3 col-md-6" ng-if="!branchList.length != 0">
+    <div class="panel panel-body">
+        <div class="media">
+            <div class="media-left">
+                <a href="../Images/nophoto.png" data-popup="lightbox">
+                    <img src="../Images/nophoto.png" class="img-circle img-lg" alt="">
+                </a>
+            </div>
+
+            <div class="media-body">
+                <h6 class="media-heading">{{status}}</h6>
+                <span class="text-muted">{{statusDescription}}</span>
+            </div>
+
+        </div>
+    </div>
+</div>*@
+
