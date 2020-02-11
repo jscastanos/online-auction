@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -30,6 +31,7 @@ namespace OnlineAuction.Controllers
         [CustomAuthorize(Roles="Admin")]
         public ActionResult Admin(){
             return View();
-        }
+        }  
+
     }
 }
