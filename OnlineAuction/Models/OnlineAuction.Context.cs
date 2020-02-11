@@ -35,5 +35,7 @@ namespace OnlineAuction.Models
         public virtual DbSet<tblRating> tblRatings { get; set; }
         public virtual DbSet<tblUserManagement> tblUserManagements { get; set; }
         public virtual DbSet<tblUsersRole> tblUsersRoles { get; set; }
+        public virtual DbSet<vAuctionProduct> vAuctionProducts { get; set; }
+        public virtual DbSet<vProduct> vProducts { get; set; }
     }
 }

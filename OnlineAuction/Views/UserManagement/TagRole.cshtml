@@ -7,6 +7,8 @@
         color: hotpink;
     }
 </style>
+<script src="~/Scripts/switch.min.js"></script>
+<script src="~/Scripts/switchery.min.js"></script>
 <script src="~/Scripts/moment.min.js"></script>
 <script src="~/Scripts/daterangepicker.js"></script>
 <script src="~/Scripts/ngtRole.js"></script>
@@ -20,8 +22,15 @@
 
 
         </div>
+        <div class="breadcrumb-line breadcrumb-line-component">
+            <ul class="nav navbar-nav" >
+                
+                <li ng-click="initData1()"><a href="#" style="color:black"><i class="icon-user-check position-left" ></i> Active <span class="badge bg-warning-400" ng-hide="activecount == 0">{{activecount}}</span></a></li>
+                <li ng-model="Status" ng-click="initData2()" ><a href="#" style="color:black"><i class="icon-user-lock position-left"></i> Inactive <span class="badge bg-warning-400" ng-hide="inactivecount == 0">{{inactivecount}}</span></a></li>
+                @*<li class="active">Basic inputs</li>*@
+            </ul>
+        </div>
     </div>
-
     <div class="content">
         <div class="panel panel-flat">
             <div class="panel-body no-padding-bottom">
@@ -48,9 +57,47 @@
                         </span>
                     </div>
                 </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6" ng-repeat="i in alldata">
+                <div class="panel panel-body" >
+                    <div class="media">
+                        <div class="media-left">
+                            @*<a id="m{{a.UID}}" href="" data-popup="lightbox">
+                                <img ng-attr-id="{{'pic_'+a.UID}}" ng-src="~/images/personnel//{{a.personID}}.jpg" onerror="this.src='../images/image.png'" class="img-circle img-lg" alt="no photo">
+                            </a>*@
+                            <a href="#" data-popup="lightbox">
+                                <img src="/images/image.png" style="width: 70px; height: 70px;" class="img-circle img-md" alt="">
+                            </a>
+                        </div>
+
+                        <div class="media-body">
+                            <h6 class="media-heading">{{(i.nameLast + ', ' + i.nameFirst + (i.nameMiddle != null ? ' ' + (i.nameMiddle | limitTo:1) + '.' : '') + (i.xname != null ? ', ' + i.xname + '.' : '')) | uppercase}}</h6>
+                            <span class="text-muted">{{i.roleDisplay}} ({{i.RoleId}}) / {{i.DateCreated| date:'MMM dd, yyyy'}}</span>
+                            <span class="label {{i.Status == 0? 'bg-danger': i.Status == 1 ? 'bg-success': ''}}">{{i.Status == 1? "Active" :"Inactive"}}</span>
+                        </div>
+                        <div class="media-right media-middle">
+                            <ul class="icons-list">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li ng-click="editName(i)"><a href="#"><i class="icon-pencil7 pull-right"></i> Edit </a></li>
+                                        <li ng-show="i.Status == 0" ng-click="cStatus(i)"><a href="#"><i class="icon-user-check pull-right"></i> Activate</a></li>
+                                        <li ng-show="i.Status == 1" ng-click="cStatus(i)"><a href="#"><i class="icon-user-lock pull-right"></i> Deactivate</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="panel panel-flat">
+
+        @*<div class="panel panel-flat">
             <div class="panel-body no-margin no-padding">
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -72,17 +119,17 @@
                                 <td>{{i.roleDisplay | uppercase }}</td>
 
                                 <td>
-                                    <div class="checkbox checkbox-switchery">
+                                    <div class="checkbox checkbox-switchery switchery-sm">
                                         <label>
-                                            <input type="checkbox" ng-click="cStatus(i)" ng-show="{{i.Status == 1 }}"class="switchery" checked>
-                                            <input type="checkbox" ng-click="cStatus(i)" ng-show="{{i.Status == 0 }}" class="switchery">
+                                            <input type="checkbox" ng-checked="i.Status" ng-click="cStatus(i)" class="switchery">
+                                        
                                         </label>
                                     </div>
                                 </td>
 
                                 <td>
                                     <button type="button" class="btn btn-primary btn-sm btn-icon" data-toggle="modal" ng-click="editName(i)"><i class="icon-pencil"></i></button>
-                                    @*<button type="button" class="btn btn-danger btn-sm btn-icon" ng-click="openModal(i)"><i class="icon-trash"></i></button>*@
+                                  
                                 </td>
                             </tr>
                             <tr ng-if="lengthdata== 0">
@@ -92,7 +139,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div>*@
     </div>
 
     <div id="Add" class="modal fade">
@@ -127,18 +174,18 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <input type="text" ng-model="adata.UserName" placeholder="Username" class="form-control" required>
+                                                <input type="text" ng-model="adata.UserName" id="usrnm" placeholder="Username" class="form-control" required>
                                                 <span class="input-group-addon"><i class="icon-user"></i></span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <input type="password" ng-model="adata.Password" placeholder="Password" class="form-control" required>
+                                                <input type="password" ng-model="adata.Password" id="psswrd" placeholder="Password" class="form-control" required>
                                                 <span class="input-group-addon"><i class="icon-user-lock"></i></span>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <div class="input-group">
+                                            <div class="input-group" id="slctrole">
                                                 <select ng-options="item.RoleId as item.RoleName for item in newItem track by item.RoleId"
                                                         ng-model="adata.RoleId"
                                                         class="form-control" required>

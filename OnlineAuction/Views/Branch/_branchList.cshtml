@@ -1,0 +1,200 @@
+﻿<script src="~/Scripts/Branch/branch.js"></script>
+<script src="~/Scripts/sweet_alert.min.js"></script>
+<div class="col-lg-4 col-md-6" ng-repeat="data in branchList | filter: branchSearch">
+    <div class="panel panel-body">
+        <div class="media">
+            <div class="media-left">
+                <a href="../Images/nophoto.png" data-popup="lightbox">
+                    <img src="../Images/nophoto.png" class="img-circle img-lg" alt="">
+                </a>
+            </div>
+
+            <div class="media-body">
+                <h6 class="media-heading">{{data.BranchName}}</h6>
+                <span class="text-muted">{{data.Address}}</span>
+            </div>
+
+            <div class="media-right media-middle">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li ng-click="branchAction(data.recNo, 1)"><a href=""><i class="icon-pencil"></i>Update</a></li>
+                            <li class="divider"></li>
+                            <li ng-click="branchAction(data.recNo, 0)"><a href=""><i class="icon-trash" style="color:red"></i> Delete</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-offset-3 col-md-6" ng-if="!branchList.length != 0">
+    <div class="panel panel-body">
+        <div class="media">
+            <div class="media-left">
+                <a href="../Images/nophoto.png" data-popup="lightbox">
+                    <img src="../Images/nophoto.png" class="img-circle img-lg" alt="">
+                </a>
+            </div>
+
+            <div class="media-body">
+                <h6 class="media-heading">{{status}}</h6>
+                <span class="text-muted">{{statusDescription}}</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+@*<div class="panel panel-flat">
+        <div class="panel-heading">
+            <h6 class="panel-title">Branch List<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+            <div class="heading-elements">
+            </div>
+        </div>
+        <div class="panel-body" style="padding:0px"></div>
+        <div class="panel-body" style="padding:0px"></div>
+
+        <div class="datatable-scroll">
+            <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                <tbody>
+                    <tr>
+                        <td class="col-md-3">
+                            <input style="width:50%;height:32px;margin-bottom:1.5%" type="text" ng-model="branchSearch" class="form-control input-lg" placeholder="Search">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-body" style="padding:0px"></div>
+        <div class="panel-body" style="padding:0px"></div>
+        <div class="datatable-scroll">
+            <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                <thead>
+                    <tr>
+                        <th style="font-weight: bold;">Branch Name</th>
+                        <th style="font-weight: bold;" class="text-right">Address</th>
+                        <th style="font-weight: bold;" class="text-right">Contact Number</th>
+                        <th style="font-weight: bold;" class="text-right">Email Address</th>
+                        <th style="font-weight: bold;">Status</th>
+                        <th class="text-center" style="font-weight: bold;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="data in branchList | filter: branchSearch">
+                        <td>
+                            <div class="media-left media-middle">
+                                <a href="" class="btn bg-teal-400 btn-rounded btn-icon btn-xs">
+                                    <span class="letter-icon">{{data.BranchName | limitTo : 1}}</span>
+                                </a>
+                            </div>
+                            <div class="media-left">
+                                <div class=""><a href="" class="text-default">{{(data.BranchName)}}</a></div>
+                                <div class="text-muted text-size-small">
+                                        <span class="status-mark border-success position-left"></span>
+                                        {{data.fromDate | jsonDate}} to {{data.toDate | jsonDate}}
+                                        (<span class="text-primary">{{data.tdays}} days</span>)
+                                    </div>
+                            </div>
+                        </td>
+
+                        <td align="right"><h6 class="text-default text-right">{{data.Address}}</h6></td>
+                        <td align="right"><h6 class=" text-right">{{data.BranchContactNo}}</h6></td>
+                        <td align="right">
+                            <h6 class="text-right">{{data.EmailAddress}}</h6>
+                        </td>
+                        <td><h6 class="text-right">{{data.Status == 1 ? "Active" : "Inactive"}}</h6></td>
+                        <td class="text-center">
+                            <ul class="icons-list">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="icon-menu9"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li ng-click="viewProfile(data.CIC)"><a href=""><i class="icon-profile"></i> View Branch</a></li>
+                                        <li ng-click="branchAction(data.recNo, 1)"><a href=""><i class="icon-pencil"></i>Update</a></li>
+                                        <li class="divider"></li>
+                                        <li ng-click="branchAction(data.recNo, 0)"><a href=""><i class="icon-trash" style="color:red"></i> Delete</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="datatable-footer" style="padding:0%" ng-hide="branchList.length != 0">
+            <div class="row">
+                <div class="col-lg-4">&nbsp;</div>
+                <div class="col-lg-4">
+                    <h3 style="color:red" align="center">No Branch!</h3>
+                </div>
+                <div class="col-lg-4">&nbsp;</div>
+            </div>
+        </div>
+    </div>*@
+
+<div id="branchModal" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h6 class="text-semibold content-group">Branch details</h6>
+            </div>
+
+            <form class="form-horizonal" method="post" action="#">
+                <fieldset class="panel-body pb-10">
+                    <input type="hidden" ng-model="branch.recNo" value="" />
+                    <div class="form-group">
+                        <label class="control-label">Branch name: <span class="text-danger">*</span></label>
+                        <input type="text" ng-model="branch.BranchName" name="BranchName" class="form-control" placeholder="Enter branch name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Address: <span class="text-danger">*</span></label>
+                        <input type="text" ng-model="branch.Address" name="Address" class="form-control" placeholder="Enter address" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Contact Number: <span class="text-danger">*</span></label>
+                        <input type="text" ng-model="branch.BranchContactNo" name="BranchContactNo" class="form-control" placeholder="Enter contact number" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Email Address: <span class="text-danger">*</span></label>
+                        <input type="email" ng-model="branch.EmailAddress" name="EmailAddress" class="form-control" placeholder="Enter email">
+                    </div>
+                </fieldset>
+                <fieldset class="panel-body panel-body-accent">
+                    <ul class="list-inline list-inline-condensed no-margin">
+                        <li>
+                            <button type="button" class="btn bg-blue" ng-click="saveBranch(0)" ng-show="submitButton">
+                                <i class="icon-envelop2 position-left"></i>
+                                Submit form
+                            </button>
+                            <button type="button" class="btn bg-blue" ng-click="saveBranch(1)" ng-show="!submitButton">
+                                <i class="icon-envelop2 position-left"></i>
+                                Update form
+                            </button>
+                        </li>
+                        <li>
+                            <button type="reset" class="btn btn-default">
+                                Cancel
+                            </button>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+

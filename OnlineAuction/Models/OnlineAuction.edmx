@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
-          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="recNo" Type="int" Nullable="false" />
           <Property Name="AuctionId" Type="varchar" MaxLength="5" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="5" />
           <Property Name="DateCreated" Type="datetime" />
@@ -17,8 +17,8 @@
           <Property Name="ProductId" Type="varchar" MaxLength="5" />
           <Property Name="AskPrice" Type="float" />
           <Property Name="DateTimeLimit" Type="datetime" />
-          <Property Name="DateClosed" Type="datetime" />
           <Property Name="WinnerId" Type="varchar(max)" />
+          <Property Name="DateClosed" Type="datetime" />
         </EntityType>
         <EntityType Name="tblBiddersInfo">
           <Key>
@@ -45,7 +45,7 @@
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
-          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="recNo" Type="int" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" />
           <Property Name="AuctionId" Type="varchar" MaxLength="5" />
           <Property Name="BiddersId" Type="varchar" MaxLength="5" />
@@ -92,7 +92,7 @@
           <Property Name="ProductName" Type="varchar" MaxLength="50" />
           <Property Name="CategoryId" Type="varchar" MaxLength="5" />
           <Property Name="BranchId" Type="varchar" MaxLength="5" />
-          <Property Name="ProductImg" Type="varbinary(max)" />
+          <Property Name="ProductImg" Type="varbinary" MaxLength="50" />
           <Property Name="ProductDescription" Type="varchar(max)" />
           <Property Name="Status" Type="int" />
         </EntityType>
@@ -139,6 +139,40 @@
           <Property Name="RoleName" Type="varchar" MaxLength="50" />
           <Property Name="status" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineAuction.dbo.vAuctionProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vAuctionProduct">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="rowNum" Type="bigint" />
+          <Property Name="recNo" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="ProductDescription" Type="varchar(max)" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+          <Property Name="ProductId" Type="varchar" MaxLength="5" />
+          <Property Name="AskPrice" Type="float" />
+          <Property Name="DateTimeLimit" Type="datetime" />
+          <Property Name="Status" Type="int" />
+          <Property Name="total" Type="float" />
+          <Property Name="totalProductSold" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vProduct">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="rowNum" Type="bigint" />
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="AskPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DateTimeLimit" Type="datetime" />
+          <Property Name="CategoryId" Type="varchar" MaxLength="5" />
+          <Property Name="BranchId" Type="varchar" MaxLength="5" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
         <EntityContainer Name="OnlineAuctionModelStoreContainer">
           <EntitySet Name="tblAuctionItems" EntityType="Self.tblAuctionItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblBiddersInfo" EntityType="Self.tblBiddersInfo" Schema="dbo" store:Type="Tables" />
@@ -150,16 +184,58 @@
           <EntitySet Name="tblRating" EntityType="Self.tblRating" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserManagement" EntityType="Self.tblUserManagement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUsersRole" EntityType="Self.tblUsersRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vAuctionProduct" EntityType="Self.vAuctionProduct" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vAuctionProduct].[rowNum] AS [rowNum], 
+    [vAuctionProduct].[recNo] AS [recNo], 
+    [vAuctionProduct].[ProductName] AS [ProductName], 
+    [vAuctionProduct].[ProductDescription] AS [ProductDescription], 
+    [vAuctionProduct].[CategoryName] AS [CategoryName], 
+    [vAuctionProduct].[ProductId] AS [ProductId], 
+    [vAuctionProduct].[AskPrice] AS [AskPrice], 
+    [vAuctionProduct].[DateTimeLimit] AS [DateTimeLimit], 
+    [vAuctionProduct].[Status] AS [Status], 
+    [vAuctionProduct].[total] AS [total], 
+    [vAuctionProduct].[totalProductSold] AS [totalProductSold]
+    FROM [dbo].[vAuctionProduct] AS [vAuctionProduct]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vProduct" EntityType="Self.vProduct" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vProduct].[rowNum] AS [rowNum], 
+    [vProduct].[recNo] AS [recNo], 
+    [vProduct].[ProductName] AS [ProductName], 
+    [vProduct].[AskPrice] AS [AskPrice], 
+    [vProduct].[DateTimeLimit] AS [DateTimeLimit], 
+    [vProduct].[CategoryId] AS [CategoryId], 
+    [vProduct].[BranchId] AS [BranchId], 
+    [vProduct].[DateCreated] AS [DateCreated], 
+    [vProduct].[Status] AS [Status]
+    FROM [dbo].[vProduct] AS [vProduct]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OnlineAuctionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="OnlineAuctionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAuctionItems" EntityType="OnlineAuctionModel.tblAuctionItem" />
+          <EntitySet Name="tblBiddersInfoes" EntityType="OnlineAuctionModel.tblBiddersInfo" />
+          <EntitySet Name="tblBiddings" EntityType="OnlineAuctionModel.tblBidding" />
+          <EntitySet Name="tblBranchShops" EntityType="OnlineAuctionModel.tblBranchShop" />
+          <EntitySet Name="tblEmployeesInfoes" EntityType="OnlineAuctionModel.tblEmployeesInfo" />
+          <EntitySet Name="tblProducts" EntityType="OnlineAuctionModel.tblProduct" />
+          <EntitySet Name="tblProductCategories" EntityType="OnlineAuctionModel.tblProductCategory" />
+          <EntitySet Name="tblRatings" EntityType="OnlineAuctionModel.tblRating" />
+          <EntitySet Name="tblUserManagements" EntityType="OnlineAuctionModel.tblUserManagement" />
+          <EntitySet Name="tblUsersRoles" EntityType="OnlineAuctionModel.tblUsersRole" />
+          <EntitySet Name="vAuctionProducts" EntityType="OnlineAuctionModel.vAuctionProduct" />
+          <EntitySet Name="vProducts" EntityType="OnlineAuctionModel.vProduct" />
+        </EntityContainer>
         <EntityType Name="tblAuctionItem">
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
-          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="recNo" Type="Int32" Nullable="false" />
           <Property Name="AuctionId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="CreatedBy" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
@@ -167,8 +243,8 @@
           <Property Name="ProductId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="AskPrice" Type="Double" />
           <Property Name="DateTimeLimit" Type="DateTime" Precision="3" />
-          <Property Name="DateClosed" Type="DateTime" Precision="3" />
           <Property Name="WinnerId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateClosed" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="tblBiddersInfo">
           <Key>
@@ -183,8 +259,8 @@
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Bdate" Type="DateTime" Precision="0" />
           <Property Name="Occupation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Int32" />
           <Property Name="ViolationCount" Type="Int32" />
           <Property Name="UserImg" Type="Binary" MaxLength="Max" FixedLength="false" />
@@ -195,7 +271,7 @@
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
-          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="recNo" Type="Int32" Nullable="false" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="AuctionId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="BiddersId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
@@ -242,7 +318,7 @@
           <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CategoryId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="BranchId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="ProductImg" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductImg" Type="Binary" MaxLength="50" FixedLength="false" />
           <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Int32" />
         </EntityType>
@@ -289,18 +365,36 @@
           <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="OnlineAuctionEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tblAuctionItems" EntityType="Self.tblAuctionItem" />
-          <EntitySet Name="tblBiddersInfoes" EntityType="Self.tblBiddersInfo" />
-          <EntitySet Name="tblBiddings" EntityType="Self.tblBidding" />
-          <EntitySet Name="tblBranchShops" EntityType="Self.tblBranchShop" />
-          <EntitySet Name="tblEmployeesInfoes" EntityType="Self.tblEmployeesInfo" />
-          <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
-          <EntitySet Name="tblProductCategories" EntityType="Self.tblProductCategory" />
-          <EntitySet Name="tblRatings" EntityType="Self.tblRating" />
-          <EntitySet Name="tblUserManagements" EntityType="Self.tblUserManagement" />
-          <EntitySet Name="tblUsersRoles" EntityType="Self.tblUsersRole" />
-        </EntityContainer>
+        <EntityType Name="vAuctionProduct">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="rowNum" Type="Int64" />
+          <Property Name="recNo" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="AskPrice" Type="Double" />
+          <Property Name="DateTimeLimit" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="total" Type="Double" />
+          <Property Name="totalProductSold" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vProduct">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="rowNum" Type="Int64" />
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AskPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DateTimeLimit" Type="DateTime" Precision="3" />
+          <Property Name="CategoryId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="BranchId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -310,144 +404,176 @@
           <EntitySetMapping Name="tblAuctionItems">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblAuctionItem">
               <MappingFragment StoreEntitySet="tblAuctionItems">
-                <ScalarProperty Name="WinnerId" ColumnName="WinnerId" />
                 <ScalarProperty Name="DateClosed" ColumnName="DateClosed" />
-                <ScalarProperty Name="recNo" ColumnName="recNo" />
-                <ScalarProperty Name="AuctionId" ColumnName="AuctionId" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
+                <ScalarProperty Name="WinnerId" ColumnName="WinnerId" />
                 <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
+                <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="AuctionId" ColumnName="AuctionId" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblBiddersInfoes">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblBiddersInfo">
               <MappingFragment StoreEntitySet="tblBiddersInfo">
-                <ScalarProperty Name="recNo" ColumnName="recNo" />
-                <ScalarProperty Name="BiddersId" ColumnName="BiddersId" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Bdate" ColumnName="Bdate" />
-                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ViolationCount" ColumnName="ViolationCount" />
-                <ScalarProperty Name="UserImg" ColumnName="UserImg" />
-                <ScalarProperty Name="CardImgFront" ColumnName="CardImgFront" />
                 <ScalarProperty Name="CardImgBack" ColumnName="CardImgBack" />
+                <ScalarProperty Name="CardImgFront" ColumnName="CardImgFront" />
+                <ScalarProperty Name="UserImg" ColumnName="UserImg" />
+                <ScalarProperty Name="ViolationCount" ColumnName="ViolationCount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="Bdate" ColumnName="Bdate" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="BiddersId" ColumnName="BiddersId" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblBiddings">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblBidding">
               <MappingFragment StoreEntitySet="tblBiddings">
-                <ScalarProperty Name="recNo" ColumnName="recNo" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="AuctionId" ColumnName="AuctionId" />
-                <ScalarProperty Name="BiddersId" ColumnName="BiddersId" />
-                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+                <ScalarProperty Name="BiddersId" ColumnName="BiddersId" />
+                <ScalarProperty Name="AuctionId" ColumnName="AuctionId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblBranchShops">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblBranchShop">
               <MappingFragment StoreEntitySet="tblBranchShop">
-                <ScalarProperty Name="recNo" ColumnName="recNo" />
-                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="BranchContactNo" ColumnName="BranchContactNo" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="BranchContactNo" ColumnName="BranchContactNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblEmployeesInfoes">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblEmployeesInfo">
               <MappingFragment StoreEntitySet="tblEmployeesInfo">
-                <ScalarProperty Name="recNo" ColumnName="recNo" />
-                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
-                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Bdate" ColumnName="Bdate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Bdate" ColumnName="Bdate" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProducts">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblProduct">
               <MappingFragment StoreEntitySet="tblProduct">
-                <ScalarProperty Name="recNo" ColumnName="recNo" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-                <ScalarProperty Name="ProductImg" ColumnName="ProductImg" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductImg" ColumnName="ProductImg" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProductCategories">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblProductCategory">
               <MappingFragment StoreEntitySet="tblProductCategory">
-                <ScalarProperty Name="recNo" ColumnName="recNo" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblRatings">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblRating">
               <MappingFragment StoreEntitySet="tblRating">
-                <ScalarProperty Name="recNo" ColumnName="recNo" />
-                <ScalarProperty Name="RateId" ColumnName="RateId" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
                 <ScalarProperty Name="DateRated" ColumnName="DateRated" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="RateId" ColumnName="RateId" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUserManagements">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblUserManagement">
               <MappingFragment StoreEntitySet="tblUserManagement">
-                <ScalarProperty Name="recNo" ColumnName="recNo" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUsersRoles">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblUsersRole">
               <MappingFragment StoreEntitySet="tblUsersRole">
-                <ScalarProperty Name="recNo" ColumnName="recNo" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vAuctionProducts">
+            <EntityTypeMapping TypeName="OnlineAuctionModel.vAuctionProduct">
+              <MappingFragment StoreEntitySet="vAuctionProduct">
+                <ScalarProperty Name="totalProductSold" ColumnName="totalProductSold" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
+                <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="rowNum" ColumnName="rowNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vProducts">
+            <EntityTypeMapping TypeName="OnlineAuctionModel.vProduct">
+              <MappingFragment StoreEntitySet="vProduct">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
+                <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="rowNum" ColumnName="rowNum" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

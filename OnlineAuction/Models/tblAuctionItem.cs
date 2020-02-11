@@ -22,7 +22,7 @@ namespace OnlineAuction.Models
         public string ProductId { get; set; }
         public Nullable<double> AskPrice { get; set; }
         public Nullable<System.DateTime> DateTimeLimit { get; set; }
-        public Nullable<System.DateTime> DateClosed { get; set; }
         public string WinnerId { get; set; }
+        public Nullable<System.DateTime> DateClosed { get; set; }
     }
 }
