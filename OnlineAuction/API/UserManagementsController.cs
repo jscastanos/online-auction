@@ -21,17 +21,36 @@ namespace OnlineAuction.API
             public string key { get; set; }
         }
 
-        //public ActionResult nameList(string key)
-        //{
-        //    var snamelist = db.tPersonInfoes.Where(a => a.fname.Contains(key) || a.lname.Contains(key))
-        //        .Select(x => new
-        //        {
-        //            x.personID,
-        //            x.personalName
-        //        }).Take(5)
-        //        .ToList();
-        //    return Json(snamelist, JsonRequestBehavior.AllowGet);
-        //}
+
+        [Route("api/UserManagements/sStatus")]
+        public IHttpActionResult PutsStatus(tblUserManagement tblUserManagement)
+        {
+            if (tblUserManagement.Status != 1)
+            {
+                tblUserManagement.Status = 1;
+
+            }
+            else
+            {
+                tblUserManagement.Status = 0;
+            }
+
+            tblUserManagement.UpdatedBy = "UPDBY";
+            tblUserManagement.DateUpdated = DateTime.Now;
+            var switchery = db.Entry(tblUserManagement).State = EntityState.Modified;
+            db.SaveChanges();
+            return Json("success");
+        }
+
+        [Route("api/UserManagements/uRolechangeName")]
+        public IHttpActionResult PutuRolechangeName(tblUserManagement tblUserManagement)
+        {
+            tblUserManagement.UpdatedBy = "UPDBY";
+            tblUserManagement.DateUpdated = DateTime.Now;
+            db.Entry(tblUserManagement).State = EntityState.Modified;
+            db.SaveChanges();
+            return Json("success");
+        }
 
         [Route("api/UserManagements/tblEmpList")]
         public IHttpActionResult PosttblEmpList(searchemp s)
@@ -45,22 +64,62 @@ namespace OnlineAuction.API
             return Json(empList);
         }
 
+
+        [Route("api/UserManagements/GetAllPosition")]
+        public IHttpActionResult GetAllPosition()
+        {
+            var availablepos = db.tblUsersRoles.Where(l => l.recNo > 3).ToList();
+            return Json(availablepos);
+        }
+
+        [Route("api/UserManagements/Personel")]
+        public IHttpActionResult GetPersonel()
+        {
+            var availableper = db.tblEmployeesInfoes.ToList();
+            return Json(availableper.Count());
+        }
+
          [Route("api/UserManagements/UsersRoles")]
         public IQueryable<tblUsersRole> GetUsersRoles()
         {
             return db.tblUsersRoles;
         }
 
+        //api/UserManagements
          public IHttpActionResult GettblUserManagement(int id, string key)
          {
-             //var data = db.tblUserManagements.Where(u => u.recNo > id)
-             //    .Select(k => new
-             //    {
-                     
+             
+             var predata = db.tblUserManagements.Where(u => u.recNo > id)
+                 .Select(k => new
+                 {
+                     k.recNo,
+                     k.UsersId,
+                     k.CreatedBy,
+                     k.DateCreated,
+                     k.UserName,
+                     k.Password,
+                     k.Status,
+                     k.RoleId,
+                     prestatus = db.tblEmployeesInfoes.FirstOrDefault(o => o.EmpId == k.UsersId).Status,
+                     nameDisplay = db.tblEmployeesInfoes.Where(l => l.EmpId == k.UsersId)
+                            .Select(c => new
+                            {
+                                subName = c.FirstName + " " + c.MiddleName + " " + c.LastName
+                            }),
+                     nameFirst = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).FirstName,
+                     nameMiddle = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).MiddleName,
+                     nameLast = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).LastName,
+                     roleDisplay = db.tblUsersRoles.FirstOrDefault(h => h.RoleId == k.RoleId).RoleName,
+                     conName = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).FirstName + " "+ db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).MiddleName +" " + db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).LastName
+                 });
+             var data = predata.Where(k => k.prestatus != 1);
 
+             if (key != null && key != "")
+             {
+                 data = data.Where(w => w.nameFirst.Contains(key) || w.nameMiddle.Contains(key) || w.nameLast.Contains(key));
+             }
 
-             //    });
-             return Ok();
+             return Json(data.Take(10));
 
          } 
 
@@ -127,14 +186,21 @@ namespace OnlineAuction.API
             {
                 return BadRequest(ModelState);
             }
-
+            bool traceID = db.tblEmployeesInfoes.Any(k => k.EmpId == tblUserManagement.UsersId);
+            var preuser = db.tblEmployeesInfoes.ToList();
             var exist = db.tblUserManagements.Where(u => u.UsersId == tblUserManagement.UsersId);
-            if (exist.Count() > 0)
+
+            if (preuser.Count() <= 0 || !traceID)
+            {
+                return Json("no user");
+            }
+            if (exist.Count() > 0 )
             {
                 return Json("exist");
             }
             else
             {
+                tblUserManagement.CreatedBy = "CRTBY";
                 tblUserManagement.DateCreated = DateTime.Now;
                 tblUserManagement.Status = 0;
                 var aRole = db.tblUserManagements.Add(tblUserManagement);

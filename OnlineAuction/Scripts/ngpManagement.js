@@ -3,10 +3,8 @@
     s.alldata;
     s.alldata = [];
     s.isLoading = false;
-    s.add = false;
-    s.update = false;
+ 
     var lastId = 0;
-    s.xdata = null;
     s.sdata = "";
     loaddata();
 
@@ -17,18 +15,20 @@
         s.alldata = [];
         loaddata()
     }
-
+    
     function loaddata() {
         s.isLoading = true;
         r.get("../api/EmployeesInfoes/?id=" + lastId + "&key=" + s.sdata)
          .then(function (d) {
-             console.log(d.data)
-
+             
              angular.forEach(d.data, function (v, key) {
-                 v.Bdate = new Date(parseInt(v.Bdate.substr(6)))
+                 v.Bdate = new Date((v.Bdate).split('T')[0])
+                 v.ConcatName = v.FirstName + " " + v.MiddleName.slice(0, 1) + ". " + v.LastName;
+                 
+                 
              })
 
-
+             
              s.alldata = s.alldata.concat(d.data)
              s.isLoading = false;
              if (d.data.length > 0) {
@@ -40,32 +40,12 @@
 
 
     s.rdata = function () {
-        s.add = true;
-        s.update = false;
-        $("#pMgt").modal("show");
+        //$("#pMgt").modal("show");
     }
 
-    s.addEmp = function () {
-        console.log(s.add)
-        console.log(s.update)
-        console.log(s.adata);
-        if (s.add == true) {
-            r.post("../api/EmployeesInfoes", s.adata)
-        .then(function (d) {
-            lastId = 0;
-            s.alldata = [];
-            loaddata();
-            swal({
-                title: 'success',
-                text: 'Role added successfully!',
-                type: 'success'
-            }).then(function () {
-                $('#pMgt').modal('hide');
-            })
-            console.log(d.data);
-        })
-        } if (s.update == true) {
-            r.put("../api/EmployeesInfoes/EmployeeschangeName", s.adata)
+    s.saveUOF = function (selected) {
+        console.log(selected)
+        r.put("../api/EmployeesInfoes/EmployeeschangeName", selected)
         .then(function (d) {
             if (d.data == "success") {
                 lastId = 0;
@@ -76,7 +56,8 @@
                     text: 'Role name updated successfully!',
                     type: 'success'
                 }).then(function () {
-                    $('#pMgt').modal('hide');
+
+                    $('#Edit').modal('hide');
                 })
             }
             else {
@@ -84,14 +65,36 @@
             }
         })
         }
-        s.adata = {};
-        s.add = false;
-        s.update = false;
+    
+
+
+    s.addEmp = function (adata) {
+        console.log(adata);
+        r.post("../api/EmployeesInfoes", adata)
+    .then(function (d) {
+        lastId = 0;
+        s.alldata = [];
+        loaddata();
+        swal({
+            title: 'success',
+            text: 'Personel added successfully!',
+            type: 'success'
+        }).then(function () {
+            $('#Add').modal('hide');
+            $('#fname').val('');
+            $('#mname').val('');
+            $('#lname').val('');
+            $('#bdate').val('');
+            $('#addrss').val('');
+            $('#position').val('');
+        })
+        console.log(d.data);
+    })
     }
 
 
+
     s.refresh = function () {
-        s.adata = {};
         s.add = false;
         s.update = false;
         s.alldata = [];
@@ -99,14 +102,16 @@
         loaddata();
     }
 
-   
+    //var date = new Date($('#date-input').val());
+    //day = date.getDate();
+    //month = date.getMonth() + 1;
+    //year = date.getFullYear();
 
     s.editName = function (data) {
-        s.adata = data;
-        s.add = false;
-        s.update = true;
-        console.log(s.adata)
-        $("#pMgt").modal("show");
+        //data = new Date(parseInt(data.Bdate.substr(6)))
+        s.selected = data;
+        console.log(s.selected)
+        $("#Edit").modal('show');
     }
 
     s.openModal = function (odata) {
@@ -116,8 +121,8 @@
             text: "You won't be able to revert this!",
             type: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
             confirmButtonText: 'Yes, delete it!',
             showLoaderOnConfirm: true,
             preConfirm: function () {
