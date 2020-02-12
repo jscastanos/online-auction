@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "ProductManagement";
+    ViewBag.Title = "Product Management";
 }
 
 <script src="~/Scripts/moment.min.js"></script>
@@ -57,9 +57,11 @@
                 <div class="col-md-12" ng-if="productData.length == 0">
                     <p class="text-center">
                         <i style="font-size:25px">NO PRODUCT TO VIEW</i>
+                      
                     </p>
                 </div>
                 <ul class="media-list">
+
                     <li class="media panel panel-body stack-media-on-mobile" ng-repeat="a in productData | filter: {categoryName : filter.category, branchname : filter.branch}">
                         <a href="../Product/RetrieveImage?id={{a.ProductId}}" class="media-left" data-popup="lightbox">
                             <img src="../Product/RetrieveImage?id={{a.ProductId}}" width="96" alt="" />
@@ -211,6 +213,8 @@
                                 <span class="input-group-addon bg-blue" ng-if="add"><i class="icon-stack3"></i></span>
                                 <span class="input-group-addon bg-success" ng-if="update"><i class="icon-stack3"></i></span>
                             </div>
+                            @* branchID *@ 
+                            <input type="text" value="@Session["branchID"]" id="branchID" />
                         </div>
                         @*<div class="form-group">
                             <div class="input-group">

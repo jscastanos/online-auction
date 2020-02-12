@@ -22,7 +22,7 @@ app.controller("navs", function ($scope, $http, $interval){
                     console.log(d.data);
                 });
             }
-            $scope.getMenu();
+            s.getMenu();
             $("#smn" + groupCode.substring(6)).collapse('show');
         });
 
@@ -68,74 +68,74 @@ app.controller("navs", function ($scope, $http, $interval){
         $(hash).modal('toggle');
     }
 
-    $scope.passData = function (data) {
-        $scope.returnData = data;
+    s.passData = function (data) {
+        s.returnData = data;
     }
 
-    $scope.getMenu = function () {
+    s.getMenu = function () {
         $('#parentMenus').block({ message: null });
         $http.post("../Management/getMenu").then(function (d) {
-            $scope.parentMenus = d.data;
+            s.parentMenus = d.data;
             $('#parentMenus').unblock();
         });
     }
 
-    $scope.getChildMenu = function () {
+    s.getChildMenu = function () {
         $('#childMenus').block({ message: null });
         $http.post("../Management/getChildMenu").then(function (d) {
-            $scope.childMenus = d.data;
+            s.childMenus = d.data;
             $('#childMenus').unblock();
         });
     }
 
-    $interval($scope.getMenu(), 60000);
-    $interval($scope.getChildMenu(), 60000);
+    $interval(s.getMenu(), 60000);
+    $interval(s.getChildMenu(), 60000);
 
-    $scope.linkToParent = function (id, menu) {
+    s.linkToParent = function (id, menu) {
         $('#L' + id).block({ message: null });
         $('#linktoParentForm').block({ message: null });
         $http.post("../Management/linkToParent", {menu: menu}).then(function (d) {
             swal(d.data.ahead, d.data.abody, d.data.atype);
-            $scope.getMenu();
-            $scope.getChildMenu();
+            s.getMenu();
+            s.getChildMenu();
             $('#linkToParent').modal('hide');
             $('#L' + id).unblock();
             $('#linktoParentForm').unblock();
         });
     }
 
-    $scope.newChild= function (child) {
+    s.newChild= function (child) {
         $('#newChildForm').block({ message: null });
         $http.post("../Management/newChild", { child: child }).then(function (d) {
             if (d.data.atype == "success") {
                 $('#newChild').modal('hide');
-                $scope.child = null;
-                $scope.errorBody = null;
+                s.child = null;
+                s.errorBody = null;
             } else {
-                $scope.errorBody = d.data.abody;
+                s.errorBody = d.data.abody;
             }
             $('#newChildForm').unblock();
-            $scope.getChildMenu();
+            s.getChildMenu();
         });
     }
 
-    $scope.updateChild = function (id, child) {
+    s.updateChild = function (id, child) {
         $('#L' + id).block({ message: null });
         $('#updateChildForm').block({ message: null });
         $http.post("../Management/updateChild", { child: child }).then(function (d) {
             if (d.data.atype == "success") {
                 $('#updateChild').modal('hide'); swal(d.data.ahead, d.data.abody, d.data.atype);
-                $scope.child = null;
-                $scope.errorBody = null;
+                s.child = null;
+                s.errorBody = null;
             } else {
-                $scope.errorBody = d.data.abody;
+                s.errorBody = d.data.abody;
             }
             $('#L' + id).unblock();
             $('#updateChildForm').unblock();
         });
     }
 
-    $scope.removeChild = function (id, d) {
+    s.removeChild = function (id, d) {
         swal({
             title: "Are you sure?",
             text: "Your will not be able to recover this data!",
@@ -150,7 +150,7 @@ app.controller("navs", function ($scope, $http, $interval){
             $http.post("../Management/deleteChild", { child: d }).then(function (d) {
                 $('#L' + id).unblock();
                 swal(d.data.ahead, d.data.abody, d.data.atype);
-                $scope.getChildMenu();
+                s.getChildMenu();
             });
         });
 
@@ -159,40 +159,40 @@ app.controller("navs", function ($scope, $http, $interval){
 
 
 
-    $scope.newParent = function (parent) {
+    s.newParent = function (parent) {
         $('#newParentForm').block({ message: null });
         $http.post("../Management/newParent", { parent: parent }).then(function (d) {
             if (d.data.atype == "success") {
                 $('#newParent').modal('hide');
-                $scope.parent = null;
-                $scope.errorBody = null;
+                s.parent = null;
+                s.errorBody = null;
             } else {
-                $scope.errorBody = d.data.abody;
+                s.errorBody = d.data.abody;
             }
             $('#newParentForm').unblock();
-            $scope.getMenu();
+            s.getMenu();
         });
     }
 
-    $scope.updateParent = function (id, parent) {
+    s.updateParent = function (id, parent) {
         $('#' + id).block({ message: null });
         $('#updateParentForm').block({ message: null });
-        parent.menuGroupIcon = $scope.newIcon;
+        parent.menuGroupIcon = s.newIcon;
         $http.post("../Management/updateParent", { parent: parent }).then(function (d) {
             if (d.data.atype == "success") {
                 $('#updateParent').modal('hide'); swal(d.data.ahead, d.data.abody, d.data.atype);
-                $scope.parent = null;
-                $scope.errorBody = null;
+                s.parent = null;
+                s.errorBody = null;
             } else {
-                $scope.errorBody = d.data.abody;
+                s.errorBody = d.data.abody;
             }
-            $scope.getMenu();
+            s.getMenu();
             $('#' + id).unblock();
             $('#updateParentForm').unblock();
         });
     }
 
-    $scope.removeParent = function (id, d) {
+    s.removeParent = function (id, d) {
         swal({
             title: "Are you sure?",
             text: "Your will not be able to recover this data!",
@@ -207,14 +207,14 @@ app.controller("navs", function ($scope, $http, $interval){
             $http.post("../Management/deleteParent", { parent: d }).then(function (d) {
                 $('#' + id).unblock();
                 swal(d.data.ahead, d.data.abody, d.data.atype);
-                $scope.getMenu();
+                s.getMenu();
             });
         });
 
 
     }
 
-    $scope.unlinkToFParent = function (id, menu, parent) {
+    s.unlinkToFParent = function (id, menu, parent) {
         swal({
             title: "Unlink "+ menu.menuName +" to "+ parent.menuGroupName+"?",
             text: "Your can still link " + menu.menuName + " to " + parent.menuGroupName + " later",
@@ -229,8 +229,8 @@ app.controller("navs", function ($scope, $http, $interval){
             $http.post("../Management/unlinkToParent", { menu: menu, parent: parent }).then(function (d) {
                 $('#' + id).unblock();
                 swal(d.data.ahead, d.data.abody, d.data.atype);
-                $scope.getMenu();
-                $scope.getChildMenu();
+                s.getMenu();
+                s.getChildMenu();
             });
         });
 

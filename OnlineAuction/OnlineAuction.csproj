@@ -144,6 +144,8 @@
     <Compile Include="API\BranchController.cs" />
     <Compile Include="API\CategoryController.cs" />
     <Compile Include="API\EmployeesInfoesController.cs" />
+    <Compile Include="API\MobileUtilsController.cs" />
+    <Compile Include="API\MonitoringController.cs" />
     <Compile Include="API\ProductsController.cs" />
     <Compile Include="API\UserManagementsController.cs" />
     <Compile Include="API\UsersRoleController.cs" />
@@ -159,10 +161,12 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\GuardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MonitoringController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
+    <Compile Include="Custom_Class\ConvertDate.cs" />
     <Compile Include="Filters\CustomAuthorize.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -184,6 +188,9 @@
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tblAuctionItem.cs">
       <DependentUpon>OnlineAuction.tt</DependentUpon>
     </Compile>
@@ -847,6 +854,7 @@
     <Content Include="Scripts\ng-catRef.js" />
     <Content Include="Scripts\ng-dashboard.js" />
     <Content Include="Scripts\ng-product.js" />
+    <Content Include="Scripts\ngMonitoring.js" />
     <Content Include="Scripts\ngpManagement.js" />
     <Content Include="Scripts\ngRoles.js" />
     <Content Include="Scripts\ngtRole.js" />
@@ -902,6 +910,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\Background\VSMacros.vsix" />
     <EntityDeploy Include="Models\OnlineAuction.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
@@ -909,7 +918,6 @@
     <Content Include="Models\OnlineAuction.edmx.diagram">
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
     </Content>
-    <Content Include="Images\Background\VSMacros.vsix" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\_GridView.cshtml" />
@@ -922,6 +930,8 @@
     <Content Include="Views\Auction\AuctionManagement.cshtml" />
     <Content Include="Views\Category\CategoryReference.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Monitoring\Auction.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -957,10 +967,4 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target> -->
 </Project>

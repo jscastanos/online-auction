@@ -109,6 +109,7 @@
                
     s.addProduct = function () {
         s.tempArr.CategoryID = $("#catName").val();
+        s.tempArr.BranchID = $("#branchID").val();
         
         if (s.add == true) {                                         
             h.post("../api/products/add", s.tempArr).then(function (d) {
