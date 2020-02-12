@@ -17,9 +17,10 @@ namespace OnlineAuction.Models
         public Nullable<long> rowNum { get; set; }
         public int recNo { get; set; }
         public string ProductName { get; set; }
-        public string CategoryId { get; set; }
-        public string BranchId { get; set; }
-        public Nullable<System.DateTime> DateCreated { get; set; }
+        public byte[] ProductImg { get; set; }
+        public string CategoryName { get; set; }
+        public string ProductDescription { get; set; }
         public Nullable<int> Status { get; set; }
+        public string ProductId { get; set; }
     }
 }

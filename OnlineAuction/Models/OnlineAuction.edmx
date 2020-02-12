@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OnlineAuctionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineAuctionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblAuctionItems">
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
-          <Property Name="recNo" Type="int" Nullable="false" />
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AuctionId" Type="varchar" MaxLength="5" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="5" />
           <Property Name="DateCreated" Type="datetime" />
@@ -17,12 +17,14 @@
           <Property Name="ProductId" Type="varchar" MaxLength="5" />
           <Property Name="AskPrice" Type="float" />
           <Property Name="DateTimeLimit" Type="datetime" />
+          <Property Name="WinnerId" Type="varchar(max)" />
+          <Property Name="DateClosed" Type="datetime" />
         </EntityType>
         <EntityType Name="tblBiddersInfo">
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
-          <Property Name="recNo" Type="int" Nullable="false" />
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BiddersId" Type="varchar" MaxLength="5" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="MiddleName" Type="varchar" MaxLength="50" />
@@ -138,18 +140,37 @@
           <Property Name="status" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineAuction.dbo.vAuctionProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vAuctionProduct">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="rowNum" Type="bigint" />
+          <Property Name="recNo" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="ProductDescription" Type="varchar(max)" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+          <Property Name="ProductId" Type="varchar" MaxLength="5" />
+          <Property Name="AskPrice" Type="float" />
+          <Property Name="DateTimeLimit" Type="datetime" />
+          <Property Name="Status" Type="int" />
+          <Property Name="total" Type="float" />
+          <Property Name="totalProductSold" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vProduct">
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
           <Property Name="rowNum" Type="bigint" />
-          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="recNo" Type="int" Nullable="false" />
           <Property Name="ProductName" Type="varchar" MaxLength="50" />
-          <Property Name="CategoryId" Type="varchar" MaxLength="5" />
-          <Property Name="BranchId" Type="varchar" MaxLength="5" />
-          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="ProductImg" Type="varbinary" MaxLength="50" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+          <Property Name="ProductDescription" Type="varchar(max)" />
           <Property Name="Status" Type="int" />
+          <Property Name="ProductId" Type="varchar" MaxLength="5" />
         </EntityType>
         <EntityContainer Name="OnlineAuctionModelStoreContainer">
           <EntitySet Name="tblAuctionItems" EntityType="Self.tblAuctionItems" Schema="dbo" store:Type="Tables" />
@@ -162,20 +183,35 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <EntitySet Name="tblRating" EntityType="Self.tblRating" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserManagement" EntityType="Self.tblUserManagement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUsersRole" EntityType="Self.tblUsersRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vAuctionProduct" EntityType="Self.vAuctionProduct" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vAuctionProduct].[rowNum] AS [rowNum], 
+    [vAuctionProduct].[recNo] AS [recNo], 
+    [vAuctionProduct].[ProductName] AS [ProductName], 
+    [vAuctionProduct].[ProductDescription] AS [ProductDescription], 
+    [vAuctionProduct].[CategoryName] AS [CategoryName], 
+    [vAuctionProduct].[ProductId] AS [ProductId], 
+    [vAuctionProduct].[AskPrice] AS [AskPrice], 
+    [vAuctionProduct].[DateTimeLimit] AS [DateTimeLimit], 
+    [vAuctionProduct].[Status] AS [Status], 
+    [vAuctionProduct].[total] AS [total], 
+    [vAuctionProduct].[totalProductSold] AS [totalProductSold]
+    FROM [dbo].[vAuctionProduct] AS [vAuctionProduct]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vProduct" EntityType="Self.vProduct" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vProduct].[rowNum] AS [rowNum], 
     [vProduct].[recNo] AS [recNo], 
     [vProduct].[ProductName] AS [ProductName], 
-    [vProduct].[CategoryId] AS [CategoryId], 
-    [vProduct].[BranchId] AS [BranchId], 
-    [vProduct].[DateCreated] AS [DateCreated], 
-    [vProduct].[Status] AS [Status]
+    [vProduct].[ProductImg] AS [ProductImg], 
+    [vProduct].[CategoryName] AS [CategoryName], 
+    [vProduct].[ProductDescription] AS [ProductDescription], 
+    [vProduct].[Status] AS [Status], 
+    [vProduct].[ProductId] AS [ProductId]
     FROM [dbo].[vProduct] AS [vProduct]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OnlineAuctionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -183,7 +219,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
-          <Property Name="recNo" Type="Int32" Nullable="false" />
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AuctionId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="CreatedBy" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
@@ -191,12 +227,14 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="ProductId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="AskPrice" Type="Double" />
           <Property Name="DateTimeLimit" Type="DateTime" Precision="3" />
+          <Property Name="WinnerId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateClosed" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="tblBiddersInfo">
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
-          <Property Name="recNo" Type="Int32" Nullable="false" />
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BiddersId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -311,17 +349,21 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="Int32" />
         </EntityType>
-        <EntityType Name="vProduct">
+        <EntityType Name="vAuctionProduct">
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
           <Property Name="rowNum" Type="Int64" />
-          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="recNo" Type="Int32" Nullable="false" />
           <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CategoryId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="BranchId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="AskPrice" Type="Double" />
+          <Property Name="DateTimeLimit" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Int32" />
+          <Property Name="total" Type="Double" />
+          <Property Name="totalProductSold" Type="Int32" />
         </EntityType>
         <EntityContainer Name="OnlineAuctionEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblAuctionItems" EntityType="Self.tblAuctionItem" />
@@ -334,8 +376,22 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <EntitySet Name="tblRatings" EntityType="Self.tblRating" />
           <EntitySet Name="tblUserManagements" EntityType="Self.tblUserManagement" />
           <EntitySet Name="tblUsersRoles" EntityType="Self.tblUsersRole" />
-          <EntitySet Name="vProducts" EntityType="Self.vProduct" />
+          <EntitySet Name="vAuctionProducts" EntityType="Self.vAuctionProduct" />
+          <EntitySet Name="vProducts" EntityType="OnlineAuctionModel.vProduct" />
         </EntityContainer>
+        <EntityType Name="vProduct">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="rowNum" Type="Int64" />
+          <Property Name="recNo" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductImg" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="ProductId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -353,6 +409,8 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
                 <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
+                <ScalarProperty Name="WinnerId" ColumnName="WinnerId" />
+                <ScalarProperty Name="DateClosed" ColumnName="DateClosed" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -484,16 +542,34 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vProducts">
-            <EntityTypeMapping TypeName="OnlineAuctionModel.vProduct">
-              <MappingFragment StoreEntitySet="vProduct">
+          <EntitySetMapping Name="vAuctionProducts">
+            <EntityTypeMapping TypeName="OnlineAuctionModel.vAuctionProduct">
+              <MappingFragment StoreEntitySet="vAuctionProduct">
                 <ScalarProperty Name="rowNum" ColumnName="rowNum" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
+                <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="totalProductSold" ColumnName="totalProductSold" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vProducts">
+            <EntityTypeMapping TypeName="OnlineAuctionModel.vProduct">
+              <MappingFragment StoreEntitySet="vProduct">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ProductImg" ColumnName="ProductImg" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="rowNum" ColumnName="rowNum" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
