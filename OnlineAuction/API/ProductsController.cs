@@ -11,6 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using OnlineAuction.Models;
 using System.IO;
+using System.Web;
 
 namespace OnlineAuction.API
 {
@@ -19,11 +20,11 @@ namespace OnlineAuction.API
         private OnlineAuctionEntities db = new OnlineAuctionEntities();
         public class imgBase64Str
         {
-
             public string ProductName { get; set; }
             public string ProductDescription { get; set; }
             public string CategoryId { get; set; }
             public string ProductImg { get; set; }
+            public string BranchID { get; set; }
 
         }
         // GET: api/Products
@@ -98,16 +99,12 @@ namespace OnlineAuction.API
         {
             var tblProduct = db.tblProducts.SingleOrDefault(a => a.recNo == id);
 
-            if (data.ProductImg != "")
-            {
-                byte[] imageBytes = Convert.FromBase64String(data.ProductImg);
+            byte[] imageBytes = data.ProductImg != null ? Convert.FromBase64String(data.ProductImg) : tblProduct.ProductImg;
 
-                tblProduct.ProductImg = imageBytes;
-            }
-
+            tblProduct.ProductImg = imageBytes;
             tblProduct.ProductName = data.ProductName;
             tblProduct.ProductDescription = data.ProductDescription;
-            tblProduct.CategoryId = data.CategoryId;
+            tblProduct.CategoryId = db.tblProductCategories.FirstOrDefault(a => a.CategoryName == data.CategoryId).CategoryId;
             tblProduct.DateUpdated = DateTime.Now;
 
             db.Entry(tblProduct).State = EntityState.Modified;
@@ -123,7 +120,7 @@ namespace OnlineAuction.API
         {
             tblProduct tblProduct = new tblProduct();
 
-            byte[] imageBytes = Convert.FromBase64String(data.ProductImg);
+            byte[] imageBytes = data.ProductImg != null ? Convert.FromBase64String(data.ProductImg) : null;
 
             tblProduct.ProductId = Guid.NewGuid().ToString("N").Substring(0, 5).ToUpper();
             tblProduct.DateCreated = DateTime.Now;
@@ -131,12 +128,13 @@ namespace OnlineAuction.API
             tblProduct.ProductImg = imageBytes;
             tblProduct.ProductName = data.ProductName;
             tblProduct.ProductDescription = data.ProductDescription;
-            tblProduct.CategoryId = data.CategoryId;
+            tblProduct.CategoryId = db.tblProductCategories.FirstOrDefault(a => a.CategoryName == data.CategoryId).CategoryId;
+            tblProduct.BranchId = data.BranchID;
 
             db.Entry(tblProduct).State = EntityState.Added;
             db.SaveChanges();
 
-            return Ok();
+            return Json(tblProduct);
         }
 
         [Route("api/products/rateProduct")]
@@ -161,6 +159,7 @@ namespace OnlineAuction.API
             }
           
         }
+
 
         // DELETE: api/Products/5
         [ResponseType(typeof(tblProduct))]

@@ -49,7 +49,11 @@ namespace OnlineAuction.Controllers
                 if (cu != null)
                 {
                     Session["userID"] = cu.UsersId;
+<<<<<<< HEAD
+                    Session["branchID"] = 1;
+=======
                     //Session["branchID"] = empl.BranchId;
+>>>>>>> master
                     Session["username"] = cu.UserName;
                     return RedirectToAction("Index", "Home");
                 }
