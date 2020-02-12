@@ -146,6 +146,7 @@
     <Compile Include="API\BranchController.cs" />
     <Compile Include="API\CategoryController.cs" />
     <Compile Include="API\EmployeesInfoesController.cs" />
+    <Compile Include="API\MobileUtilsController.cs" />
     <Compile Include="API\MonitoringController.cs" />
     <Compile Include="API\ProductsController.cs" />
     <Compile Include="API\UserManagementsController.cs" />
@@ -217,6 +218,9 @@
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tblAuctionItem.cs">
       <DependentUpon>OnlineAuction.tt</DependentUpon>
     </Compile>
@@ -344,7 +348,6 @@
       <LastGenOutput>OnlineAuction.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\Admin\index.js" />
-    <Content Include="Scripts\AgentsSummary.js" />
     <Content Include="Scripts\angucomplete.css" />
     <Content Include="Scripts\angucomplete.js" />
     <Content Include="Scripts\angular-barcode.js" />

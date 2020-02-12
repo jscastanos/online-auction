@@ -27,11 +27,12 @@ namespace OnlineAuction.Controllers
         {
             if (FormsAuthentication.FormsCookieName != null)
             {
-
             }
 
             return View();
         }
+
+        
 
         public ActionResult Logout()
         {
