@@ -25,6 +25,7 @@ namespace OnlineAuction.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tblAuctionItem> tblAuctionItems { get; set; }
         public virtual DbSet<tblBiddersInfo> tblBiddersInfoes { get; set; }
         public virtual DbSet<tblBidding> tblBiddings { get; set; }

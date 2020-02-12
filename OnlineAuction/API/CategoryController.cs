@@ -41,7 +41,6 @@ namespace OnlineAuction.API
 
             return Ok(tblProductCategory);
         }
-
         // PUT: api/Category/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PuttblProductCategory(int id, tblProductCategory tblProductCategory)

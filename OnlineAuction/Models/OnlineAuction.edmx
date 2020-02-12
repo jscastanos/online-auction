@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="OnlineAuctionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="tblAuctionItems">
           <Key>
             <PropertyRef Name="recNo" />
@@ -45,7 +55,7 @@
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
-          <Property Name="recNo" Type="int" Nullable="false" />
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" />
           <Property Name="AuctionId" Type="varchar" MaxLength="5" />
           <Property Name="BiddersId" Type="varchar" MaxLength="5" />
@@ -92,7 +102,7 @@
           <Property Name="ProductName" Type="varchar" MaxLength="50" />
           <Property Name="CategoryId" Type="varchar" MaxLength="5" />
           <Property Name="BranchId" Type="varchar" MaxLength="5" />
-          <Property Name="ProductImg" Type="varbinary" MaxLength="50" />
+          <Property Name="ProductImg" Type="varbinary(max)" />
           <Property Name="ProductDescription" Type="varchar(max)" />
           <Property Name="Status" Type="int" />
         </EntityType>
@@ -173,6 +183,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="ProductId" Type="varchar" MaxLength="5" />
         </EntityType>
         <EntityContainer Name="OnlineAuctionModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblAuctionItems" EntityType="Self.tblAuctionItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblBiddersInfo" EntityType="Self.tblBiddersInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblBiddings" EntityType="Self.tblBiddings" Schema="dbo" store:Type="Tables" />
@@ -216,6 +227,16 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OnlineAuctionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="tblAuctionItem">
           <Key>
             <PropertyRef Name="recNo" />
@@ -256,7 +277,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Key>
             <PropertyRef Name="recNo" />
           </Key>
-          <Property Name="recNo" Type="Int32" Nullable="false" />
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="AuctionId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="BiddersId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
@@ -303,7 +324,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CategoryId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="BranchId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="ProductImg" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="ProductImg" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Int32" />
         </EntityType>
@@ -380,6 +401,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="ProductId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="OnlineAuctionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="tblAuctionItems" EntityType="Self.tblAuctionItem" />
           <EntitySet Name="tblBiddersInfoes" EntityType="Self.tblBiddersInfo" />
           <EntitySet Name="tblBiddings" EntityType="Self.tblBidding" />
@@ -399,6 +421,17 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="OnlineAuctionModelStoreContainer" CdmEntityContainer="OnlineAuctionEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="OnlineAuctionModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblAuctionItems">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblAuctionItem">
               <MappingFragment StoreEntitySet="tblAuctionItems">

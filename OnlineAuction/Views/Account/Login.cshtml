@@ -1,7 +1,121 @@
 ﻿@{
-    ViewBag.Title = "Login";
-    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    Layout = null;
 }
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Page </title>
+    <!-- Global stylesheets -->
+    <link href="/Content/icomoon.css" rel="stylesheet" />
+    <link href="/Content/font-awesome.css" rel="stylesheet" />
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/core.css" rel="stylesheet" />
+    <link href="/Content/components.css" rel="stylesheet" />
+    <link href="/Content/colors.css" rel="stylesheet" />
+
+    <script src="/Scripts/jquery.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
+    @*@Styles.Render("~/css")
+    @Scripts.Render("~/js")*@
+    
+
+</head>
+
+<body class="login-container pace-done">
+    <div class="pace  pace-inactive">
+        <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+            <div class="pace-progress-inner"></div>
+        </div>
+        <div class="pace-activity"></div>
+    </div>
+
+    <!-- Main navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html"><img src="assets/images/logo_light.png" alt=""></a>
+
+            <ul class="nav navbar-nav pull-right visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- /main navbar -->
+    <!-- Page container -->
+    <div class="page-container" style="min-height:648px">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Content area -->
+                <div class="content">
+
+                    <!-- Advanced login -->
+                    <form method="post" action="auth">
+                        <div class="panel panel-body login-form">
+                            <div class="text-center">
+                                <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+                                <h5 class="content-group">Login to your account <small class="display-block">Your credentials</small></h5>
+                            </div>
+                            <div style="text-align: center;">
+                                <label style="color: red; text-align: center;">@Session["Error"]</label>
+                            </div>
+                            <div class="form-group has-feedback has-feedback-left">
+                                
+                                <input type="text" name="u" class="form-control" placeholder="Username" autocomplete="off">
+                                <div class="form-control-feedback">
+                                    <i style="top: 10px" class="icon-user text-muted"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-feedback has-feedback-left">
+                                <input type="password" name="p" class="form-control" placeholder="Password">
+                                <div class="form-control-feedback">
+                                    <i style="top: 10px" class="icon-lock2 text-muted"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group login-options">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn bg-blue btn-block">Login</button>
+                            </div>
+                            <span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
+                        </div>
+                    </form>
+                    <!-- /advanced login -->
+                    <!-- Footer -->
+                    <div class="footer text-muted text-center">
+                        © 2015. <a href="#">Online Auction</a> by <a href="../Account/auth" target="_blank">Group NANI</a>
+                    </div>
+                    <!-- /footer -->
+
+                </div>
+                <!-- /content area -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+
+
+
+</body>
+</html>
+
 <style>
     .login-form {
         position: absolute;
@@ -11,7 +125,7 @@
     }
 </style>
 <!-- Main content -->
-<div class="content-wrapper">
+@*<div class="content-wrapper">
     <!-- Content area -->
     <div class="content pb-20">
         <!-- Tabbed form -->
@@ -70,4 +184,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
