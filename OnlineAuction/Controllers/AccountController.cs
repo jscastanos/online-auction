@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Linq;
+using OnlineAuction.Models;
 
 
 namespace OnlineAuction.Controllers
@@ -48,7 +49,11 @@ namespace OnlineAuction.Controllers
                 if (cu != null)
                 {
                     Session["userID"] = cu.UsersId;
+<<<<<<< HEAD
                     Session["branchID"] = 1;
+=======
+                    //Session["branchID"] = empl.BranchId;
+>>>>>>> master
                     Session["username"] = cu.UserName;
                     return RedirectToAction("Index", "Home");
                 }
