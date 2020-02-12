@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="OnlineAuctionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="OnlineAuctionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblAuctionItems">
           <Key>
             <PropertyRef Name="recNo" />
@@ -211,7 +211,8 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
     FROM [dbo].[vProduct] AS [vProduct]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OnlineAuctionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -365,20 +366,6 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="total" Type="Double" />
           <Property Name="totalProductSold" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="OnlineAuctionEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tblAuctionItems" EntityType="Self.tblAuctionItem" />
-          <EntitySet Name="tblBiddersInfoes" EntityType="Self.tblBiddersInfo" />
-          <EntitySet Name="tblBiddings" EntityType="Self.tblBidding" />
-          <EntitySet Name="tblBranchShops" EntityType="Self.tblBranchShop" />
-          <EntitySet Name="tblEmployeesInfoes" EntityType="Self.tblEmployeesInfo" />
-          <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
-          <EntitySet Name="tblProductCategories" EntityType="Self.tblProductCategory" />
-          <EntitySet Name="tblRatings" EntityType="Self.tblRating" />
-          <EntitySet Name="tblUserManagements" EntityType="Self.tblUserManagement" />
-          <EntitySet Name="tblUsersRoles" EntityType="Self.tblUsersRole" />
-          <EntitySet Name="vAuctionProducts" EntityType="Self.vAuctionProduct" />
-          <EntitySet Name="vProducts" EntityType="OnlineAuctionModel.vProduct" />
-        </EntityContainer>
         <EntityType Name="vProduct">
           <Key>
             <PropertyRef Name="recNo" />
@@ -392,6 +379,20 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="Status" Type="Int32" />
           <Property Name="ProductId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityContainer Name="OnlineAuctionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAuctionItems" EntityType="Self.tblAuctionItem" />
+          <EntitySet Name="tblBiddersInfoes" EntityType="Self.tblBiddersInfo" />
+          <EntitySet Name="tblBiddings" EntityType="Self.tblBidding" />
+          <EntitySet Name="tblBranchShops" EntityType="Self.tblBranchShop" />
+          <EntitySet Name="tblEmployeesInfoes" EntityType="Self.tblEmployeesInfo" />
+          <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
+          <EntitySet Name="tblProductCategories" EntityType="Self.tblProductCategory" />
+          <EntitySet Name="tblRatings" EntityType="Self.tblRating" />
+          <EntitySet Name="tblUserManagements" EntityType="Self.tblUserManagement" />
+          <EntitySet Name="tblUsersRoles" EntityType="Self.tblUsersRole" />
+          <EntitySet Name="vAuctionProducts" EntityType="Self.vAuctionProduct" />
+          <EntitySet Name="vProducts" EntityType="Self.vProduct" />
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -562,14 +563,14 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <EntitySetMapping Name="vProducts">
             <EntityTypeMapping TypeName="OnlineAuctionModel.vProduct">
               <MappingFragment StoreEntitySet="vProduct">
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="ProductImg" ColumnName="ProductImg" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="recNo" ColumnName="recNo" />
                 <ScalarProperty Name="rowNum" ColumnName="rowNum" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductImg" ColumnName="ProductImg" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

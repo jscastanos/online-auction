@@ -31,7 +31,11 @@ namespace OnlineAuction.Controllers
         [CustomAuthorize(Roles="Admin")]
         public ActionResult Admin(){
             return View();
-        }  
+        }
 
-    }
+        public ActionResult Dashboard() {
+            return View();
+        
+        }
+        }  
 }
