@@ -68,8 +68,26 @@ export class CategoryViewPage implements OnInit {
           this.index = data[Object.keys(data).length - 1].recNo;
         }
 
+        console.log(this.products)
+
         this.fetchProductsService.unsubscribe();
 
       })
+  }
+
+  openAuction(item) {
+
+    let data = {
+      name: item.ProductName,
+      id: item.ProductId
+    }
+
+    let params = {
+      queryParams: {
+        q: JSON.stringify(data)
+      }
+    }
+
+    this.router.navigate(["/item-view"], params)
   }
 }

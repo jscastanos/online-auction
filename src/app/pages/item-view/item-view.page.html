@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color="{{user.statusColor}}">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/home']">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ itemName }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="itemDetails != null">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <img src="{{url}}/Product/RetrieveImage?id={{itemId}}"
+          onerror="this.onerror = null; this.src = '../assets/placeholder.png'" />
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="itemName">
+        <ion-text>
+          <h2>{{itemName}}</h2>
+        </ion-text>
+        <ion-text>
+          <h1>
+            {{ highestBidPrice | currency : '&#8369; '}}
+          </h1>
+          <span>(Starts at {{itemDetails.AskPrice | currency : '&#8369; '}})</span>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row style="margin-top: 20px">
+      <ion-col size="12" *ngIf="userBidPrice == null; else userPrice">
+        <ion-button color="primary" expand="full" (click)="presentAlert()">
+          <ion-icon name="hammer"></ion-icon> &nbsp;
+          Bid Now
+        </ion-button>
+      </ion-col>
+      <ng-template #userPrice>
+        <ion-col>
+          <ion-item color="success">
+            You bid at {{userBidPrice  | currency : '&#8369; ' }}
+          </ion-item>
+        </ion-col>
+      </ng-template>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+          </ion-item>
+          <ion-item *ngFor="let bidders of biddingDetails.bidList">
+            <ion-avatar slot="start">
+              <img src="{{url}}/account/retrieveImage?id={{bidders.BiddersId}}&type=0" />
+            </ion-avatar>
+            <ion-label>
+              <h1>{{bidders.bidderName}}</h1>
+              <h3>{{bidders.BidPrice | currency : '&#8369; '}}</h3>
+              <p>{{bidders.DateCreated}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

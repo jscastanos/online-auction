@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { BrowseByAllPage } from './browse-by-all.page';
+import { ItemViewPage } from './item-view.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: BrowseByAllPage
+    component: ItemViewPage
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class BrowseByAllPageRoutingModule {}
+export class ItemViewPageRoutingModule {}

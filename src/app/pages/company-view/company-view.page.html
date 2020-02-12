@@ -5,14 +5,14 @@
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{ companyView }}</ion-title>
+    <ion-title>{{ companyName }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list lines="none" class="itemList">
     <ion-grid>
-      <ion-row>
+      <ion-row *ngIf="products.length > 0; else nodata">
         <ion-col size-xs="6" *ngFor="let items of products" class="item">
           <div class="badgeHolder">
             <div class="bidBadge" [ngClass]="{'badge-success' : items.Status == 1}">
@@ -21,11 +21,15 @@
           </div>
           <img src="{{url}}/image/image.png" onerror="this.onerror = null; this.src = '../assets/placeholder.png'" />
           <ion-text>
-            <h1>{{items.recNo}}</h1>
             <h5>{{items.ProductName}}</h5>
           </ion-text>
         </ion-col>
       </ion-row>
+      <ng-template #nodata>
+        <ion-row>
+          <ion-col>No Items</ion-col>
+        </ion-row>
+      </ng-template>
     </ion-grid>
   </ion-list>
 

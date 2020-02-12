@@ -22,21 +22,9 @@ const routes: Routes = [
         path: 'list',
         loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
       },
-
-      {
-        path: 'search-result',
-        loadChildren: () => import('./pages/search-result/search-result.module').then(m => m.SearchResultPageModule)
-      },
       {
         path: 'company-view',
         loadChildren: () => import('./pages/company-view/company-view.module').then(m => m.CompanyViewPageModule)
-      },
-      {
-        path: 'auction-view',
-        loadChildren: () => import('./pages/auction-view/auction-view.module').then(m => m.AuctionViewPageModule)
-      }, {
-        path: 'browse-by-all',
-        loadChildren: () => import('./pages/browse-by-all/browse-by-all.module').then(m => m.BrowseByAllPageModule)
       },
       {
         path: 'category-view',
@@ -45,6 +33,10 @@ const routes: Routes = [
       {
         path: 'profile',
         loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule)
+      },
+      {
+        path: 'item-view',
+        loadChildren: () => import('./pages/item-view/item-view.module').then(m => m.ItemViewPageModule)
       },
     ]
   },

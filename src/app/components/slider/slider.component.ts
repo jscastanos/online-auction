@@ -10,14 +10,17 @@ import { SliderService } from 'src/app/services/slider.service';
 
 export class SliderComponent implements OnInit {
   @Input() options;
-  items;
+  items = [];
 
   constructor(private router: Router, private sliderService: SliderService) { }
 
   ngOnInit() {
     this.sliderService.getData(this.options.requestUrl)
       .subscribe(data => {
-        this.items = data
+
+        for (let d of Object.keys(data)) {
+          this.items.push(data[d]);
+        }
       });
   }
 

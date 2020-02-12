@@ -2,18 +2,13 @@
   <ion-slide *ngFor="let i of items">
     <ion-card (click)="openDetails(i)" [ngClass]='[options.style]'>
       <ion-header>
-        <img src="https://dummyimage.com/sqrpop" alt=""
-          onerror="this.onerror=null;this.src='../assets/placeholder.png'">
+        <img src="" alt="" onerror="this.onerror=null;this.src='../assets/placeholder.png'">
         <ion-card-title>{{ i[options.dataObject.name] }}</ion-card-title>
       </ion-header>
     </ion-card>
   </ion-slide>
-  <!-- <ion-slide>
-    <ion-card [ngClass]='[options.style]' (click)="openAll(options.sliderId)">
-      <ion-header>
-        <img src="../../../assets/plus.png" />
-        <ion-card-title>{{options.sliderBrowseAllText}}</ion-card-title>
-      </ion-header>
-    </ion-card>
-  </ion-slide> -->
 </ion-slides>
+
+<div *ngIf="items.length == 0" style="text-align: center;">
+  <ion-label>No data</ion-label>
+</div>

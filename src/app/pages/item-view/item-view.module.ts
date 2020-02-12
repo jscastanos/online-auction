@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AuctionViewPageRoutingModule } from './auction-view-routing.module';
+import { ItemViewPageRoutingModule } from './item-view-routing.module';
 
-import { AuctionViewPage } from './auction-view.page';
+import { ItemViewPage } from './item-view.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AuctionViewPageRoutingModule
+    ItemViewPageRoutingModule
   ],
-  declarations: [AuctionViewPage]
+  declarations: [ItemViewPage]
 })
-export class AuctionViewPageModule {}
+export class ItemViewPageModule {}

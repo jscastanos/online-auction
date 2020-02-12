@@ -49,8 +49,6 @@ export class CompanyViewPage implements OnInit {
 
   }
 
-
-
   ngOnInit() {
     this.getProducts();
   }

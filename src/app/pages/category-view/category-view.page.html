@@ -13,17 +13,16 @@
   <ion-list lines="none" class="itemList">
     <ion-grid>
       <ion-row>
-        <ion-col size-xs="6" *ngFor="let items of products" class="item">
+        <ion-col size-xs="6" *ngFor="let item of products" class="item" (click)="openAuction(item)">
           <div class="badgeHolder">
-            <div class="bidBadge" [ngClass]="{'badge-success' : items.Status == 1}">
-              {{items.Status == 1 ? "On Auction" : "For Display"}}
+            <div class="bidBadge" [ngClass]="{'badge-success' : item.Status == 1}">
+              {{item.Status == 1 ? "On Auction" : "For Display"}}
             </div>
           </div>
-          <img src="{{url}}/Product/RetrieveImage?id={{items.ProductId}}"
+          <img src="{{url}}/Product/RetrieveImage?id={{item.ProductId}}"
             onerror="this.onerror = null; this.src = '../assets/placeholder.png'" />
           <ion-text>
-            <h1>{{items.recNo}}</h1>
-            <h5>{{items.ProductName}}</h5>
+            <h5>{{item.ProductName}}</h5>
           </ion-text>
         </ion-col>
       </ion-row>
