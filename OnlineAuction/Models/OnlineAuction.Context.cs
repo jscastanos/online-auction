@@ -25,6 +25,7 @@ namespace OnlineAuction.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tblAuctionItem> tblAuctionItems { get; set; }
         public virtual DbSet<tblBiddersInfo> tblBiddersInfoes { get; set; }
         public virtual DbSet<tblBidding> tblBiddings { get; set; }
@@ -35,6 +36,7 @@ namespace OnlineAuction.Models
         public virtual DbSet<tblRating> tblRatings { get; set; }
         public virtual DbSet<tblUserManagement> tblUserManagements { get; set; }
         public virtual DbSet<tblUsersRole> tblUsersRoles { get; set; }
+        public virtual DbSet<vAuctionProduct> vAuctionProducts { get; set; }
         public virtual DbSet<vProduct> vProducts { get; set; }
     }
 }

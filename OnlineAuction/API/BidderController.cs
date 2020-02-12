@@ -108,5 +108,15 @@ namespace OnlineAuction.API
             return Json(data);
         }
 
+        
+
+        public IHttpActionResult GetCheckCardImage(string id)
+        {
+            var data = db.tblBiddersInfoes.Where(user => user.BiddersId == id).SingleOrDefault();
+
+
+            return Json(new { front = data.CardImgFront == null ? 0 : 1, back = data.CardImgBack == null ? 0 : 1 });
+        }
+
     }
 }

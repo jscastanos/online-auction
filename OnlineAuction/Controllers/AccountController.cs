@@ -26,43 +26,17 @@ namespace OnlineAuction.Controllers
         }
         public ActionResult Login()
         {
-            if (FormsAuthentication.FormsCookieName != null)
-            {
-
-            }
-
             return View();
         }
 
+        
+
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
 
             return RedirectToAction("Login");
         }
 
-        public ActionResult Verify(string username, string password)
-        {
-            bool IsVerified = new IdentityModel().IsVerified(username, password);
-
-            if (IsVerified)
-            {
-                FormsAuthentication.SetAuthCookie(username, false);
-              
-                if(Roles.IsUserInRole(username, "Admin"))
-                    return RedirectToAction("Admin", "Home");
-
-                else if(Roles.IsUserInRole(username, "Super Admin"))
-                    return RedirectToAction("SuperAdmin", "Home");
-                else
-                    return RedirectToAction("User", "Home");
-                
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
-        }
 
         public ActionResult auth(string u, string p)
         {
@@ -75,9 +49,8 @@ namespace OnlineAuction.Controllers
                 if (cu != null)
                 {
                     Session["userID"] = cu.UsersId;
-                    Session["branchID"] = empl.BranchId;
+                    //Session["branchID"] = empl.BranchId;
                     Session["username"] = cu.UserName;
-                    Verify(u, p);
                     return RedirectToAction("Index", "Home");
                 }
                 else
