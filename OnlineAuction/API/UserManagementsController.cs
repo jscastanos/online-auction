@@ -88,7 +88,7 @@ namespace OnlineAuction.API
         //api/UserManagements
          public IHttpActionResult GettblUserManagement(int id, string key, int Scode)
          {
-             
+           //  string sampleID = "SWABE";
              var predata = db.tblUserManagements.Where(u => u.recNo > id && u.Status == Scode )
                  .Select(k => new
                  {
@@ -110,15 +110,16 @@ namespace OnlineAuction.API
                      nameMiddle = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).MiddleName,
                      nameLast = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).LastName,
                      roleDisplay = db.tblUsersRoles.FirstOrDefault(h => h.RoleId == k.RoleId).RoleName,
+                     nameBranchId = db.tblEmployeesInfoes.FirstOrDefault(l=> l.EmpId == k.UsersId).BranchId, 
                      conName = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).FirstName + " "+ db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).MiddleName +" " + db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).LastName
                  });
+            // var bybranch = db.tblEmployeesInfoes.Where(u => u.EmpId == sampleID)
              var data = predata.Where(k => k.prestatus != 1);
                 
              if (key != null && key != "")
              {
                  data = data.Where(w => w.nameFirst.Contains(key) || w.nameMiddle.Contains(key) || w.nameLast.Contains(key));
              }
-
              return Json(data.Take(10));
 
          }
