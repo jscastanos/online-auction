@@ -10,7 +10,7 @@ namespace OnlineAuction.Controllers
 {
     public class HomeController : Controller
     {
-        [CustomAuthorize(Roles = "Admin, SuperAdmin, User")]
+        //[CustomAuthorize(Roles = "Admin, SuperAdmin, User")]
         public ActionResult Index()
         {
    
@@ -31,11 +31,11 @@ namespace OnlineAuction.Controllers
         [CustomAuthorize(Roles="Admin")]
         public ActionResult Admin(){
             return View();
-        }
+        }  
 
         public ActionResult Dashboard() {
             return View();
         
         }
-        }  
+    }
 }

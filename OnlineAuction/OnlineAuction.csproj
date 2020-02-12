@@ -20,7 +20,6 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,10 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -53,14 +48,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -78,10 +65,6 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
@@ -94,30 +77,6 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -125,29 +84,62 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
-    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\products\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\AuctionItemsController.cs" />
     <Compile Include="API\AuthController.cs" />
     <Compile Include="API\BidderController.cs" />
     <Compile Include="API\BiddersController.cs" />
     <Compile Include="API\BranchController.cs" />
-    <Compile Include="API\CategoryController.cs" />
     <Compile Include="API\EmployeesInfoesController.cs" />
-    <Compile Include="API\MobileUtilsController.cs" />
-    <Compile Include="API\MonitoringController.cs" />
     <Compile Include="API\ProductsController.cs" />
     <Compile Include="API\UserManagementsController.cs" />
     <Compile Include="API\UsersRoleController.cs" />
@@ -155,53 +147,19 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
-    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
-    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
-    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
-    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs" />
-    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
-    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
-    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
-    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs" />
-    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs" />
-    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs" />
-    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
-    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
-    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\AuctionController.cs" />
     <Compile Include="Controllers\BranchController.cs" />
-    <Compile Include="Controllers\CategoryController.cs" />
-    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\GuardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MonitoringController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
-    <Compile Include="Custom_Class\ConvertDate.cs" />
     <Compile Include="Filters\CustomAuthorize.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\IdentityModel.cs" />
     <Compile Include="Models\OnlineAuction.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -217,7 +175,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>OnlineAuction.tt</DependentUpon>
     </Compile>
@@ -260,32 +217,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Web.config" />
-    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
-    <Content Include="Content\animate.min.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\colors.css" />
     <Content Include="Content\components.css" />
     <Content Include="Content\core.css" />
@@ -297,23 +232,10 @@
     <Content Include="Content\kendo.material.min.css" />
     <Content Include="Content\kendo.material.mobile.min.css" />
     <Content Include="Content\select2.min.css" />
-    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\fontawesome-webfont5b62.eot" />
     <Content Include="fonts\fontawesome-webfont5b62.svg" />
-    <Content Include="fonts\fontawesome-webfont5b62.ttf" />
-    <Content Include="fonts\fontawesome-webfont5b62.woff" />
-    <Content Include="fonts\fontawesome-webfont5b62.woff2" />
-    <Content Include="fonts\fontawesome-webfontd41d.eot" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\icomoond41d.eot" />
-    <Content Include="fonts\icomoone627.eot" />
     <Content Include="fonts\icomoone627.svg" />
-    <Content Include="fonts\icomoone627.ttf" />
-    <Content Include="fonts\icomoone627.woff" />
     <Content Include="Global.asax" />
     <Content Include="Images\add_user.png" />
     <Content Include="Images\backgrounds\boxed_bg.png" />
@@ -321,7 +243,6 @@
     <Content Include="Images\backgrounds\panel_bg.png" />
     <Content Include="Images\backgrounds\seamless.png" />
     <Content Include="Images\Background\money-background-02-high.jpg" />
-    <Content Include="Images\Background\VSMacros.vsix" />
     <Content Include="Images\dm.jpeg" />
     <Content Include="Images\image.png" />
     <Content Include="Images\login_cover.jpg" />
@@ -347,6 +268,17 @@
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
       <LastGenOutput>OnlineAuction.cs</LastGenOutput>
     </Content>
+    <Content Include="packages.config" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\_GridView.cshtml" />
+    <Content Include="Views\Admin\_ListView.cshtml" />
+    <Content Include="Views\Branch\Index.cshtml" />
+    <Content Include="Views\Branch\_addBidders.cshtml" />
+    <Content Include="Views\Branch\_addBranch.cshtml" />
+    <Content Include="Views\Branch\_biddersList.cshtml" />
+    <Content Include="Views\Branch\_branchList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Scripts\Admin\index.js" />
     <Content Include="Scripts\angucomplete.css" />
     <Content Include="Scripts\angucomplete.js" />
@@ -368,32 +300,13 @@
     <Content Include="Scripts\css\colors.css" />
     <Content Include="Scripts\css\components.css" />
     <Content Include="Scripts\css\core.css" />
-    <Content Include="Scripts\css\cropper.css" />
     <Content Include="Scripts\css\croppie.css" />
     <Content Include="Scripts\css\extras\animate.min.css" />
-    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.eot" />
     <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.svg" />
-    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.ttf" />
-    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.woff" />
-    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.woff2" />
-    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfontd41d.eot" />
     <Content Include="Scripts\css\icons\fontawesome\styles.min.css" />
-    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.svg" />
-    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.ttf" />
-    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.woff" />
-    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.woff2" />
-    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regulard41d.eot" />
-    <Content Include="Scripts\css\icons\icomoon\fonts\icomoond41d.eot" />
-    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.eot" />
     <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.svg" />
-    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.ttf" />
-    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.woff" />
     <Content Include="Scripts\css\icons\icomoon\styles.css" />
-    <Content Include="Scripts\css\icons\summernote\summernoted41d.eot" />
-    <Content Include="Scripts\css\icons\summernote\summernotef534.eot" />
-    <Content Include="Scripts\css\icons\summernote\summernotef534.ttf" />
-    <Content Include="Scripts\css\icons\summernote\summernotef534.woff" />
     <Content Include="Scripts\d3.min.js" />
     <Content Include="Scripts\d3_tooltip.js" />
     <Content Include="Scripts\datepicker.js" />
@@ -406,7 +319,6 @@
     <Content Include="Scripts\jcs-auto-validate.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\JsBarcode.all.min.js" />
     <Content Include="Scripts\js\assets_js_switchery_switchery.min.js" />
@@ -907,11 +819,7 @@
     <Content Include="Scripts\mynavs.js" />
     <Content Include="Scripts\navs.js" />
     <Content Include="Scripts\ng-app.js" />
-    <Content Include="Scripts\ng-auction.js" />
-    <Content Include="Scripts\ng-catRef.js" />
-    <Content Include="Scripts\ng-dashboard.js" />
     <Content Include="Scripts\ng-product.js" />
-    <Content Include="Scripts\ngMonitoring.js" />
     <Content Include="Scripts\ngpManagement.js" />
     <Content Include="Scripts\ngRoles.js" />
     <Content Include="Scripts\ngtRole.js" />
@@ -933,6 +841,46 @@
     <Content Include="Scripts\template.js" />
     <Content Include="Scripts\uniform.min.js" />
     <Content Include="Scripts\xlsx.full.min.js" />
+    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.eot" />
+    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.ttf" />
+    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.woff" />
+    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.woff2" />
+    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="Scripts\css\icons\icomoon\fonts\icomoond41d.eot" />
+    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.eot" />
+    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.ttf" />
+    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.woff" />
+    <Content Include="Scripts\css\icons\summernote\summernoted41d.eot" />
+    <Content Include="Scripts\css\icons\summernote\summernotef534.eot" />
+    <Content Include="Scripts\css\icons\summernote\summernotef534.ttf" />
+    <Content Include="Scripts\css\icons\summernote\summernotef534.woff" />
+    <Content Include="fonts\fontawesome-webfont5b62.eot" />
+    <Content Include="fonts\fontawesome-webfont5b62.ttf" />
+    <Content Include="fonts\fontawesome-webfont5b62.woff" />
+    <Content Include="fonts\fontawesome-webfont5b62.woff2" />
+    <Content Include="fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\icomoond41d.eot" />
+    <Content Include="fonts\icomoone627.eot" />
+    <Content Include="fonts\icomoone627.ttf" />
+    <Content Include="fonts\icomoone627.woff" />
+    <Content Include="Images\Background\VSMacros.vsix" />
+    <EntityDeploy Include="Models\OnlineAuction.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\OnlineAuction.edmx.diagram">
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
@@ -941,7 +889,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\SuperAdmin.cshtml" />
     <Content Include="Views\Home\User.cshtml" />
-    <Content Include="Views\Monitoring\Auction.cshtml" />
     <Content Include="Views\Personel\PersonMgt.cshtml" />
     <Content Include="Views\Product\AuctionManagement.cshtml" />
     <Content Include="Views\Product\ProductManagement.cshtml" />
@@ -955,43 +902,13 @@
     <Content Include="Views\UserManagement\TagRole.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Debug.config">
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
+    </None>
+    <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Models\OnlineAuction.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\OnlineAuction.edmx.diagram">
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-    </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\_GridView.cshtml" />
-    <Content Include="Views\Admin\_ListView.cshtml" />
-    <Content Include="Views\Auction\AuctionManagement.cshtml" />
-    <Content Include="Views\Branch\Index.cshtml" />
-    <Content Include="Views\Branch\_addBidders.cshtml" />
-    <Content Include="Views\Branch\_addBranch.cshtml" />
-    <Content Include="Views\Branch\_biddersList.cshtml" />
-    <Content Include="Views\Branch\_branchList.cshtml" />
-    <Content Include="Views\Category\CategoryReference.cshtml" />
-    <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Views\Home\Dashboard.cshtml" />
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1022,9 +939,3 @@
     </VisualStudio>
   </ProjectExtensions>
 </Project>
-<!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target> -->
