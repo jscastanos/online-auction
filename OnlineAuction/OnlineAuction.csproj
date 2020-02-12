@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -137,57 +137,122 @@
     <Folder Include="Images\products\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\AuctionItemsController.cs" />
-    <Compile Include="API\AuthController.cs" />
-    <Compile Include="API\BidderController.cs" />
-    <Compile Include="API\BiddersController.cs" />
-    <Compile Include="API\BranchController.cs" />
-    <Compile Include="API\CategoryController.cs" />
-    <Compile Include="API\EmployeesInfoesController.cs" />
-    <Compile Include="API\MobileUtilsController.cs" />
-    <Compile Include="API\MonitoringController.cs" />
-    <Compile Include="API\ProductsController.cs" />
-    <Compile Include="API\UserManagementsController.cs" />
-    <Compile Include="API\UsersRoleController.cs" />
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\AuctionController.cs" />
-    <Compile Include="Controllers\BranchController.cs" />
-    <Compile Include="Controllers\CategoryController.cs" />
-    <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\GuardController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MonitoringController.cs" />
-    <Compile Include="Controllers\PersonelController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\RoleController.cs" />
-    <Compile Include="Controllers\UserManagementController.cs" />
+    <Compile Include="API\AuctionItemsController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="API\AuthController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="API\BidderController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="API\BiddersController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="API\BranchController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="API\CategoryController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="API\EmployeesInfoesController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="API\MobileUtilsController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="API\MonitoringController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="API\ProductsController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="API\UserManagementsController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="API\UsersRoleController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="App_Start\FilterConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="App_Start\RouteConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="App_Start\WebApiConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\AccountController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\AdminController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\AuctionController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\BranchController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\CategoryController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\DashboardController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\GuardController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\HomeController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\MonitoringController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\PersonelController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\ProductController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\RoleController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\SessionTimeoutAttribute.cs" />
+    <Compile Include="Controllers\UserManagementController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Custom_Class\ConvertDate.cs" />
-    <Compile Include="Filters\CustomAuthorize.cs" />
+    <Compile Include="Filters\CustomAuthorize.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\IdentityModel.cs" />
+    <Compile Include="Models\IdentityModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\OnlineAuction.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>OnlineAuction.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\OnlineAuction.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>OnlineAuction.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\OnlineAuction.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\RoleModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>OnlineAuction.tt</DependentUpon>
     </Compile>
@@ -230,7 +295,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\colors.css" />
     <Content Include="Content\components.css" />
     <Content Include="Content\core.css" />
@@ -242,6 +311,7 @@
     <Content Include="Content\kendo.material.min.css" />
     <Content Include="Content\kendo.material.mobile.min.css" />
     <Content Include="Content\select2.min.css" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont5b62.eot" />
     <Content Include="fonts\fontawesome-webfont5b62.svg" />
     <Content Include="fonts\fontawesome-webfont5b62.ttf" />
@@ -257,7 +327,6 @@
     <Content Include="fonts\icomoone627.svg" />
     <Content Include="fonts\icomoone627.ttf" />
     <Content Include="fonts\icomoone627.woff" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\add_user.png" />
     <Content Include="Images\backgrounds\boxed_bg.png" />
@@ -265,6 +334,7 @@
     <Content Include="Images\backgrounds\panel_bg.png" />
     <Content Include="Images\backgrounds\seamless.png" />
     <Content Include="Images\Background\money-background-02-high.jpg" />
+    <Content Include="Images\Background\VSMacros.vsix" />
     <Content Include="Images\dm.jpeg" />
     <Content Include="Images\image.png" />
     <Content Include="Images\login_cover.jpg" />
@@ -281,13 +351,16 @@
     <Content Include="Images\producer\69.jpeg" />
     <Content Include="Images\producer\70.jpeg" />
     <Content Include="Models\OnlineAuction.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>OnlineAuction.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\OnlineAuction.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
+    <Content Include="Models\OnlineAuction.edmx.diagram">
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\OnlineAuction.tt">
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>OnlineAuction.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\Admin\index.js" />
@@ -312,6 +385,7 @@
     <Content Include="Scripts\css\colors.css" />
     <Content Include="Scripts\css\components.css" />
     <Content Include="Scripts\css\core.css" />
+    <Content Include="Scripts\css\cropper.css" />
     <Content Include="Scripts\css\croppie.css" />
     <Content Include="Scripts\css\extras\animate.min.css" />
     <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.eot" />
@@ -879,11 +953,24 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\_GridView.cshtml" />
+    <Content Include="Views\Admin\_ListView.cshtml" />
+    <Content Include="Views\Auction\AuctionManagement.cshtml" />
+    <Content Include="Views\Branch\Index.cshtml" />
+    <Content Include="Views\Branch\_addBidders.cshtml" />
+    <Content Include="Views\Branch\_addBranch.cshtml" />
+    <Content Include="Views\Branch\_biddersList.cshtml" />
+    <Content Include="Views\Branch\_branchList.cshtml" />
+    <Content Include="Views\Category\CategoryReference.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Guard\Unauthorized.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\SuperAdmin.cshtml" />
     <Content Include="Views\Home\User.cshtml" />
+    <Content Include="Views\Monitoring\Auction.cshtml" />
     <Content Include="Views\Personel\PersonMgt.cshtml" />
     <Content Include="Views\Product\AuctionManagement.cshtml" />
     <Content Include="Views\Product\ProductManagement.cshtml" />
@@ -910,34 +997,19 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\Background\VSMacros.vsix" />
-    <EntityDeploy Include="Models\OnlineAuction.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\OnlineAuction.edmx.diagram">
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\_GridView.cshtml" />
-    <Content Include="Views\Admin\_ListView.cshtml" />
-    <Content Include="Views\Branch\Index.cshtml" />
-    <Content Include="Views\Branch\_addBidders.cshtml" />
-    <Content Include="Views\Branch\_addBranch.cshtml" />
-    <Content Include="Views\Branch\_biddersList.cshtml" />
-    <Content Include="Views\Branch\_branchList.cshtml" />
-    <Content Include="Views\Auction\AuctionManagement.cshtml" />
-    <Content Include="Views\Category\CategoryReference.cshtml" />
-    <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Views\Monitoring\Auction.cshtml" />
-    <Content Include="Views\Home\Dashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\OnlineAuction.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

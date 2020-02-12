@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace OnlineAuction.Controllers
 {
+    [SessionTimeoutAttribute]
     public class MonitoringController : Controller
     {
         // GET: Monitoring

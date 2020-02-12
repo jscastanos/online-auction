@@ -7,6 +7,7 @@ using OnlineAuction.Models;
 
 namespace OnlineAuction.Controllers
 {
+    [SessionTimeoutAttribute]
     public class ProductController : Controller
     {
         OnlineAuctionEntities db = new OnlineAuctionEntities();

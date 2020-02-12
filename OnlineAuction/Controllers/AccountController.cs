@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Linq;
-using OnlineAuction.Models;
 
 
 namespace OnlineAuction.Controllers
@@ -33,7 +32,8 @@ namespace OnlineAuction.Controllers
 
         public ActionResult Logout()
         {
-
+            Session.Abandon();
+            Session.Clear();
             return RedirectToAction("Login");
         }
 
@@ -44,16 +44,12 @@ namespace OnlineAuction.Controllers
             {
                 u = Session["username"] != null ? Session["username"].ToString() : u;
                 var cu = db.tblUserManagements.SingleOrDefault(ur => ur.UserName == u && ur.Password == p);
-
                 var empl = db.tblEmployeesInfoes.SingleOrDefault(emp => emp.EmpId == cu.UsersId);
+
                 if (cu != null)
                 {
                     Session["userID"] = cu.UsersId;
-<<<<<<< HEAD
                     Session["branchID"] = 1;
-=======
-                    //Session["branchID"] = empl.BranchId;
->>>>>>> master
                     Session["username"] = cu.UserName;
                     return RedirectToAction("Index", "Home");
                 }

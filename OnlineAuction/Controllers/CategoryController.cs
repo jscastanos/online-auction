@@ -6,12 +6,13 @@ using System.Web.Mvc;
 
 namespace OnlineAuction.Controllers
 {
+    [SessionTimeoutAttribute]
     public class CategoryController : Controller
     {
         // GET: Category
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("CategoryReference");
         }
 
         public ActionResult CategoryReference() {
