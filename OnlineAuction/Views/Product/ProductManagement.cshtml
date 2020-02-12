@@ -159,7 +159,7 @@
         </div>
     </div>
 
-    <div id="newProduct" class="modal fade">
+    <div id="newProduct" class="modal fade" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header bg-primary" ng-if="add">
@@ -207,7 +207,7 @@
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="text" placeholder="Category" ng-model="tempArr.categoryName" id="catName" style="width:100%" required>
+                                <input type="text" placeholder="Category" ng-model="tempArr.categoryName" id="catName" style="width:100%">
                                 <span class="input-group-addon bg-blue" ng-if="add"><i class="icon-stack3"></i></span>
                                 <span class="input-group-addon bg-success" ng-if="update"><i class="icon-stack3"></i></span>
                             </div>

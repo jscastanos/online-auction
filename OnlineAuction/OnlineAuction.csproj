@@ -134,12 +134,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\products\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\AuctionItemsController.cs" />
     <Compile Include="API\AuthController.cs" />
     <Compile Include="API\BidderController.cs" />
     <Compile Include="API\BiddersController.cs" />
     <Compile Include="API\BranchController.cs" />
+    <Compile Include="API\CategoryController.cs" />
     <Compile Include="API\EmployeesInfoesController.cs" />
     <Compile Include="API\ProductsController.cs" />
     <Compile Include="API\UserManagementsController.cs" />
@@ -249,6 +252,27 @@
     <Content Include="fonts\icomoone627.woff" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\add_user.png" />
+    <Content Include="Images\backgrounds\boxed_bg.png" />
+    <Content Include="Images\backgrounds\boxed_bg_retina.png" />
+    <Content Include="Images\backgrounds\panel_bg.png" />
+    <Content Include="Images\backgrounds\seamless.png" />
+    <Content Include="Images\Background\money-background-02-high.jpg" />
+    <Content Include="Images\dm.jpeg" />
+    <Content Include="Images\image.png" />
+    <Content Include="Images\login_cover.jpg" />
+    <Content Include="Images\logo_icon_light.png" />
+    <Content Include="Images\logo_light.png" />
+    <Content Include="Images\nophoto.png" />
+    <Content Include="Images\personnel\1011.jpg" />
+    <Content Include="Images\personnel\18.jpg" />
+    <Content Include="Images\personnel\5.jpg" />
+    <Content Include="Images\personnel\7.jpg" />
+    <Content Include="Images\producer\1.jpeg" />
+    <Content Include="Images\producer\2.jpeg" />
+    <Content Include="Images\producer\68.jpeg" />
+    <Content Include="Images\producer\69.jpeg" />
+    <Content Include="Images\producer\70.jpeg" />
     <Content Include="Models\OnlineAuction.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
@@ -819,6 +843,9 @@
     <Content Include="Scripts\mynavs.js" />
     <Content Include="Scripts\navs.js" />
     <Content Include="Scripts\ng-app.js" />
+    <Content Include="Scripts\ng-auction.js" />
+    <Content Include="Scripts\ng-catRef.js" />
+    <Content Include="Scripts\ng-dashboard.js" />
     <Content Include="Scripts\ng-product.js" />
     <Content Include="Scripts\ngpManagement.js" />
     <Content Include="Scripts\ngRoles.js" />
@@ -882,6 +909,7 @@
     <Content Include="Models\OnlineAuction.edmx.diagram">
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
     </Content>
+    <Content Include="Images\Background\VSMacros.vsix" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\_GridView.cshtml" />

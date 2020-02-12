@@ -88,7 +88,6 @@
     });
 
     $("#catName").kendoAutoComplete({
-        minLength: 2,
         dataTextField: 'CategoryName',
         dataValueField: 'CategoryId',
         dataSource: {
@@ -109,7 +108,7 @@
     }
                
     s.addProduct = function () {
-        s.tempArr.CategoryID = s.dataItem.CategoryId;
+        s.tempArr.CategoryID = $("#catName").val();
         
         if (s.add == true) {                                         
             h.post("../api/products/add", s.tempArr).then(function (d) {
@@ -124,7 +123,6 @@
             s.uploadImgID = false;
         }
         else {
-            alert(JSON.stringify(s.tempArr));
             h.put("../api/products/" + s.updateProductID, s.tempArr).then(function (d) {
                 swal("Successfully Updated!", "", "success");
                 s.tempArr = {};
@@ -152,6 +150,7 @@
         h.get("../api/Products/" + id ).then(function (d) {
             s.tempArr = d.data;
             s.updateProductID = id;
+            $("#catName").val(s.tempArr.CategoryName);
             s.add = false;
             s.update = true;
 

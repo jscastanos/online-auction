@@ -18,13 +18,15 @@
         s.isLoading = true;
         h.get("../api/AuctionItems/auctionData?id=" + s.auctionlastId + "&key=" + s.filter.auctionName).then(function (d) {
             s.isLoading = false;
-            if (d.data.length > 0) {
-                s.auctionlastId = d.data[d.data.length - 1].rowNum
+            if (d.data.data.length > 0) {
+                s.auctionlastId = d.data.data[d.data.data.length - 1].rowNum
             }
             console.log(s.auctionlastId)
-            s.auctionData = s.auctionData.concat(d.data);
+            s.auctionData = s.auctionData.concat(d.data.data);
+
         });
     }
+
 
     s.searchProd = function () {
         s.auctionlastId = 0;
