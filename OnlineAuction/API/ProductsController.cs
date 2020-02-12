@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -23,6 +24,7 @@ namespace OnlineAuction.API
             public string ProductDescription { get; set; }
             public string CategoryId { get; set; }
             public string ProductImg { get; set; }
+            public string BranchID { get; set; }
 
         }
         // GET: api/Products
@@ -97,7 +99,7 @@ namespace OnlineAuction.API
         {
             var tblProduct = db.tblProducts.SingleOrDefault(a => a.recNo == id);
 
-            byte[] imageBytes = Convert.FromBase64String(data.ProductImg);
+            byte[] imageBytes = data.ProductImg != null ? Convert.FromBase64String(data.ProductImg) : tblProduct.ProductImg;
 
             tblProduct.ProductImg = imageBytes;
             tblProduct.ProductName = data.ProductName;
@@ -118,7 +120,7 @@ namespace OnlineAuction.API
         {
             tblProduct tblProduct = new tblProduct();
 
-            byte[] imageBytes = Convert.FromBase64String(data.ProductImg);
+            byte[] imageBytes = data.ProductImg != null ? Convert.FromBase64String(data.ProductImg) : null;
 
             tblProduct.ProductId = Guid.NewGuid().ToString("N").Substring(0, 5).ToUpper();
             tblProduct.DateCreated = DateTime.Now;
@@ -127,12 +129,12 @@ namespace OnlineAuction.API
             tblProduct.ProductName = data.ProductName;
             tblProduct.ProductDescription = data.ProductDescription;
             tblProduct.CategoryId = db.tblProductCategories.FirstOrDefault(a => a.CategoryName == data.CategoryId).CategoryId;
-            tblProduct.BranchId = HttpContext.Current.Session["BranchId"].ToString();
+            tblProduct.BranchId = data.BranchID;
 
             db.Entry(tblProduct).State = EntityState.Added;
             db.SaveChanges();
 
-            return Ok();
+            return Json(tblProduct);
         }
 
         [Route("api/products/rateProduct")]

@@ -8,8 +8,11 @@ namespace OnlineAuction
 {
     public static class WebApiConfig
     {
+
         public static void Register(HttpConfiguration config)
         {
+            
+
             // Web API configuration and services
             EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
