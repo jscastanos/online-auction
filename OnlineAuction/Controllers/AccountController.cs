@@ -66,6 +66,7 @@ namespace OnlineAuction.Controllers
             }
         }
 
+        [AllowAnonymous]
         public ActionResult RetrieveImage(string id, int type)
         {
             var data = db.tblBiddersInfoes.SingleOrDefault(x => x.BiddersId == id);
