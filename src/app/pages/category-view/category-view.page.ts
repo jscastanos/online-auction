@@ -1,16 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { ProductsService } from '../../services/products.service';
 import { CommonService } from 'src/app/services/common.service';
-import { IonInfiniteScroll } from '@ionic/angular';
+import { IonInfiniteScroll, NavController } from '@ionic/angular';
 import { EnvService } from 'src/app/services/env.service';
+import { get, set } from '../../services/storage.service';
 
 @Component({
   selector: 'app-category-view',
   templateUrl: './category-view.page.html',
   styleUrls: ['../../home/home.page.scss'],
 })
-export class CategoryViewPage implements OnInit {
+export class CategoryViewPage implements OnInit, OnDestroy {
   @ViewChild(IonInfiniteScroll, { static: false }) infiniteScroll: IonInfiniteScroll;
 
   categoryId;
@@ -21,36 +22,40 @@ export class CategoryViewPage implements OnInit {
   //common
   user;
   url;
+
   fetchProductsService;
 
-  constructor(private route: ActivatedRoute, private router: Router, private env: EnvService, private productsService: ProductsService, private common: CommonService) {
-    this.route.queryParams.subscribe(params => {
-      let data = JSON.parse(params.q.toString());
-      this.categoryId = data.id;
-      this.categoryName = data.name;
-    });
+  constructor(private nav: NavController, private route: ActivatedRoute, private router: Router, private env: EnvService, private productsService: ProductsService, private common: CommonService) {
+
     this.url = this.env.URL;
     this.user = this.common.user;
 
-    this.router.events.subscribe((ev) => {
-      if (ev instanceof NavigationEnd) {
+    this.route.queryParams.subscribe(params => {
+      if (params.q != null) {
+        let data = JSON.parse(params.q.toString());
+        this.categoryId = data.id;
+        this.categoryName = data.name;
 
-        if ((ev.url).includes("/category-view"))
-          this.getProducts();
-        else {
-          this.products = [];
-          this.index = 0;
-          this.fetchProductsService.unsubscribe();
-        }
+        set("category", data);
+
+        this.loadData();
+      } else {
+
+        get("category").then((data) => {
+          if (data != null) {
+            this.categoryId = data["id"];
+            this.categoryName = data["name"];
+
+            this.loadData();
+          } else {
+            this.router.navigateByUrl("/home");
+          }
+        })
       }
-
-
     });
-
   }
 
   ngOnInit() {
-    this.getProducts();
   }
 
   async loadData() {
@@ -68,10 +73,6 @@ export class CategoryViewPage implements OnInit {
           this.index = data[Object.keys(data).length - 1].recNo;
         }
 
-        console.log(this.products)
-
-        this.fetchProductsService.unsubscribe();
-
       })
   }
 
@@ -79,7 +80,8 @@ export class CategoryViewPage implements OnInit {
 
     let data = {
       name: item.ProductName,
-      id: item.ProductId
+      id: item.ProductId,
+      status: item.Status
     }
 
     let params = {
@@ -87,7 +89,10 @@ export class CategoryViewPage implements OnInit {
         q: JSON.stringify(data)
       }
     }
+    this.nav.navigateRoot(["/item-view"], params);
+  }
 
-    this.router.navigate(["/item-view"], params)
+  ngOnDestroy() {
+    this.fetchProductsService.unsubscribe();
   }
 }

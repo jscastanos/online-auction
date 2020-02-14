@@ -548,30 +548,19 @@ var routes = [
         children: [
             {
                 path: '',
-                loadChildren: function () { return Promise.all(/*! import() | home-home-module */[__webpack_require__.e("default~auth-getting-started-getting-started-module~home-home-module"), __webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null, /*! ./home/home.module */ "./src/app/home/home.module.ts")).then(function (m) { return m.HomePageModule; }); }
+                loadChildren: function () { return Promise.all(/*! import() | home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null, /*! ./home/home.module */ "./src/app/home/home.module.ts")).then(function (m) { return m.HomePageModule; }); }
             },
             {
                 path: 'home',
-                loadChildren: function () { return Promise.all(/*! import() | home-home-module */[__webpack_require__.e("default~auth-getting-started-getting-started-module~home-home-module"), __webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null, /*! ./home/home.module */ "./src/app/home/home.module.ts")).then(function (m) { return m.HomePageModule; }); }
+                loadChildren: function () { return Promise.all(/*! import() | home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null, /*! ./home/home.module */ "./src/app/home/home.module.ts")).then(function (m) { return m.HomePageModule; }); }
             },
             {
                 path: 'list',
                 loadChildren: function () { return __webpack_require__.e(/*! import() | list-list-module */ "list-list-module").then(__webpack_require__.bind(null, /*! ./list/list.module */ "./src/app/list/list.module.ts")).then(function (m) { return m.ListPageModule; }); }
             },
             {
-                path: 'search-result',
-                loadChildren: function () { return __webpack_require__.e(/*! import() | pages-search-result-search-result-module */ "pages-search-result-search-result-module").then(__webpack_require__.bind(null, /*! ./pages/search-result/search-result.module */ "./src/app/pages/search-result/search-result.module.ts")).then(function (m) { return m.SearchResultPageModule; }); }
-            },
-            {
                 path: 'company-view',
-                loadChildren: function () { return __webpack_require__.e(/*! import() | pages-company-view-company-view-module */ "pages-company-view-company-view-module").then(__webpack_require__.bind(null, /*! ./pages/company-view/company-view.module */ "./src/app/pages/company-view/company-view.module.ts")).then(function (m) { return m.CompanyViewPageModule; }); }
-            },
-            {
-                path: 'auction-view',
-                loadChildren: function () { return __webpack_require__.e(/*! import() | pages-auction-view-auction-view-module */ "pages-auction-view-auction-view-module").then(__webpack_require__.bind(null, /*! ./pages/auction-view/auction-view.module */ "./src/app/pages/auction-view/auction-view.module.ts")).then(function (m) { return m.AuctionViewPageModule; }); }
-            }, {
-                path: 'browse-by-all',
-                loadChildren: function () { return __webpack_require__.e(/*! import() | pages-browse-by-all-browse-by-all-module */ "pages-browse-by-all-browse-by-all-module").then(__webpack_require__.bind(null, /*! ./pages/browse-by-all/browse-by-all.module */ "./src/app/pages/browse-by-all/browse-by-all.module.ts")).then(function (m) { return m.BrowseByAllPageModule; }); }
+                loadChildren: function () { return Promise.all(/*! import() | pages-company-view-company-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-company-view-company-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/company-view/company-view.module */ "./src/app/pages/company-view/company-view.module.ts")).then(function (m) { return m.CompanyViewPageModule; }); }
             },
             {
                 path: 'category-view',
@@ -580,6 +569,10 @@ var routes = [
             {
                 path: 'profile',
                 loadChildren: function () { return Promise.all(/*! import() | pages-profile-profile-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/profile/profile.module */ "./src/app/pages/profile/profile.module.ts")).then(function (m) { return m.ProfilePageModule; }); }
+            },
+            {
+                path: 'item-view',
+                loadChildren: function () { return Promise.all(/*! import() | pages-item-view-item-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-item-view-item-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/item-view/item-view.module */ "./src/app/pages/item-view/item-view.module.ts")).then(function (m) { return m.ItemViewPageModule; }); }
             },
         ]
     },
@@ -598,17 +591,17 @@ var routes = [
             },
             {
                 path: 'getting-started',
-                loadChildren: function () { return Promise.all(/*! import() | auth-getting-started-getting-started-module */[__webpack_require__.e("default~auth-getting-started-getting-started-module~home-home-module"), __webpack_require__.e("common"), __webpack_require__.e("auth-getting-started-getting-started-module")]).then(__webpack_require__.bind(null, /*! ./auth/getting-started/getting-started.module */ "./src/app/auth/getting-started/getting-started.module.ts")).then(function (m) { return m.GettingStartedPageModule; }); }
+                loadChildren: function () { return Promise.all(/*! import() | auth-getting-started-getting-started-module */[__webpack_require__.e("common"), __webpack_require__.e("auth-getting-started-getting-started-module")]).then(__webpack_require__.bind(null, /*! ./auth/getting-started/getting-started.module */ "./src/app/auth/getting-started/getting-started.module.ts")).then(function (m) { return m.GettingStartedPageModule; }); }
             },
             {
                 path: 'terms-and-conditions',
                 loadChildren: function () { return __webpack_require__.e(/*! import() | pages-terms-and-conditions-terms-and-conditions-module */ "default~auth-register-register-module~pages-terms-and-conditions-terms-and-conditions-module").then(__webpack_require__.bind(null, /*! ./pages/terms-and-conditions/terms-and-conditions.module */ "./src/app/pages/terms-and-conditions/terms-and-conditions.module.ts")).then(function (m) { return m.TermsAndConditionsPageModule; }); }
             },
+            {
+                path: 'bidder-supporting-id',
+                loadChildren: function () { return Promise.all(/*! import() | pages-bidder-supporting-id-bidder-supporting-id-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-bidder-supporting-id-bidder-supporting-id-module")]).then(__webpack_require__.bind(null, /*! ./pages/bidder-supporting-id/bidder-supporting-id.module */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.module.ts")).then(function (m) { return m.BidderSupportingIdPageModule; }); }
+            },
         ]
-    },
-    {
-        path: 'bidder-supporting-id',
-        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-bidder-supporting-id-bidder-supporting-id-module */ "common").then(__webpack_require__.bind(null, /*! ./pages/bidder-supporting-id/bidder-supporting-id.module */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.module.ts")).then(function (m) { return m.BidderSupportingIdPageModule; }); }
     },
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -691,7 +684,7 @@ var AppComponent = /** @class */ (function () {
                         state = _a.sent();
                         if (state != null) {
                             if (state)
-                                this.router.navigateByUrl('/profile');
+                                this.router.navigateByUrl('/');
                             else
                                 this.router.navigateByUrl('/login');
                         }
@@ -842,6 +835,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/auth.service */ "./src/app/services/auth.service.ts");
 /* harmony import */ var src_app_services_env_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/env.service */ "./src/app/services/env.service.ts");
 /* harmony import */ var src_app_services_common_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/services/common.service */ "./src/app/services/common.service.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
 
 
 
@@ -850,11 +845,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppLayoutComponent = /** @class */ (function () {
-    function AppLayoutComponent(router, auth, env, common) {
+    function AppLayoutComponent(router, auth, env, common, modal) {
         this.router = router;
         this.auth = auth;
         this.env = env;
         this.common = common;
+        this.modal = modal;
         this.appPages = [{
                 title: 'Active Bidings',
                 url: '/list',
@@ -871,7 +867,8 @@ var AppLayoutComponent = /** @class */ (function () {
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
         { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] },
         { type: src_app_services_env_service__WEBPACK_IMPORTED_MODULE_5__["EnvService"] },
-        { type: src_app_services_common_service__WEBPACK_IMPORTED_MODULE_6__["CommonService"] }
+        { type: src_app_services_common_service__WEBPACK_IMPORTED_MODULE_6__["CommonService"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ModalController"] }
     ]; };
     AppLayoutComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -879,7 +876,7 @@ var AppLayoutComponent = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./app-layout.component.html */ "./node_modules/raw-loader/index.js!./src/app/layout/app-layout/app-layout.component.html"),
             styles: [__webpack_require__(/*! ./app-layout.component.scss */ "./src/app/layout/app-layout/app-layout.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], src_app_services_env_service__WEBPACK_IMPORTED_MODULE_5__["EnvService"], src_app_services_common_service__WEBPACK_IMPORTED_MODULE_6__["CommonService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], src_app_services_env_service__WEBPACK_IMPORTED_MODULE_5__["EnvService"], src_app_services_common_service__WEBPACK_IMPORTED_MODULE_6__["CommonService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ModalController"]])
     ], AppLayoutComponent);
     return AppLayoutComponent;
 }());
@@ -1034,8 +1031,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var EnvService = /** @class */ (function () {
     function EnvService() {
-        this.URL = 'http://192.168.1.18:69';
-        this.API_URL = 'http://192.168.1.18:69/api/';
+        this.URL = 'http://192.168.1.12:69/';
+        this.API_URL = 'http://192.168.1.12:69/api/';
     }
     EnvService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

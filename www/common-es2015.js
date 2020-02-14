@@ -681,17 +681,6 @@ const findCheckedOption = (el, tagName) => {
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/components/camera/camera.component.html":
-/*!***********************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/components/camera/camera.component.html ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<ion-row>\n  <ion-col class=\"image\" size-xs=\"8\" offset-xs=\"2\" size-md=\"6\" offset-md=\"3\">\n    <img [src]=\"'data:image/png;base64,' + cameraService.photo.base64\" alt=\"\"\n      onerror=\"this.onerror=null; this.src='../assets/placeholder.png'\" />\n  </ion-col>\n</ion-row>\n<ion-row>\n  <ion-col size-xs=\"6\" size-lg=\"4\" offset-lg=\"2\">\n    <ion-button (click)=\"capture()\" shape=\"round\" expand=\"full\">\n      <ion-icon name=\"camera\"></ion-icon>\n      <ion-label>Capture</ion-label>\n    </ion-button>\n  </ion-col>\n  <ion-col size=\"6\" size-lg=\"4\">\n    <ion-button (click)=\"upload()\" shape=\"round\" expand=\"full\">\n      <ion-icon name=\"images\"></ion-icon>\n      <ion-label>Upload </ion-label>\n    </ion-button>\n  </ion-col>\n</ion-row>"
-
-/***/ }),
-
 /***/ "./node_modules/raw-loader/index.js!./src/app/components/slider/slider.component.html":
 /*!***********************************************************************************!*\
   !*** ./node_modules/raw-loader!./src/app/components/slider/slider.component.html ***!
@@ -699,18 +688,7 @@ module.exports = "<ion-row>\n  <ion-col class=\"image\" size-xs=\"8\" offset-xs=
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-slides [options]=\"options.sliderOpts\">\n  <ion-slide *ngFor=\"let i of items\">\n    <ion-card (click)=\"openDetails(i)\" [ngClass]='[options.style]'>\n      <ion-header>\n        <img src=\"https://dummyimage.com/sqrpop\" alt=\"\"\n          onerror=\"this.onerror=null;this.src='../assets/placeholder.png'\">\n        <ion-card-title>{{ i[options.dataObject.name] }}</ion-card-title>\n      </ion-header>\n    </ion-card>\n  </ion-slide>\n  <ion-slide>\n    <ion-card [ngClass]='[options.style]' (click)=\"openAll(options.sliderId)\">\n      <ion-header>\n        <img src=\"../../../assets/plus.png\" />\n        <ion-card-title>{{options.sliderBrowseAllText}}</ion-card-title>\n      </ion-header>\n    </ion-card>\n  </ion-slide>\n</ion-slides>"
-
-/***/ }),
-
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.html":
-/*!*****************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.html ***!
-  \*****************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>bidder_supporting_id</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n"
+module.exports = "<ion-slides [options]=\"options.sliderOpts\">\n  <ion-slide *ngFor=\"let i of items\">\n    <ion-card (click)=\"openDetails(i)\" [ngClass]='[options.style]'>\n      <ion-header>\n        <img src=\"\" alt=\"\" onerror=\"this.onerror=null;this.src='../assets/placeholder.png'\">\n        <ion-card-title>{{ i[options.dataObject.name] }}</ion-card-title>\n      </ion-header>\n    </ion-card>\n  </ion-slide>\n</ion-slides>\n\n<div *ngIf=\"items.length == 0\" style=\"text-align: center;\">\n  <ion-label>No data</ion-label>\n</div>"
 
 /***/ }),
 
@@ -721,61 +699,7 @@ module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>bidder_supportin
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "form {\n  height: 100vh !important;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  vertical-align: center;\n}\nform.register {\n  margin-top: 50px;\n}\nform h1 {\n  font-size: 45px;\n}\nform ion-text {\n  text-align: center !important;\n}\nform ion-icon {\n  margin-right: 10px;\n}\nform.getting-started h2 {\n  font-size: 18px;\n}\nform.getting-started h1 {\n  font-size: 25px;\n}\nion-fab {\n  margin-bottom: 20px;\n  margin-right: 20px;\n}\nion-fab ion-icon {\n  margin: 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXV0aC9EOlxcd29ya1xcUHJvamVjdHNcXEFjY1JlYWxTb2Z0XFxNb2JpbGVcXG9ubGluZWF1Y3Rpb25hcHAvc3JjXFxhcHBcXGF1dGhcXGF1dGguc2NzcyIsInNyYy9hcHAvYXV0aC9hdXRoLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFFSSx3QkFBQTtFQUNBLG9CQUFBO0VBQUEsYUFBQTtFQUNBLHlCQUFBO1VBQUEsbUJBQUE7RUFDQSxzQkFBQTtBQ0FKO0FERUk7RUFDSSxnQkFBQTtBQ0FSO0FER0k7RUFDSSxlQUFBO0FDRFI7QURJSTtFQUNJLDZCQUFBO0FDRlI7QURNSTtFQUNJLGtCQUFBO0FDSlI7QURRUTtFQUVJLGVBQUE7QUNQWjtBRFNRO0VBRUksZUFBQTtBQ1JaO0FEZ0JBO0VBQ0ksbUJBQUE7RUFDQSxrQkFBQTtBQ2JKO0FEZUk7RUFDSSxTQUFBO0FDYlIiLCJmaWxlIjoic3JjL2FwcC9hdXRoL2F1dGguc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImZvcm17XHJcblxyXG4gICAgaGVpZ2h0OiAxMDB2aCAhaW1wb3J0YW50O1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICB2ZXJ0aWNhbC1hbGlnbjogY2VudGVyO1xyXG5cclxuICAgICYucmVnaXN0ZXJ7XHJcbiAgICAgICAgbWFyZ2luLXRvcDogNTBweDtcclxuICAgIH1cclxuXHJcbiAgICBoMXtcclxuICAgICAgICBmb250LXNpemU6IDQ1cHg7XHJcbiAgICB9XHJcbiAgICBcclxuICAgIGlvbi10ZXh0e1xyXG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlciAhaW1wb3J0YW50O1xyXG4gICAgfVxyXG5cclxuXHJcbiAgICBpb24taWNvbntcclxuICAgICAgICBtYXJnaW4tcmlnaHQ6IDEwcHhcclxuICAgIH1cclxuXHJcbiAgICAmLmdldHRpbmctc3RhcnRlZHtcclxuICAgICAgICBoMntcclxuICAgICAgICAgICAgXHJcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogMThweDtcclxuICAgICAgICB9XHJcbiAgICAgICAgaDF7XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgICAgICBmb250LXNpemU6IDI1cHg7XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG5cclxufVxyXG5cclxuXHJcblxyXG5pb24tZmFie1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMjBweDtcclxuICAgIG1hcmdpbi1yaWdodDogMjBweDtcclxuICAgIFxyXG4gICAgaW9uLWljb257XHJcbiAgICAgICAgbWFyZ2luOiAwO1xyXG4gICAgfVxyXG59IiwiZm9ybSB7XG4gIGhlaWdodDogMTAwdmggIWltcG9ydGFudDtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgdmVydGljYWwtYWxpZ246IGNlbnRlcjtcbn1cbmZvcm0ucmVnaXN0ZXIge1xuICBtYXJnaW4tdG9wOiA1MHB4O1xufVxuZm9ybSBoMSB7XG4gIGZvbnQtc2l6ZTogNDVweDtcbn1cbmZvcm0gaW9uLXRleHQge1xuICB0ZXh0LWFsaWduOiBjZW50ZXIgIWltcG9ydGFudDtcbn1cbmZvcm0gaW9uLWljb24ge1xuICBtYXJnaW4tcmlnaHQ6IDEwcHg7XG59XG5mb3JtLmdldHRpbmctc3RhcnRlZCBoMiB7XG4gIGZvbnQtc2l6ZTogMThweDtcbn1cbmZvcm0uZ2V0dGluZy1zdGFydGVkIGgxIHtcbiAgZm9udC1zaXplOiAyNXB4O1xufVxuXG5pb24tZmFiIHtcbiAgbWFyZ2luLWJvdHRvbTogMjBweDtcbiAgbWFyZ2luLXJpZ2h0OiAyMHB4O1xufVxuaW9uLWZhYiBpb24taWNvbiB7XG4gIG1hcmdpbjogMDtcbn0iXX0= */"
-
-/***/ }),
-
-/***/ "./src/app/components/camera/camera.component.scss":
-/*!*********************************************************!*\
-  !*** ./src/app/components/camera/camera.component.scss ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "ion-icon {\n  padding-right: 5px;\n}\n\nimg {\n  width: 200px;\n  height: 200px;\n  border-radius: 50%;\n  border: 3px #3880FF dashed;\n  margin-bottom: 20px;\n}\n\n.image {\n  text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYW1lcmEvRDpcXHdvcmtcXFByb2plY3RzXFxBY2NSZWFsU29mdFxcTW9iaWxlXFxvbmxpbmVhdWN0aW9uYXBwL3NyY1xcYXBwXFxjb21wb25lbnRzXFxjYW1lcmFcXGNhbWVyYS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29tcG9uZW50cy9jYW1lcmEvY2FtZXJhLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0JBQUE7QUNDSjs7QURFQTtFQUNJLFlBQUE7RUFDQSxhQUFBO0VBQ0Esa0JBQUE7RUFDQSwwQkFBQTtFQUNBLG1CQUFBO0FDQ0o7O0FERUE7RUFDSSxrQkFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9jYW1lcmEvY2FtZXJhLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWljb257XHJcbiAgICBwYWRkaW5nLXJpZ2h0OiA1cHg7XHJcbn1cclxuXHJcbmltZ3tcclxuICAgIHdpZHRoOiAyMDBweDtcclxuICAgIGhlaWdodDogMjAwcHg7XHJcbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgICBib3JkZXI6IDNweCAjMzg4MEZGIGRhc2hlZDtcclxuICAgIG1hcmdpbi1ib3R0b206IDIwcHg7XHJcbn1cclxuXHJcbi5pbWFnZXtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxufSIsImlvbi1pY29uIHtcbiAgcGFkZGluZy1yaWdodDogNXB4O1xufVxuXG5pbWcge1xuICB3aWR0aDogMjAwcHg7XG4gIGhlaWdodDogMjAwcHg7XG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcbiAgYm9yZGVyOiAzcHggIzM4ODBGRiBkYXNoZWQ7XG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XG59XG5cbi5pbWFnZSB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn0iXX0= */"
-
-/***/ }),
-
-/***/ "./src/app/components/camera/camera.component.ts":
-/*!*******************************************************!*\
-  !*** ./src/app/components/camera/camera.component.ts ***!
-  \*******************************************************/
-/*! exports provided: CameraComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CameraComponent", function() { return CameraComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var src_app_services_camera_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/camera.service */ "./src/app/services/camera.service.ts");
-
-
-
-let CameraComponent = class CameraComponent {
-    constructor(cameraService) {
-        this.cameraService = cameraService;
-    }
-    capture() {
-        this.cameraService.takePhoto();
-    }
-    upload() {
-        this.cameraService.uploadPhoto();
-    }
-};
-CameraComponent.ctorParameters = () => [
-    { type: src_app_services_camera_service__WEBPACK_IMPORTED_MODULE_2__["CameraService"] }
-];
-CameraComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-camera',
-        template: __webpack_require__(/*! raw-loader!./camera.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/camera/camera.component.html"),
-        styles: [__webpack_require__(/*! ./camera.component.scss */ "./src/app/components/camera/camera.component.scss")]
-    }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_camera_service__WEBPACK_IMPORTED_MODULE_2__["CameraService"]])
-], CameraComponent);
-
-
+module.exports = "form {\n  height: 100vh !important;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  vertical-align: center;\n}\nform.register {\n  margin-top: 50px;\n}\nform h1 {\n  font-size: 45px;\n}\nform ion-text {\n  text-align: center !important;\n}\nform ion-icon {\n  margin-right: 10px;\n}\nform.getting-started h2 {\n  font-size: 18px;\n}\nform.getting-started h1 {\n  font-size: 25px;\n}\nion-fab {\n  margin-bottom: 20px;\n  margin-right: 20px;\n}\nion-fab ion-icon {\n  margin: 0;\n}\nimg {\n  border-radius: 50%;\n  width: 200px;\n  height: 200px;\n  border: 5px #3880FF dashed;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXV0aC9EOlxcd29ya1xcUHJvamVjdHNcXEFjY1JlYWxTb2Z0XFxNb2JpbGVcXG9ubGluZWF1Y3Rpb25hcHAvc3JjXFxhcHBcXGF1dGhcXGF1dGguc2NzcyIsInNyYy9hcHAvYXV0aC9hdXRoLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFFSSx3QkFBQTtFQUNBLG9CQUFBO0VBQUEsYUFBQTtFQUNBLHlCQUFBO1VBQUEsbUJBQUE7RUFDQSxzQkFBQTtBQ0FKO0FERUk7RUFDSSxnQkFBQTtBQ0FSO0FER0k7RUFDSSxlQUFBO0FDRFI7QURJSTtFQUNJLDZCQUFBO0FDRlI7QURNSTtFQUNJLGtCQUFBO0FDSlI7QURRUTtFQUVJLGVBQUE7QUNQWjtBRFNRO0VBRUksZUFBQTtBQ1JaO0FEZ0JBO0VBQ0ksbUJBQUE7RUFDQSxrQkFBQTtBQ2JKO0FEZUk7RUFDSSxTQUFBO0FDYlI7QURpQkE7RUFDSSxrQkFBQTtFQUNBLFlBQUE7RUFDQSxhQUFBO0VBQ0EsMEJBQUE7QUNkSiIsImZpbGUiOiJzcmMvYXBwL2F1dGgvYXV0aC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiZm9ybXtcclxuXHJcbiAgICBoZWlnaHQ6IDEwMHZoICFpbXBvcnRhbnQ7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIHZlcnRpY2FsLWFsaWduOiBjZW50ZXI7XHJcblxyXG4gICAgJi5yZWdpc3RlcntcclxuICAgICAgICBtYXJnaW4tdG9wOiA1MHB4O1xyXG4gICAgfVxyXG5cclxuICAgIGgxe1xyXG4gICAgICAgIGZvbnQtc2l6ZTogNDVweDtcclxuICAgIH1cclxuICAgIFxyXG4gICAgaW9uLXRleHR7XHJcbiAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyICFpbXBvcnRhbnQ7XHJcbiAgICB9XHJcblxyXG5cclxuICAgIGlvbi1pY29ue1xyXG4gICAgICAgIG1hcmdpbi1yaWdodDogMTBweFxyXG4gICAgfVxyXG5cclxuICAgICYuZ2V0dGluZy1zdGFydGVke1xyXG4gICAgICAgIGgye1xyXG4gICAgICAgICAgICBcclxuICAgICAgICAgICAgZm9udC1zaXplOiAxOHB4O1xyXG4gICAgICAgIH1cclxuICAgICAgICBoMXtcclxuICAgICAgICAgICAgXHJcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogMjVweDtcclxuICAgICAgICB9XHJcbiAgICB9XHJcblxyXG59XHJcblxyXG5cclxuXHJcbmlvbi1mYWJ7XHJcbiAgICBtYXJnaW4tYm90dG9tOiAyMHB4O1xyXG4gICAgbWFyZ2luLXJpZ2h0OiAyMHB4O1xyXG4gICAgXHJcbiAgICBpb24taWNvbntcclxuICAgICAgICBtYXJnaW46IDA7XHJcbiAgICB9XHJcbn1cclxuXHJcbmltZ3tcclxuICAgIGJvcmRlci1yYWRpdXM6IDUwJTtcclxuICAgIHdpZHRoOiAyMDBweDtcclxuICAgIGhlaWdodDogMjAwcHg7XHJcbiAgICBib3JkZXI6IDVweCAjMzg4MEZGIGRhc2hlZDtcclxufSIsImZvcm0ge1xuICBoZWlnaHQ6IDEwMHZoICFpbXBvcnRhbnQ7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIHZlcnRpY2FsLWFsaWduOiBjZW50ZXI7XG59XG5mb3JtLnJlZ2lzdGVyIHtcbiAgbWFyZ2luLXRvcDogNTBweDtcbn1cbmZvcm0gaDEge1xuICBmb250LXNpemU6IDQ1cHg7XG59XG5mb3JtIGlvbi10ZXh0IHtcbiAgdGV4dC1hbGlnbjogY2VudGVyICFpbXBvcnRhbnQ7XG59XG5mb3JtIGlvbi1pY29uIHtcbiAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xufVxuZm9ybS5nZXR0aW5nLXN0YXJ0ZWQgaDIge1xuICBmb250LXNpemU6IDE4cHg7XG59XG5mb3JtLmdldHRpbmctc3RhcnRlZCBoMSB7XG4gIGZvbnQtc2l6ZTogMjVweDtcbn1cblxuaW9uLWZhYiB7XG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XG4gIG1hcmdpbi1yaWdodDogMjBweDtcbn1cbmlvbi1mYWIgaW9uLWljb24ge1xuICBtYXJnaW46IDA7XG59XG5cbmltZyB7XG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcbiAgd2lkdGg6IDIwMHB4O1xuICBoZWlnaHQ6IDIwMHB4O1xuICBib3JkZXI6IDVweCAjMzg4MEZGIGRhc2hlZDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -794,8 +718,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
 /* harmony import */ var _slider_slider_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./slider/slider.component */ "./src/app/components/slider/slider.component.ts");
-/* harmony import */ var _camera_camera_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./camera/camera.component */ "./src/app/components/camera/camera.component.ts");
-
 
 
 
@@ -805,8 +727,8 @@ let ComponentsModule = class ComponentsModule {
 };
 ComponentsModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        declarations: [_slider_slider_component__WEBPACK_IMPORTED_MODULE_4__["SliderComponent"], _camera_camera_component__WEBPACK_IMPORTED_MODULE_5__["CameraComponent"]],
-        exports: [_slider_slider_component__WEBPACK_IMPORTED_MODULE_4__["SliderComponent"], _camera_camera_component__WEBPACK_IMPORTED_MODULE_5__["CameraComponent"]],
+        declarations: [_slider_slider_component__WEBPACK_IMPORTED_MODULE_4__["SliderComponent"],],
+        exports: [_slider_slider_component__WEBPACK_IMPORTED_MODULE_4__["SliderComponent"]],
         imports: [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonicModule"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"]]
     })
 ], ComponentsModule);
@@ -848,11 +770,14 @@ let SliderComponent = class SliderComponent {
     constructor(router, sliderService) {
         this.router = router;
         this.sliderService = sliderService;
+        this.items = [];
     }
     ngOnInit() {
         this.sliderService.getData(this.options.requestUrl)
             .subscribe(data => {
-            this.items = data;
+            for (let d of Object.keys(data)) {
+                this.items.push(data[d]);
+            }
         });
     }
     openDetails(item) {
@@ -892,188 +817,14 @@ SliderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
-/***/ "./src/app/pages/bidder-supporting-id/bidder-supporting-id-routing.module.ts":
-/*!***********************************************************************************!*\
-  !*** ./src/app/pages/bidder-supporting-id/bidder-supporting-id-routing.module.ts ***!
-  \***********************************************************************************/
-/*! exports provided: BidderSupportingIdPageRoutingModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BidderSupportingIdPageRoutingModule", function() { return BidderSupportingIdPageRoutingModule; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _bidder_supporting_id_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./bidder-supporting-id.page */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.ts");
-
-
-
-
-const routes = [
-    {
-        path: '',
-        component: _bidder_supporting_id_page__WEBPACK_IMPORTED_MODULE_3__["BidderSupportingIdPage"]
-    }
-];
-let BidderSupportingIdPageRoutingModule = class BidderSupportingIdPageRoutingModule {
-};
-BidderSupportingIdPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
-        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]],
-    })
-], BidderSupportingIdPageRoutingModule);
-
-
-
-/***/ }),
-
-/***/ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.module.ts":
-/*!***************************************************************************!*\
-  !*** ./src/app/pages/bidder-supporting-id/bidder-supporting-id.module.ts ***!
-  \***************************************************************************/
-/*! exports provided: BidderSupportingIdPageModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BidderSupportingIdPageModule", function() { return BidderSupportingIdPageModule; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _bidder_supporting_id_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./bidder-supporting-id-routing.module */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id-routing.module.ts");
-/* harmony import */ var _bidder_supporting_id_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./bidder-supporting-id.page */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.ts");
-
-
-
-
-
-
-
-let BidderSupportingIdPageModule = class BidderSupportingIdPageModule {
-};
-BidderSupportingIdPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        imports: [
-            _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
-            _bidder_supporting_id_routing_module__WEBPACK_IMPORTED_MODULE_5__["BidderSupportingIdPageRoutingModule"]
-        ],
-        declarations: [_bidder_supporting_id_page__WEBPACK_IMPORTED_MODULE_6__["BidderSupportingIdPage"]]
-    })
-], BidderSupportingIdPageModule);
-
-
-
-/***/ }),
-
-/***/ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.scss":
-/*!***************************************************************************!*\
-  !*** ./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.scss ***!
-  \***************************************************************************/
+/***/ "./src/app/home/home.page.scss":
+/*!*************************************!*\
+  !*** ./src/app/home/home.page.scss ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2JpZGRlci1zdXBwb3J0aW5nLWlkL2JpZGRlci1zdXBwb3J0aW5nLWlkLnBhZ2Uuc2NzcyJ9 */"
-
-/***/ }),
-
-/***/ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.ts":
-/*!*************************************************************************!*\
-  !*** ./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.ts ***!
-  \*************************************************************************/
-/*! exports provided: BidderSupportingIdPage */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BidderSupportingIdPage", function() { return BidderSupportingIdPage; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-
-
-let BidderSupportingIdPage = class BidderSupportingIdPage {
-    constructor() { }
-    ngOnInit() {
-    }
-};
-BidderSupportingIdPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-bidder-supporting-id',
-        template: __webpack_require__(/*! raw-loader!./bidder-supporting-id.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.html"),
-        styles: [__webpack_require__(/*! ./bidder-supporting-id.page.scss */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.page.scss")]
-    }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-], BidderSupportingIdPage);
-
-
-
-/***/ }),
-
-/***/ "./src/app/services/camera.service.ts":
-/*!********************************************!*\
-  !*** ./src/app/services/camera.service.ts ***!
-  \********************************************/
-/*! exports provided: CameraService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CameraService", function() { return CameraService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
-
-
-
-const { Camera } = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"];
-let CameraService = class CameraService {
-    constructor() {
-        this.photo = {
-            base64: null
-        };
-    }
-    takePhoto() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const capturedPhoto = yield Camera.getPhoto({
-                resultType: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraResultType"].Base64,
-                source: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraSource"].Camera,
-                quality: 100,
-                width: 200,
-                height: 200
-            });
-            this.photo = {
-                base64: capturedPhoto.base64String
-            };
-        });
-    }
-    uploadPhoto() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const capturedPhoto = yield Camera.getPhoto({
-                resultType: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraResultType"].Base64,
-                source: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraSource"].Photos,
-                quality: 100,
-                width: 200,
-                height: 200
-            });
-            this.photo = {
-                base64: capturedPhoto.base64String
-            };
-        });
-    }
-};
-CameraService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
-    }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-], CameraService);
-
-
+module.exports = ".itemList ion-grid {\n  background-color: #f5f5f5;\n}\n.itemList .item {\n  background-color: #fff;\n  border: 4px solid #f5f5f5;\n}\n.itemList .item ion-text {\n  padding: 0 5px;\n}\n.itemList .item ion-text h5 {\n  margin: 2px auto;\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 2;\n  font-size: 1em;\n}\n.itemList .item .price {\n  color: firebrick;\n}\n.itemList .badgeHolder {\n  position: absolute;\n}\n.itemList .badgeHolder .bidBadge {\n  position: relative;\n  font-size: 12px;\n  top: 0;\n  left: 0;\n  padding: 5px 10px;\n  color: white;\n  background-color: firebrick;\n  z-index: 2;\n}\n.itemList .badgeHolder .bidBadge::after {\n  content: \" \";\n  position: absolute;\n  background-color: firebrick;\n  top: 12;\n  margin-left: 2px;\n  height: 16px;\n  width: 16px;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  z-index: -1;\n}\n.itemList .badgeHolder .badge-success, .itemList .badgeHolder .badge-success::after {\n  background-color: seagreen !important;\n}\nion-list ion-label {\n  text-transform: uppercase;\n}\n.searchResult {\n  position: absolute !important;\n  z-index: 9999;\n  width: 100%;\n  top: 110px;\n  box-shadow: 5px 10px 8px #888888;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9EOlxcd29ya1xcUHJvamVjdHNcXEFjY1JlYWxTb2Z0XFxNb2JpbGVcXG9ubGluZWF1Y3Rpb25hcHAvc3JjXFxhcHBcXGhvbWVcXGhvbWUucGFnZS5zY3NzIiwic3JjL2FwcC9ob21lL2hvbWUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNFO0VBQ0UseUJBQUE7QUNBSjtBREdFO0VBQ0Usc0JBQUE7RUFDQSx5QkFBQTtBQ0RKO0FER0k7RUFDRSxjQUFBO0FDRE47QURFTTtFQUNFLGdCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxvQkFBQTtFQUNBLDRCQUFBO0VBQ0EscUJBQUE7RUFDQSxjQUFBO0FDQVI7QURHSTtFQUNFLGdCQUFBO0FDRE47QURLRTtFQUNFLGtCQUFBO0FDSEo7QURLSTtFQUNFLGtCQUFBO0VBQ0EsZUFBQTtFQUNBLE1BQUE7RUFDQSxPQUFBO0VBQ0EsaUJBQUE7RUFDQSxZQUFBO0VBQ0EsMkJBQUE7RUFDQSxVQUFBO0FDSE47QURNSTtFQUNFLFlBQUE7RUFDQSxrQkFBQTtFQUNBLDJCQUFBO0VBQ0EsT0FBQTtFQUNBLGdCQUFBO0VBQ0EsWUFBQTtFQUNBLFdBQUE7RUFDQSxnQ0FBQTtVQUFBLHdCQUFBO0VBQ0EsV0FBQTtBQ0pOO0FET0k7RUFDRSxxQ0FBQTtBQ0xOO0FEYUU7RUFDRSx5QkFBQTtBQ1ZKO0FEY0E7RUFDRSw2QkFBQTtFQUNBLGFBQUE7RUFDQSxXQUFBO0VBQ0EsVUFBQTtFQUNBLGdDQUFBO0FDWEYiLCJmaWxlIjoic3JjL2FwcC9ob21lL2hvbWUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLml0ZW1MaXN0e1xuICBpb24tZ3JpZCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2Y1ZjVmNTtcbiAgfVxuXG4gIC5pdGVte1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XG4gICAgYm9yZGVyOiA0cHggc29saWQgI2Y1ZjVmNTtcblxuICAgIGlvbi10ZXh0e1xuICAgICAgcGFkZGluZzogMCA1cHg7XG4gICAgICBoNXtcbiAgICAgICAgbWFyZ2luOiAycHggYXV0bztcbiAgICAgICAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgICAgICAgZGlzcGxheTogLXdlYmtpdC1ib3g7XG4gICAgICAgIC13ZWJraXQtYm94LW9yaWVudDogdmVydGljYWw7ICBcbiAgICAgICAgLXdlYmtpdC1saW5lLWNsYW1wOiAyO1xuICAgICAgICBmb250LXNpemU6IDFlbTtcbiAgICAgIH1cbiAgICB9XG4gICAgLnByaWNle1xuICAgICAgY29sb3I6IGZpcmVicmljaztcbiAgICB9XG4gIH1cblxuICAuYmFkZ2VIb2xkZXJ7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuXG4gICAgLmJpZEJhZGdle1xuICAgICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgICAgZm9udC1zaXplOiAxMnB4O1xuICAgICAgdG9wOiAwO1xuICAgICAgbGVmdDogMDtcbiAgICAgIHBhZGRpbmc6IDVweCAxMHB4O1xuICAgICAgY29sb3I6IHdoaXRlO1xuICAgICAgYmFja2dyb3VuZC1jb2xvcjogZmlyZWJyaWNrO1xuICAgICAgei1pbmRleDogMjtcbiAgICB9XG5cbiAgICAuYmlkQmFkZ2U6OmFmdGVye1xuICAgICAgY29udGVudDogXCIgXCI7XG4gICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiBmaXJlYnJpY2s7XG4gICAgICB0b3A6IDEyO1xuICAgICAgbWFyZ2luLWxlZnQ6IDJweDtcbiAgICAgIGhlaWdodDogMTZweDtcbiAgICAgIHdpZHRoOiAxNnB4O1xuICAgICAgdHJhbnNmb3JtOiByb3RhdGUoNDVkZWcpO1xuICAgICAgei1pbmRleDogLTE7XG4gICAgfVxuXG4gICAgLmJhZGdlLXN1Y2Nlc3MsIC5iYWRnZS1zdWNjZXNzOjphZnRlcntcbiAgICAgIGJhY2tncm91bmQtY29sb3I6IHNlYWdyZWVuICFpbXBvcnRhbnQ7XG4gICAgfVxuICAgIFxuICB9XG4gIFxufVxuXG5pb24tbGlzdHtcbiAgaW9uLWxhYmVse1xuICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XG4gIH1cbn1cblxuLnNlYXJjaFJlc3VsdHtcbiAgcG9zaXRpb246IGFic29sdXRlICFpbXBvcnRhbnQ7IFxuICB6LWluZGV4OiA5OTk5OyBcbiAgd2lkdGg6IDEwMCU7IFxuICB0b3A6IDExMHB4O1xuICBib3gtc2hhZG93OiA1cHggMTBweCA4cHggIzg4ODg4ODtcbn0iLCIuaXRlbUxpc3QgaW9uLWdyaWQge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjVmNWY1O1xufVxuLml0ZW1MaXN0IC5pdGVtIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcbiAgYm9yZGVyOiA0cHggc29saWQgI2Y1ZjVmNTtcbn1cbi5pdGVtTGlzdCAuaXRlbSBpb24tdGV4dCB7XG4gIHBhZGRpbmc6IDAgNXB4O1xufVxuLml0ZW1MaXN0IC5pdGVtIGlvbi10ZXh0IGg1IHtcbiAgbWFyZ2luOiAycHggYXV0bztcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgZGlzcGxheTogLXdlYmtpdC1ib3g7XG4gIC13ZWJraXQtYm94LW9yaWVudDogdmVydGljYWw7XG4gIC13ZWJraXQtbGluZS1jbGFtcDogMjtcbiAgZm9udC1zaXplOiAxZW07XG59XG4uaXRlbUxpc3QgLml0ZW0gLnByaWNlIHtcbiAgY29sb3I6IGZpcmVicmljaztcbn1cbi5pdGVtTGlzdCAuYmFkZ2VIb2xkZXIge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG59XG4uaXRlbUxpc3QgLmJhZGdlSG9sZGVyIC5iaWRCYWRnZSB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgZm9udC1zaXplOiAxMnB4O1xuICB0b3A6IDA7XG4gIGxlZnQ6IDA7XG4gIHBhZGRpbmc6IDVweCAxMHB4O1xuICBjb2xvcjogd2hpdGU7XG4gIGJhY2tncm91bmQtY29sb3I6IGZpcmVicmljaztcbiAgei1pbmRleDogMjtcbn1cbi5pdGVtTGlzdCAuYmFkZ2VIb2xkZXIgLmJpZEJhZGdlOjphZnRlciB7XG4gIGNvbnRlbnQ6IFwiIFwiO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGJhY2tncm91bmQtY29sb3I6IGZpcmVicmljaztcbiAgdG9wOiAxMjtcbiAgbWFyZ2luLWxlZnQ6IDJweDtcbiAgaGVpZ2h0OiAxNnB4O1xuICB3aWR0aDogMTZweDtcbiAgdHJhbnNmb3JtOiByb3RhdGUoNDVkZWcpO1xuICB6LWluZGV4OiAtMTtcbn1cbi5pdGVtTGlzdCAuYmFkZ2VIb2xkZXIgLmJhZGdlLXN1Y2Nlc3MsIC5pdGVtTGlzdCAuYmFkZ2VIb2xkZXIgLmJhZGdlLXN1Y2Nlc3M6OmFmdGVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogc2VhZ3JlZW4gIWltcG9ydGFudDtcbn1cblxuaW9uLWxpc3QgaW9uLWxhYmVsIHtcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbn1cblxuLnNlYXJjaFJlc3VsdCB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZSAhaW1wb3J0YW50O1xuICB6LWluZGV4OiA5OTk5O1xuICB3aWR0aDogMTAwJTtcbiAgdG9wOiAxMTBweDtcbiAgYm94LXNoYWRvdzogNXB4IDEwcHggOHB4ICM4ODg4ODg7XG59Il19 */"
 
 /***/ }),
 
@@ -1100,17 +851,34 @@ let ProductsService = class ProductsService {
         this.route = route;
         this.env = env;
     }
-    getProductsFromCategory(categoryId) {
-        return this.route.get(this.env.API_URL + 'category/' + categoryId + '/products');
+    getProductsFromCategory(id, index, accountStatus) {
+        return this.route.get(this.env.API_URL + 'category/' + id + '/products?index=' + index + "&accountStatus=" + accountStatus);
+    }
+    getProductsFromCompany(id, index, accountStatus) {
+        return this.route.get(this.env.API_URL + 'company/' + id + '/products?index=' + index + "&accountStatus=" + accountStatus);
     }
     getCategories() {
         return this.route.get(this.env.API_URL + 'category');
+    }
+    getCompanies() {
+        return this.route.get(this.env.API_URL + 'branch');
     }
     getDisplayItems(index) {
         return this.route.get(this.env.API_URL + 'products?id=' + index + '&key');
     }
     getAuctionItems(index) {
         return this.route.get(this.env.API_URL + 'products/auctiondata?id=' + index + '&key');
+    }
+    getItemDetails(id) {
+        return this.route.get(this.env.API_URL + 'product/' + id + '/auction');
+    }
+    getItemBiddings(id, userID) {
+        return this.route.get(this.env.API_URL + 'product/' + id + '/biddings?userID=' + userID);
+    }
+    postBid(id, userID, amount) {
+        return this.route.post(this.env.API_URL + 'product/' + id + '/bid', {
+            userID: userID, amount: amount
+        });
     }
 };
 ProductsService.ctorParameters = () => [
@@ -1172,6 +940,9 @@ let ProfileService = class ProfileService {
     }
     getUserData(id) {
         return this.http.get(this.env.API_URL + 'bidder/profile/' + id);
+    }
+    checkCardImage(id) {
+        return this.http.get(this.env.API_URL + 'bidder/checkcardimage?id=' + id);
     }
 };
 ProfileService.ctorParameters = () => [

@@ -79,5 +79,7 @@ export class LoginPage implements OnDestroy {
 
   ngOnDestroy() {
     this.loginService.unsubscribe();
+    if (this.toastController != null)
+      this.toastController.dismiss();
   }
 }

@@ -35,11 +35,11 @@ export class ProductsService {
     return this.route.get(this.env.API_URL + 'products/auctiondata?id=' + index + '&key')
   }
 
-  getItemDetails(id) {
+  getAuctionItemDetails(id) {
     return this.route.get(this.env.API_URL + 'product/' + id + '/auction')
   }
 
-  getItemBiddings(id, userID) {
+  getAuctionItemBiddings(id, userID) {
     return this.route.get(this.env.API_URL + 'product/' + id + '/biddings?userID=' + userID)
   }
 
@@ -47,5 +47,15 @@ export class ProductsService {
     return this.route.post(this.env.API_URL + 'product/' + id + '/bid', {
       userID: userID, amount: amount
     })
+  }
+
+  getDisplayItemDetails(id, userID) {
+    return this.route.get(this.env.API_URL + 'product/' + id + '/display?userID=' + userID);
+  }
+
+  postRate(id, userID, rate) {
+    return this.route.post(this.env.API_URL + 'product/' + id + '/rate?userID=' + userID,
+      rate
+    )
   }
 }

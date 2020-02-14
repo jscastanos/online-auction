@@ -69,6 +69,10 @@ const routes: Routes = [
 
     ]
   },
+  {
+    path: 'bid-view',
+    loadChildren: () => import('./pages/bid-view/bid-view.module').then( m => m.BidViewPageModule)
+  },
 ];
 
 @NgModule({
