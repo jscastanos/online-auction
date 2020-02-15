@@ -11,7 +11,15 @@ namespace OnlineAuction.API
 {
     public class MobileUtilsController : ApiController
     {
+
         private OnlineAuctionEntities db = new OnlineAuctionEntities();
+
+        public class bidDetails
+        {
+            public string userID { get; set; }
+            public int amount { get; set; }
+        }
+
 
         //Products from Category
         [Route("api/category/{id}/products")]
@@ -71,7 +79,7 @@ namespace OnlineAuction.API
                     d.AskPrice,
                     d.DateClosed,
                     d.DateTimeLimit,
-                    d.WinnerId,
+                    winner = db.tblBiddersInfoes.Where(w => w.BiddersId == d.WinnerId).Select(b => b.UserName).FirstOrDefault(),
                     product.ProductDescription,
                     branchName = db.tblBranchShops.Where(b => b.BranchId == product.BranchId).Select(bb => bb.BranchName).FirstOrDefault(),
                     categoryName = db.tblProductCategories.Where(c => c.CategoryId == product.CategoryId).Select(cc => cc.CategoryName).FirstOrDefault()
@@ -107,12 +115,7 @@ namespace OnlineAuction.API
             return Json(data);
         }
 
-        public class bidDetails
-        {
-            public string userID { get; set; }
-            public int amount { get; set; }
-        }
-
+       
         [Route("api/product/{id}/bid")]
         public IHttpActionResult PostBidNow(string id, bidDetails b)
         {
@@ -128,6 +131,56 @@ namespace OnlineAuction.API
             db.SaveChanges();
 
             return Ok();
+        }
+
+        [Route("api/product/{id}/display")]
+        public IHttpActionResult GetDisplayDetails(string id, string userID)
+        {
+            //get rates
+            double sum;
+
+            var rates = db.tblRatings.Where(r => r.ProductId == id);
+
+            if (rates.Count() > 0)
+            {
+                sum = Convert.ToDouble(db.tblRatings.Where(r => r.ProductId == id).Sum(s => s.Rating)) / rates.Count();
+            }
+            else
+            {
+                sum = 0;
+            }
+
+            // display details
+            var data = db.tblProducts.Where(p => p.ProductId == id)
+                                     .Select(pp => new { 
+                                         pp.ProductDescription,
+                                        branchName = db.tblBranchShops.Where(b => b.BranchId == pp.BranchId).Select(bb => bb.BranchName).FirstOrDefault(),
+                                        categoryName = db.tblProductCategories.Where(c => c.CategoryId == pp.CategoryId).Select(cc => cc.CategoryName).FirstOrDefault(),
+                                        userRating = db.tblRatings.Where(r => r.UserId == userID && r.ProductId == id).Select(rr => rr.Rating).FirstOrDefault(),
+                                        productRate = sum,
+                                        countRate = rates.Count()
+                                     }).FirstOrDefault();
+
+            return Json(data);
+        }
+
+
+        [Route("api/product/{id}/rate")]
+        public IHttpActionResult PostDisplayRate(string id, string userID, [FromBody] int rate)
+        {
+            tblRating rating = new tblRating();
+
+            rating.RateId = Guid.NewGuid().ToString("N").Substring(0, 5).ToUpper();
+            rating.ProductId = id;
+            rating.Rating = rate;
+            rating.UserId = userID;
+
+            db.tblRatings.Add(rating);
+            db.SaveChanges();
+
+            return Ok();
+
+            
         }
 
     }

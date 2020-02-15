@@ -18,7 +18,6 @@ namespace OnlineAuction
             bundles.Add(new StyleBundle("~/css").Include(
                         "~/Content/icomoon.css",
                         "~/Content/font-awesome.css",
-                        "~/Content/bootstrap.css",
                         "~/Content/core.css",
                         "~/Content/components.css",
                         "~/Content/colors.css"
