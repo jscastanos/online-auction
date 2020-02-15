@@ -5,7 +5,7 @@
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{ categoryName }}</ion-title>
+    <ion-title>{{ itemName }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,24 +13,21 @@
   <ion-list lines="none" class="itemList">
     <ion-grid>
       <ion-row>
-        <ion-col size-xs="6" *ngFor="let item of products" class="item" (click)="openAuction(item)">
-          <div class="badgeHolder">
-            <div class="bidBadge" [ngClass]="{'badge-success' : item.Status == 1}">
-              {{item.Status == 1 ? "On Auction" : "For Display"}}
-            </div>
-          </div>
-          <img src="{{url}}/Product/RetrieveImage?id={{item.ProductId}}"
+        <ion-col size-xs="12">
+          <img src="{{url}}/Product/RetrieveImage?id={{itemId}}"
             onerror="this.onerror = null; this.src = '../assets/placeholder.png'" />
           <ion-text>
-            <h5>{{item.ProductName}}</h5>
+            <input type="number" style="width: 100%; height: 60px; margin: 30px 0;" placeholder="Enter bid amount"
+              [(ngModel)]="amount" />
           </ion-text>
+          <ion-button color="primary" expand="full" (click)="bidNow(amount)">Place Bid</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="error != null">
+        <ion-col>
+          {{error}}
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-list>
-
-  <ion-infinite-scroll threshold="10px" (ionInfinite)="loadData()">
-    <ion-infinite-scroll-content style="padding-top: 10px;" loadingSpinner="crescent">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
 </ion-content>

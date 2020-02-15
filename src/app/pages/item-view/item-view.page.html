@@ -23,7 +23,7 @@
       </ion-col>
     </ion-row>
     <!--  for bidders -->
-    <ion-row style="margin: 10px 0" *ngIf="itemStatus != 0">
+    <ion-row style="margin: 10px 0" *ngIf="itemStatus != 0 && biddingDetails != null">
       <ion-col size="12" *ngIf="biddingDetails.userBidPrice == null; else userPrice">
         <ion-button color="primary" expand="full" (click)="bidNow()">
           <ion-icon name="hammer"></ion-icon> &nbsp;
@@ -41,7 +41,7 @@
     <!-- end for bidders -->
     <ion-row>
       <ion-col class="itemName">
-        <ion-text *ngIf="itemStatus != 0">
+        <ion-text *ngIf="itemStatus != 0 && biddingDetails != null">
           <h1>
             {{ biddingDetails.highestBidPrice != undefined ? biddingDetails.highestBidPrice : itemDetails.AskPrice | currency : '&#8369; '}}
           </h1>
@@ -53,7 +53,7 @@
           <p style="color: grey">{{branchName}} | {{categoryName}}</p>
         </ion-text>
 
-        <ion-text *ngIf="itemStatus == 0" class="displayRate">
+        <ion-text *ngIf="itemStatus == 0 && displayDetails != null" class="displayRate">
           <h1>
             <ion-label *ngFor="let rate of ratingStars">
               <ion-icon name="{{rate}}"></ion-icon>
@@ -65,7 +65,7 @@
     </ion-row>
 
     <!-- for viewers -->
-    <ion-row style="margin: 10px 0" *ngIf="itemStatus == 0">
+    <ion-row style="margin: 10px 0" *ngIf="itemStatus == 0 && displayDetails != null">
       <ion-col size="12" *ngIf="displayDetails.userRating == null; else userRate" class="itemName">
         <ion-text class="userRate">
           <h4>Rate us</h4>
@@ -105,7 +105,7 @@
       </ion-col>
     </ion-row>
     <!-- enf for viewers -->
-    <ion-row *ngIf="itemStatus != 0">
+    <ion-row *ngIf="itemStatus != 0 && biddingDetails != null">
       <ion-col>
         <ion-list>
           <ion-item>

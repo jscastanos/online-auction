@@ -5,6 +5,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { NavController } from '@ionic/angular';
 import { get, set } from '../../services/storage.service';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-item-view',
@@ -26,6 +27,7 @@ export class ItemViewPage implements OnInit, OnDestroy {
   timeLimit: any;
   displayDetails;
   ratingStars;
+  timer;
 
   //common
   url;
@@ -95,7 +97,15 @@ export class ItemViewPage implements OnInit, OnDestroy {
       this.categoryName = this.itemDetails.categoryName;
       this.itemDescription = this.itemDetails.ProductDescription;
       this.auctionID = this.itemDetails.AuctionId;
+
       this.timeLimit = this.timeLeft(this.itemDetails.DateTimeLimit);
+
+      //start countdown
+      this.timer = interval(1000).subscribe(x => {
+        this.timeLimit = this.timeLeft(this.itemDetails.DateTimeLimit);
+      });
+
+
       this.getAuctionItemBiddings();
     })
   }
@@ -113,6 +123,8 @@ export class ItemViewPage implements OnInit, OnDestroy {
   bidNow() {
     let data = {
       auctionID: this.auctionID,
+      name: this.itemName,
+      id: this.itemId
     }
 
     let params = {
@@ -128,7 +140,7 @@ export class ItemViewPage implements OnInit, OnDestroy {
   timeLeft(t) {
     let date = Math.floor(new Date(t).getTime() - new Date().getTime()) / 1000;
 
-    let days, hours, minutes
+    let days, hours, minutes, seconds;
 
     days = Math.floor(date / 86400);
     date -= days * 86400;
@@ -139,10 +151,13 @@ export class ItemViewPage implements OnInit, OnDestroy {
     minutes = Math.floor(date / 60) % 60;
     date -= minutes * 60;
 
+    seconds = Math.floor(date % 60);
+
     return [
       days + 'd',
       hours + 'h',
-      minutes + 'm'
+      minutes + 'm',
+      seconds + 's'
     ].join(' ');
   }
 
@@ -166,7 +181,6 @@ export class ItemViewPage implements OnInit, OnDestroy {
     half = Math.ceil(rate - whole);
     none = Math.trunc(5 - (whole + half));
 
-    console.log(whole + ", " + half + ", " + none)
     //construct data
     for (const index of [].constructor(whole))
       array.push("star")
@@ -199,6 +213,9 @@ export class ItemViewPage implements OnInit, OnDestroy {
 
     if (this.fetchDisplayItemDetails != null)
       this.fetchDisplayItemDetails.unsubscribe();
+
+    if (this.timer != null)
+      this.timer.unsubscribe();
 
   }
   ngOnDestroy() {
