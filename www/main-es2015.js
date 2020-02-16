@@ -550,7 +550,7 @@ const routes = [
             },
             {
                 path: 'list',
-                loadChildren: () => __webpack_require__.e(/*! import() | list-list-module */ "list-list-module").then(__webpack_require__.bind(null, /*! ./list/list.module */ "./src/app/list/list.module.ts")).then(m => m.ListPageModule)
+                loadChildren: () => Promise.all(/*! import() | pages-list-list-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-list-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/list/list.module */ "./src/app/pages/list/list.module.ts")).then(m => m.ListPageModule)
             },
             {
                 path: 'company-view',
@@ -596,6 +596,10 @@ const routes = [
                 loadChildren: () => Promise.all(/*! import() | pages-bidder-supporting-id-bidder-supporting-id-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-bidder-supporting-id-bidder-supporting-id-module")]).then(__webpack_require__.bind(null, /*! ./pages/bidder-supporting-id/bidder-supporting-id.module */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.module.ts")).then(m => m.BidderSupportingIdPageModule)
             },
         ]
+    },
+    {
+        path: 'bid-view',
+        loadChildren: () => Promise.all(/*! import() | pages-bid-view-bid-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-bid-view-bid-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/bid-view/bid-view.module */ "./src/app/pages/bid-view/bid-view.module.ts")).then(m => m.BidViewPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -668,7 +672,7 @@ let AppComponent = class AppComponent {
             const state = yield this.validateUser(data);
             if (state != null) {
                 if (state)
-                    this.router.navigateByUrl('/');
+                    this.router.navigateByUrl('/profile');
                 else
                     this.router.navigateByUrl('/login');
             }

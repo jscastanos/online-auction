@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content class=\"no-scroll\">\n  <form #form=\"ngForm\" (ngSubmit)=\"login(form)\" class=\"login\">\n    <ion-grid>\n      <ion-row>\n        <ion-col>\n          <ion-text>\n            <h1>AUCTION</h1>\n          </ion-text>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col size-xs=\"12\">\n          <div class=\"ion-padding\">\n            <ion-item class=\"ion-margin-top\">\n              <ion-icon name=\"person\"></ion-icon>\n              <ion-input type=\"text\" required ngModel name=\"username\" placeholder=\"Username\"></ion-input>\n            </ion-item>\n            <ion-item class=\"ion-margin-top\">\n              <ion-icon name=\"key\"></ion-icon>\n              <ion-input type=\"password\" required ngModel name=\"password\" placeholder=\"Password\"></ion-input>\n            </ion-item>\n          </div>\n          <div class=\"ion-padding\">\n            <ion-button disabled=\"{{btnDisabled}}\" color=\"primary\" shape=\"round\" size=\"md\" type=\"submit\" expand=\"full\">\n              LOG\n              IN</ion-button>\n          </div>\n        </ion-col>\n        <ion-col>\n          <ion-text>\n            <h5>Don't have an account?\n              <a [routerLink]=\"['/register']\">Create an account</a> </h5>\n          </ion-text>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>"
+module.exports = "<ion-content class=\"no-scroll\">\n  <form id=\"form\" #form=\"ngForm\" (ngSubmit)=\"login(form)\" class=\"login\">\n    <ion-grid>\n      <ion-row>\n        <ion-col>\n          <ion-text>\n            <h1>AUCTION</h1>\n          </ion-text>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col size-xs=\"12\">\n          <div class=\"ion-padding\">\n            <ion-item class=\"ion-margin-top\">\n              <ion-icon name=\"person\"></ion-icon>\n              <ion-input type=\"text\" required ngModel name=\"username\" placeholder=\"Username\"></ion-input>\n            </ion-item>\n            <ion-item class=\"ion-margin-top\">\n              <ion-icon name=\"key\"></ion-icon>\n              <ion-input type=\"password\" required ngModel name=\"password\" placeholder=\"Password\"></ion-input>\n            </ion-item>\n          </div>\n          <div class=\"ion-padding\">\n            <ion-button disabled=\"{{btnDisabled}}\" color=\"primary\" shape=\"round\" size=\"md\" type=\"submit\" expand=\"full\">\n              LOG\n              IN</ion-button>\n          </div>\n        </ion-col>\n        <ion-col>\n          <ion-text>\n            <h5>Don't have an account?\n              <a [routerLink]=\"['/register']\" (click)=\"form.reset()\">Create an account</a> </h5>\n          </ion-text>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>"
 
 /***/ }),
 
@@ -105,8 +105,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _services_storage_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/storage.service */ "./src/app/services/storage.service.ts");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/auth.service */ "./src/app/services/auth.service.ts");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var src_app_services_common_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/services/common.service */ "./src/app/services/common.service.ts");
+/* harmony import */ var src_app_services_common_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/common.service */ "./src/app/services/common.service.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 
 
 
@@ -115,22 +115,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginPage = class LoginPage {
-    constructor(router, authService, toastController, common) {
+    constructor(router, authService, alertController, common) {
         this.router = router;
         this.authService = authService;
-        this.toastController = toastController;
+        this.alertController = alertController;
         this.common = common;
         this.btnDisabled = false; // submit button
         this.user = this.common.user;
     }
-    presentToast(m) {
+    presentAlert(header, msg) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const toast = yield this.toastController.create({
-                message: m,
-                duration: 2000
+            const alert = yield this.alertController.create({
+                header: header,
+                message: msg,
+                buttons: ['OK']
             });
-            toast.present();
+            yield alert.present();
         });
+    }
+    ngOnInit() {
     }
     login(form) {
         this.btnDisabled = true;
@@ -160,11 +163,11 @@ let LoginPage = class LoginPage {
             }
             else {
                 this.btnDisabled = false;
-                this.presentToast("Please check your username or password");
+                this.presentAlert("Something wrong!", "Please check your username or password");
             }
         }, error => {
             this.btnDisabled = false;
-            this.presentToast(error);
+            this.presentAlert("Error", JSON.stringify(error));
         });
     }
     ngOnDestroy() {
@@ -174,8 +177,8 @@ let LoginPage = class LoginPage {
 LoginPage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
     { type: _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ToastController"] },
-    { type: src_app_services_common_service__WEBPACK_IMPORTED_MODULE_6__["CommonService"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"] },
+    { type: src_app_services_common_service__WEBPACK_IMPORTED_MODULE_5__["CommonService"] }
 ];
 LoginPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -183,7 +186,7 @@ LoginPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./login.page.html */ "./node_modules/raw-loader/index.js!./src/app/auth/login/login.page.html"),
         styles: [__webpack_require__(/*! ../auth.scss */ "./src/app/auth/auth.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ToastController"], src_app_services_common_service__WEBPACK_IMPORTED_MODULE_6__["CommonService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"], src_app_services_common_service__WEBPACK_IMPORTED_MODULE_5__["CommonService"]])
 ], LoginPage);
 
 

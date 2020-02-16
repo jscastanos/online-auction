@@ -556,7 +556,7 @@ var routes = [
             },
             {
                 path: 'list',
-                loadChildren: function () { return __webpack_require__.e(/*! import() | list-list-module */ "list-list-module").then(__webpack_require__.bind(null, /*! ./list/list.module */ "./src/app/list/list.module.ts")).then(function (m) { return m.ListPageModule; }); }
+                loadChildren: function () { return Promise.all(/*! import() | pages-list-list-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-list-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/list/list.module */ "./src/app/pages/list/list.module.ts")).then(function (m) { return m.ListPageModule; }); }
             },
             {
                 path: 'company-view',
@@ -602,6 +602,10 @@ var routes = [
                 loadChildren: function () { return Promise.all(/*! import() | pages-bidder-supporting-id-bidder-supporting-id-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-bidder-supporting-id-bidder-supporting-id-module")]).then(__webpack_require__.bind(null, /*! ./pages/bidder-supporting-id/bidder-supporting-id.module */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.module.ts")).then(function (m) { return m.BidderSupportingIdPageModule; }); }
             },
         ]
+    },
+    {
+        path: 'bid-view',
+        loadChildren: function () { return Promise.all(/*! import() | pages-bid-view-bid-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-bid-view-bid-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/bid-view/bid-view.module */ "./src/app/pages/bid-view/bid-view.module.ts")).then(function (m) { return m.BidViewPageModule; }); }
     },
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -684,7 +688,7 @@ var AppComponent = /** @class */ (function () {
                         state = _a.sent();
                         if (state != null) {
                             if (state)
-                                this.router.navigateByUrl('/');
+                                this.router.navigateByUrl('/profile');
                             else
                                 this.router.navigateByUrl('/login');
                         }

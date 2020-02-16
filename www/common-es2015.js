@@ -864,21 +864,33 @@ let ProductsService = class ProductsService {
         return this.route.get(this.env.API_URL + 'branch');
     }
     getDisplayItems(index) {
-        return this.route.get(this.env.API_URL + 'products?id=' + index + '&key');
+        return this.route.get(this.env.API_URL + 'product/displays?index=' + index);
     }
     getAuctionItems(index) {
-        return this.route.get(this.env.API_URL + 'products/auctiondata?id=' + index + '&key');
+        return this.route.get(this.env.API_URL + 'product/auctions?index=' + index);
     }
-    getItemDetails(id) {
+    getAuctionItemDetails(id) {
         return this.route.get(this.env.API_URL + 'product/' + id + '/auction');
     }
-    getItemBiddings(id, userID) {
+    getAuctionItemBiddings(id, userID) {
         return this.route.get(this.env.API_URL + 'product/' + id + '/biddings?userID=' + userID);
     }
     postBid(id, userID, amount) {
         return this.route.post(this.env.API_URL + 'product/' + id + '/bid', {
             userID: userID, amount: amount
         });
+    }
+    getDisplayItemDetails(id, userID) {
+        return this.route.get(this.env.API_URL + 'product/' + id + '/display?userID=' + userID);
+    }
+    postRate(id, userID, rate) {
+        return this.route.post(this.env.API_URL + 'product/' + id + '/rate?userID=' + userID, rate);
+    }
+    getSearchProduct(query) {
+        return this.route.get(this.env.API_URL + 'product/search?query=' + query);
+    }
+    getUserBiddings(userID) {
+        return this.route.get(this.env.API_URL + 'bidders/biddings?userID=' + userID);
     }
 };
 ProductsService.ctorParameters = () => [
@@ -943,6 +955,12 @@ let ProfileService = class ProfileService {
     }
     checkCardImage(id) {
         return this.http.get(this.env.API_URL + 'bidder/checkcardimage?id=' + id);
+    }
+    updatePassword(id, oldPassword, newPassword) {
+        return this.http.put(this.env.API_URL + 'profile/' + id + '/updatePassword', {
+            oldPassword: oldPassword,
+            newPassword: newPassword
+        });
     }
 };
 ProfileService.ctorParameters = () => [

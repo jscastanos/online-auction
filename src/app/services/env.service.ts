@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class EnvService {
-  URL = 'http://zeck:69/';
-  API_URL = 'http://zeck:69/api/';
+  URL = 'http://192.168.1.12:69/';
+  API_URL = 'http://192.168.1.12:69/api/';
 
   constructor() { }
 }

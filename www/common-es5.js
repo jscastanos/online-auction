@@ -592,21 +592,33 @@ var ProductsService = /** @class */ (function () {
         return this.route.get(this.env.API_URL + 'branch');
     };
     ProductsService.prototype.getDisplayItems = function (index) {
-        return this.route.get(this.env.API_URL + 'products?id=' + index + '&key');
+        return this.route.get(this.env.API_URL + 'product/displays?index=' + index);
     };
     ProductsService.prototype.getAuctionItems = function (index) {
-        return this.route.get(this.env.API_URL + 'products/auctiondata?id=' + index + '&key');
+        return this.route.get(this.env.API_URL + 'product/auctions?index=' + index);
     };
-    ProductsService.prototype.getItemDetails = function (id) {
+    ProductsService.prototype.getAuctionItemDetails = function (id) {
         return this.route.get(this.env.API_URL + 'product/' + id + '/auction');
     };
-    ProductsService.prototype.getItemBiddings = function (id, userID) {
+    ProductsService.prototype.getAuctionItemBiddings = function (id, userID) {
         return this.route.get(this.env.API_URL + 'product/' + id + '/biddings?userID=' + userID);
     };
     ProductsService.prototype.postBid = function (id, userID, amount) {
         return this.route.post(this.env.API_URL + 'product/' + id + '/bid', {
             userID: userID, amount: amount
         });
+    };
+    ProductsService.prototype.getDisplayItemDetails = function (id, userID) {
+        return this.route.get(this.env.API_URL + 'product/' + id + '/display?userID=' + userID);
+    };
+    ProductsService.prototype.postRate = function (id, userID, rate) {
+        return this.route.post(this.env.API_URL + 'product/' + id + '/rate?userID=' + userID, rate);
+    };
+    ProductsService.prototype.getSearchProduct = function (query) {
+        return this.route.get(this.env.API_URL + 'product/search?query=' + query);
+    };
+    ProductsService.prototype.getUserBiddings = function (userID) {
+        return this.route.get(this.env.API_URL + 'bidders/biddings?userID=' + userID);
     };
     ProductsService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
@@ -672,6 +684,12 @@ var ProfileService = /** @class */ (function () {
     };
     ProfileService.prototype.checkCardImage = function (id) {
         return this.http.get(this.env.API_URL + 'bidder/checkcardimage?id=' + id);
+    };
+    ProfileService.prototype.updatePassword = function (id, oldPassword, newPassword) {
+        return this.http.put(this.env.API_URL + 'profile/' + id + '/updatePassword', {
+            oldPassword: oldPassword,
+            newPassword: newPassword
+        });
     };
     ProfileService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },

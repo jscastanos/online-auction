@@ -95,6 +95,7 @@ export class HomePage implements OnDestroy {
 
     if (this.user.status != 0)
       this.fetchAuction();
+
   }
 
   loadData() {

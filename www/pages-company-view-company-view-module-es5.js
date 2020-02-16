@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"{{user.statusColor}}\">\n    <ion-buttons slot=\"start\">\n      <ion-button [routerLink]=\"['/home']\">\n        <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>{{ companyName }}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list lines=\"none\" class=\"itemList\">\n    <ion-grid>\n      <ion-row *ngIf=\"products.length > 0; else nodata\">\n        <ion-col size-xs=\"6\" *ngFor=\"let items of products\" class=\"item\">\n          <div class=\"badgeHolder\">\n            <div class=\"bidBadge\" [ngClass]=\"{'badge-success' : items.Status == 1}\">\n              {{items.Status == 1 ? \"On Auction\" : \"For Display\"}}\n            </div>\n          </div>\n          <img src=\"{{url}}/image/image.png\" onerror=\"this.onerror = null; this.src = '../assets/placeholder.png'\" />\n          <ion-text>\n            <h5>{{items.ProductName}}</h5>\n          </ion-text>\n        </ion-col>\n      </ion-row>\n      <ng-template #nodata>\n        <ion-row>\n          <ion-col>No Items</ion-col>\n        </ion-row>\n      </ng-template>\n    </ion-grid>\n  </ion-list>\n\n  <ion-infinite-scroll threshold=\"10px\" (ionInfinite)=\"loadData()\">\n    <ion-infinite-scroll-content style=\"padding-top: 10px;\" loadingSpinner=\"crescent\">\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar color=\"{{user.statusColor}}\">\n    <ion-buttons slot=\"start\">\n      <ion-button [routerLink]=\"['/home']\">\n        <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>{{ companyName }}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list lines=\"none\" class=\"itemList\">\n    <ion-grid>\n      <ion-row *ngIf=\"products.length > 0; else nodata\">\n        <ion-col size-xs=\"6\" *ngFor=\"let items of products\" class=\"item\" (click)=\"goToView(item)\">\n          <div class=\"badgeHolder\">\n            <div class=\"bidBadge\" [ngClass]=\"{'badge-success' : items.Status == 1}\">\n              {{items.Status == 1 ? \"On Auction\" : \"For Display\"}}\n            </div>\n          </div>\n          <img src=\"{{url}}/image/image.png\" onerror=\"this.onerror = null; this.src = '../assets/placeholder.png'\" />\n          <ion-text>\n            <h5>{{items.ProductName}}</h5>\n          </ion-text>\n        </ion-col>\n      </ion-row>\n      <ng-template #nodata>\n        <ion-row>\n          <ion-col>No Items</ion-col>\n        </ion-row>\n      </ng-template>\n    </ion-grid>\n  </ion-list>\n\n  <ion-infinite-scroll threshold=\"10px\" (ionInfinite)=\"loadData()\">\n    <ion-infinite-scroll-content style=\"padding-top: 10px;\" loadingSpinner=\"crescent\">\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n</ion-content>"
 
 /***/ }),
 
@@ -121,8 +121,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var CompanyViewPage = /** @class */ (function () {
-    function CompanyViewPage(route, router, env, productsService, common) {
+    function CompanyViewPage(nav, route, router, env, productsService, common) {
         var _this = this;
+        this.nav = nav;
         this.route = route;
         this.router = router;
         this.env = env;
@@ -177,7 +178,21 @@ var CompanyViewPage = /** @class */ (function () {
             _this.fetchProductsService.unsubscribe();
         });
     };
+    CompanyViewPage.prototype.goToView = function (item) {
+        var data = {
+            name: item.ProductName,
+            id: item.ProductId,
+            status: item.Status
+        };
+        var params = {
+            queryParams: {
+                q: JSON.stringify(data)
+            }
+        };
+        this.nav.navigateRoot(["/item-view"], params);
+    };
     CompanyViewPage.ctorParameters = function () { return [
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
         { type: src_app_services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"] },
@@ -194,7 +209,7 @@ var CompanyViewPage = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./company-view.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/company-view/company-view.page.html"),
             styles: [__webpack_require__(/*! ../../home/home.page.scss */ "./src/app/home/home.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], src_app_services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"], _services_products_service__WEBPACK_IMPORTED_MODULE_3__["ProductsService"], src_app_services_common_service__WEBPACK_IMPORTED_MODULE_4__["CommonService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], src_app_services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"], _services_products_service__WEBPACK_IMPORTED_MODULE_3__["ProductsService"], src_app_services_common_service__WEBPACK_IMPORTED_MODULE_4__["CommonService"]])
     ], CompanyViewPage);
     return CompanyViewPage;
 }());
