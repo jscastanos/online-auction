@@ -64,6 +64,7 @@ namespace OnlineAuction.Controllers
             }
         }
 
+        [HttpPost]
         public ActionResult auth(string u, string p)
         {
             try
