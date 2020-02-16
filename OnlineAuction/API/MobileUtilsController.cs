@@ -136,29 +136,17 @@ namespace OnlineAuction.API
         [Route("api/product/{id}/display")]
         public IHttpActionResult GetDisplayDetails(string id, string userID)
         {
-            //get rates
-            double sum;
 
-            var rates = db.tblRatings.Where(r => r.ProductId == id);
-
-            if (rates.Count() > 0)
-            {
-                sum = Convert.ToDouble(db.tblRatings.Where(r => r.ProductId == id).Sum(s => s.Rating)) / rates.Count();
-            }
-            else
-            {
-                sum = 0;
-            }
-
-            // display details
+             //display details
             var data = db.tblProducts.Where(p => p.ProductId == id)
+                                     .AsEnumerable()
                                      .Select(pp => new { 
                                          pp.ProductDescription,
                                         branchName = db.tblBranchShops.Where(b => b.BranchId == pp.BranchId).Select(bb => bb.BranchName).FirstOrDefault(),
                                         categoryName = db.tblProductCategories.Where(c => c.CategoryId == pp.CategoryId).Select(cc => cc.CategoryName).FirstOrDefault(),
                                         userRating = db.tblRatings.Where(r => r.UserId == userID && r.ProductId == id).Select(rr => rr.Rating).FirstOrDefault(),
-                                        productRate = sum,
-                                        countRate = rates.Count()
+                                         productRate = ComputeRating(pp.ProductId),
+                                        countRate = db.tblRatings.Where(r => r.ProductId == id).Count()
                                      }).FirstOrDefault();
 
             return Json(data);
@@ -181,6 +169,110 @@ namespace OnlineAuction.API
             return Ok();
 
             
+        }
+
+        [Route("api/product/auctions")]
+        public IHttpActionResult GetAuctions(int index)
+        {
+                var data = db.tblAuctionItems.Where(a => a.recNo > index && a.Status == 0).Select(d => new
+                {   
+                    d.recNo,
+                    d.ProductId,
+                    ProductName = db.tblProducts.Where(p => p.ProductId == d.ProductId).Select(pp => pp.ProductName).FirstOrDefault(),
+                    CurrentBidPrice = db.tblBiddings.Where(b => b.AuctionId == d.AuctionId).OrderByDescending(o => o.BidPrice).Select(b => b.BidPrice).Take(1).FirstOrDefault(),
+                    d.DateTimeLimit,
+                    d.AskPrice
+
+                }).ToList();
+
+                return Json(data);
+        }
+
+        [Route("api/product/displays")]
+        public IHttpActionResult GetDisplays(int index)
+        {
+
+            var data = db.tblProducts.Where(p => p.recNo > index && p.Status == 0)
+                                 .AsEnumerable()
+                                 .Select(d => new
+                                    {
+                                        d.recNo,
+                                        d.ProductId,
+                                        d.ProductName,
+                                        rate = ComputeRating(d.ProductId)
+                                    })
+                                .ToList();
+            
+
+            return Json(data);
+        }
+
+        [Route("api/product/search")]
+        public IHttpActionResult GetSearchParams(string query)
+        {
+            var data = db.tblProducts.Where(p => p.ProductName.StartsWith(query))
+                                     .Select(pp => new { 
+                                        pp.ProductId,
+                                        pp.ProductName,
+                                        pp.Status
+                                     }).ToList();
+
+            return Json(data);
+        }
+            
+        [Route("api/bidders/biddings")]
+        public IHttpActionResult GetUserBiddings(string userID)
+        {
+            var data = (from a in db.tblBiddings
+                        join b in db.tblAuctionItems on a.AuctionId equals b.AuctionId
+                        join c in db.tblProducts on b.ProductId equals c.ProductId
+                        where b.WinnerId == null
+                        select new
+                        {
+                            c.ProductId,
+                            c.ProductName,
+                            a.BidPrice,
+                            b.DateTimeLimit,
+                        }).ToList();
+
+            return Json(data);
+        }
+
+        public double ComputeRating(string id)
+        {
+            double sum = 0;
+
+            //get values
+            var data = db.tblRatings.Where(r => r.ProductId == id);
+
+            if (data.Count() > 0)
+            {
+                return Convert.ToDouble(data.Sum(s => s.Rating)) / data.Count();
+
+            }
+
+            return sum;
+        }
+
+        public class password
+        {
+            public string oldPassword { get; set; }
+            public string newPassword { get; set; }
+        }
+        [Route("api/profile/{id}/updatePassword")]
+        public IHttpActionResult PutUpdatePassword(string id, password password)
+        {
+            var data = db.tblBiddersInfoes.Where(b => b.BiddersId == id).FirstOrDefault();
+
+            if (data.Password == password.oldPassword) { 
+                data.Password = password.newPassword;
+                db.SaveChanges();
+                return Json(1);
+            }
+            else
+            {
+                return Json("Old password is incorrect");
+            }
         }
 
     }
