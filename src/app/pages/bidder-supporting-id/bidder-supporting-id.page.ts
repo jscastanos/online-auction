@@ -4,6 +4,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { EnvService } from 'src/app/services/env.service';
 import { Router, NavigationEnd } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 const { Camera } = Plugins;
 
 @Component({
@@ -29,7 +30,7 @@ export class BidderSupportingIdPage implements OnInit {
 
 
 
-  constructor(private common: CommonService, private profileService: ProfileService, private env: EnvService, private router: Router) {
+  constructor(private toastController: ToastController, private common: CommonService, private profileService: ProfileService, private env: EnvService, private router: Router) {
     this.user = this.common.user;
     this.url = this.env.URL;
 
@@ -49,6 +50,14 @@ export class BidderSupportingIdPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  async presentToast(m) {
+    const toast = await this.toastController.create({
+      message: m,
+      duration: 2000
+    });
+    toast.present();
   }
 
   async capture(type) {
@@ -104,7 +113,10 @@ export class BidderSupportingIdPage implements OnInit {
 
       if (this.serverHasImage[image] != 0) {
         this.savePhoto = this.profileService.saveImage(this.user.id, this.images[image].split(",")[1], type).subscribe(data => {
-
+          this.presentToast("Submitted successfully, you will be redirect in 3 seconds");
+          setTimeout(() => {
+            this.router.navigateByUrl("/profile")
+          }, 3000)
         })
       }
     }

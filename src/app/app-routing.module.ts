@@ -20,7 +20,7 @@ const routes: Routes = [
       },
       {
         path: 'list',
-        loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
+        loadChildren: () => import('./pages/list/list.module').then(m => m.ListPageModule)
       },
       {
         path: 'company-view',
@@ -71,7 +71,7 @@ const routes: Routes = [
   },
   {
     path: 'bid-view',
-    loadChildren: () => import('./pages/bid-view/bid-view.module').then( m => m.BidViewPageModule)
+    loadChildren: () => import('./pages/bid-view/bid-view.module').then(m => m.BidViewPageModule)
   },
 ];
 

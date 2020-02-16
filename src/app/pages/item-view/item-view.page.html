@@ -43,7 +43,7 @@
       <ion-col class="itemName">
         <ion-text *ngIf="itemStatus != 0 && biddingDetails != null">
           <h1>
-            {{ biddingDetails.highestBidPrice != undefined ? biddingDetails.highestBidPrice : itemDetails.AskPrice | currency : '&#8369; '}}
+            {{ (biddingDetails.highestBidPrice != undefined ? biddingDetails.highestBidPrice : itemDetails.AskPrice) | currency : '&#8369; '}}
           </h1>
           <span>(Starts at {{itemDetails.AskPrice | currency : '&#8369; '}})</span>
         </ion-text>

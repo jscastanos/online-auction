@@ -1,8 +1,9 @@
 import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { ProductsService } from '../services/products.service';
-import { IonInfiniteScroll } from '@ionic/angular';
+import { IonInfiniteScroll, NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { CommonService } from '../services/common.service';
+import { EnvService } from '../services/env.service';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,9 @@ export class HomePage implements OnDestroy {
     auction: 0,
     display: 0
   };
+
+  searchResults = [];
+  didUserSearch = false;
 
   currItemStatus = 1;
 
@@ -56,63 +60,87 @@ export class HomePage implements OnDestroy {
   //api
   fetchDisplayService;
   fetchAuctionService;
+  searchProduct;
 
   //common
   user;
+  url;
 
 
-  constructor(private productsService: ProductsService, private auth: AuthService, public common: CommonService) {
+  constructor(private nav: NavController, private env: EnvService, private productsService: ProductsService, private auth: AuthService, public common: CommonService) {
     this.user = this.common.user;
+    this.url = this.env.URL;
   }
 
-  searchResults = [];
-
   search(q) {
-    if (q != "")
-      this.searchResults.push(q)
-    else
-      this.searchResults = []
 
+    this.searchResults = []
+
+    if (q != "") {
+      this.searchProduct = this.productsService.getSearchProduct(q).subscribe(data => {
+        this.didUserSearch = true;
+        if (Object.keys(data).length > 0) {
+          for (let d in data) {
+            this.searchResults.push(data[d])
+          }
+        }
+      })
+    } else {
+      this.didUserSearch = false;
+    }
   }
 
   ngOnInit() {
-    this.fetchAuction();
     this.fetchDisplay();
+
+    if (this.user.status != 0)
+      this.fetchAuction();
   }
 
-  async loadData() {
-    if (this.currItemStatus == 0)
-      await this.fetchDisplay();
-    else
-      await this.fetchAuction();
+  loadData() {
+
+    if (this.user.status == 0)
+      this.fetchDisplay();
+    else {
+
+      if (this.currItemStatus == 0)
+        this.fetchDisplay();
+      else
+        this.fetchAuction();
+
+    }
 
     this.infiniteScroll.complete();
 
   }
 
-  fetchDisplay() {
-    this.fetchDisplayService = this.productsService.getDisplayItems(this.lazyLoadIndex.display)
+  async fetchDisplay() {
+    this.fetchDisplayService = await this.productsService.getDisplayItems(this.lazyLoadIndex.display)
       .subscribe(data => {
         for (let index in data) {
+
+          //rating stars
+          data[index]["ratingStars"] = this.computeRating(data[index]["rate"]);
+          data[index]["Status"] = 0;
           this.displayItems.push(data[index]);
-          this.lazyLoadIndex.display = data[index]["rowNum"];
+          this.lazyLoadIndex.display = data[index]["recNo"];
         }
         this.activeItems = this.displayItems
-
-        this.fetchDisplayService.unsubscribe();
       });
   };
 
-  fetchAuction() {
-    this.fetchAuctionService = this.productsService.getAuctionItems(this.lazyLoadIndex.auction)
+  async fetchAuction() {
+    this.fetchAuctionService = await this.productsService.getAuctionItems(this.lazyLoadIndex.auction)
       .subscribe(data => {
         for (let index in data) {
+          data[index]["DateTimeLimit"] = data[index]["DateTimeLimit"].split("T")[0];
+          data[index]["Status"] = 1;
           this.auctionItems.push(data[index]);
-          this.lazyLoadIndex.auction = data[index]["rowNum"];
+          this.lazyLoadIndex.auction = data[index]["recNo"];
+
         }
         this.activeItems = this.auctionItems
 
-        this.fetchAuctionService.unsubscribe();
       });
   };
 
@@ -128,9 +156,55 @@ export class HomePage implements OnDestroy {
     }
   }
 
+
+  computeRating(rate) {
+    let whole, half, none, array = [];
+
+    whole = Math.trunc(rate);
+    half = Math.ceil(rate - whole);
+    none = Math.trunc(5 - (whole + half));
+
+    //construct data
+    for (const index of [].constructor(whole))
+      array.push("star")
+
+    for (const index of [].constructor(half))
+      array.push("star-half")
+
+    for (const index of [].constructor(none))
+      array.push("star-outline")
+
+    return array;
+  }
+
+  goToView(item) {
+
+    let data = {
+      name: item.ProductName,
+      id: item.ProductId,
+      status: item.Status
+    }
+
+    let params = {
+      queryParams: {
+        q: JSON.stringify(data)
+      }
+    }
+    this.nav.navigateRoot(["/item-view"], params);
+  }
+
+
   ngOnDestroy() {
+    this.displayItems = [];
+    this.auctionItems = [];
+    this.activeItems = [];
     this.fetchDisplayService.unsubscribe();
-    this.fetchAuctionService.unsubscribe();
+
+    if (this.fetchAuctionService != null)
+      this.fetchAuctionService.unsubscribe();
+
+    if (this.searchProduct != null)
+      this.searchProduct.unsubscribe();
   }
 
 }

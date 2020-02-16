@@ -1,5 +1,12 @@
 .profileImage{
     margin-top: 20px;
+
+    ion-icon{
+        position: absolute;
+        right: 50px;
+        font-size: 25px;
+        color: #a2a4ab;
+    }
     
     img{
         border-radius: 50%;

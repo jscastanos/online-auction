@@ -1,11 +1,10 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { get, set } from '../../services/storage.service';
 import { AuthService } from '../../services/auth.service';
-import { ToastController } from '@ionic/angular';
 import { CommonService } from 'src/app/services/common.service';
-import { ProfileService } from 'src/app/services/profile.service';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -13,25 +12,29 @@ import { ProfileService } from 'src/app/services/profile.service';
   templateUrl: './login.page.html',
   styleUrls: ['../auth.scss'],
 })
-export class LoginPage implements OnDestroy {
+export class LoginPage implements OnInit, OnDestroy {
   btnDisabled = false; // submit button
   //common
   user;
 
-  constructor(private router: Router, private authService: AuthService, private toastController: ToastController, private common: CommonService) {
+  constructor(private router: Router, private authService: AuthService, private alertController: AlertController, private common: CommonService) {
     this.user = this.common.user;
   }
 
 
-  async presentToast(m) {
-    const toast = await this.toastController.create({
-      message: m,
-      duration: 2000
+  async presentAlert(header, msg) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: msg,
+      buttons: ['OK']
     });
-    toast.present();
-  }
 
+    await alert.present();
+  }
   loginService: any;
+
+  ngOnInit() {
+  }
 
   login(form: NgForm) {
     this.btnDisabled = true;
@@ -63,14 +66,14 @@ export class LoginPage implements OnDestroy {
             }
           } else {
             this.btnDisabled = false;
-            this.presentToast("Please check your username or password");
+            this.presentAlert("Something wrong!", "Please check your username or password");
           }
 
         },
 
         error => {
           this.btnDisabled = false;
-          this.presentToast(error);
+          this.presentAlert("Error", JSON.stringify(error));
         }
 
       )
@@ -79,7 +82,5 @@ export class LoginPage implements OnDestroy {
 
   ngOnDestroy() {
     this.loginService.unsubscribe();
-    if (this.toastController != null)
-      this.toastController.dismiss();
   }
 }

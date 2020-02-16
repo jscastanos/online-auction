@@ -45,4 +45,11 @@ export class ProfileService {
     return this.http.get(this.env.API_URL + 'bidder/checkcardimage?id=' + id);
   }
 
+  updatePassword(id, oldPassword, newPassword) {
+    return this.http.put(this.env.API_URL + 'profile/' + id + '/updatePassword', {
+      oldPassword: oldPassword,
+      newPassword: newPassword
+    })
+  }
+
 }

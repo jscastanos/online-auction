@@ -16,6 +16,8 @@
         <img [ngClass]="(user.status == 0) ? 'danger' : 'primary'"
           src="{{url}}/account/retrieveImage?id={{user.id}}&type=0" />
       </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col class="text-center">
         <h4>{{userData.FirstName}} {{userData.MiddleName}} {{userData.LastName}}</h4>
         <ion-label>
@@ -46,6 +48,48 @@
       </ion-button>
     </ion-card-content>
   </ion-card>
+
+  <!-- Account -->
+  <ion-list style="margin: 10px 0 30px 0">
+    <ion-list-header>
+      <ion-label>
+        Account Details
+      </ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-icon name="key"></ion-icon>
+      <p>Change Password</p>
+      <ion-icon slot="end" name="create" *ngIf="currForm != 4" (click)="openForm(4)"></ion-icon>
+    </ion-item>
+    <div class="edit-form" *ngIf="currForm == 4">
+      <form [formGroup]="passwordForm" (ngSubmit)="updatePassword(passwordForm, formDirective)" #formDirective="ngForm">
+        <ion-item>
+          <ion-input type="password" required formControlName="old_password" placeholder="Old Password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password" required formControlName="new_password" placeholder="New Password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password" required formControlName="confirm_password" placeholder="Confirm Password">
+          </ion-input>
+        </ion-item>
+        <ion-label color="danger"
+          *ngIf="!passwordForm.get('confirm_password').errors && passwordForm.hasError('passwordNotMatch')">
+          * Password and Confirm Password don't match
+        </ion-label>
+        <br>
+        <ion-buttons>
+          <ion-button type="submit">
+            Submit
+          </ion-button>
+          <ion-button (click)="resetForm()">
+            Cancel
+          </ion-button>
+        </ion-buttons>
+      </form>
+    </div>
+
+  </ion-list>
 
   <!-- Profile details -->
   <ion-list style="margin: 10px 0 30px 0">
@@ -161,6 +205,7 @@
         </ion-buttons>
       </form>
     </div>
+
   </ion-list>
 
 </ion-content>

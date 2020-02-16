@@ -32,7 +32,7 @@ export class AppComponent {
 
     if (state != null) {
       if (state)
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/profile');
       else
         this.router.navigateByUrl('/login');
 

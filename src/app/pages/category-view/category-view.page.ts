@@ -76,7 +76,7 @@ export class CategoryViewPage implements OnInit, OnDestroy {
       })
   }
 
-  openAuction(item) {
+  goToView(item) {
 
     let data = {
       name: item.ProductName,

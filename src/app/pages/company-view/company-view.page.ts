@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { ProductsService } from '../../services/products.service';
 import { CommonService } from 'src/app/services/common.service';
-import { IonInfiniteScroll } from '@ionic/angular';
+import { IonInfiniteScroll, NavController } from '@ionic/angular';
 import { EnvService } from 'src/app/services/env.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class CompanyViewPage implements OnInit {
   url;
   fetchProductsService;
 
-  constructor(private route: ActivatedRoute, private router: Router, private env: EnvService, private productsService: ProductsService, private common: CommonService) {
+  constructor(private nav: NavController, private route: ActivatedRoute, private router: Router, private env: EnvService, private productsService: ProductsService, private common: CommonService) {
     this.route.queryParams.subscribe(params => {
       let data = JSON.parse(params.q.toString());
       this.companyId = data.id;
@@ -71,6 +71,22 @@ export class CompanyViewPage implements OnInit {
         this.fetchProductsService.unsubscribe();
 
       })
+  }
+
+  goToView(item) {
+
+    let data = {
+      name: item.ProductName,
+      id: item.ProductId,
+      status: item.Status
+    }
+
+    let params = {
+      queryParams: {
+        q: JSON.stringify(data)
+      }
+    }
+    this.nav.navigateRoot(["/item-view"], params);
   }
 
 }

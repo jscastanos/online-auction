@@ -4,9 +4,8 @@ import { EnvService } from 'src/app/services/env.service';
 import { CommonService } from 'src/app/services/common.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { Profile } from 'src/app/models/user';
-import { NgForm } from '@angular/forms';
-import { ToastController, ModalController } from '@ionic/angular';
-import { BidderSupportingIdPage } from '../bidder-supporting-id/bidder-supporting-id.page';
+import { FormBuilder, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -30,16 +29,62 @@ export class ProfilePage implements OnInit, OnDestroy {
 
   newAddress = [];
 
+  passwordForm;
+
+  profileImage;
+
   //api
   getData;
   updateData;
+  savePhoto;
 
-  constructor(private auth: AuthService, private env: EnvService, private common: CommonService, private profileService: ProfileService, private toast: ToastController) {
+  constructor(public formBuilder: FormBuilder, private auth: AuthService, private env: EnvService, private common: CommonService, private profileService: ProfileService, private toast: ToastController) {
     this.user = this.common.user;
     this.url = this.env.URL;
   }
   ngOnInit() {
     this.loadData();
+    this.createForm();
+  }
+
+  private createForm() {
+    this.passwordForm = this.formBuilder.group({
+      'old_password': new FormControl('', Validators.required),
+      'new_password': new FormControl('', Validators.required),
+      'confirm_password': new FormControl('', Validators.required),
+    },
+      {
+        validators: [this.checkpassword.bind(this),]
+      })
+  }
+
+
+  checkpassword(formGroup: FormGroup) {
+    const { value: new_password } = formGroup.get('new_password');
+    const { value: confirm_password } = formGroup.get('confirm_password');
+
+    return new_password === confirm_password ? null : { passwordNotMatch: true }
+  }
+
+  updatePassword(form, formDirective) {
+    if (form.value.new_password == form.value.confirm_password &&
+      form.value.old_password != "" &&
+      form.value.new_password != "" &&
+      form.value.confirm_password != "") {
+      this.profileService.updatePassword(this.user.id, form.value.old_password, form.value.new_password).subscribe(data => {
+
+        if (data == 1) {
+          this.presentToast("Password updated successfully!");
+          formDirective.resetForm();
+          this.currForm = null;
+        } else {
+          this.presentToast(data)
+        }
+      })
+    } else {
+
+      this.presentToast("Please provide details");
+    }
   }
 
   loadData() {
@@ -74,6 +119,7 @@ export class ProfilePage implements OnInit, OnDestroy {
   resetForm() {
     this.currForm = null;
   }
+
 
   update(form: NgForm, formNo) {
 
@@ -119,6 +165,9 @@ export class ProfilePage implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.updateData != null)
       this.updateData.unsubscribe();
+
+    if (this.savePhoto != null)
+      this.savePhoto.unsubscribe();
 
   }
 
