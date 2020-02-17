@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="{{user.statusColor}}">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/home']">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Notification
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item class="item" *ngFor="let item of items" (click)="goToView(item)">
+      <ion-avatar slot="start">
+        <img src="{{url}}/Product/RetrieveImage?id={{item.ProductId}}"
+          onerror="this.onerror = null; this.src = '../assets/placeholder.png'" />
+      </ion-avatar>
+      <ion-label>
+        <h2>
+          {{item.ProductName}}</h2>
+        <h3>View Bid Page</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

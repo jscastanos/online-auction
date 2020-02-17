@@ -62,4 +62,8 @@ export class ProfileService {
     })
   }
 
+  notifs(id) {
+    return this.http.get(this.env.API_URL + 'profile/' + id + '/notifs')
+  }
+
 }

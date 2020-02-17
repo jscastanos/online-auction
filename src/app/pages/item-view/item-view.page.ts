@@ -124,14 +124,12 @@ export class ItemViewPage implements OnInit, OnDestroy {
 
           if (bidlist[user]["BiddersId"] == this.biddingDetails.WinnerId) {
             this.winner = bidlist[user]
-            return;
           }
         }
       } else {
         this.winner = null;
       }
 
-      console.log(this.winner)
 
       this.isLoaded = true;
     })

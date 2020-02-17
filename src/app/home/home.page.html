@@ -6,9 +6,12 @@
     <ion-buttons slot="end">
       <ion-badge color="light" *ngIf="user.status == 0" [routerLink]="['/profile']">
         Unverified</ion-badge>
-      <ion-button fill="clear">
-        <ion-icon slot="icon-only" name="notifications"></ion-icon>
+
+      <ion-button id="notification-button" fill="clear" [routerLink]="['/notification']">
+        <ion-badge color="danger" *ngIf="notifCount != null || notifCount != 0">{{notifCount}}</ion-badge>
+        <ion-icon name="notifications"></ion-icon>
       </ion-button>
+
     </ion-buttons>
   </ion-toolbar>
 

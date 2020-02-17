@@ -38,6 +38,14 @@ const routes: Routes = [
         path: 'item-view',
         loadChildren: () => import('./pages/item-view/item-view.module').then(m => m.ItemViewPageModule)
       },
+      {
+        path: 'bid-view',
+        loadChildren: () => import('./pages/bid-view/bid-view.module').then(m => m.BidViewPageModule)
+      },
+      {
+        path: 'notification',
+        loadChildren: () => import('./pages/notification/notification.module').then(m => m.NotificationPageModule)
+      },
     ]
   },
 
@@ -68,10 +76,6 @@ const routes: Routes = [
       },
 
     ]
-  },
-  {
-    path: 'bid-view',
-    loadChildren: () => import('./pages/bid-view/bid-view.module').then(m => m.BidViewPageModule)
   },
 ];
 

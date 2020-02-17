@@ -36,6 +36,8 @@ export class HomePage implements OnDestroy {
 
   currItemStatus = 1;
 
+  notifCount;
+
   categorySliderOpts = {
     sliderOpts: {
       slidesPerView: 2,
@@ -70,6 +72,7 @@ export class HomePage implements OnDestroy {
   fetchDisplayService;
   fetchAuctionService;
   searchProduct;
+  fetchNotif;
 
   //common
   user;
@@ -103,6 +106,7 @@ export class HomePage implements OnDestroy {
   ngOnInit() {
 
     this.fetchDisplay();
+    this.fetchNotifCount();
 
     if (this.user.status != 0)
       this.fetchAuction();
@@ -163,6 +167,13 @@ export class HomePage implements OnDestroy {
 
     this.infiniteScroll.complete();
 
+  }
+
+  fetchNotifCount() {
+    this.fetchNotif = this.profileService.notifs(this.user.id).subscribe(data => {
+      this.notifCount = Object.keys(data).length
+
+    })
   }
 
   async fetchDisplay() {
