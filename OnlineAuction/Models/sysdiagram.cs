@@ -12,16 +12,12 @@ namespace OnlineAuction.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class vProduct
+    public partial class sysdiagram
     {
-        public Nullable<long> rowNum { get; set; }
-        public int recNo { get; set; }
-        public string ProductName { get; set; }
-        public byte[] ProductImg { get; set; }
-        public string CategoryName { get; set; }
-        public string ProductDescription { get; set; }
-        public Nullable<int> Status { get; set; }
-        public string ProductId { get; set; }
-        public Nullable<decimal> totalrating { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

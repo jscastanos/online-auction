@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Security;
 using OnlineAuction.Models;
 
-namespace OnlineAuction.Models
+namespace OnlineAuction.API
 {
     public class RoleModel : RoleProvider
     {

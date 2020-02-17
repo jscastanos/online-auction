@@ -893,7 +893,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
     </Compile>
+    <Compile Include="API\PushNotification.cs" />
     <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tblAuctionItem.cs">
       <DependentUpon>OnlineAuction.tt</DependentUpon>
     </Compile>
@@ -907,6 +911,9 @@
       <DependentUpon>OnlineAuction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblEmployeesInfo.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblNotification.cs">
       <DependentUpon>OnlineAuction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblProduct.cs">
@@ -935,6 +942,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\products\" />
+    <Folder Include="Views\PushNotification\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

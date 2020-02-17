@@ -12,16 +12,11 @@ namespace OnlineAuction.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class vProduct
+    public partial class tblNotification
     {
-        public Nullable<long> rowNum { get; set; }
-        public int recNo { get; set; }
-        public string ProductName { get; set; }
-        public byte[] ProductImg { get; set; }
-        public string CategoryName { get; set; }
-        public string ProductDescription { get; set; }
-        public Nullable<int> Status { get; set; }
-        public string ProductId { get; set; }
-        public Nullable<decimal> totalrating { get; set; }
+        public int id { get; set; }
+        public string biddersID { get; set; }
+        public string auctionID { get; set; }
+        public Nullable<bool> seen { get; set; }
     }
 }

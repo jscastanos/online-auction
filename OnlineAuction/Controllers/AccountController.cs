@@ -5,6 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using OnlineAuction.API;
 
 
 namespace OnlineAuction.Controllers
@@ -92,6 +97,13 @@ namespace OnlineAuction.Controllers
             }
         }
 
+        [AllowAnonymous]
+        public async Task<bool> CallPN(string id, string title, string body)
+        {
+
+            return await PushNotification.SendPushNotification(id, title, body);
+
+        }
         
     }
 }
