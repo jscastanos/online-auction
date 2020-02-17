@@ -766,7 +766,9 @@
     <Content Include="Views\UserManagement\TagRole.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.eot" />
     <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.ttf" />
     <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.woff" />

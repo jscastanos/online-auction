@@ -23,15 +23,38 @@
 
     function getAuctionData() {
         s.isLoading = true;
-       
+
         h.get("../api/products?id=" + s.lastId + "&key=" + s.filter.productName).then(function (d) {
             s.isLoading = false;
             if (d.data.length > 0) {
                 s.lastId = d.data[d.data.length - 1].rowNum
             }
-            console.log(s.lastId)
+            // console.log(s.lastId)
+
             s.productData = s.productData.concat(d.data);
-            console.log(d.data);
+
+            // generate rate display
+
+            if (d.data.length > 0) {
+                for (let a in s.productData) {
+
+                    ratingStars = [];
+
+                    var whole, none, rating = d.data[a]["totalrating"] != null ? d.data[a]["totalrating"] : 0;
+
+                    whole = Math.trunc(d.data[a]["totalrating"]);
+                    none = 5 - whole;
+
+                    for (var i = 0; i < whole ; i++)
+                        ratingStars.push("icon-star-full2")
+
+                    for (var i = 0; i < none ; i++)
+                        ratingStars.push("icon-star-empty3")
+
+                    s.productData[a].ratingStars = ratingStars;
+
+                }
+            }
         });
     }
 
@@ -106,18 +129,18 @@
     function onSelect(e) {
         s.dataItem = this.dataItem(e.item.index());
     }
-               
+
     s.addProduct = function () {
         s.tempArr.CategoryID = $("#catName").val();
         s.tempArr.BranchID = $("#branchID").val();
-        
-        if (s.add == true) {                                         
+
+        if (s.add == true) {
             h.post("../api/products/add", s.tempArr).then(function (d) {
                 s.tempArr = {};
                 s.productData = [];
                 s.lastId = 0;
                 getAuctionData();
-                swal("Successfully Added!","","success");
+                swal("Successfully Added!", "", "success");
             });
             $("#catName").val("");
             $("#newProduct").modal("hide");
@@ -148,7 +171,7 @@
     }
 
     s.updateProduct = function (id) {
-        h.get("../api/Products/" + id ).then(function (d) {
+        h.get("../api/Products/" + id).then(function (d) {
             s.tempArr = d.data;
             s.updateProductID = id;
             $("#catName").val(s.tempArr.CategoryName);
@@ -169,7 +192,7 @@
         var date = new Date($("#auctionpicker").val());
 
         h.put("../api/AuctionItems/auctionstatus?id=" + s.auctionRecno).then(function (d) {
-                  
+
             s.tempArrAuction.Status = 0;
             s.tempArrAuction.DateTimeLimit = date;
             s.tempArrAuction.ProductId = s.auctionRecno;
@@ -225,31 +248,31 @@
     $('#fileup').click(function () {
         $('#files').click();
 
-         s.cropImg = $('#cropImg').croppie({
+        s.cropImg = $('#cropImg').croppie({
             enableExif: true,
             mouseWheelZoom: false,
             viewport: {
                 width: 300,
-                height:300,
-                type:'square' 
+                height: 300,
+                type: 'square'
             },
-            boundary:{
+            boundary: {
                 width: 350,
                 height: 350
             }
         });
 
-        $('#files').on('change', function(){
+        $('#files').on('change', function () {
             var reader = new FileReader();
             reader.onload = function (event) {
                 s.cropImg.croppie('bind', {
                     url: event.target.result
-                }).then(function(){
+                }).then(function () {
                     console.log('jQuery bind complete');
                 });
             }
             reader.readAsDataURL(this.files[0]);
-            
+
             $("#newProduct").modal("hide");
             $("#uploadImg").modal("show");
             s.uploadImgID = true;
@@ -270,11 +293,11 @@
     }
 
     function _base64ToArrayBuffer(base64) {
-       
+
         var binary_stringConverted = window.btoa(base64);
         var binary_string = window.atob(binary_stringConverted);
         var len = binary_string.length;
-        var bytes = new Uint8Array(len);  
+        var bytes = new Uint8Array(len);
         for (var i = 0; i < len; i++) {
             bytes[i] = binary_string.charCodeAt(i);
         }

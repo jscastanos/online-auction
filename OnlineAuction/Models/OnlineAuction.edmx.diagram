@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5f86b6f3bd2241c590c5e234d03909d4" Name="Diagram1">
-        <EntityTypeShape EntityType="OnlineAuctionModel.tblAuctionItem" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblBiddersInfo" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblBidding" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblBranchShop" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
@@ -17,6 +16,7 @@
         <EntityTypeShape EntityType="OnlineAuctionModel.tblUsersRole" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.vAuctionProduct" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.vProduct" Width="1.5" PointX="6.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAuctionModel.tblAuctionItem" Width="1.5" PointX="9.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

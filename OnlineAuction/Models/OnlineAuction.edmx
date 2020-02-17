@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OnlineAuctionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineAuctionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblAuctionItems">
           <Key>
             <PropertyRef Name="recNo" />
@@ -140,7 +140,7 @@
           <Property Name="status" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_A552DC_onlineauction.dbo.vAuctionProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'OnlineAuction.dbo.vAuctionProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vAuctionProduct">
           <Key>
             <PropertyRef Name="recNo" />
@@ -154,11 +154,12 @@ warning 6002: The table/view 'DB_A552DC_onlineauction.dbo.vAuctionProduct' does 
           <Property Name="AskPrice" Type="float" />
           <Property Name="DateTimeLimit" Type="datetime" />
           <Property Name="Status" Type="int" />
+          <Property Name="WinnerName" Type="varchar" MaxLength="101" />
           <Property Name="total" Type="float" />
           <Property Name="totalProductSold" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_A552DC_onlineauction.dbo.vProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vProduct">
           <Key>
             <PropertyRef Name="recNo" />
@@ -171,6 +172,7 @@ warning 6002: The table/view 'DB_A552DC_onlineauction.dbo.vProduct' does not hav
           <Property Name="ProductDescription" Type="varchar(max)" />
           <Property Name="Status" Type="int" />
           <Property Name="ProductId" Type="varchar" MaxLength="5" />
+          <Property Name="totalrating" Type="decimal" Precision="9" Scale="2" />
         </EntityType>
         <EntityContainer Name="OnlineAuctionModelStoreContainer">
           <EntitySet Name="tblAuctionItems" EntityType="Self.tblAuctionItems" Schema="dbo" store:Type="Tables" />
@@ -194,6 +196,7 @@ warning 6002: The table/view 'DB_A552DC_onlineauction.dbo.vProduct' does not hav
     [vAuctionProduct].[AskPrice] AS [AskPrice], 
     [vAuctionProduct].[DateTimeLimit] AS [DateTimeLimit], 
     [vAuctionProduct].[Status] AS [Status], 
+    [vAuctionProduct].[WinnerName] AS [WinnerName], 
     [vAuctionProduct].[total] AS [total], 
     [vAuctionProduct].[totalProductSold] AS [totalProductSold]
     FROM [dbo].[vAuctionProduct] AS [vAuctionProduct]</DefiningQuery>
@@ -207,30 +210,15 @@ warning 6002: The table/view 'DB_A552DC_onlineauction.dbo.vProduct' does not hav
     [vProduct].[CategoryName] AS [CategoryName], 
     [vProduct].[ProductDescription] AS [ProductDescription], 
     [vProduct].[Status] AS [Status], 
-    [vProduct].[ProductId] AS [ProductId]
+    [vProduct].[ProductId] AS [ProductId], 
+    [vProduct].[totalrating] AS [totalrating]
     FROM [dbo].[vProduct] AS [vProduct]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OnlineAuctionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="tblAuctionItem">
-          <Key>
-            <PropertyRef Name="recNo" />
-          </Key>
-          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AuctionId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedBy" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="DateCreated" Type="DateTime" Precision="3" />
-          <Property Name="Status" Type="Int32" />
-          <Property Name="ProductId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="AskPrice" Type="Double" />
-          <Property Name="DateTimeLimit" Type="DateTime" Precision="3" />
-          <Property Name="WinnerId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="DateClosed" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="tblBiddersInfo">
           <Key>
             <PropertyRef Name="recNo" />
@@ -365,6 +353,7 @@ warning 6002: The table/view 'DB_A552DC_onlineauction.dbo.vProduct' does not hav
           <Property Name="Status" Type="Int32" />
           <Property Name="total" Type="Double" />
           <Property Name="totalProductSold" Type="Int32" />
+          <Property Name="WinnerName" Type="String" MaxLength="101" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="vProduct">
           <Key>
@@ -378,9 +367,9 @@ warning 6002: The table/view 'DB_A552DC_onlineauction.dbo.vProduct' does not hav
           <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Int32" />
           <Property Name="ProductId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="totalrating" Type="Int32" />
         </EntityType>
         <EntityContainer Name="OnlineAuctionEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tblAuctionItems" EntityType="Self.tblAuctionItem" />
           <EntitySet Name="tblBiddersInfoes" EntityType="Self.tblBiddersInfo" />
           <EntitySet Name="tblBiddings" EntityType="Self.tblBidding" />
           <EntitySet Name="tblBranchShops" EntityType="Self.tblBranchShop" />
@@ -392,29 +381,29 @@ warning 6002: The table/view 'DB_A552DC_onlineauction.dbo.vProduct' does not hav
           <EntitySet Name="tblUsersRoles" EntityType="Self.tblUsersRole" />
           <EntitySet Name="vAuctionProducts" EntityType="Self.vAuctionProduct" />
           <EntitySet Name="vProducts" EntityType="Self.vProduct" />
+          <EntitySet Name="tblAuctionItems" EntityType="OnlineAuctionModel.tblAuctionItem" />
         </EntityContainer>
+        <EntityType Name="tblAuctionItem">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuctionId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="ProductId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="AskPrice" Type="Double" />
+          <Property Name="DateTimeLimit" Type="DateTime" Precision="3" />
+          <Property Name="WinnerId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateClosed" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="OnlineAuctionModelStoreContainer" CdmEntityContainer="OnlineAuctionEntities">
-          <EntitySetMapping Name="tblAuctionItems">
-            <EntityTypeMapping TypeName="OnlineAuctionModel.tblAuctionItem">
-              <MappingFragment StoreEntitySet="tblAuctionItems">
-                <ScalarProperty Name="recNo" ColumnName="recNo" />
-                <ScalarProperty Name="AuctionId" ColumnName="AuctionId" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
-                <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
-                <ScalarProperty Name="WinnerId" ColumnName="WinnerId" />
-                <ScalarProperty Name="DateClosed" ColumnName="DateClosed" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblBiddersInfoes">
             <EntityTypeMapping TypeName="OnlineAuctionModel.tblBiddersInfo">
               <MappingFragment StoreEntitySet="tblBiddersInfo">
@@ -546,6 +535,7 @@ warning 6002: The table/view 'DB_A552DC_onlineauction.dbo.vProduct' does not hav
           <EntitySetMapping Name="vAuctionProducts">
             <EntityTypeMapping TypeName="OnlineAuctionModel.vAuctionProduct">
               <MappingFragment StoreEntitySet="vAuctionProduct">
+                <ScalarProperty Name="WinnerName" ColumnName="WinnerName" />
                 <ScalarProperty Name="rowNum" ColumnName="rowNum" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
@@ -563,6 +553,7 @@ warning 6002: The table/view 'DB_A552DC_onlineauction.dbo.vProduct' does not hav
           <EntitySetMapping Name="vProducts">
             <EntityTypeMapping TypeName="OnlineAuctionModel.vProduct">
               <MappingFragment StoreEntitySet="vProduct">
+                <ScalarProperty Name="totalrating" ColumnName="totalrating" />
                 <ScalarProperty Name="rowNum" ColumnName="rowNum" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
@@ -571,6 +562,22 @@ warning 6002: The table/view 'DB_A552DC_onlineauction.dbo.vProduct' does not hav
                 <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAuctionItems">
+            <EntityTypeMapping TypeName="OnlineAuctionModel.tblAuctionItem">
+              <MappingFragment StoreEntitySet="tblAuctionItems">
+                <ScalarProperty Name="DateClosed" ColumnName="DateClosed" />
+                <ScalarProperty Name="WinnerId" ColumnName="WinnerId" />
+                <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
+                <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="AuctionId" ColumnName="AuctionId" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
