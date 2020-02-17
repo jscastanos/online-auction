@@ -1,11 +1,64 @@
 ﻿@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
 
-<form action="verify" method="get">
-    <input type="text" name="username" value="" />
-    <input type="password" name="password" value="" />
-    <button type="submit">Submit</button>
-</form>
+<div class="content-wrapper">
+
+    <!-- Content area -->
+    <div class="content">
+
+        <!-- Advanced login -->
+        <form method="post" action="../Account/auth">
+            <div class="panel panel-body login-form">
+                <div class="text-center">
+                    <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+                    <h5 class="content-group">Login to your account <small class="display-block">Your credentials</small></h5>
+                </div>
+                <div style="text-align: center;">
+                    <label style="color: red; text-align: center;">@Session["Error"]</label>
+                </div>
+                <div class="form-group has-feedback has-feedback-left">
+
+                    <input type="text" name="u" class="form-control" placeholder="Username" autocomplete="off">
+                    <div class="form-control-feedback">
+                        <i style="top: 10px" class="icon-user text-muted"></i>
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                    <input type="password" name="p" class="form-control" placeholder="Password">
+                    <div class="form-control-feedback">
+                        <i style="top: 10px" class="icon-lock2 text-muted"></i>
+                    </div>
+                </div>
+
+                <div class="form-group login-options">
+                    <div class="row">
+                        <div class="col-sm-6">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn bg-blue btn-block">Login</button>
+                </div>
+                <div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
+                <div class="form-group">
+                    <a href="@Url.Action("Register", "Account")" class="btn btn-default btn-block">Register</a>
+                </div>
+                <span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
+            </div>
+        </form>
+        <!-- /advanced login -->
+        <!-- Footer -->
+        <div class="footer text-muted text-center">
+            © 2015. <a href="#">Online Auction</a> by <a href="../Account/auth" target="_blank">Group NANI</a>
+        </div>
+        <!-- /footer -->
+
+    </div>
+    <!-- /content area -->
+
+</div>

@@ -1,14 +1,23 @@
-﻿app.controller('productManagement', ['$scope', '$http', function (s, h) {
+﻿app.controller('productManagement', ['$scope', '$http', '$timeout', function (s, h, t) {
 
+    s.name = "testdis";
     s.title = "Product Management";
     s.tempArr = {};
+    s.tempArrAuction = {};
     s.filter = {};
     s.lastId = 0;
+    s.lastIdCat = 0;
+    s.auctionlastId = 0;
     s.isLoading = false;
     s.add = true;
     s.update = false;
     s.productData = [];
+    s.auctionData = [];
     s.filter.productName = "";
+    s.filter.catName = "";
+    s.test = "";
+    s.strLimit = 50;
+    s.uploadImgID = false;
 
     getAuctionData();
 
@@ -18,9 +27,11 @@
         h.get("../api/products?id=" + s.lastId + "&key=" + s.filter.productName).then(function (d) {
             s.isLoading = false;
             if (d.data.length > 0) {
-                s.lastId = d.data[d.data.length - 1].recNo
+                s.lastId = d.data[d.data.length - 1].rowNum
             }
+            console.log(s.lastId)
             s.productData = s.productData.concat(d.data);
+            console.log(d.data);
         });
     }
 
@@ -50,6 +61,14 @@
         });
     }
 
+    s.showMore = function (str) {
+        s.strLimit = str.length;
+    };
+
+    s.showLess = function () {
+        s.strLimit = 50;
+    };
+
     function dateFormat(date) {
         //var date = new Date(date).toString("MMMM dd, yyyy hh:mm");
         //return date;
@@ -62,15 +81,63 @@
         dateInput: true
     });
 
+    $("#auctionpicker").kendoDateTimePicker({
+        value: new Date(),
+        format: "MMMM dd, yyyy hh:mm",
+        dateInput: true
+    });
+
+    $("#catName").kendoAutoComplete({
+        dataTextField: 'CategoryName',
+        dataValueField: 'CategoryId',
+        dataSource: {
+            transport: {
+                read: {
+                    url: "../api/Category?id=" + s.lastIdCat + "&key=" + s.filter.catName,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'GET',
+                    dataType: 'json'
+                }
+            }
+        },
+        select: onSelect
+    });
+
+    function onSelect(e) {
+        s.dataItem = this.dataItem(e.item.index());
+    }
+               
     s.addProduct = function () {
-        var date = new Date($("#monthpicker").val());
-        s.tempArr.DateTimeLimit = date;
-      
-        h.post("./api/products", { data: s.tempArr }).then(function (d) {
-            s.tempArr = {};
-            alert(d.data);
-            getAuctionData();
-        });
+        s.tempArr.CategoryID = $("#catName").val();
+        s.tempArr.BranchID = $("#branchID").val();
+        
+        if (s.add == true) {                                         
+            h.post("../api/products/add", s.tempArr).then(function (d) {
+                s.tempArr = {};
+                s.productData = [];
+                s.lastId = 0;
+                getAuctionData();
+                swal("Successfully Added!","","success");
+            });
+            $("#catName").val("");
+            $("#newProduct").modal("hide");
+            s.uploadImgID = false;
+        }
+        else {
+            h.put("../api/products/" + s.updateProductID, s.tempArr).then(function (d) {
+                swal("Successfully Updated!", "", "success");
+                s.tempArr = {};
+                s.productData = [];
+                s.lastId = 0;
+                getAuctionData();
+                location.reload();
+            });
+
+            s.add = true;
+            s.update = false;
+            $("#catName").val("");
+            $("#newProduct").modal("hide");
+        }
     }
 
     s.openAddProductModal = function () {
@@ -83,7 +150,8 @@
     s.updateProduct = function (id) {
         h.get("../api/Products/" + id ).then(function (d) {
             s.tempArr = d.data;
-
+            s.updateProductID = id;
+            $("#catName").val(s.tempArr.CategoryName);
             s.add = false;
             s.update = true;
 
@@ -97,10 +165,132 @@
         getAuctionData()
     }
 
-    s.setToAuction = function (id) {
-        h.put("../api/products/auctionstatus?id=" + id ).then(function (d) {
-           alert(d.status);
+    s.setToAuction = function () {
+        var date = new Date($("#auctionpicker").val());
+
+        h.put("../api/AuctionItems/auctionstatus?id=" + s.auctionRecno).then(function (d) {
+                  
+            s.tempArrAuction.Status = 0;
+            s.tempArrAuction.DateTimeLimit = date;
+            s.tempArrAuction.ProductId = s.auctionRecno;
+
+            h.post("../api/AuctionItems", s.tempArrAuction).then(function (d) {
+                s.tempArr = {};
+                s.tempArrAuction = {};
+                s.productData = [];
+                s.lastId = 0;
+                getAuctionData();
+
+            });
+
+            $("#auctionProduct").modal("hide");
         });
+    }
+
+    s.removeProduct = function (id) {
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this Product!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function (isConfirm) {
+            if (isConfirm) {
+                h.put("../api/products/removeProduct?id=" + id).then(function (d) {
+                    s.lastId = 0;
+                    s.productData = [];
+                    getAuctionData()
+
+                    swal("Product Removed !", "", "success")
+
+                    $("#auctionProduct").modal("hide");
+                });
+            } else {
+                swal("Cancelled", "", "error");
+            }
+        });
+    }
+
+    s.openModal = function (id) {
+        s.auctionRecno = id;
+        $("#auctionProduct").modal("show");
+
+    }
+
+    $('#fileup').click(function () {
+        $('#files').click();
+
+         s.cropImg = $('#cropImg').croppie({
+            enableExif: true,
+            mouseWheelZoom: false,
+            viewport: {
+                width: 300,
+                height:300,
+                type:'square' 
+            },
+            boundary:{
+                width: 350,
+                height: 350
+            }
+        });
+
+        $('#files').on('change', function(){
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                s.cropImg.croppie('bind', {
+                    url: event.target.result
+                }).then(function(){
+                    console.log('jQuery bind complete');
+                });
+            }
+            reader.readAsDataURL(this.files[0]);
+            
+            $("#newProduct").modal("hide");
+            $("#uploadImg").modal("show");
+            s.uploadImgID = true;
+        });
+
+    });
+
+    s.uploadImg = function () {
+        s.cropImg.croppie('result', {
+            type: 'canvas',
+            size: 'viewport'
+        }).then(function (response) {
+            s.tempArr.ProductImg = response.split(',')[1];
+            $("#newProduct").modal("show");
+            $("#uploadImg").modal("hide");
+        })
+
+    }
+
+    function _base64ToArrayBuffer(base64) {
+       
+        var binary_stringConverted = window.btoa(base64);
+        var binary_string = window.atob(binary_stringConverted);
+        var len = binary_string.length;
+        var bytes = new Uint8Array(len);  
+        for (var i = 0; i < len; i++) {
+            bytes[i] = binary_string.charCodeAt(i);
+        }
+        return bytes.buffer;
+    }
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#cropImg').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
     }
 
 }])

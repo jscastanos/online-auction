@@ -1,0 +1,286 @@
+﻿@{
+    ViewBag.Title = "Auction Management";
+}
+
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/ng-auction.js"></script>
+<script src="~/Scripts/datepicker.js"></script>
+<script src="~/Scripts/kendo/kendo.all.min.js"></script>
+
+<style>
+    .scroll-to-top {
+        position: fixed;
+        right: 6px;
+        z-index: 1000;
+        bottom: 13px;
+    }
+
+        .scroll-to-top button {
+            box-shadow: 0 2px 5px 1px rgba(0,0,0,0.4);
+            /*background:#ff0057 !important;
+         border-color:#ff0057 !important;*/
+        }
+</style>
+
+<div ng-controller="auctionManagement">
+    <div class="scroll-to-top" ng-if="showScrollToTop" ng-click="scrollToTop()">
+        <button type="button" class="btn bg-warning btn-float btn-rounded"><i class="icon-arrow-up16"></i></button>
+    </div>
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="fa fa-legal position-left"></i> <span class="text-semibold"> Auctioned Product</span></h4>
+                <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+            </div>
+            @*<div class="heading-elements">
+                    <div class="heading-btn-group">
+                        <button ng-click="openAddProductModal()" class="btn btn-labeled btn-labeled-right bg-success heading-btn text-uppercase">
+                            Add new product
+                            <b><i class="icon-bag"></i></b>
+                        </button>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="container-detached">
+            <div class="content-detached">
+                <div class="row">
+                    <div class="col-md-12" ng-if="auctionData.length == 0">
+                        <p class="text-center">
+                            <i style="font-size:25px">NO AUCTIONED PRODUCT</i>
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-sm-6" ng-repeat="a in auctionData | filter: {CategoryName : filter.category, BranchName : filter.branch}">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="thumb thumb-fixed">
+                                    <a href="../Product/RetrieveImage?id={{a.ProductId}}" data-popup="lightbox">
+                                        <img src="../Product/RetrieveImage?id={{a.ProductId}}" alt="">
+                                        <span class="zoom-image">@*<i class="icon-plus2"></i>*@</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="panel-body panel-body-accent text-center">
+                                <h6 class="text-semibold no-margin"><a href="#" class="text-default">{{a.ProductName}}</a></h6>
+
+                                <ul class="list-inline list-inline-separate mb-10">
+                                    <li><a href="#" class="text-muted">{{a.CategoryName | uppercase}}</a></li>
+                                </ul>
+
+                                <h3 class="no-margin text-semibold">{{a.AskPrice | currency : 'Php '}}</h3>
+
+                                <div class="text-muted">{{a.ProductId}}</div>
+
+                                <button ng-if="a.Status == 0" type="button" class="btn btn-danger" ng-click="removeAuction(a.ProductId)" data-toggle="tooltip" title="Claim"><i class="fa fa-hand-grab-o"></i></button>
+                                <button ng-if="a.Status == 0" type="button" class="btn btn-primary" ng-click="reAuctionModal(a.ProductId, a.recNo)" data-toggle="tooltip" title="ReAuction"><i class="fa fa-repeat"></i></button>
+                                <del ng-if="a.Status == 1">AWARDED</del>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="sidebar-detached">
+            <div class="sidebar sidebar-default sidebar-separate">
+                <div class="panel">
+                    <div class="panel-heading pt-10 pb-10 bg-teal-400">
+                        <div class="panel-title text-semibold">
+                            <i class="icon-filter3 text-size-base position-left"></i>
+                            FILTERS
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="text-muted text-semibold">
+                            SEARCH
+                        </div>
+                        <div class="form-group">
+                            <div class="has-feedback has-feedback-left">
+                                <input ng-model="filter.auctionName" class="form-control" type="text" placeholder="Product Name" ng-change="searchProd()" />
+                                <div class="form-control-feedback">
+                                    <i class="icon-search4 text-size-large text-muted"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="has-feedback has-feedback-left">
+                                <input ng-change="filterChange()" ng-model="filter.category" class="form-control" type="text" placeholder="Category" />
+                                <div class="form-control-feedback">
+                                    <i class="icon-stack3 text-size-large text-muted"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="has-feedback has-feedback-left">
+                                <input ng-change="filterChange()" ng-model="filter.branch" class="form-control" type="text" placeholder="Branch" />
+                                <div class="form-control-feedback">
+                                    <i class="icon-location3 text-size-large text-muted"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label class="display-block">
+                                    <input ng-change="loadkey()" id="price" type="checkbox" ng-model="filter.noPrice" class="styled">
+                                    NO PRICE
+                                    <span class="badge bg-orange-400 pull-right" style="font-size:xx-small">{{dataIncomplete.price}}</span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label class="display-block">
+                                    <input ng-change="loadkey()" type="checkbox" ng-model="filter.noCategory" class="styled">
+                                    NO CATEGORY
+                                    <span class="badge bg-orange-400 pull-right" style="font-size:xx-small">{{dataIncomplete.category}}</span>
+                                </label>
+                            </div>
+
+                        </div>
+                        <button type="button" ng-click="clearFilter()" class="btn btn-success btn-block">
+                            CLEAR FILTER
+                        </button>
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-md-9 pull-right">
+                <div class="panel panel-flat no-margin no-padding">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="bg-teal-400 border-blue">
+                                    <th>PRODUCT NAME</th>
+                                    <th class="text-right">STARTING PRICE</th>
+                                    <th class="text-center">CATEGORY</th>
+                                    <th class="text-center">Date Time Limit</th>
+                                    <th class="text-center">ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="a in auctionData">
+                                    <td>{{a.ProductName}}</td>
+                                    <td class="text-right">{{a.AskPrice | number}}</td>
+                                    <td class="text-center">{{a.CategoryName}}</td>
+                                    <th class="text-center">{{dateFormat(a.DateTimeLimit)}}</th>
+                                    <td class="text-center">
+                                        <button ng-if="a.Status == 0" type="button" class="btn btn-danger" ng-click="removeAuction(a.ProductId)" data-toggle="tooltip" title="Claim"><i class="fa fa-hand-grab-o"></i></button>
+                                        <button ng-if="a.Status == 0" type="button" class="btn btn-primary" ng-click="reAuctionModal(a.ProductId)" data-toggle="tooltip" title="ReAuction"><i class="fa fa-repeat"></i></button>
+                                        <del ng-if="a.Status == 1">AWARDED</del>
+                                    </td>
+                                </tr>
+                                <tr ng-if="auctionData.length == 0">
+                                    <td class="text-center" colspan="5">
+                                        <i>NO AUCTIONED PRODUCT</i>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>*@
+
+        </div>
+
+    </div>
+
+    <div id="newProduct" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header bg-primary" ng-if="add">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h6 class="modal-title"><i class="fa fa-plus"></i>&nbsp;&nbsp; ADD PRODUCT</h6>
+                </div>
+                <div class="modal-header bg-success" ng-if="update">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h6 class="modal-title"><i class="fa fa-pencil"></i>&nbsp;&nbsp; UPDATE PRODUCT</h6>
+                </div>
+
+                <div class="modal-body">
+                    <form ng-submit="addProduct()">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Product Name" ng-model="tempArr.ProductName" required>
+                                <span class="input-group-addon bg-blue" ng-if="add"><i class="icon-check"></i></span>
+                                <span class="input-group-addon bg-success" ng-if="update"><i class="icon-check"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="number" class="form-control" placeholder="Minimum Bid" ng-model="tempArr.AskPrice" required>
+                                <span class="input-group-addon bg-blue" ng-if="add"><i class="icon-coins"></i></span>
+                                <span class="input-group-addon bg-success" ng-if="update"><i class="icon-coins"></i></span>
+                            </div>
+                        </div><div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Category" ng-model="tempArr.CategoryID" required>
+                                <span class="input-group-addon bg-blue" ng-if="add"><i class="icon-stack3"></i></span>
+                                <span class="input-group-addon bg-success" ng-if="update"><i class="icon-stack3"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input id="monthpicker" ng-model="temparr.DateTimeLimit" style="width:149%" />
+                                @* <input type="date" class="form-control" placeholder="Date Auction Limit" ng-model="tempArr.DateTimeLimit" id="dateLimit" required>*@
+                                @* <span class="input-group-addon"><i class="icon-calendar"></i></span>*@
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary" style="width:100%" ng-if="add">Save Data</button>
+                                <button type="submit" class="btn btn-success" style="width:100%" ng-if="update">Save Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="auctionProduct" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h6 class="modal-title"><i class="fa fa-pencil"></i>&nbsp;&nbsp; REAUCTION PRODUCT</h6>
+                </div>
+
+                <div class="modal-body">
+                    <form ng-submit="reAuction()">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="number" class="form-control" placeholder="Starting Price" ng-model="tempArrAuction.AskPrice" step="0.01" required>
+                                <span class="input-group-addon bg-blue" ng-if="add"><i class="icon-coins"></i></span>
+                                <span class="input-group-addon bg-success" ng-if="update"><i class="icon-coins"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input id="auctionpicker" ng-model="dateTimeLimit" style="width:149%" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <button type="submit" class="btn btn-info" style="width:100%">Auction Product</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

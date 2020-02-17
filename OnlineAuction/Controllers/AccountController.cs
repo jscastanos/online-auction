@@ -11,6 +11,7 @@ namespace OnlineAuction.Controllers
 {
     public class AccountController : Controller
     {
+        OnlineAuctionEntities db = new OnlineAuctionEntities();
 
         // GET: Account
         public ActionResult Index()
@@ -18,48 +19,92 @@ namespace OnlineAuction.Controllers
             return RedirectToAction("Login");
         }
 
-
+        public ActionResult Register()
+        {
+            return View();
+        }
         public ActionResult Login()
         {
-            if (FormsAuthentication.FormsCookieName != null)
-            {
-
-            }
-
             return View();
         }
 
+        
+
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
-
+            Session.Abandon();
+            Session.Clear();
             return RedirectToAction("Login");
         }
 
-        public ActionResult Verify(string username, string password)
+
+        public ActionResult auth(string u, string p)
         {
-            bool IsVerified = new IdentityModel().IsVerified(username, password);
-
-            if (IsVerified)
+            try
             {
-                FormsAuthentication.SetAuthCookie(username, false);
-              
-                if(Roles.IsUserInRole(username, "Admin"))
-                    return RedirectToAction("Admin", "Home");
+                u = Session["username"] != null ? Session["username"].ToString() : u;
+                var cu = db.tblUserManagements.SingleOrDefault(ur => ur.UserName == u && ur.Password == p);
+                var empl = db.tblEmployeesInfoes.SingleOrDefault(emp => emp.EmpId == cu.UsersId);
 
-                else if(Roles.IsUserInRole(username, "Super Admin"))
-                    return RedirectToAction("SuperAdmin", "Home");
+                if (cu != null)
+                {
+                    Session["userID"] = cu.UsersId;
+                    Session["branchID"] = 1;
+                    Session["username"] = cu.UserName;
+                    Session["fullName"] = fullName(empl.FirstName, empl.MiddleName, empl.LastName);
+                    Session["Role"] = db.tblUsersRoles.SingleOrDefault(role => role.RoleId == cu.RoleId).RoleName;
+                    switch (cu.RoleId)
+                    {
+                        case "1":
+                            return RedirectToAction("Index", "Home");
+                        case "2":
+                            return RedirectToAction("");
+                    }
+                    return RedirectToAction("Index", "Dashboard");
+                }
                 else
-                    return RedirectToAction("User", "Home");
-                
+                {
+                    Session["Error"] = "The username or password is incorrect.";
+                    return RedirectToAction("Login", "Account");
+                }
             }
-            else
+            catch (Exception)
             {
-                return RedirectToAction("Login");
+                Session["Error"] = "The username or password is incorrect.";
+                return RedirectToAction("logout", "Account");
             }
         }
 
+        [AllowAnonymous]
+        public ActionResult RetrieveImage(string id, int type)
+        {
+            var data = db.tblBiddersInfoes.SingleOrDefault(x => x.BiddersId == id);
+            byte[] img = null;
 
+            switch (type)
+            {
+                case 0: img = data.UserImg;
+                    break;
+                case 1: img = data.CardImgFront;
+                    break;
+                case 2: img = data.CardImgBack;
+                    break;
+            }
+
+            if (img != null)
+            {
+                return File(img, "image/jpeg");
+            }
+            else
+            {
+                return File("~/Images/image.png", "image/png");
+            }
+        }
+
+        public string fullName(string a, string b, string c)
+        {
+            return a + " " + b + " " + c;
+        }
 
         
     }

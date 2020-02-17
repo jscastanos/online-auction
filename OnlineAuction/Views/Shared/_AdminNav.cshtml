@@ -1,0 +1,17 @@
+﻿<li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
+<li>
+    <a href="#"><i class="icon-equalizer"></i> <span>Control Panel</span></a>
+    <ul>
+        <li ng-class="{'active':($parent.active=='admin')}"><a href="@Url.Action("TagRole", "UserManagement")"> <span>User Management</span></a></li>
+        <li ng-class="{'active':($parent.active=='roles')}"><a href="@Url.Action("roleManagement", "Role")"><span>Role Management</span></a></li>
+
+    </ul>
+</li>
+<li>
+    <a href="#"><i class="icon-archive"></i> <span>Records Management</span></a>
+    <ul>
+        <li ng-class="{'active':($parent.active=='admin')}"><a href="@Url.Action("PersonMgt", "Personel")"><span>Personel</span></a></li>
+
+    </ul>
+</li>
+<li ng-class=""><a href="@Url.Action("Auction", "Monitoring")"><i class="icon-station"></i> <span>Monitoring</span></a></li>

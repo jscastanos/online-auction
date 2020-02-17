@@ -1,0 +1,128 @@
+﻿<div ng-controller="adminCtrl">
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title"><a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+            <div class="heading-elements">
+                @*<ul class="icons-list">
+                        <li><a data-action="collapse"></a></li>
+                        <li><a data-action="close"></a></li>
+                    </ul>*@
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <form action="#" class="main-search">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="content-group">
+                            <div class="has-feedback has-feedback-left">
+                                <input type="text" ng-model="infoSearch" class="form-control input-xlg" placeholder="Search..." style="
+    min-width: 100%;
+">
+                                <div class="form-control-feedback">
+                                    <i class="icon-search4 text-muted text-size-base"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="row search-option-buttons">
+                            <div class="col-sm-12">
+                                <ul class="list-inline no-margin-bottom">
+                                    <li class="dropdown">
+                                        <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-sort position-left"></i> Sort by <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#" ng-click="sort(1)"><i class="icon-check position-left"></i> Verified</a></li>
+                                            <li><a href="#" ng-click="sort(2)"><i class="icon-x position-left"></i> Not Verified</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-eye position-left"></i> View as <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#" ng-click="grid = false"><i class="icon-list2 position-left"></i> List</a></li>
+                                            <li><a href="#" ng-click="grid = true"><i class="icon-grid position-left"></i> Grid</a></li>
+                                        </ul>
+                                    </li>
+                                    @*<li><button type="button" data-toggle="modal" data-target="#branchModal" ng-click="createBranch()" class="btn btn-link"><i class="icon-add position-left"></i> Create Branch</button></li>*@
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+
+    @*<div class="row">*@
+        @Html.Partial("_GridView")
+        @Html.Partial("_ListView")
+
+    @*</div>*@
+
+
+
+    
+
+    <div id="branchModal" class="modal fade in">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h6 class="text-semibold content-group">Branch details</h6>
+                </div>
+
+                <form class="form-horizonal" method="post" action="#">
+                    <fieldset class="panel-body pb-10">
+                        <input type="hidden" ng-model="branch.recNo" value="" />
+                        <div class="form-group">
+                            <label class="control-label">Branch name: <span class="text-danger">*</span></label>
+                            <input type="text" ng-model="branch.BranchName" name="BranchName" class="form-control" placeholder="Enter branch name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Address: <span class="text-danger">*</span></label>
+                            <input type="text" ng-model="branch.Address" name="Address" class="form-control" placeholder="Enter address" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Contact Number: <span class="text-danger">*</span></label>
+                            <input type="text" ng-model="branch.BranchContactNo" name="BranchContactNo" class="form-control" placeholder="Enter contact number" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Email Address: <span class="text-danger">*</span></label>
+                            <input type="email" ng-model="branch.EmailAddress" name="EmailAddress" class="form-control" placeholder="Enter email">
+                        </div>
+                    </fieldset>
+                    <fieldset class="panel-body panel-body-accent">
+                        <ul class="list-inline list-inline-condensed no-margin">
+                            <li>
+                                <button type="button" class="btn bg-blue" ng-click="saveBranch(0)" ng-show="submitButton">
+                                    <i class="icon-envelop2 position-left"></i>
+                                    Submit form
+                                </button>
+                                <button type="button" class="btn bg-blue" ng-click="saveBranch(1)" ng-show="!submitButton">
+                                    <i class="icon-envelop2 position-left"></i>
+                                    Update form
+                                </button>
+                            </li>
+                            <li>
+                                <button type="reset" class="btn btn-default">
+                                    Cancel
+                                </button>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
