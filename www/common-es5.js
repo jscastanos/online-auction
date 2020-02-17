@@ -691,6 +691,14 @@ var ProfileService = /** @class */ (function () {
             newPassword: newPassword
         });
     };
+    ProfileService.prototype.checkTokenValidity = function (id, token) {
+        return this.http.get(this.env.API_URL + 'profile/' + id + '/checktoken?token=' + token);
+    };
+    ProfileService.prototype.registerFCMToken = function (id, token) {
+        return this.http.post(this.env.API_URL + 'profile/' + id + '/token', {
+            token: token
+        });
+    };
     ProfileService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
         { type: _env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"] }

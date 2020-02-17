@@ -4,6 +4,15 @@ import { IonInfiniteScroll, NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { CommonService } from '../services/common.service';
 import { EnvService } from '../services/env.service';
+import {
+  Plugins,
+  PushNotification,
+  PushNotificationToken,
+  PushNotificationActionPerformed
+} from '@capacitor/core';
+import { ProfileService } from '../services/profile.service';
+
+const { PushNotifications, Modals } = Plugins;
 
 @Component({
   selector: 'app-home',
@@ -67,9 +76,10 @@ export class HomePage implements OnDestroy {
   url;
 
 
-  constructor(private nav: NavController, private env: EnvService, private productsService: ProductsService, private auth: AuthService, public common: CommonService) {
+  constructor(private profileService: ProfileService, private nav: NavController, private env: EnvService, private productsService: ProductsService, private auth: AuthService, public common: CommonService) {
     this.user = this.common.user;
     this.url = this.env.URL;
+    this.setToDefault();
   }
 
   search(q) {
@@ -91,11 +101,51 @@ export class HomePage implements OnDestroy {
   }
 
   ngOnInit() {
+
     this.fetchDisplay();
 
     if (this.user.status != 0)
       this.fetchAuction();
 
+
+    PushNotifications.register();
+
+    PushNotifications.addListener('registration',
+      (token: PushNotificationToken) => {
+        console.log('Push registration success, token: ' + token.value);
+
+        //check token
+        this.profileService.checkTokenValidity(this.user.id, token.value).subscribe(result => {
+          if (!result) {
+            //register token
+            this.profileService.registerFCMToken(this.user.id, token.value).subscribe()
+          }
+        });
+      }
+    );
+
+    PushNotifications.addListener('registrationError',
+      (error: any) => {
+        alert('Error on registration: ' + JSON.stringify(error));
+      }
+    );
+
+    PushNotifications.addListener('pushNotificationReceived',
+      (notification: PushNotification) => {
+        var audio = new Audio("assets/audio.mp3");
+        audio.play();
+        let pn = Modals.alert({
+          title: notification.title,
+          message: notification.body
+        })
+      }
+    );
+
+    PushNotifications.addListener('pushNotificationActionPerformed',
+      (notification: PushNotificationActionPerformed) => {
+        this.nav.navigateRoot("/notification")
+      }
+    );
   }
 
   loadData() {
@@ -195,10 +245,15 @@ export class HomePage implements OnDestroy {
   }
 
 
-  ngOnDestroy() {
+  setToDefault() {
+
     this.displayItems = [];
     this.auctionItems = [];
     this.activeItems = [];
+  }
+
+  ngOnDestroy() {
+    this.setToDefault();
     this.fetchDisplayService.unsubscribe();
 
     if (this.fetchAuctionService != null)

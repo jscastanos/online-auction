@@ -13,7 +13,7 @@
   <ion-list lines="none" class="itemList">
     <ion-grid>
       <ion-row *ngIf="products.length > 0; else nodata">
-        <ion-col size-xs="6" *ngFor="let items of products" class="item" (click)="goToView(item)">
+        <ion-col size-xs="6" *ngFor="let items of products" class="item" (click)="goToView(items)">
           <div class="badgeHolder">
             <div class="bidBadge" [ngClass]="{'badge-success' : items.Status == 1}">
               {{items.Status == 1 ? "On Auction" : "For Display"}}

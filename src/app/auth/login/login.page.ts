@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { get, set } from '../../services/storage.service';
 import { AuthService } from '../../services/auth.service';
 import { CommonService } from 'src/app/services/common.service';
-import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -17,20 +16,10 @@ export class LoginPage implements OnInit, OnDestroy {
   //common
   user;
 
-  constructor(private router: Router, private authService: AuthService, private alertController: AlertController, private common: CommonService) {
+  constructor(private router: Router, private authService: AuthService, private common: CommonService) {
     this.user = this.common.user;
   }
 
-
-  async presentAlert(header, msg) {
-    const alert = await this.alertController.create({
-      header: header,
-      message: msg,
-      buttons: ['OK']
-    });
-
-    await alert.present();
-  }
   loginService: any;
 
   ngOnInit() {
@@ -66,14 +55,14 @@ export class LoginPage implements OnInit, OnDestroy {
             }
           } else {
             this.btnDisabled = false;
-            this.presentAlert("Something wrong!", "Please check your username or password");
+            alert("Please check your username or password");
           }
 
         },
 
         error => {
           this.btnDisabled = false;
-          this.presentAlert("Error", JSON.stringify(error));
+          alert("Error: " + JSON.stringify(error));
         }
 
       )

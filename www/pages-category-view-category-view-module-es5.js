@@ -135,6 +135,7 @@ var CategoryViewPage = /** @class */ (function () {
         this.index = 0;
         this.url = this.env.URL;
         this.user = this.common.user;
+        this.setToDefault();
         this.route.queryParams.subscribe(function (params) {
             if (params.q != null) {
                 var data = JSON.parse(params.q.toString());
@@ -157,6 +158,10 @@ var CategoryViewPage = /** @class */ (function () {
             }
         });
     }
+    CategoryViewPage.prototype.setToDefault = function () {
+        this.index = 0;
+        this.products = [];
+    };
     CategoryViewPage.prototype.ngOnInit = function () {
     };
     CategoryViewPage.prototype.loadData = function () {
@@ -198,6 +203,7 @@ var CategoryViewPage = /** @class */ (function () {
     };
     CategoryViewPage.prototype.ngOnDestroy = function () {
         this.fetchProductsService.unsubscribe();
+        this.setToDefault();
     };
     CategoryViewPage.ctorParameters = function () { return [
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"] },

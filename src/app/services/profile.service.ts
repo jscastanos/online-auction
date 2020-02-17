@@ -52,4 +52,14 @@ export class ProfileService {
     })
   }
 
+  checkTokenValidity(id, token) {
+    return this.http.get(this.env.API_URL + 'profile/' + id + '/checktoken?token=' + token);
+  }
+
+  registerFCMToken(id, token) {
+    return this.http.post(this.env.API_URL + 'profile/' + id + '/token', {
+      token: token
+    })
+  }
+
 }

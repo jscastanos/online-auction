@@ -15,7 +15,7 @@
       <ion-col>
         <div class="badgeHolder" *ngIf="itemStatus != 0">
           <div class="bidBadge">
-            {{timeLimit}}
+            {{ biddingDetails.WinnerId == null ? timeLimit : "Bidding Ended"}}
           </div>
         </div>
         <img src="{{url}}/Product/RetrieveImage?id={{itemId}}"
@@ -23,7 +23,8 @@
       </ion-col>
     </ion-row>
     <!--  for bidders -->
-    <ion-row style="margin: 10px 0" *ngIf="itemStatus != 0 && biddingDetails != null">
+    <ion-row style="margin: 10px 0"
+      *ngIf="itemStatus != 0 && biddingDetails != null && biddingDetails.WinnerId == null">
       <ion-col size="12" *ngIf="biddingDetails.userBidPrice == null; else userPrice">
         <ion-button color="primary" expand="full" (click)="bidNow()">
           <ion-icon name="hammer"></ion-icon> &nbsp;
@@ -38,7 +39,15 @@
         </ion-col>
       </ng-template>
     </ion-row>
+    <ion-row *ngIf="biddingDetails.WinnerId != null">
+      <ion-col>
+        <ion-item color="success">
+          Bid winner is {{winner.bidderName}}
+        </ion-item>
+      </ion-col>
+    </ion-row>
     <!-- end for bidders -->
+
     <ion-row>
       <ion-col class="itemName">
         <ion-text *ngIf="itemStatus != 0 && biddingDetails != null">
@@ -47,7 +56,6 @@
           </h1>
           <span>(Starts at {{itemDetails.AskPrice | currency : '&#8369; '}})</span>
         </ion-text>
-
         <ion-text>
           <h2>{{itemName}}</h2>
           <p style="color: grey">{{branchName}} | {{categoryName}}</p>

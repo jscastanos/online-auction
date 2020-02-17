@@ -128,6 +128,7 @@ let CategoryViewPage = class CategoryViewPage {
         this.index = 0;
         this.url = this.env.URL;
         this.user = this.common.user;
+        this.setToDefault();
         this.route.queryParams.subscribe(params => {
             if (params.q != null) {
                 let data = JSON.parse(params.q.toString());
@@ -149,6 +150,10 @@ let CategoryViewPage = class CategoryViewPage {
                 });
             }
         });
+    }
+    setToDefault() {
+        this.index = 0;
+        this.products = [];
     }
     ngOnInit() {
     }
@@ -182,6 +187,7 @@ let CategoryViewPage = class CategoryViewPage {
     }
     ngOnDestroy() {
         this.fetchProductsService.unsubscribe();
+        this.setToDefault();
     }
 };
 CategoryViewPage.ctorParameters = () => [

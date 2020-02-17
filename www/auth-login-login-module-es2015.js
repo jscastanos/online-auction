@@ -106,8 +106,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_storage_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/storage.service */ "./src/app/services/storage.service.ts");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/auth.service */ "./src/app/services/auth.service.ts");
 /* harmony import */ var src_app_services_common_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/common.service */ "./src/app/services/common.service.ts");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-
 
 
 
@@ -115,23 +113,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginPage = class LoginPage {
-    constructor(router, authService, alertController, common) {
+    constructor(router, authService, common) {
         this.router = router;
         this.authService = authService;
-        this.alertController = alertController;
         this.common = common;
         this.btnDisabled = false; // submit button
         this.user = this.common.user;
-    }
-    presentAlert(header, msg) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            const alert = yield this.alertController.create({
-                header: header,
-                message: msg,
-                buttons: ['OK']
-            });
-            yield alert.present();
-        });
     }
     ngOnInit() {
     }
@@ -163,11 +150,11 @@ let LoginPage = class LoginPage {
             }
             else {
                 this.btnDisabled = false;
-                this.presentAlert("Something wrong!", "Please check your username or password");
+                alert("Please check your username or password");
             }
         }, error => {
             this.btnDisabled = false;
-            this.presentAlert("Error", JSON.stringify(error));
+            alert("Error: " + JSON.stringify(error));
         });
     }
     ngOnDestroy() {
@@ -177,7 +164,6 @@ let LoginPage = class LoginPage {
 LoginPage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
     { type: _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"] },
     { type: src_app_services_common_service__WEBPACK_IMPORTED_MODULE_5__["CommonService"] }
 ];
 LoginPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -186,7 +172,7 @@ LoginPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./login.page.html */ "./node_modules/raw-loader/index.js!./src/app/auth/login/login.page.html"),
         styles: [__webpack_require__(/*! ../auth.scss */ "./src/app/auth/auth.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"], src_app_services_common_service__WEBPACK_IMPORTED_MODULE_5__["CommonService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], src_app_services_common_service__WEBPACK_IMPORTED_MODULE_5__["CommonService"]])
 ], LoginPage);
 
 

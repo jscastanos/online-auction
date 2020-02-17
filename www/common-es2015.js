@@ -962,6 +962,14 @@ let ProfileService = class ProfileService {
             newPassword: newPassword
         });
     }
+    checkTokenValidity(id, token) {
+        return this.http.get(this.env.API_URL + 'profile/' + id + '/checktoken?token=' + token);
+    }
+    registerFCMToken(id, token) {
+        return this.http.post(this.env.API_URL + 'profile/' + id + '/token', {
+            token: token
+        });
+    }
 };
 ProfileService.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },

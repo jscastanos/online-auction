@@ -30,14 +30,14 @@ export class CategoryViewPage implements OnInit, OnDestroy {
     this.url = this.env.URL;
     this.user = this.common.user;
 
+    this.setToDefault();
+
     this.route.queryParams.subscribe(params => {
       if (params.q != null) {
         let data = JSON.parse(params.q.toString());
         this.categoryId = data.id;
         this.categoryName = data.name;
-
         set("category", data);
-
         this.loadData();
       } else {
 
@@ -45,7 +45,6 @@ export class CategoryViewPage implements OnInit, OnDestroy {
           if (data != null) {
             this.categoryId = data["id"];
             this.categoryName = data["name"];
-
             this.loadData();
           } else {
             this.router.navigateByUrl("/home");
@@ -53,6 +52,11 @@ export class CategoryViewPage implements OnInit, OnDestroy {
         })
       }
     });
+  }
+
+  setToDefault() {
+    this.index = 0;
+    this.products = [];
   }
 
   ngOnInit() {
@@ -94,5 +98,6 @@ export class CategoryViewPage implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.fetchProductsService.unsubscribe();
+    this.setToDefault();
   }
 }

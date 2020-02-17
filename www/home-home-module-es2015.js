@@ -78,6 +78,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/services/auth.service.ts");
 /* harmony import */ var _services_common_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/common.service */ "./src/app/services/common.service.ts");
 /* harmony import */ var _services_env_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services/env.service */ "./src/app/services/env.service.ts");
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
+/* harmony import */ var _services_profile_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../services/profile.service */ "./src/app/services/profile.service.ts");
 
 
 
@@ -85,8 +87,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+const { PushNotifications, Modals } = _capacitor_core__WEBPACK_IMPORTED_MODULE_7__["Plugins"];
 let HomePage = class HomePage {
-    constructor(nav, env, productsService, auth, common) {
+    constructor(profileService, nav, env, productsService, auth, common) {
+        this.profileService = profileService;
         this.nav = nav;
         this.env = env;
         this.productsService = productsService;
@@ -132,6 +138,7 @@ let HomePage = class HomePage {
         };
         this.user = this.common.user;
         this.url = this.env.URL;
+        this.setToDefault();
     }
     search(q) {
         this.searchResults = [];
@@ -153,6 +160,31 @@ let HomePage = class HomePage {
         this.fetchDisplay();
         if (this.user.status != 0)
             this.fetchAuction();
+        PushNotifications.register();
+        PushNotifications.addListener('registration', (token) => {
+            console.log('Push registration success, token: ' + token.value);
+            //check token
+            this.profileService.checkTokenValidity(this.user.id, token.value).subscribe(result => {
+                if (!result) {
+                    //register token
+                    this.profileService.registerFCMToken(this.user.id, token.value).subscribe();
+                }
+            });
+        });
+        PushNotifications.addListener('registrationError', (error) => {
+            alert('Error on registration: ' + JSON.stringify(error));
+        });
+        PushNotifications.addListener('pushNotificationReceived', (notification) => {
+            var audio = new Audio("assets/audio.mp3");
+            audio.play();
+            let pn = Modals.alert({
+                title: notification.title,
+                message: notification.body
+            });
+        });
+        PushNotifications.addListener('pushNotificationActionPerformed', (notification) => {
+            this.nav.navigateRoot("/notification");
+        });
     }
     loadData() {
         if (this.user.status == 0)
@@ -233,10 +265,13 @@ let HomePage = class HomePage {
         };
         this.nav.navigateRoot(["/item-view"], params);
     }
-    ngOnDestroy() {
+    setToDefault() {
         this.displayItems = [];
         this.auctionItems = [];
         this.activeItems = [];
+    }
+    ngOnDestroy() {
+        this.setToDefault();
         this.fetchDisplayService.unsubscribe();
         if (this.fetchAuctionService != null)
             this.fetchAuctionService.unsubscribe();
@@ -245,6 +280,7 @@ let HomePage = class HomePage {
     }
 };
 HomePage.ctorParameters = () => [
+    { type: _services_profile_service__WEBPACK_IMPORTED_MODULE_8__["ProfileService"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"] },
     { type: _services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"] },
     { type: _services_products_service__WEBPACK_IMPORTED_MODULE_2__["ProductsService"] },
@@ -261,7 +297,7 @@ HomePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./home.page.html */ "./node_modules/raw-loader/index.js!./src/app/home/home.page.html"),
         styles: [__webpack_require__(/*! ./home.page.scss */ "./src/app/home/home.page.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"], _services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"], _services_products_service__WEBPACK_IMPORTED_MODULE_2__["ProductsService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _services_common_service__WEBPACK_IMPORTED_MODULE_5__["CommonService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_profile_service__WEBPACK_IMPORTED_MODULE_8__["ProfileService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"], _services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"], _services_products_service__WEBPACK_IMPORTED_MODULE_2__["ProductsService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _services_common_service__WEBPACK_IMPORTED_MODULE_5__["CommonService"]])
 ], HomePage);
 
 

@@ -672,7 +672,7 @@ let AppComponent = class AppComponent {
             const state = yield this.validateUser(data);
             if (state != null) {
                 if (state)
-                    this.router.navigateByUrl('/profile');
+                    this.router.navigateByUrl('/');
                 else
                     this.router.navigateByUrl('/login');
             }
@@ -1006,8 +1006,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let EnvService = class EnvService {
     constructor() {
-        this.URL = 'http://192.168.1.12:69/';
-        this.API_URL = 'http://192.168.1.12:69/api/';
+        this.URL = 'http://192.168.1.10:69/';
+        this.API_URL = 'http://192.168.1.10:69/api/';
     }
 };
 EnvService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

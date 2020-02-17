@@ -23,6 +23,7 @@ export class ItemViewPage implements OnInit, OnDestroy {
   branchName;
   categoryName;
   auctionID;
+  winner;
   isLoaded = false;
   timeLimit: any;
   displayDetails;
@@ -113,6 +114,25 @@ export class ItemViewPage implements OnInit, OnDestroy {
   getAuctionItemBiddings() {
     this.fetchAuctionItemBiddings = this.productService.getAuctionItemBiddings(this.auctionID, this.user.id).subscribe(data => {
       this.biddingDetails = data;
+
+      //check winner
+      if (this.biddingDetails.WinnerId != null) {
+
+        let bidlist = this.biddingDetails.bidList;
+
+        for (let user in bidlist) {
+
+          if (bidlist[user]["BiddersId"] == this.biddingDetails.WinnerId) {
+            this.winner = bidlist[user]
+            return;
+          }
+        }
+      } else {
+        this.winner = null;
+      }
+
+      console.log(this.winner)
+
       this.isLoaded = true;
     })
 
@@ -223,6 +243,7 @@ export class ItemViewPage implements OnInit, OnDestroy {
     this.itemDetails = null;
     this.branchName = null;
     this.categoryName = null;
+    this.winner = null;
     this.itemDescription = null;
     this.biddingDetails = null;
     this.isLoaded = false;

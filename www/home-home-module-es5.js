@@ -81,6 +81,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/services/auth.service.ts");
 /* harmony import */ var _services_common_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/common.service */ "./src/app/services/common.service.ts");
 /* harmony import */ var _services_env_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services/env.service */ "./src/app/services/env.service.ts");
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
+/* harmony import */ var _services_profile_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../services/profile.service */ "./src/app/services/profile.service.ts");
 
 
 
@@ -88,8 +90,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+var PushNotifications = _capacitor_core__WEBPACK_IMPORTED_MODULE_7__["Plugins"].PushNotifications, Modals = _capacitor_core__WEBPACK_IMPORTED_MODULE_7__["Plugins"].Modals;
 var HomePage = /** @class */ (function () {
-    function HomePage(nav, env, productsService, auth, common) {
+    function HomePage(profileService, nav, env, productsService, auth, common) {
+        this.profileService = profileService;
         this.nav = nav;
         this.env = env;
         this.productsService = productsService;
@@ -135,6 +141,7 @@ var HomePage = /** @class */ (function () {
         };
         this.user = this.common.user;
         this.url = this.env.URL;
+        this.setToDefault();
     }
     HomePage.prototype.search = function (q) {
         var _this = this;
@@ -154,9 +161,35 @@ var HomePage = /** @class */ (function () {
         }
     };
     HomePage.prototype.ngOnInit = function () {
+        var _this = this;
         this.fetchDisplay();
         if (this.user.status != 0)
             this.fetchAuction();
+        PushNotifications.register();
+        PushNotifications.addListener('registration', function (token) {
+            console.log('Push registration success, token: ' + token.value);
+            //check token
+            _this.profileService.checkTokenValidity(_this.user.id, token.value).subscribe(function (result) {
+                if (!result) {
+                    //register token
+                    _this.profileService.registerFCMToken(_this.user.id, token.value).subscribe();
+                }
+            });
+        });
+        PushNotifications.addListener('registrationError', function (error) {
+            alert('Error on registration: ' + JSON.stringify(error));
+        });
+        PushNotifications.addListener('pushNotificationReceived', function (notification) {
+            var audio = new Audio("assets/audio.mp3");
+            audio.play();
+            var pn = Modals.alert({
+                title: notification.title,
+                message: notification.body
+            });
+        });
+        PushNotifications.addListener('pushNotificationActionPerformed', function (notification) {
+            _this.nav.navigateRoot("/notification");
+        });
     };
     HomePage.prototype.loadData = function () {
         if (this.user.status == 0)
@@ -265,10 +298,13 @@ var HomePage = /** @class */ (function () {
         };
         this.nav.navigateRoot(["/item-view"], params);
     };
-    HomePage.prototype.ngOnDestroy = function () {
+    HomePage.prototype.setToDefault = function () {
         this.displayItems = [];
         this.auctionItems = [];
         this.activeItems = [];
+    };
+    HomePage.prototype.ngOnDestroy = function () {
+        this.setToDefault();
         this.fetchDisplayService.unsubscribe();
         if (this.fetchAuctionService != null)
             this.fetchAuctionService.unsubscribe();
@@ -276,6 +312,7 @@ var HomePage = /** @class */ (function () {
             this.searchProduct.unsubscribe();
     };
     HomePage.ctorParameters = function () { return [
+        { type: _services_profile_service__WEBPACK_IMPORTED_MODULE_8__["ProfileService"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"] },
         { type: _services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"] },
         { type: _services_products_service__WEBPACK_IMPORTED_MODULE_2__["ProductsService"] },
@@ -292,7 +329,7 @@ var HomePage = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./home.page.html */ "./node_modules/raw-loader/index.js!./src/app/home/home.page.html"),
             styles: [__webpack_require__(/*! ./home.page.scss */ "./src/app/home/home.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"], _services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"], _services_products_service__WEBPACK_IMPORTED_MODULE_2__["ProductsService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _services_common_service__WEBPACK_IMPORTED_MODULE_5__["CommonService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_profile_service__WEBPACK_IMPORTED_MODULE_8__["ProfileService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"], _services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"], _services_products_service__WEBPACK_IMPORTED_MODULE_2__["ProductsService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _services_common_service__WEBPACK_IMPORTED_MODULE_5__["CommonService"]])
     ], HomePage);
     return HomePage;
 }());
