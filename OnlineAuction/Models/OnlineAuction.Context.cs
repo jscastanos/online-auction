@@ -31,6 +31,7 @@ namespace OnlineAuction.Models
         public virtual DbSet<tblBidding> tblBiddings { get; set; }
         public virtual DbSet<tblBranchShop> tblBranchShops { get; set; }
         public virtual DbSet<tblEmployeesInfo> tblEmployeesInfoes { get; set; }
+        public virtual DbSet<tblNotification> tblNotifications { get; set; }
         public virtual DbSet<tblProduct> tblProducts { get; set; }
         public virtual DbSet<tblProductCategory> tblProductCategories { get; set; }
         public virtual DbSet<tblRating> tblRatings { get; set; }
@@ -38,6 +39,5 @@ namespace OnlineAuction.Models
         public virtual DbSet<tblUsersRole> tblUsersRoles { get; set; }
         public virtual DbSet<vAuctionProduct> vAuctionProducts { get; set; }
         public virtual DbSet<vProduct> vProducts { get; set; }
-        public virtual DbSet<tblNotification> tblNotifications { get; set; }
     }
 }

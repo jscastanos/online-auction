@@ -133,6 +133,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\animate.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\colors.css" />
+    <Content Include="Content\components.css" />
+    <Content Include="Content\core.css" />
+    <Content Include="Content\customFlip.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\icomoon.css" />
+    <Content Include="Content\kendo.common-material.min.css" />
+    <Content Include="Content\kendo.default-v2.min.css" />
+    <Content Include="Content\kendo.material.min.css" />
+    <Content Include="Content\kendo.material.mobile.min.css" />
+    <Content Include="Content\select2.min.css" />
     <Content Include="fonts\fontawesome-webfont5b62.eot" />
     <Content Include="fonts\fontawesome-webfont5b62.ttf" />
     <Content Include="fonts\fontawesome-webfont5b62.woff" />
@@ -157,6 +176,59 @@
       <LastGenOutput>OnlineAuction.cs</LastGenOutput>
     </Content>
     <Content Include="packages.config" />
+    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.eot" />
+    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.ttf" />
+    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.woff" />
+    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.woff2" />
+    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="Scripts\css\icons\icomoon\fonts\icomoond41d.eot" />
+    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.eot" />
+    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.ttf" />
+    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.woff" />
+    <Content Include="Scripts\css\icons\summernote\summernoted41d.eot" />
+    <Content Include="Scripts\css\icons\summernote\summernotef534.eot" />
+    <Content Include="Scripts\css\icons\summernote\summernotef534.ttf" />
+    <Content Include="Scripts\css\icons\summernote\summernotef534.woff" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\_GridView.cshtml" />
+    <Content Include="Views\Admin\_ListView.cshtml" />
+    <Content Include="Views\Auction\AuctionManagement.cshtml" />
+    <Content Include="Views\Branch\Index.cshtml" />
+    <Content Include="Views\Branch\_addBidders.cshtml" />
+    <Content Include="Views\Branch\_addBranch.cshtml" />
+    <Content Include="Views\Branch\_biddersList.cshtml" />
+    <Content Include="Views\Branch\_branchList.cshtml" />
+    <Content Include="Views\Category\CategoryReference.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Guard\Unauthorized.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\SuperAdmin.cshtml" />
+    <Content Include="Views\Home\User.cshtml" />
+    <Content Include="Views\Monitoring\Auction.cshtml" />
+    <Content Include="Views\Personel\PersonMgt.cshtml" />
+    <Content Include="Views\Product\ProductManagement.cshtml" />
+    <Content Include="Views\Role\roleManagement.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Shared\_navbar.cshtml" />
+    <Content Include="Views\Shared\_sidebar.cshtml" />
+    <Content Include="Views\UserManagement\TagRole.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Web.config" />
     <EntityDeploy Include="Models\OnlineAuction.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>
@@ -164,7 +236,159 @@
     <Content Include="Models\OnlineAuction.edmx.diagram">
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
     </Content>
-    <None Include="Properties\PublishProfiles\onlineauction.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\AuctionItemsController.cs" />
+    <Compile Include="API\AuthController.cs" />
+    <Compile Include="API\BidderController.cs" />
+    <Compile Include="API\BiddersController.cs" />
+    <Compile Include="API\BranchController.cs" />
+    <Compile Include="API\CategoryController.cs" />
+    <Compile Include="API\EmployeesInfoesController.cs" />
+    <Compile Include="API\MobileUtilsController.cs" />
+    <Compile Include="API\MonitoringController.cs" />
+    <Compile Include="API\ProductsController.cs" />
+    <Compile Include="API\PushNotification.cs" />
+    <Compile Include="API\UserManagementsController.cs" />
+    <Compile Include="API\UsersRoleController.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AuctionController.cs" />
+    <Compile Include="Controllers\BranchController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\GuardController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MonitoringController.cs" />
+    <Compile Include="Controllers\PersonelController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\SessionTimeoutAttribute.cs" />
+    <Compile Include="Controllers\UserManagementController.cs" />
+    <Compile Include="Custom_Class\ConvertDate.cs" />
+    <Compile Include="Filters\CustomAuthorize.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModel.cs" />
+    <Compile Include="Models\OnlineAuction.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OnlineAuction.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OnlineAuction.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OnlineAuction.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OnlineAuction.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblAuctionItem.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblBiddersInfo.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblBidding.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblBranchShop.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblEmployeesInfo.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblNotification.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblProduct.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblProductCategory.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblRating.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblUserManagement.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblUsersRole.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vAuctionProduct.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vProduct.cs">
+      <DependentUpon>OnlineAuction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\System.Net.Http.Formatting.dll" />
+    <Content Include="bin\System.Web.Cors.dll" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Http.Cors.dll" />
+    <Content Include="bin\System.Web.Http.dll" />
+    <Content Include="bin\System.Web.Http.WebHost.dll" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont5b62.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\icomoone627.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\add_user.png" />
+    <Content Include="Images\backgrounds\boxed_bg.png" />
+    <Content Include="Images\backgrounds\boxed_bg_retina.png" />
+    <Content Include="Images\backgrounds\panel_bg.png" />
+    <Content Include="Images\backgrounds\seamless.png" />
+    <Content Include="Images\Background\money-background-02-high.jpg" />
+    <Content Include="Images\dm.jpeg" />
+    <Content Include="Images\image.png" />
+    <Content Include="Images\login_cover.jpg" />
+    <Content Include="Images\logo_icon_light.png" />
+    <Content Include="Images\logo_light.png" />
+    <Content Include="Images\nophoto.png" />
+    <Content Include="Images\personnel\1011.jpg" />
+    <Content Include="Images\personnel\18.jpg" />
+    <Content Include="Images\personnel\5.jpg" />
+    <Content Include="Images\personnel\7.jpg" />
+    <Content Include="Images\producer\1.jpeg" />
+    <Content Include="Images\producer\2.jpeg" />
+    <Content Include="Images\producer\68.jpeg" />
+    <Content Include="Images\producer\69.jpeg" />
+    <Content Include="Images\producer\70.jpeg" />
     <Content Include="Scripts\Admin\index.js" />
     <Content Include="Scripts\angucomplete.css" />
     <Content Include="Scripts\angucomplete.js" />
@@ -203,6 +427,7 @@
     <Content Include="Scripts\headroom.min.js" />
     <Content Include="Scripts\headroom_jquery.min.js" />
     <Content Include="Scripts\jcs-auto-validate.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.min.js" />
@@ -731,221 +956,12 @@
     <Content Include="Scripts\template.js" />
     <Content Include="Scripts\uniform.min.js" />
     <Content Include="Scripts\xlsx.full.min.js" />
-    <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\_GridView.cshtml" />
-    <Content Include="Views\Admin\_ListView.cshtml" />
-    <Content Include="Views\Auction\AuctionManagement.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Views\Branch\Index.cshtml" />
-    <Content Include="Views\Branch\_addBidders.cshtml" />
-    <Content Include="Views\Branch\_addBranch.cshtml" />
-    <Content Include="Views\Branch\_biddersList.cshtml" />
-    <Content Include="Views\Branch\_branchList.cshtml" />
-    <Content Include="Views\Category\CategoryReference.cshtml" />
-    <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Views\Guard\Unauthorized.cshtml" />
-    <Content Include="Views\Home\Admin.cshtml" />
-    <Content Include="Views\Home\Dashboard.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\SuperAdmin.cshtml" />
-    <Content Include="Views\Home\User.cshtml" />
-    <Content Include="Views\Monitoring\Auction.cshtml" />
-    <Content Include="Views\Personel\PersonMgt.cshtml" />
-    <Content Include="Views\Product\ProductManagement.cshtml" />
-    <Content Include="Views\Role\roleManagement.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_LoginLayout.cshtml" />
-    <Content Include="Views\Shared\_navbar.cshtml" />
-    <Content Include="Views\Shared\_sidebar.cshtml" />
-    <Content Include="Views\UserManagement\TagRole.cshtml" />
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.eot" />
-    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.ttf" />
-    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.woff" />
-    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfont5b62.woff2" />
-    <Content Include="Scripts\css\icons\fontawesome\fonts\fontawesome-webfontd41d.eot" />
-    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.eot" />
-    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.ttf" />
-    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.woff" />
-    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regular.woff2" />
-    <Content Include="Scripts\css\icons\glyphicons\glyphicons-halflings-regulard41d.eot" />
-    <Content Include="Scripts\css\icons\icomoon\fonts\icomoond41d.eot" />
-    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.eot" />
-    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.ttf" />
-    <Content Include="Scripts\css\icons\icomoon\fonts\icomoone627.woff" />
-    <Content Include="Scripts\css\icons\summernote\summernoted41d.eot" />
-    <Content Include="Scripts\css\icons\summernote\summernotef534.eot" />
-    <Content Include="Scripts\css\icons\summernote\summernotef534.ttf" />
-    <Content Include="Scripts\css\icons\summernote\summernotef534.woff" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\animate.min.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\colors.css" />
-    <Content Include="Content\components.css" />
-    <Content Include="Content\core.css" />
-    <Content Include="Content\customFlip.css" />
-    <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\icomoon.css" />
-    <Content Include="Content\kendo.common-material.min.css" />
-    <Content Include="Content\kendo.default-v2.min.css" />
-    <Content Include="Content\kendo.material.min.css" />
-    <Content Include="Content\kendo.material.mobile.min.css" />
-    <Content Include="Content\select2.min.css" />
-    <Content Include="favicon.ico" />
-    <Content Include="fonts\fontawesome-webfont5b62.svg" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fonts\icomoone627.svg" />
-    <Content Include="Global.asax" />
-    <Content Include="Images\add_user.png" />
-    <Content Include="Images\backgrounds\boxed_bg.png" />
-    <Content Include="Images\backgrounds\boxed_bg_retina.png" />
-    <Content Include="Images\backgrounds\panel_bg.png" />
-    <Content Include="Images\backgrounds\seamless.png" />
-    <Content Include="Images\Background\money-background-02-high.jpg" />
-    <Content Include="Images\dm.jpeg" />
-    <Content Include="Images\image.png" />
-    <Content Include="Images\login_cover.jpg" />
-    <Content Include="Images\logo_icon_light.png" />
-    <Content Include="Images\logo_light.png" />
-    <Content Include="Images\nophoto.png" />
-    <Content Include="Images\personnel\1011.jpg" />
-    <Content Include="Images\personnel\18.jpg" />
-    <Content Include="Images\personnel\5.jpg" />
-    <Content Include="Images\personnel\7.jpg" />
-    <Content Include="Images\producer\1.jpeg" />
-    <Content Include="Images\producer\2.jpeg" />
-    <Content Include="Images\producer\68.jpeg" />
-    <Content Include="Images\producer\69.jpeg" />
-    <Content Include="Images\producer\70.jpeg" />
-    <Content Include="Properties\PublishProfiles\onlineauction.pubxml.user" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="API\AuctionItemsController.cs" />
-    <Compile Include="API\AuthController.cs" />
-    <Compile Include="API\BidderController.cs" />
-    <Compile Include="API\BiddersController.cs" />
-    <Compile Include="API\BranchController.cs" />
-    <Compile Include="API\CategoryController.cs" />
-    <Compile Include="API\EmployeesInfoesController.cs" />
-    <Compile Include="API\MobileUtilsController.cs" />
-    <Compile Include="API\MonitoringController.cs" />
-    <Compile Include="API\ProductsController.cs" />
-    <Compile Include="API\UserManagementsController.cs" />
-    <Compile Include="API\UsersRoleController.cs" />
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\AuctionController.cs" />
-    <Compile Include="Controllers\BranchController.cs" />
-    <Compile Include="Controllers\CategoryController.cs" />
-    <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\GuardController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MonitoringController.cs" />
-    <Compile Include="Controllers\PersonelController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\RoleController.cs" />
-    <Compile Include="Controllers\SessionTimeoutAttribute.cs" />
-    <Compile Include="Controllers\UserManagementController.cs" />
-    <Compile Include="Custom_Class\ConvertDate.cs" />
-    <Compile Include="Filters\CustomAuthorize.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\IdentityModel.cs" />
-    <Compile Include="Models\OnlineAuction.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OnlineAuction.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OnlineAuction.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OnlineAuction.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OnlineAuction.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="API\PushNotification.cs" />
-    <Compile Include="Models\RoleModel.cs" />
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblAuctionItem.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblBiddersInfo.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblBidding.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblBranchShop.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblEmployeesInfo.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblNotification.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblProduct.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblProductCategory.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblRating.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblUserManagement.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblUsersRole.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\vAuctionProduct.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\vProduct.cs">
-      <DependentUpon>OnlineAuction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\products\" />
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\PushNotification\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
