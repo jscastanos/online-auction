@@ -1,4 +1,4 @@
-﻿using OnlineAuction.Models;
+using OnlineAuction.Models;
 using System;
 using System.Collections.Generic;
 using System.Web;
@@ -28,7 +28,7 @@ namespace OnlineAuction.Controllers
             return View();
         }
 
-        
+
 
         public ActionResult Logout()
         {
@@ -48,10 +48,13 @@ namespace OnlineAuction.Controllers
 
                 if (cu != null)
                 {
+                    var branchID = empl != null ? empl.BranchId : "1";
+                    var name = empl != null ? fullName(empl.FirstName, empl.MiddleName, empl.LastName) : "Super Admin";
+
                     Session["userID"] = cu.UsersId;
-                    Session["branchID"] = 1;
+                    Session["branchID"] = branchID;
                     Session["username"] = cu.UserName;
-                    Session["fullName"] = fullName(empl.FirstName, empl.MiddleName, empl.LastName);
+                    Session["fullName"] = name;
                     Session["Role"] = db.tblUsersRoles.SingleOrDefault(role => role.RoleId == cu.RoleId).RoleName;
                     switch (cu.RoleId)
                     {
@@ -83,9 +86,9 @@ namespace OnlineAuction.Controllers
 
             switch (type)
             {
-                case 1: img = data.UserImg;
+                case 0: img = data.UserImg;
                     break;
-                case 0: img = data.CardImgFront;
+                case 1: img = data.CardImgFront;
                     break;
                 case 2: img = data.CardImgBack;
                     break;
@@ -106,6 +109,6 @@ namespace OnlineAuction.Controllers
             return a + " " + b + " " + c;
         }
 
-        
+
     }
 }

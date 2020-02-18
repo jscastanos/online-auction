@@ -106,9 +106,10 @@ namespace OnlineAuction.API
                                                  bd.BiddersId,
                                                  bd.BidPrice,
                                                  bd.DateCreated,
-                                                 bidderName = db.tblBiddersInfoes.Where(b => b.BiddersId == bd.BiddersId).Select(bb => bb.UserName).FirstOrDefault()
-
-                                             }).OrderByDescending(o => o.BidPrice).ToList()
+                                                 bidderName = db.tblBiddersInfoes.Where(b => b.BiddersId == bd.BiddersId).Select(bb => bb.UserName).FirstOrDefault(),
+                                          
+                                             }).OrderByDescending(o => o.BidPrice).ToList(),
+                                             aa.WinnerId
 
                                          }).FirstOrDefault();
 
@@ -196,12 +197,12 @@ namespace OnlineAuction.API
             var data = db.tblProducts.Where(p => p.recNo > index && p.Status == 0)
                                  .AsEnumerable()
                                  .Select(d => new
-                                 {
-                                     d.recNo,
-                                     d.ProductId,
-                                     d.ProductName,
-                                     rate = ComputeRating(d.ProductId)
-                                 })
+                                    {
+                                        d.recNo,
+                                        d.ProductId,
+                                        d.ProductName,
+                                        rate = ComputeRating(d.ProductId)
+                                    })
                                 .ToList();
 
 
@@ -276,6 +277,54 @@ namespace OnlineAuction.API
             {
                 return Json("Old password is incorrect");
             }
+        }
+
+        public class FCMToken
+        {
+            public string token { get; set; }
+        }
+        [Route("api/profile/{id}/token")]
+        public IHttpActionResult PostRegisterFCMToken(string id, FCMToken fcm)
+        {
+            if (fcm.token != "" || fcm.token != null)
+            {
+                var data = db.tblBiddersInfoes.Where(b => b.BiddersId == id).FirstOrDefault();
+                data.FCMToken = fcm.token;
+
+                db.SaveChanges();
+
+
+                return Json(1);
+            }
+            else
+            {
+                return Json(0);
+            }
+        }
+
+        [Route("api/profile/{id}/checktoken")]
+        public bool GetCheckTokenValidity(string id, string token)
+        {
+            var data = db.tblBiddersInfoes.Where(b => b.BiddersId == id && b.FCMToken == token);
+
+            return data.Count() > 0 ? true : false;
+        }
+
+        [Route("api/profile/{id}/notifs")]
+        public IHttpActionResult GetNotif(string id)
+        {
+            var data = (from a in db.tblNotifications
+                        join b in db.tblAuctionItems on a.auctionID equals b.AuctionId
+                        join c in db.tblProducts on b.ProductId equals c.ProductId
+                        where a.biddersID == id
+                        select new { 
+                            b.ProductId,
+                            c.ProductName,
+                            a.seen,
+                            a.id
+                        }).ToList();
+
+            return Json(data);
         }
 
     }

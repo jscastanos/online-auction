@@ -78,15 +78,13 @@
 
                             <div class="media-left">
                                 <div class="text-nowrap">
-                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
-                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
-                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
-                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
-                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
-                                </div>
-                            </div>
 
-                            <div class="text-muted">34 reviews</div>
+                                    <div class="media-left">
+                                        <div class="text-nowrap">
+                                            <i class="{{rs}} text-size-base text-warning-300" ng-repeat="rs in a.ratingStars track by $index"></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-muted">{{a.totalrating}} rating</div>
 
                             <ul class="list-inline list-inline-separate mb-10">
                                 <li><a href="#" class="text-muted">{{a.CategoryName | uppercase}}</a></li>

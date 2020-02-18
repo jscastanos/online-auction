@@ -80,7 +80,7 @@ namespace OnlineAuction.API
         public IHttpActionResult PutRemoveProduct(int id)
         {
             db.tblProductCategories.Remove(db.tblProductCategories.SingleOrDefault(a => a.recNo == id));
-
+            
             db.SaveChanges();
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -94,7 +94,7 @@ namespace OnlineAuction.API
             {
                 return BadRequest(ModelState);
             }
-
+                          
             tblProductCategory.CategoryId = Guid.NewGuid().ToString("N").Substring(0, 4).ToUpper();
             tblProductCategory.CategoryName = tblProductCategory.CategoryName.ToUpper();
 

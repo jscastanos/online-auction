@@ -18,8 +18,7 @@ namespace OnlineAuction.API
     {
         private OnlineAuctionEntities db = new OnlineAuctionEntities();
 
-        public class Credentials
-        {
+        public class Credentials{
             public string username { get; set; }
             public string password { get; set; }
         }

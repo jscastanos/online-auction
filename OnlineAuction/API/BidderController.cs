@@ -95,20 +95,20 @@ namespace OnlineAuction.API
         public IHttpActionResult GetProfile(string id)
         {
             var data = db.tblBiddersInfoes.Where(user => user.BiddersId == id).Select(u => new
-            {
-                u.FirstName,
-                u.MiddleName,
-                u.LastName,
-                u.ContactNo,
-                u.Address,
-                u.Occupation
-
+             {
+                 u.FirstName,
+                 u.MiddleName,
+                 u.LastName,
+                 u.ContactNo,
+                 u.Address,
+                 u.Occupation
+                
             }).SingleOrDefault();
 
             return Json(data);
         }
 
-
+        
 
         public IHttpActionResult GetCheckCardImage(string id)
         {

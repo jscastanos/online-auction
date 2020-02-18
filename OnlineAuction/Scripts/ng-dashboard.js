@@ -18,7 +18,7 @@
 
     s.startDate = s.curMonth + "/" + s.curDay + "/" + s.curYear;
     s.endDate = s.curMonth + "/" + s.curDay + "/" + s.curYear;
-    
+
     getAuctionedData();
     rateProduct(10);
 
@@ -33,7 +33,7 @@
         },
         startDate: s.startDate,
         endDate: s.endDate,
-        locale: {         
+        locale: {
             format: 'MM/DD/YYYY'
         }
     });
@@ -77,7 +77,7 @@
     //s.dateTimeFormat = function (date) {
     //    return moment(date).format("MMM DD, YYYY hh:mm a")
     //}
-    
+
     function getAuctionedData() {
         s.isLoading = true;
         h.get("../api/AuctionItems/auctionData?id=" + s.auctionlastId + "&key=" + s.filter.auctionName).then(function (d) {
@@ -91,7 +91,7 @@
             s.totalSold = d.data.totalSold;
             (s.auctionData).forEach(function (a) {
                 a.dateClaimLimit = new Date(new Date(a.DateTimeLimit).setHours(24 * 3));
-                
+
             });
             console.log(s.auctionData)
         });
@@ -103,7 +103,7 @@
                 s.ratingTempArr = d.data;
             }
             else {
-                swal("Please Input Number!","","error");
+                swal("Please Input Number!", "", "error");
             }
         });
     }
