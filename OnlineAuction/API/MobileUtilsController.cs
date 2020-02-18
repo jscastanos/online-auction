@@ -28,7 +28,7 @@ namespace OnlineAuction.API
             if (accountStatus == 1)
             {
 
-                var data = db.tblProducts.Where(product => product.CategoryId == id && product.recNo > index);
+                var data = db.tblProducts.Where(product => product.CategoryId == id && product.recNo > index && product.Status < 1);
 
                 return Json(data.Take(20));
             }
@@ -48,7 +48,7 @@ namespace OnlineAuction.API
             if (accountStatus == 1)
             {
 
-                var data = db.tblProducts.Where(product => product.BranchId == id && product.recNo > index);
+                var data = db.tblProducts.Where(product => product.BranchId == id && product.recNo > index && product.Status < 1);
 
                 return Json(data.Take(20));
             }
