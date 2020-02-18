@@ -20,12 +20,20 @@
     <script>
         $(document).ready(function () {
             $('body').addClass(localStorage.getItem('sidebar'))
+            if ($('body').hasClass('sidebar-xs')) {
+                $("#oauctionNav").text("").append("<img src='../auction-logo.png' style='position: relative;left: 5px;top: -13px;height: 40px;'>");
+            } else {
+                $("#oauctionNav").text("ONLINE AUCTION");
+            }
         })
         function sidebar() {
+            
             if ($('body').hasClass('sidebar-xs')) {
-                localStorage.setItem('sidebar', '')
+                localStorage.setItem('sidebar', '');
+                $("#oauctionNav").text("ONLINE AUCTION");
             } else {
-                localStorage.setItem('sidebar','sidebar-xs')
+                localStorage.setItem('sidebar', 'sidebar-xs');
+                $("#oauctionNav").text("").append("<img src='../auction-logo.png' style='position: relative;left: 5px;top: -13px;height: 40px;'>");
             }
         }
     </script>

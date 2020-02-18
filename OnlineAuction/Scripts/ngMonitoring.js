@@ -85,6 +85,7 @@
             s.activeAuctionedItems = d.data.d;
             s.pendingCount = d.data.pendingCount;
             angular.forEach(s.activeAuctionedItems, function (v, k) {
+                //v.dateClaimLimit = new Date(new Date())
                 var eventTime = new Date(v.DateTimeLimit).getTime(); 
                 var currentTime = new Date(d.data.st).getTime(); 
                 var diffTime = eventTime - currentTime;

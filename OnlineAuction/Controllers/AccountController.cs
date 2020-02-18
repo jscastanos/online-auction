@@ -56,9 +56,9 @@ namespace OnlineAuction.Controllers
                     switch (cu.RoleId)
                     {
                         case "1":
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Admin");
                         case "2":
-                            return RedirectToAction("");
+                            return RedirectToAction("Auction", "Monitoring");
                     }
                     return RedirectToAction("Index", "Dashboard");
                 }
@@ -83,9 +83,9 @@ namespace OnlineAuction.Controllers
 
             switch (type)
             {
-                case 0: img = data.UserImg;
+                case 1: img = data.UserImg;
                     break;
-                case 1: img = data.CardImgFront;
+                case 0: img = data.CardImgFront;
                     break;
                 case 2: img = data.CardImgBack;
                     break;
@@ -97,7 +97,7 @@ namespace OnlineAuction.Controllers
             }
             else
             {
-                return File("~/Images/image.png", "image/png");
+                return File("~/nophoto.png", "image/png");
             }
         }
 
