@@ -31,6 +31,13 @@ namespace OnlineAuction.API
             {
                 var data = db.tblAuctionItems.SingleOrDefault(a => a.AuctionId == aID);
                 data.WinnerId = bID;
+
+                tblNotification notif = new tblNotification();
+                notif.biddersID = bID;
+                notif.auctionID = aID;
+                db.Entry(notif).State = EntityState.Added;
+
+
                 db.SaveChanges();
                 
                 return Ok();
