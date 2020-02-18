@@ -8,14 +8,14 @@
     s.isLoading = false;
     s.add = false;
     s.update = false;
-    var lastId = 0;
+    var lastId = 3;
     s.xdata = null;
     s.sdata = "";
     loaddata();
     
 
     s.testsearch = function () {
-        lastId = 0;
+        lastId = 3;
         s.alldata = [];
         loaddata()
     }
@@ -48,7 +48,7 @@
         if (s.add == true) {
             r.post("../api/UsersRole", s.adata)
         .then(function (d) {
-            lastId = 0;
+            lastId = 3;
             s.alldata = [];
             loaddata();
             swal({
@@ -64,7 +64,7 @@
             r.put("../api/UsersRole/RolechangeName", s.adata)
         .then(function (d) {
             if (d.data == "success") {
-                lastId = 0;
+                lastId = 3;
                 s.alldata = [];
                 loaddata();
                 swal({
@@ -91,14 +91,14 @@
         s.add = false;
         s.update = false;
         s.alldata = [];
-        lastId = 0;
+        lastId = 3;
         loaddata();
     }
 
 
     function sweettest() {
         s.alldata = [];
-        lastId = 0;
+        lastId = 3;
         loaddata();
         swal(" ", "Deleted", "success");
     }

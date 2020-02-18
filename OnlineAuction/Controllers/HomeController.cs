@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace OnlineAuction.Controllers
 {
+    [SessionTimeoutAttribute]
     public class HomeController : Controller
     {
         //[CustomAuthorize(Roles = "Admin, SuperAdmin, User")]
@@ -32,6 +33,11 @@ namespace OnlineAuction.Controllers
         public ActionResult Admin(){
             return View();
         }  
+
+        public ActionResult Dashboard() {
+            return View();
+        
+        }
 
     }
 }

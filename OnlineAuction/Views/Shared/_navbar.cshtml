@@ -16,7 +16,7 @@
     <div class="navbar-collapse collapse" id="navbar-mobile">
         <ul class="nav navbar-nav">
             <li>
-                <a class="sidebar-control sidebar-main-toggle" ng-click="nav()">
+                <a class="sidebar-control sidebar-main-toggle" onclick="sidebar()">
                     <i class="icon-paragraph-justify3"></i>
                 </a>
             </li>
@@ -26,11 +26,11 @@
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     <img src="@Url.Content("~/images/image.png")" />
-                    <span class="text-uppercase"> Mike Jec Hello</span>
+                    <span class="text-uppercase"> @Session["username"]</span>
                     <i class="caret"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="~/account/logout"><i class="icon-switch2"></i> Logout</a></li>
+                    <li><a href="@Url.Action("Logout", "Account")"><i class="icon-switch2"></i> Logout</a></li>
                 </ul>
             </li>
         </ul>

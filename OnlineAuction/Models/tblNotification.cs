@@ -10,10 +10,13 @@
 namespace OnlineAuction.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class tblNotification
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int id { get; set; }
+        public string biddersID { get; set; }
+        public string auctionID { get; set; }
+        public Nullable<bool> seen { get; set; }
     }
 }

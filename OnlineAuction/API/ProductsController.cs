@@ -9,41 +9,27 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using OnlineAuction.Models;
+using System.IO;
+using System.Web;
 
 namespace OnlineAuction.API
 {
     public class ProductsController : ApiController
     {
         private OnlineAuctionEntities db = new OnlineAuctionEntities();
-
-        //api/products/auctionstatus
-        [Route("api/products/auctionstatus")]
-        public IHttpActionResult PutAuctionStatus(int id)
+        public class imgBase64Str
         {
-            db.tblProducts.Where(a => a.recNo == id).ToList().ForEach(b => b.Status = 1);
-            db.SaveChanges();
+            public string ProductName { get; set; }
+            public string ProductDescription { get; set; }
+            public string CategoryId { get; set; }
+            public string ProductImg { get; set; }
+            public string BranchID { get; set; }
 
-            return StatusCode(HttpStatusCode.NoContent);
         }
-
-        [Route("api/products/removeProduct")]
-        public IHttpActionResult PutRemoveProduct(int id)
-        {
-            db.tblProducts.Where(a => a.recNo == id).ToList().ForEach(b => b.Status = 3);
-            db.SaveChanges();
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
         // GET: api/Products
         public IHttpActionResult GettblProducts(int id, string key)
         {
-            //if (id == 0)
-            //{
-            //    id = db.vProducts.Max(a => a.rowNum);
-            //}
-
-            var data = db.vProducts.Where(a => a.rowNum > id && a.Status == 0);
+            var data = db.vProducts.Where(a => a.rowNum > id);
 
             if (key != null && key != "")
             {
@@ -54,30 +40,11 @@ namespace OnlineAuction.API
           
         }
 
-        [Route("api/products/auctionData")]
-        public IHttpActionResult GetAuctionData(int id, string key)
-        {
-            //if (id == 0)
-            //{
-            //    id = db.vProducts.Max(a => a.rowNum);
-            //}
-
-            var data = db.vProducts.Where(a => a.rowNum > id && a.Status == 1);
-
-            if (key != null && key != "")
-            {
-                data = data.Where(a => a.ProductName.Contains(key));
-            }
-
-            return Json(data.Take(20));
-
-        }
-
         // GET: api/Products/5
         [ResponseType(typeof(tblProduct))]
         public IHttpActionResult GettblProduct(int id)
         {
-            tblProduct tblProduct = db.tblProducts.Find(id);
+            vProduct tblProduct = db.vProducts.Find(id);
             if (tblProduct == null)
             {
                 return NotFound();
@@ -86,21 +53,25 @@ namespace OnlineAuction.API
             return Ok(tblProduct);
         }
 
-        // PUT: api/Products/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblProduct(int id, tblProduct tblProduct)
+        [Route("api/products/removeProduct")]
+        public IHttpActionResult PutRemoveProduct(int id)
         {
+            db.tblProducts.Where(a => a.recNo == id).ToList()
+                .ForEach(b => b.Status = 3);
+            db.SaveChanges();
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [Route("api/products/updateProduct")]
+        public IHttpActionResult PutUpdateProduct(tblProduct tblproduct) {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != tblProduct.recNo)
-            {
-                return BadRequest();
-            }
 
-            db.Entry(tblProduct).State = EntityState.Modified;
+            db.Entry(tblproduct).State = EntityState.Modified;
 
             try
             {
@@ -108,7 +79,7 @@ namespace OnlineAuction.API
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!tblProductExists(id))
+                if (!tblProductExists(tblproduct.recNo))
                 {
                     return NotFound();
                 }
@@ -118,30 +89,76 @@ namespace OnlineAuction.API
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Json(tblproduct);
         }
 
-        // POST: api/Products
-        [ResponseType(typeof(tblProduct))]
-        public IHttpActionResult PosttblProduct(tblProduct tblProduct)
-
+        // PUT: api/Products/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PuttblProduct(int id, imgBase64Str data)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            var tblProduct = db.tblProducts.SingleOrDefault(a => a.recNo == id);
+
+            byte[] imageBytes = data.ProductImg != null ? Convert.FromBase64String(data.ProductImg) : tblProduct.ProductImg;
+
+            tblProduct.ProductImg = imageBytes;
+            tblProduct.ProductName = data.ProductName;
+            tblProduct.ProductDescription = data.ProductDescription;
+            tblProduct.CategoryId = db.tblProductCategories.FirstOrDefault(a => a.CategoryName == data.CategoryId).CategoryId;
+            tblProduct.DateUpdated = DateTime.Now;
+
+            db.Entry(tblProduct).State = EntityState.Modified;
+            db.SaveChanges();
+            
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+   
+        // POST: api/Products
+        [Route("api/products/add")]
+        [HttpPost]                                      
+        public IHttpActionResult Postadd(imgBase64Str data)
+        {
+            tblProduct tblProduct = new tblProduct();
+
+            byte[] imageBytes = data.ProductImg != null ? Convert.FromBase64String(data.ProductImg) : null;
 
             tblProduct.ProductId = Guid.NewGuid().ToString("N").Substring(0, 5).ToUpper();
             tblProduct.DateCreated = DateTime.Now;
             tblProduct.Status = 0;
- 
-            db.tblProducts.Add(tblProduct);
+            tblProduct.ProductImg = imageBytes;
+            tblProduct.ProductName = data.ProductName;
+            tblProduct.ProductDescription = data.ProductDescription;
+            tblProduct.CategoryId = db.tblProductCategories.FirstOrDefault(a => a.CategoryName == data.CategoryId).CategoryId;
+            tblProduct.BranchId = data.BranchID;
+
+            db.Entry(tblProduct).State = EntityState.Added;
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = tblProduct.recNo }, tblProduct);
+            return Json(tblProduct);
         }
 
-        
+        [Route("api/products/rateProduct")]
+        public IHttpActionResult GetrateProduct(string str) {
+            
+            int id;
+
+            if (int.TryParse(str, out id))
+            {
+                var data = db.tblProducts.Where(a => a.Status == 0).Select(b => new
+                {
+                    b.ProductId,
+                    b.ProductName,
+                    rating = db.tblRatings.Where(c => c.ProductId == b.ProductId).Sum(d => d.Rating),
+                    user = db.tblRatings.Where(c => c.ProductId == b.ProductId).Count()
+                }).ToList();
+
+                return Json(data.Take(id));
+            }
+            else {
+                return Json(int.TryParse(str, out id));
+            }
+          
+        }
+
 
         // DELETE: api/Products/5
         [ResponseType(typeof(tblProduct))]
@@ -172,5 +189,6 @@ namespace OnlineAuction.API
         {
             return db.tblProducts.Count(e => e.recNo == id) > 0;
         }
+
     }
 }

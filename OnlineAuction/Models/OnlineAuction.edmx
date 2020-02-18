@@ -50,6 +50,7 @@
           <Property Name="UserImg" Type="varbinary(max)" />
           <Property Name="CardImgFront" Type="varbinary(max)" />
           <Property Name="CardImgBack" Type="varbinary(max)" />
+          <Property Name="FCMToken" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="tblBiddings">
           <Key>
@@ -88,6 +89,15 @@
           <Property Name="Address" Type="varchar" MaxLength="50" />
           <Property Name="Bdate" Type="date" />
           <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="tblNotification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="biddersID" Type="varchar" MaxLength="50" />
+          <Property Name="auctionID" Type="varchar" MaxLength="50" />
+          <Property Name="seen" Type="bit" />
         </EntityType>
         <EntityType Name="tblProduct">
           <Key>
@@ -164,6 +174,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vAuctionProduct' does not have a
           <Property Name="AskPrice" Type="float" />
           <Property Name="DateTimeLimit" Type="datetime" />
           <Property Name="Status" Type="int" />
+          <Property Name="WinnerName" Type="varchar" MaxLength="101" />
           <Property Name="total" Type="float" />
           <Property Name="totalProductSold" Type="int" />
         </EntityType>
@@ -176,43 +187,13 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="rowNum" Type="bigint" />
           <Property Name="recNo" Type="int" Nullable="false" />
           <Property Name="ProductName" Type="varchar" MaxLength="50" />
-          <Property Name="ProductImg" Type="varbinary" MaxLength="50" />
+          <Property Name="ProductImg" Type="varbinary(max)" />
           <Property Name="CategoryName" Type="varchar" MaxLength="50" />
           <Property Name="ProductDescription" Type="varchar(max)" />
           <Property Name="Status" Type="int" />
           <Property Name="ProductId" Type="varchar" MaxLength="5" />
+          <Property Name="totalrating" Type="decimal" Precision="9" Scale="2" />
         </EntityType>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="OnlineAuctionModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblAuctionItems" EntityType="Self.tblAuctionItems" Schema="dbo" store:Type="Tables" />
@@ -220,6 +201,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <EntitySet Name="tblBiddings" EntityType="Self.tblBiddings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblBranchShop" EntityType="Self.tblBranchShop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblEmployeesInfo" EntityType="Self.tblEmployeesInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblNotification" EntityType="Self.tblNotification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblProduct" EntityType="Self.tblProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblProductCategory" EntityType="Self.tblProductCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblRating" EntityType="Self.tblRating" Schema="dbo" store:Type="Tables" />
@@ -236,6 +218,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
     [vAuctionProduct].[AskPrice] AS [AskPrice], 
     [vAuctionProduct].[DateTimeLimit] AS [DateTimeLimit], 
     [vAuctionProduct].[Status] AS [Status], 
+    [vAuctionProduct].[WinnerName] AS [WinnerName], 
     [vAuctionProduct].[total] AS [total], 
     [vAuctionProduct].[totalProductSold] AS [totalProductSold]
     FROM [dbo].[vAuctionProduct] AS [vAuctionProduct]</DefiningQuery>
@@ -249,7 +232,8 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
     [vProduct].[CategoryName] AS [CategoryName], 
     [vProduct].[ProductDescription] AS [ProductDescription], 
     [vProduct].[Status] AS [Status], 
-    [vProduct].[ProductId] AS [ProductId]
+    [vProduct].[ProductId] AS [ProductId], 
+    [vProduct].[totalrating] AS [totalrating]
     FROM [dbo].[vProduct] AS [vProduct]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
@@ -303,6 +287,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="UserImg" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="CardImgFront" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="CardImgBack" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FCMToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tblBidding">
           <Key>
@@ -341,6 +326,15 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Bdate" Type="DateTime" Precision="0" />
           <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblNotification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="biddersID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="auctionID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="seen" Type="Boolean" />
         </EntityType>
         <EntityType Name="tblProduct">
           <Key>
@@ -415,6 +409,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="AskPrice" Type="Double" />
           <Property Name="DateTimeLimit" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Int32" />
+          <Property Name="WinnerName" Type="String" MaxLength="101" FixedLength="false" Unicode="false" />
           <Property Name="total" Type="Double" />
           <Property Name="totalProductSold" Type="Int32" />
         </EntityType>
@@ -425,11 +420,12 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <Property Name="rowNum" Type="Int64" />
           <Property Name="recNo" Type="Int32" Nullable="false" />
           <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProductImg" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="ProductImg" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Int32" />
           <Property Name="ProductId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="totalrating" Type="Decimal" Precision="9" Scale="2" />
         </EntityType>
         <EntityContainer Name="OnlineAuctionEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
@@ -438,6 +434,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <EntitySet Name="tblBiddings" EntityType="Self.tblBidding" />
           <EntitySet Name="tblBranchShops" EntityType="Self.tblBranchShop" />
           <EntitySet Name="tblEmployeesInfoes" EntityType="Self.tblEmployeesInfo" />
+          <EntitySet Name="tblNotifications" EntityType="Self.tblNotification" />
           <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
           <EntitySet Name="tblProductCategories" EntityType="Self.tblProductCategory" />
           <EntitySet Name="tblRatings" EntityType="Self.tblRating" />
@@ -445,48 +442,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
           <EntitySet Name="tblUsersRoles" EntityType="Self.tblUsersRole" />
           <EntitySet Name="vAuctionProducts" EntityType="Self.vAuctionProduct" />
           <EntitySet Name="vProducts" EntityType="Self.vProduct" />
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(OnlineAuctionModel.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(OnlineAuctionModel.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -539,6 +495,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
                 <ScalarProperty Name="UserImg" ColumnName="UserImg" />
                 <ScalarProperty Name="CardImgFront" ColumnName="CardImgFront" />
                 <ScalarProperty Name="CardImgBack" ColumnName="CardImgBack" />
+                <ScalarProperty Name="FCMToken" ColumnName="FCMToken" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -580,6 +537,16 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Bdate" ColumnName="Bdate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblNotifications">
+            <EntityTypeMapping TypeName="OnlineAuctionModel.tblNotification">
+              <MappingFragment StoreEntitySet="tblNotification">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="biddersID" ColumnName="biddersID" />
+                <ScalarProperty Name="auctionID" ColumnName="auctionID" />
+                <ScalarProperty Name="seen" ColumnName="seen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -660,6 +627,7 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
                 <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
                 <ScalarProperty Name="DateTimeLimit" ColumnName="DateTimeLimit" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="WinnerName" ColumnName="WinnerName" />
                 <ScalarProperty Name="total" ColumnName="total" />
                 <ScalarProperty Name="totalProductSold" ColumnName="totalProductSold" />
               </MappingFragment>
@@ -676,33 +644,10 @@ warning 6002: The table/view 'OnlineAuction.dbo.vProduct' does not have a primar
                 <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="totalrating" ColumnName="totalrating" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="OnlineAuctionModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="OnlineAuctionModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="OnlineAuctionModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="OnlineAuctionModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="OnlineAuctionModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="OnlineAuctionModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="OnlineAuctionModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="OnlineAuctionModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="OnlineAuctionModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

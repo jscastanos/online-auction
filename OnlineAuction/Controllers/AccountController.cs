@@ -1,11 +1,11 @@
-﻿using OnlineAuction.Models;
+using OnlineAuction.Models;
 using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Linq;
-using OnlineAuction.Models;
+using OnlineAuction.API;
 
 
 namespace OnlineAuction.Controllers
@@ -48,15 +48,15 @@ namespace OnlineAuction.Controllers
             if (IsVerified)
             {
                 FormsAuthentication.SetAuthCookie(username, false);
-              
-                if(Roles.IsUserInRole(username, "Admin"))
+
+                if (Roles.IsUserInRole(username, "Admin"))
                     return RedirectToAction("Admin", "Home");
 
-                else if(Roles.IsUserInRole(username, "Super Admin"))
+                else if (Roles.IsUserInRole(username, "Super Admin"))
                     return RedirectToAction("SuperAdmin", "Home");
                 else
                     return RedirectToAction("User", "Home");
-                
+
             }
             else
             {
@@ -119,6 +119,6 @@ namespace OnlineAuction.Controllers
             }
         }
 
-        
+
     }
 }

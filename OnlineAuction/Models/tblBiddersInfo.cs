@@ -30,5 +30,6 @@ namespace OnlineAuction.Models
         public byte[] UserImg { get; set; }
         public byte[] CardImgFront { get; set; }
         public byte[] CardImgBack { get; set; }
+        public string FCMToken { get; set; }
     }
 }

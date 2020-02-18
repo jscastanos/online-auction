@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using OnlineAuction.Models;
 
-namespace OnlineAuction.Models
+namespace OnlineAuction.API
 {
     public class IdentityModel
     {

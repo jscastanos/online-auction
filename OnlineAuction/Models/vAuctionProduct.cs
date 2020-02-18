@@ -23,6 +23,7 @@ namespace OnlineAuction.Models
         public Nullable<double> AskPrice { get; set; }
         public Nullable<System.DateTime> DateTimeLimit { get; set; }
         public Nullable<int> Status { get; set; }
+        public string WinnerName { get; set; }
         public Nullable<double> total { get; set; }
         public Nullable<int> totalProductSold { get; set; }
     }

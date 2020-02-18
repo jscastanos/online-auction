@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/daterangepicker.js"></script>
+<script src="~/Scripts/ng-dashboard.js"></script>
+<script src="~/Scripts/datepicker.js"></script>
+<style>
+    .scroll-to-top {
+        position: fixed;
+        right: 6px;
+        z-index: 1000;
+        bottom: 13px;
+    }
+
+        .scroll-to-top button {
+            box-shadow: 0 2px 5px 1px rgba(0,0,0,0.4);
+            /*background:#ff0057 !important;
+         border-color:#ff0057 !important;*/
+        }
+
+    p {
+        word-break: break-all;
+        white-space: normal;
+    }
+</style>
+<div ng-controller="dashboard">
+    <div class="scroll-to-top" ng-if="showScrollToTop" ng-click="scrollToTop()">
+        <button type="button" class="btn bg-warning btn-float btn-rounded"><i class="icon-arrow-up16"></i></button>
+    </div>
+    <div class="content">
+        <div class="container-detached">
+            <div class="content-detached">
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h6 class="panel-title">WINNER BOARD</h6>
+                        <div class="heading-elements">
+                            <span class="heading-text">Total: <span class="text-bold text-danger-600 position-right">{{total | currency : 'Php '}}</span></span>
+                            <span class="heading-text">Total Item Sold: <span class="text-bold text-danger-600 position-right">{{totalSold}}</span></span>
+                            
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="has-feedback has-feedback-left">
+                                <input ng-model="filter.auctionName" class="form-control" type="text" placeholder="Product Name" ng-change="searchProd()" />
+                                <div class="form-control-feedback">
+                                    <i class="icon-search4 text-size-large text-muted"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="table-responsive">
+                            <table class="table text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Category</th>
+                                        <th>Date & Time</th>
+                                        <th>Price</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5" ng-if="auctionData.length == 0" align="center">
+                                            <i>No Product to Display</i>
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="a in auctionData | filter: {categoryName : filter.category, branchname : filter.branch}">
+                                        <td>
+                                            <div class="media-left media-middle">
+                                                <a href="#" class="btn bg-primary-400 btn-rounded btn-icon btn-xs">
+                                                    <span class="fa fa-shopping-bag"></span>
+                                                </a>
+                                            </div>
+
+                                            <div class="media-body">
+                                                <div class="media-heading">
+                                                    <a href="#" class="letter-icon-title">{{a.ProductName}}</a>
+                                                </div>
+                                                <div class="text-muted text-size-small">
+                                                    <i class="icon-checkmark3 text-size-mini position-left"></i> {{a.WinnerName}}
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="text-semibold no-margin">{{a.CategoryName}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-muted text-size-small">{{dateTimeFormat(a.DateTimeLimit)}}</span>
+                                        </td>
+                                        <td>
+                                            <h6 class="text-semibold no-margin">{{a.AskPrice | currency : 'Php '}}</h6>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-info" ng-click="claimAuction(a.recNo)">Claim!</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-detached">
+                <div class="sidebar sidebar-default sidebar-separate">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">Top Rated Item</h6>
+
+                            <div class="heading-elements">
+                                <div class="heading-text">
+                                    <span class="status-mark border-success position-left"></span>
+                                    For Auction
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="has-feedback has-feedback-left">
+                                    <input ng-model="item" placeholder="Top Item" id="item" style="width:100%" />
+                                </div>
+                            </div>
+
+                            <ul class="progress-list">
+                                <li ng-repeat="a in ratingTempArr | orderBy: '-rating'">
+                                    <label>{{a.ProductName}} <span>{{a.user}} Users</span></label>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar progress-bar-striped active" style="width: {{a.rating}}%">
+                                            <span class="sr-only">{{a.rating}}% Complete</span>
+                                        </div>
+                                        <div class="jui-progressbar-indeterminate"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

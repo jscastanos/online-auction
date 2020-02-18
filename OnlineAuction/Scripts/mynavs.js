@@ -52,21 +52,21 @@
                                 // console.log('switcher created with options', options);
                             }
                             // save model state
-                            _switch.element.checked = $scope.checked;
+                            _switch.element.checked = s.checked;
                             // reset handler
                             _switch.element.onchange = null;
                             // set switcher position
                             _switch.setPosition(false);
                             // when switcher change
                             _switch.element.onchange = function () {
-                                $scope.$apply(function () {
+                                s.$apply(function () {
                                     // update the model
                                     ngModel.$setViewValue(_switch.element.checked);
                                 });
                             };
                         }
                         // when the model changes, render switcher
-                        $scope.$watch('checked', function (state, oldState) {
+                        s.$watch('checked', function (state, oldState) {
                             if (state !== oldState) {
                                 renderSwitch();
                             }
@@ -83,21 +83,21 @@
 app.controller("mynavs", function ($scope, $http, $interval){
 
 
-    $scope.getMenu = function (roleID) {
+    s.getMenu = function (roleID) {
         $('#menu').block({ message: null });
         $http.post("../Management/getAllMenu",{roleID:roleID}).then(function (d) {
-            $scope.menus = d.data;
+            s.menus = d.data;
             $('#menu').unblock();
         });
     }
-    $scope.getRoles = function () {
+    s.getRoles = function () {
         $('.role').block({ message: null });
         $http.post("../Management/getRoles").then(function (d) {
-            $scope.roles = d.data;
+            s.roles = d.data;
             $('.role').unblock();
         });
     }
-    $scope.toogleMenuChild = function (menuCode, roleID, isAllowed) {
+    s.toogleMenuChild = function (menuCode, roleID, isAllowed) {
         $('#L' + menuCode).block({ message: null });
         $http.post("../Management/updateRoleMenu",{ roleID: roleID, menuCode: menuCode, isAllowed: isAllowed}).then(function (d) {
             $('#L' + menuCode).unblock();

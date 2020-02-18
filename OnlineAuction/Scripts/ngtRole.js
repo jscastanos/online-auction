@@ -1,12 +1,16 @@
 ﻿app.controller('tManagement', ['$scope', '$http', function (s, r) {
-    s.name = " ";
+    s.name = 9;
     s.alldata;
     s.alldata = [];
     s.isLoading = false;
     var lastId = 0;
+    s.activecount = null;
+    s.inactivecount = null;
     s.xdata = null;
     s.sdata = "";
+    s.Statuscode = 1;
     s.selected = {};
+    usercount();
     loaddata();
 
 
@@ -14,6 +18,24 @@
         lastId = 0;
         s.alldata = [];
         loaddata()
+    }
+
+    s.initData1 = function () {
+        s.Statuscode = 1;
+        lastId = 0;
+        s.alldata = [];
+        loaddata()
+      
+       
+       
+    }
+    s.initData2 = function (Status) {
+        s.Statuscode = 0;
+        lastId = 0;
+        s.alldata = [];
+        loaddata()
+    //    console.log(s.count)
+
     }
 
     function switchery() {
@@ -31,9 +53,23 @@
         }
     }
 
+    function usercount() {
+        r.get("../api/UserManagements/CountActive")
+        .then(function (d) {
+            //console.log(d.data)
+            s.activecount = d.data
+        })
+        r.get("../api/UserManagements/CountInactive")
+        .then(function (d) {
+            // console.log(d.data)
+            s.inactivecount = d.data
+            console.log(s.inactivecount)
+        })
+    }
+
     function loaddata() {
         s.isLoading = true;
-        r.get("../api/UserManagements/?id=" + lastId + "&key=" + s.sdata)
+        r.get("../api/UserManagements/?id=" + lastId + "&key=" + s.sdata + "&Scode=" + s.Statuscode)
          .then(function (d) {
              console.log(d.data);
 
@@ -47,12 +83,12 @@
              if (d.data.length > 0) {
                  lastId = d.data[d.data.length - 1].recNo;
              }
-            console.log(s.alldata);
              setTimeout(function () {
 
                  switchery()
              }, 10)
          })
+        usercount();
     }
     s.switchID = {}
     s.cStatus = function (Sstatus) {
