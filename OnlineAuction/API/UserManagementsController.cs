@@ -79,62 +79,62 @@ namespace OnlineAuction.API
             return Json(availableper.Count());
         }
 
-         [Route("api/UserManagements/UsersRoles")]
+        [Route("api/UserManagements/UsersRoles")]
         public IQueryable<tblUsersRole> GetUsersRoles()
         {
             return db.tblUsersRoles;
         }
 
         //api/UserManagements
-         public IHttpActionResult GettblUserManagement(int id, string key, int Scode)
-         {
-           //  string sampleID = "SWABE";
-             var predata = db.tblUserManagements.Where(u => u.recNo > id && u.Status == Scode )
-                 .Select(k => new
-                 {
-                     k.recNo,
-                     k.UsersId,
-                     k.CreatedBy,
-                     k.DateCreated,
-                     k.UserName,
-                     k.Password,
-                     k.Status,
-                     k.RoleId,
-                     prestatus = db.tblEmployeesInfoes.FirstOrDefault(o => o.EmpId == k.UsersId).Status,
-                     nameDisplay = db.tblEmployeesInfoes.Where(l => l.EmpId == k.UsersId)
-                            .Select(c => new
-                            {
-                                subName = c.FirstName + " " + c.MiddleName + " " + c.LastName
-                            }),
-                     nameFirst = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).FirstName,
-                     nameMiddle = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).MiddleName,
-                     nameLast = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).LastName,
-                     roleDisplay = db.tblUsersRoles.FirstOrDefault(h => h.RoleId == k.RoleId).RoleName,
-                     nameBranchId = db.tblEmployeesInfoes.FirstOrDefault(l=> l.EmpId == k.UsersId).BranchId, 
-                     conName = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).FirstName + " "+ db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).MiddleName +" " + db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).LastName
-                 });
+        public IHttpActionResult GettblUserManagement(int id, string key, int Scode)
+        {
+            //  string sampleID = "SWABE";
+            var predata = db.tblUserManagements.Where(u => u.recNo > id && u.Status == Scode)
+                .Select(k => new
+                {
+                    k.recNo,
+                    k.UsersId,
+                    k.CreatedBy,
+                    k.DateCreated,
+                    k.UserName,
+                    k.Password,
+                    k.Status,
+                    k.RoleId,
+                    prestatus = db.tblEmployeesInfoes.FirstOrDefault(o => o.EmpId == k.UsersId).Status,
+                    nameDisplay = db.tblEmployeesInfoes.Where(l => l.EmpId == k.UsersId)
+                           .Select(c => new
+                           {
+                               subName = c.FirstName + " " + c.MiddleName + " " + c.LastName
+                           }),
+                    nameFirst = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).FirstName,
+                    nameMiddle = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).MiddleName,
+                    nameLast = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).LastName,
+                    roleDisplay = db.tblUsersRoles.FirstOrDefault(h => h.RoleId == k.RoleId).RoleName,
+                    nameBranchId = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).BranchId,
+                    conName = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).FirstName + " " + db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).MiddleName + " " + db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).LastName
+                });
             // var bybranch = db.tblEmployeesInfoes.Where(u => u.EmpId == sampleID)
-             var data = predata.Where(k => k.prestatus != 1);
-                
-             if (key != null && key != "")
-             {
-                 data = data.Where(w => w.nameFirst.Contains(key) || w.nameMiddle.Contains(key) || w.nameLast.Contains(key));
-             }
-             return Json(data.Take(10));
+            var data = predata.Where(k => k.prestatus != 1);
 
-         }
+            if (key != null && key != "")
+            {
+                data = data.Where(w => w.nameFirst.Contains(key) || w.nameMiddle.Contains(key) || w.nameLast.Contains(key));
+            }
+            return Json(data.Take(10));
 
-         [Route("api/UserManagements/CountActive")]
-         public IHttpActionResult GetCountActive()
-         {
-             return Json(db.tblUserManagements.Where(l => l.Status == 1).Count());
-         }
+        }
 
-         [Route("api/UserManagements/CountInactive")]
-         public IHttpActionResult GetCountInactive()
-         {
-             return Json(db.tblUserManagements.Where(l => l.Status != 1).Count());
-         }
+        [Route("api/UserManagements/CountActive")]
+        public IHttpActionResult GetCountActive()
+        {
+            return Json(db.tblUserManagements.Where(l => l.Status == 1).Count());
+        }
+
+        [Route("api/UserManagements/CountInactive")]
+        public IHttpActionResult GetCountInactive()
+        {
+            return Json(db.tblUserManagements.Where(l => l.Status != 1 && db.tblUsersRoles.Where(r => r.RoleId == l.RoleId && r.recNo > 3).Count() > 0).Count());
+        }
 
         // GET: api/UserManagements
         public IQueryable<tblUserManagement> GettblUserManagements()
@@ -206,7 +206,7 @@ namespace OnlineAuction.API
             {
                 return Json("no user");
             }
-            if (exist.Count() > 0 )
+            if (exist.Count() > 0)
             {
                 return Json("exist");
             }
@@ -219,7 +219,7 @@ namespace OnlineAuction.API
                 db.SaveChanges();
                 return Json("good");
             }
-            
+
 
             //return CreatedAtRoute("DefaultApi", new { id = tblUserManagement.recNo }, tblUserManagement);
         }

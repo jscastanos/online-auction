@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -29,7 +30,7 @@ namespace OnlineAuction.API
         // GET: api/Products
         public IHttpActionResult GettblProducts(int id, string key)
         {
-            var data = db.vProducts.Where(a => a.rowNum > id);
+            var data = db.vProducts.Where(a => a.rowNum > id && a.Status != 3);
 
             if (key != null && key != "")
             {
@@ -37,7 +38,7 @@ namespace OnlineAuction.API
             }
 
             return Json(data.Take(20));
-          
+
         }
 
         // GET: api/Products/5
@@ -64,7 +65,8 @@ namespace OnlineAuction.API
         }
 
         [Route("api/products/updateProduct")]
-        public IHttpActionResult PutUpdateProduct(tblProduct tblproduct) {
+        public IHttpActionResult PutUpdateProduct(tblProduct tblproduct)
+        {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -108,13 +110,13 @@ namespace OnlineAuction.API
 
             db.Entry(tblProduct).State = EntityState.Modified;
             db.SaveChanges();
-            
+
             return StatusCode(HttpStatusCode.NoContent);
         }
-   
+
         // POST: api/Products
         [Route("api/products/add")]
-        [HttpPost]                                      
+        [HttpPost]
         public IHttpActionResult Postadd(imgBase64Str data)
         {
             tblProduct tblProduct = new tblProduct();
@@ -137,8 +139,9 @@ namespace OnlineAuction.API
         }
 
         [Route("api/products/rateProduct")]
-        public IHttpActionResult GetrateProduct(string str) {
-            
+        public IHttpActionResult GetrateProduct(string str)
+        {
+
             int id;
 
             if (int.TryParse(str, out id))
@@ -153,10 +156,11 @@ namespace OnlineAuction.API
 
                 return Json(data.Take(id));
             }
-            else {
+            else
+            {
                 return Json(int.TryParse(str, out id));
             }
-          
+
         }
 
 

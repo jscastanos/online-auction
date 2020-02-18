@@ -111,7 +111,7 @@ namespace OnlineAuction.API
         {
             if (flag == 1)
             {
-                var tbr =  db.tblBranchShops.OrderBy(o => o.BranchName).Select(a=> a);
+                var tbr = db.tblBranchShops.OrderBy(o => o.BranchName).Select(a => a);
                 return Ok(tbr);
             }
             else

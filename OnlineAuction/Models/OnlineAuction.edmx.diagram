@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ae330754b45a4fde8dc24afbc694b0b8" Name="Diagram1">
+      <Diagram DiagramId="fce11a65e98646b9a2e0c3730c4c278b" Name="Diagram1">
         <EntityTypeShape EntityType="OnlineAuctionModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblAuctionItem" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAuctionModel.tblBiddersInfo" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />

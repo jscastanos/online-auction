@@ -4,40 +4,13 @@
 }
 
 
-
-
-<script>
-    var app = angular.module("np", []);
-
-    app.controller("pn", ["$scope", "$http", function (s, h) {
-
-
-        s.clickMe = function () {
-
-            let message = {
-                "id": "35AE9",
-                "title": "sample",
-                "body": "body boray",
-            }
-
-            h.post("../Account/CallPN", message).then(function (d) {
-                console.log("yow")
-            })
-        }
-
-    }]);
-</script>
-
 <div class="content-wrapper">
 
     <!-- Content area -->
     <div class="content">
 
-
-
-
         <!-- Advanced login -->
-        <form method="post" action="auth">
+        <form method="post" action="../Account/auth">
             <div class="panel panel-body login-form">
                 <div class="text-center">
                     <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
@@ -87,7 +60,5 @@
 
     </div>
     <!-- /content area -->
-    <div ng-app="np" ng-controller="pn">
-        <button ng-click="clickMe()">qweqwe</button>
-    </div>
+
 </div>

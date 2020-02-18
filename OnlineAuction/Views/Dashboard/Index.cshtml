@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 <script src="~/Scripts/moment.min.js"></script>
@@ -38,7 +37,7 @@
                         <div class="heading-elements">
                             <span class="heading-text">Total: <span class="text-bold text-danger-600 position-right">{{total | currency : 'Php '}}</span></span>
                             <span class="heading-text">Total Item Sold: <span class="text-bold text-danger-600 position-right">{{totalSold}}</span></span>
-                            
+
                         </div>
                     </div>
 
@@ -58,7 +57,8 @@
                                     <tr>
                                         <th>Product</th>
                                         <th>Category</th>
-                                        <th>Date & Time</th>
+                                        <th>Bidding Date</th>
+                                        <th>Date Claim Limit</th>
                                         <th>Price</th>
                                         <th>Action</th>
                                     </tr>
@@ -81,23 +81,24 @@
                                                 <div class="media-heading">
                                                     <a href="#" class="letter-icon-title">{{a.ProductName}}</a>
                                                 </div>
-                                                <div class="text-muted text-size-small">
-                                                    <i class="icon-checkmark3 text-size-mini position-left"></i> {{a.WinnerName}}
-
-                                                </div>
+                                                <div class="text-muted text-size-small"><i class="icon-checkmark3 text-size-mini position-left"></i> Winners Name</div>
                                             </div>
                                         </td>
                                         <td>
                                             <span class="text-semibold no-margin">{{a.CategoryName}}</span>
                                         </td>
                                         <td>
-                                            <span class="text-muted text-size-small">{{dateTimeFormat(a.DateTimeLimit)}}</span>
+                                            <span class="text-muted text-size-small">{{a.DateTimeLimit | date: 'MMM dd, yyyy hh:mm a'}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-muted text-size-small">{{a.dateClaimLimit | date: 'MMM dd, yyyy hh:mm a' }}</span>
                                         </td>
                                         <td>
                                             <h6 class="text-semibold no-margin">{{a.AskPrice | currency : 'Php '}}</h6>
                                         </td>
                                         <td>
                                             <button class="btn btn-info" ng-click="claimAuction(a.recNo)">Claim!</button>
+                                            <button class="btn btn-danger" ng-click="notClaimAuction(a.recNo)">Not Claim!</button>
                                         </td>
                                     </tr>
                                 </tbody>

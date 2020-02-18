@@ -55,12 +55,12 @@ namespace OnlineAuction.API
         {
             var data = db.tblUsersRoles.Where(u => u.recNo > id && u.status != 1)
                 .Select(k => new
-            {
-                k.recNo,
-                k.RoleId,
-                k.RoleName,
-                k.status
-            });
+                {
+                    k.recNo,
+                    k.RoleId,
+                    k.RoleName,
+                    k.status
+                });
 
             if (key != null && key != "")
             {
@@ -181,7 +181,7 @@ namespace OnlineAuction.API
             //    }
             //}
 
-           // return CreatedAtRoute("DefaultApi", new { id = tblUsersRole.recNo }, tblUsersRole);
+            // return CreatedAtRoute("DefaultApi", new { id = tblUsersRole.recNo }, tblUsersRole);
         }
 
         // DELETE: api/UsersRole/5

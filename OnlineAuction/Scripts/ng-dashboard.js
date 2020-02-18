@@ -33,7 +33,7 @@
         },
         startDate: s.startDate,
         endDate: s.endDate,
-        locale: {         
+        locale: {
             format: 'MM/DD/YYYY'
         }
     });
@@ -43,8 +43,8 @@
         var endDate = new Date($(this).data('daterangepicker').endDate._d);
         s.startDate = startDate;
         s.endDate = endDate;
-        alert(s.startDate);
-        alert(s.endDate);
+        //alert(s.startDate);
+        //alert(s.endDate);
     });
 
     $(window).scroll(function () {
@@ -74,30 +74,36 @@
         });
     }
 
-    s.dateTimeFormat = function (date) {
-        return moment(date).format("MMM DD, YYYY hh:mm")
-    }
-    
+    //s.dateTimeFormat = function (date) {
+    //    return moment(date).format("MMM DD, YYYY hh:mm a")
+    //}
+
     function getAuctionedData() {
         s.isLoading = true;
-        h.get("api/AuctionItems/auctionData?id=" + s.auctionlastId + "&key=" + s.filter.auctionName).then(function (d) {
+        h.get("../api/AuctionItems/auctionData?id=" + s.auctionlastId + "&key=" + s.filter.auctionName).then(function (d) {
             s.isLoading = false;
             if (d.data.data.length > 0) {
                 s.auctionlastId = d.data.data[d.data.data.length - 1].rowNum
             }
             s.auctionData = s.auctionData.concat(d.data.data);
+            console.log(s.auctionData)
             s.total = d.data.total;
             s.totalSold = d.data.totalSold;
+            (s.auctionData).forEach(function (a) {
+                a.dateClaimLimit = new Date(new Date(a.DateTimeLimit).setHours(24 * 3));
+
+            });
+            console.log(s.auctionData)
         });
     }
 
     function rateProduct(itemid) {
-        h.get("api/products/rateProduct?str=" + itemid).then(function (d) {
+        h.get("../api/products/rateProduct?str=" + itemid).then(function (d) {
             if (d.data != false) {
                 s.ratingTempArr = d.data;
             }
             else {
-                swal("Please Input Number!","","error");
+                swal("Please Input Number!", "", "error");
             }
         });
     }
@@ -129,11 +135,17 @@
     }
 
     s.claimAuction = function (id) {
-        h.put("api/AuctionItems/claimAuction?id=" + id).then(function (d) {
+        h.put("../api/AuctionItems/claimAuction?id=" + id).then(function (d) {
             s.auctionlastId = 0;
             s.auctionData = [];
             getAuctionedData()
         });
 
+    }
+
+    s.notClaimAuction = function (id) {
+        h.put("../api/AuctionItems/notClaimAuction?id=" + id).then(function (d) {
+            getAuctionedData()
+        });
     }
 }])

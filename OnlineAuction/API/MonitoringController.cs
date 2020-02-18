@@ -32,6 +32,7 @@ namespace OnlineAuction.API
                 var data = db.tblAuctionItems.SingleOrDefault(a => a.AuctionId == aID);
                 data.WinnerId = bID;
                 db.SaveChanges();
+                
                 return Ok();
             }
             catch (Exception)
@@ -39,6 +40,7 @@ namespace OnlineAuction.API
                 return BadRequest();
             }
         }
+
 
         [Route("auctionAction/{id}/{type}")]
         public IHttpActionResult PostActionAuction(int id, int type)
@@ -58,7 +60,7 @@ namespace OnlineAuction.API
                 return StatusCode(HttpStatusCode.BadRequest);
             }
         }
-       
+
         [Route("auctioneditemshistory")]
         public IHttpActionResult GetAuctionedItemsHistory()
         {
@@ -76,14 +78,14 @@ namespace OnlineAuction.API
                 s.WinnerId,
                 toDate = (s.Status == 1 || s.Status == 2) ? s.DateClosed : s.DateTimeLimit,
                 winnerInfo = db.tblBiddersInfoes.Where(f => f.BiddersId == s.WinnerId).Select(sss => new
-                    {
-                        sss.recNo,
-                        sss.BiddersId,
-                        sss.FirstName,
-                        sss.LastName,
-                        sss.MiddleName,
-                        sss.ViolationCount
-                    }).FirstOrDefault() ,
+                {
+                    sss.recNo,
+                    sss.BiddersId,
+                    sss.FirstName,
+                    sss.LastName,
+                    sss.MiddleName,
+                    sss.ViolationCount
+                }).FirstOrDefault(),
                 productName = db.tblProducts.FirstOrDefault(f => f.ProductId == s.ProductId).ProductName,
                 bidders = db.tblBiddings.Where(ww => ww.AuctionId == s.AuctionId).Select(ss => new
                 {
@@ -113,7 +115,7 @@ namespace OnlineAuction.API
         public IHttpActionResult GetPendingAuctionedItems()
         {
             var dateNow = DateTime.Now;
-            var data = db.tblAuctionItems.Where(w =>  w.WinnerId == null && (w.DateTimeLimit < dateNow || w.Status == 1) && (db.tblBiddings.Where(b => b.AuctionId == w.AuctionId).Count()) > 0 && w.Status != 2).Select(s => new
+            var data = db.tblAuctionItems.Where(w => w.WinnerId == null && (w.DateTimeLimit < dateNow || w.Status == 1) && (db.tblBiddings.Where(b => b.AuctionId == w.AuctionId).Count()) > 0 && w.Status != 2).Select(s => new
             {
                 s.recNo,
                 s.DateTimeLimit,
@@ -150,7 +152,7 @@ namespace OnlineAuction.API
         public IHttpActionResult GetActiveAuctionedItems()
         {
             var dateNow = DateTime.Now;
-            var data = db.tblAuctionItems.Where(w => w.DateTimeLimit > dateNow && (w.Status == null || w.Status==0) && w.WinnerId == null).Select(s => new
+            var data = db.tblAuctionItems.Where(w => w.DateTimeLimit > dateNow && (w.Status == null || w.Status == 0) && w.WinnerId == null).Select(s => new
             {
                 s.recNo,
                 s.DateTimeLimit,

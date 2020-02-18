@@ -49,7 +49,7 @@ namespace OnlineAuction.API
         //        db.SaveChanges();
         //        return Json(data);
         //    }
-           
+
         //}
 
         [Route("api/EmployeesInfoes/EmployeeschangeName")]
@@ -76,7 +76,7 @@ namespace OnlineAuction.API
                     k.Address,
                     k.Bdate,
                     k.Status,
-                    ConcatName =   k.FirstName + " "+ k.MiddleName + " " + k.LastName
+                    ConcatName = k.FirstName + " " + k.MiddleName + " " + k.LastName
 
                 });
 
@@ -167,16 +167,15 @@ namespace OnlineAuction.API
             }
             else
             {
-                tblEmployeesInfo.BranchId = "SESSN";
                 tblEmployeesInfo.Status = 0;
-                tblEmployeesInfo.EmpId= cID;
+                tblEmployeesInfo.EmpId = cID;
                 var aRole = db.tblEmployeesInfoes.Add(tblEmployeesInfo);
                 db.SaveChanges();
                 return Json(aRole);
             }
 
 
-           // return CreatedAtRoute("DefaultApi", new { id = tblEmployeesInfo.recNo }, tblEmployeesInfo);
+            // return CreatedAtRoute("DefaultApi", new { id = tblEmployeesInfo.recNo }, tblEmployeesInfo);
         }
 
         // DELETE: api/EmployeesInfoes/5

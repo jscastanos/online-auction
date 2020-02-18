@@ -77,6 +77,9 @@
         h.post('../api/monitoring/setwinner/' + auctionID + '/' + bidderID).then(function (d) {
             if (d.status == 200) {
                 s.pendingAuctionedItems.splice(index, 1);
+                h.post("../monitoring/sendFCM?id=" + bidderID).then(function (d) {
+                    console.log(d)
+                })
             }
         })
     }
@@ -85,9 +88,9 @@
             s.activeAuctionedItems = d.data.d;
             s.pendingCount = d.data.pendingCount;
             angular.forEach(s.activeAuctionedItems, function (v, k) {
+                //v.dateClaimLimit = new Date(new Date())
                 var eventTime = new Date(v.DateTimeLimit).getTime(); 
-                //var currentTime = new Date(d.data.st).getTime();
-                var currentTime = new Date().getTime();
+                var currentTime = new Date(d.data.st).getTime(); 
                 var diffTime = eventTime - currentTime;
                 var duration = moment.duration(diffTime, 'milliseconds');
                 v.duration = duration;

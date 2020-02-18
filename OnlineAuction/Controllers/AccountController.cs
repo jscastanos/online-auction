@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Linq;
-using OnlineAuction.API;
 
 
 namespace OnlineAuction.Controllers
@@ -26,45 +25,19 @@ namespace OnlineAuction.Controllers
         }
         public ActionResult Login()
         {
-            if (FormsAuthentication.FormsCookieName != null)
-            {
-
-            }
-
             return View();
         }
 
+
+
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
-
+            Session.Abandon();
+            Session.Clear();
             return RedirectToAction("Login");
         }
 
-        public ActionResult Verify(string username, string password)
-        {
-            bool IsVerified = new IdentityModel().IsVerified(username, password);
 
-            if (IsVerified)
-            {
-                FormsAuthentication.SetAuthCookie(username, false);
-
-                if (Roles.IsUserInRole(username, "Admin"))
-                    return RedirectToAction("Admin", "Home");
-
-                else if (Roles.IsUserInRole(username, "Super Admin"))
-                    return RedirectToAction("SuperAdmin", "Home");
-                else
-                    return RedirectToAction("User", "Home");
-
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
-        }
-
-        [HttpPost]
         public ActionResult auth(string u, string p)
         {
             try
@@ -72,14 +45,41 @@ namespace OnlineAuction.Controllers
                 u = Session["username"] != null ? Session["username"].ToString() : u;
                 var cu = db.tblUserManagements.SingleOrDefault(ur => ur.UserName == u && ur.Password == p);
 
-                var empl = db.tblEmployeesInfoes.SingleOrDefault(emp => emp.EmpId == cu.UsersId);
                 if (cu != null)
                 {
                     Session["userID"] = cu.UsersId;
-                    Session["branchID"] = empl.BranchId;
                     Session["username"] = cu.UserName;
-                    Verify(u, p);
-                    return RedirectToAction("Index", "Home");
+                    Session["Role"] = db.tblUsersRoles.SingleOrDefault(role => role.RoleId == cu.RoleId).RoleName;
+
+                    if (cu.RoleId == "1")
+                    {
+                        Session["branchID"] = "NONE";
+                        Session["fullName"] = "SUPER ADMIN";
+                        return RedirectToAction("Index", "Admin");
+                    }
+                    else if (cu.RoleId == "2")
+                    {
+
+                        var comp = db.tblBranchShops.Where(b => b.userID == cu.UsersId).FirstOrDefault();
+
+                        Session["branchID"] = comp.BranchId;
+                        Session["fullName"] = comp.BranchName;
+                        return RedirectToAction("Auction", "Monitoring");
+                    }
+                    else
+                    {
+
+                        var empl = db.tblEmployeesInfoes.SingleOrDefault(emp => emp.EmpId == cu.UsersId);
+                        Session["branchID"] = empl.BranchId;
+
+                        if(empl.MiddleName != null)
+                            Session["fullName"] = fullName(empl.FirstName, empl.MiddleName, empl.LastName);
+                        else
+                            Session["fullName"] = fullName(empl.FirstName, "", empl.LastName);
+                        return RedirectToAction("Index", "Dashboard");
+
+                       
+                    }
                 }
                 else
                 {
@@ -94,6 +94,7 @@ namespace OnlineAuction.Controllers
             }
         }
 
+        [AllowAnonymous]
         public ActionResult RetrieveImage(string id, int type)
         {
             var data = db.tblBiddersInfoes.SingleOrDefault(x => x.BiddersId == id);
@@ -115,8 +116,13 @@ namespace OnlineAuction.Controllers
             }
             else
             {
-                return File("~/Images/image.png", "image/png");
+                return File("~/nophoto.png", "image/png");
             }
+        }
+
+        public string fullName(string a, string b, string c)
+        {
+            return a + " " + b + " " + c;
         }
 
 

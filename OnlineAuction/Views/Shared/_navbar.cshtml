@@ -1,9 +1,10 @@
 ﻿<!-- Main navbar -->
 <div class="navbar navbar-default navbar-fixed-top header-highlight nonprintable">
     <div class="navbar-header">
-        <a class="navbar-brand" href="">
-            <img src="@Url.Content("~/images/logo_light.png")" />
-            
+        <a id="oauctionNav" class="navbar-brand text-blue-400 text-center" href="unsafe:javascript:;" style="
+    width: 100%;
+    font-size: 22px;">
+            ONLINE AUCTION
         </a>
 
         <ul class="nav navbar-nav visible-xs-block">
@@ -21,12 +22,11 @@
                 </a>
             </li>
         </ul>
-
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="@Url.Content("~/images/image.png")" />
-                    <span class="text-uppercase"> @Session["username"]</span>
+                    <img src="~/nophoto.png" />
+                    <span class="text-uppercase"> @Session["fullName"]</span>
                     <i class="caret"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
