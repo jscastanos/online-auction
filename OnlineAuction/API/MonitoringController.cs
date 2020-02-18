@@ -32,6 +32,7 @@ namespace OnlineAuction.API
                 var data = db.tblAuctionItems.SingleOrDefault(a => a.AuctionId == aID);
                 data.WinnerId = bID;
                 db.SaveChanges();
+                
                 return Ok();
             }
             catch (Exception)
@@ -39,6 +40,7 @@ namespace OnlineAuction.API
                 return BadRequest();
             }
         }
+
 
         [Route("auctionAction/{id}/{type}")]
         public IHttpActionResult PostActionAuction(int id, int type)

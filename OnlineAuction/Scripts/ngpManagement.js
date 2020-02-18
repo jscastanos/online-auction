@@ -23,7 +23,11 @@
              
              angular.forEach(d.data, function (v, key) {
                  v.Bdate = new Date((v.Bdate).split('T')[0])
-                 v.ConcatName = v.FirstName + " " + v.MiddleName.slice(0, 1) + ". " + v.LastName;
+                 if(v.MiddleName != null)
+                     v.ConcatName = v.FirstName + " " + v.MiddleName.slice(0, 1) + ". " + v.LastName;
+                 else
+                     v.ConcatName = v.FirstName + " " + v.LastName;
+
                  
                  
              })
@@ -70,6 +74,8 @@
 
     s.addEmp = function (adata) {
         console.log(adata);
+        adata.BranchId = $("#branchID").val();
+
         r.post("../api/EmployeesInfoes", adata)
     .then(function (d) {
         lastId = 0;

@@ -310,6 +310,7 @@
     <Content Include="Scripts\headroom.min.js" />
     <Content Include="Scripts\headroom_jquery.min.js" />
     <Content Include="Scripts\jcs-auto-validate.min.js" />
+    <Content Include="Scripts\ng-account.js" />
     <EntityDeploy Include="Models\OnlineAuction.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OnlineAuction.Designer.cs</LastGenOutput>

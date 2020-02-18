@@ -77,6 +77,9 @@
         h.post('../api/monitoring/setwinner/' + auctionID + '/' + bidderID).then(function (d) {
             if (d.status == 200) {
                 s.pendingAuctionedItems.splice(index, 1);
+                h.post("../monitoring/sendFCM?id=" + bidderID).then(function (d) {
+                    console.log(d)
+                })
             }
         })
     }

@@ -44,26 +44,42 @@ namespace OnlineAuction.Controllers
             {
                 u = Session["username"] != null ? Session["username"].ToString() : u;
                 var cu = db.tblUserManagements.SingleOrDefault(ur => ur.UserName == u && ur.Password == p);
-                var empl = db.tblEmployeesInfoes.SingleOrDefault(emp => emp.EmpId == cu.UsersId);
 
                 if (cu != null)
                 {
-                    var branchID = empl != null ? empl.BranchId : "1";
-                    var name = empl != null ? fullName(empl.FirstName, empl.MiddleName, empl.LastName) : "Super Admin";
-
                     Session["userID"] = cu.UsersId;
-                    Session["branchID"] = branchID;
                     Session["username"] = cu.UserName;
-                    Session["fullName"] = name;
                     Session["Role"] = db.tblUsersRoles.SingleOrDefault(role => role.RoleId == cu.RoleId).RoleName;
-                    switch (cu.RoleId)
+
+                    if (cu.RoleId == "1")
                     {
-                        case "1":
-                            return RedirectToAction("Index", "Admin");
-                        case "2":
-                            return RedirectToAction("Auction", "Monitoring");
+                        Session["branchID"] = "NONE";
+                        Session["fullName"] = "SUPER ADMIN";
+                        return RedirectToAction("Index", "Admin");
                     }
-                    return RedirectToAction("Index", "Dashboard");
+                    else if (cu.RoleId == "2")
+                    {
+
+                        var comp = db.tblBranchShops.Where(b => b.userID == cu.UsersId).FirstOrDefault();
+
+                        Session["branchID"] = comp.BranchId;
+                        Session["fullName"] = comp.BranchName;
+                        return RedirectToAction("Auction", "Monitoring");
+                    }
+                    else
+                    {
+
+                        var empl = db.tblEmployeesInfoes.SingleOrDefault(emp => emp.EmpId == cu.UsersId);
+                        Session["branchID"] = empl.BranchId;
+
+                        if(empl.MiddleName != null)
+                            Session["fullName"] = fullName(empl.FirstName, empl.MiddleName, empl.LastName);
+                        else
+                            Session["fullName"] = fullName(empl.FirstName, "", empl.LastName);
+                        return RedirectToAction("Index", "Dashboard");
+
+                       
+                    }
                 }
                 else
                 {

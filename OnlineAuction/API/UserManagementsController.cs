@@ -133,7 +133,7 @@ namespace OnlineAuction.API
         [Route("api/UserManagements/CountInactive")]
         public IHttpActionResult GetCountInactive()
         {
-            return Json(db.tblUserManagements.Where(l => l.Status != 1).Count());
+            return Json(db.tblUserManagements.Where(l => l.Status != 1 && db.tblUsersRoles.Where(r => r.RoleId == l.RoleId && r.recNo > 3).Count() > 0).Count());
         }
 
         // GET: api/UserManagements

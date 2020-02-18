@@ -13,7 +13,6 @@ using System.IO;
 
 namespace OnlineAuction.API
 {
-    [RoutePrefix("api/auth")]
     public class AuthController : ApiController
     {
         private OnlineAuctionEntities db = new OnlineAuctionEntities();
@@ -23,7 +22,7 @@ namespace OnlineAuction.API
             public string password { get; set; }
         }
 
-        [Route("verify")]
+        [Route("api/auth/verify")]
         public IHttpActionResult PostVerify(Credentials creds)
         {
             var data = db.tblBiddersInfoes.Where(bidders => bidders.UserName == creds.username && bidders.Password == creds.password);
@@ -38,6 +37,53 @@ namespace OnlineAuction.API
             {
                 return Json(0);
             }
+        }
+
+        public class Company
+        {
+            public string Username { get; set; }
+            public string Password { get; set; }
+            public string CompanyName { get; set; }
+            public string Address { get; set; }
+            public string EmailAddress { get; set; }
+        }
+
+        [Route("api/account/register")]
+        public IHttpActionResult PostAddCompany(Company comp)
+        {
+            //checking sa username
+            var userExist = db.tblUserManagements.Where(u => u.UserName == comp.Username);
+
+            if (userExist.Count() > 0)
+            {
+                return BadRequest();
+            }
+            else
+            {
+
+                tblUserManagement user = new tblUserManagement();
+                user.UserName = comp.Username;
+                user.Password = comp.Password;
+                user.RoleId = "2";
+                user.UsersId = Guid.NewGuid().ToString("N").Substring(0, 5).ToUpper();
+                user.DateCreated = DateTime.Now;
+
+                db.Entry(user).State = EntityState.Added;
+
+                tblBranchShop branch = new tblBranchShop();
+                branch.BranchName = comp.CompanyName;
+                branch.EmailAddress = comp.EmailAddress;
+                branch.Address = comp.Address;
+                branch.userID = user.UsersId;
+                branch.BranchId = Guid.NewGuid().ToString("N").Substring(0, 5).ToUpper();
+
+                db.Entry(branch).State = EntityState.Added;
+
+                db.SaveChanges();
+
+                return Ok();
+            }
+            
         }
 
 

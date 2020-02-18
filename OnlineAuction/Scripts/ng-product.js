@@ -208,6 +208,7 @@
     }
 
     s.removeProduct = function (id) {
+
         swal({
             title: "Are you sure?",
             text: "You will not be able to recover this Product!",
@@ -218,8 +219,7 @@
             cancelButtonText: "No",
             closeOnConfirm: false,
             closeOnCancel: false
-        },
-        function (isConfirm) {
+        }).then(function (isConfirm) {
             if (isConfirm) {
                 h.put("../api/products/removeProduct?id=" + id).then(function (d) {
                     s.lastId = 0;
