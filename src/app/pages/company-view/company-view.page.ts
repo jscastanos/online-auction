@@ -50,6 +50,7 @@ export class CompanyViewPage implements OnInit {
   }
 
   ngOnInit() {
+    this.index = 0;
     this.getProducts();
   }
 

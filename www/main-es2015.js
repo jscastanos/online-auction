@@ -568,6 +568,14 @@ const routes = [
                 path: 'item-view',
                 loadChildren: () => Promise.all(/*! import() | pages-item-view-item-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-item-view-item-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/item-view/item-view.module */ "./src/app/pages/item-view/item-view.module.ts")).then(m => m.ItemViewPageModule)
             },
+            {
+                path: 'bid-view',
+                loadChildren: () => Promise.all(/*! import() | pages-bid-view-bid-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-bid-view-bid-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/bid-view/bid-view.module */ "./src/app/pages/bid-view/bid-view.module.ts")).then(m => m.BidViewPageModule)
+            },
+            {
+                path: 'notification',
+                loadChildren: () => Promise.all(/*! import() | pages-notification-notification-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-notification-notification-module")]).then(__webpack_require__.bind(null, /*! ./pages/notification/notification.module */ "./src/app/pages/notification/notification.module.ts")).then(m => m.NotificationPageModule)
+            },
         ]
     },
     //AUTH
@@ -596,10 +604,6 @@ const routes = [
                 loadChildren: () => Promise.all(/*! import() | pages-bidder-supporting-id-bidder-supporting-id-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-bidder-supporting-id-bidder-supporting-id-module")]).then(__webpack_require__.bind(null, /*! ./pages/bidder-supporting-id/bidder-supporting-id.module */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.module.ts")).then(m => m.BidderSupportingIdPageModule)
             },
         ]
-    },
-    {
-        path: 'bid-view',
-        loadChildren: () => Promise.all(/*! import() | pages-bid-view-bid-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-bid-view-bid-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/bid-view/bid-view.module */ "./src/app/pages/bid-view/bid-view.module.ts")).then(m => m.BidViewPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -1006,8 +1010,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let EnvService = class EnvService {
     constructor() {
-        this.URL = 'http://192.168.1.10:69/';
-        this.API_URL = 'http://192.168.1.10:69/api/';
+        this.URL = 'http://onlineauction-001-site1.dtempurl.com/';
+        this.API_URL = 'http://onlineauction-001-site1.dtempurl.com/api/';
     }
 };
 EnvService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

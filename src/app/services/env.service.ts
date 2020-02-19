@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class EnvService {
-  URL = 'http://192.168.1.10:69/';
-  API_URL = 'http://192.168.1.10:69/api/';
+  URL = 'http://onlineauction-001-site1.dtempurl.com/';
+  API_URL = 'http://onlineauction-001-site1.dtempurl.com/api/';
 
   constructor() { }
 }

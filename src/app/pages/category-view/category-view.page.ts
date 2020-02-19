@@ -60,6 +60,7 @@ export class CategoryViewPage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.index = 0;
   }
 
   async loadData() {
