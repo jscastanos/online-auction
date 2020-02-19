@@ -138,7 +138,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\products\" />
-    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\PushNotification\" />
   </ItemGroup>
   <ItemGroup>
@@ -318,6 +317,7 @@
     <Content Include="Models\OnlineAuction.edmx.diagram">
       <DependentUpon>OnlineAuction.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\onlineauction.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -918,7 +918,9 @@
     <Content Include="Scripts\css\icons\summernote\summernotef534.ttf" />
     <Content Include="Scripts\css\icons\summernote\summernotef534.woff" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

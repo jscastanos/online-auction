@@ -28,7 +28,7 @@ namespace OnlineAuction.API
             if (accountStatus == 1)
             {
 
-                var data = db.tblProducts.Where(product => product.CategoryId == id && product.recNo > index && product.Status < 1);
+                var data = db.tblProducts.Where(product => product.CategoryId == id && product.recNo > index && product.Status <= 1);
 
                 return Json(data.Take(20));
             }
@@ -48,7 +48,7 @@ namespace OnlineAuction.API
             if (accountStatus == 1)
             {
 
-                var data = db.tblProducts.Where(product => product.BranchId == id && product.recNo > index && product.Status < 1);
+                var data = db.tblProducts.Where(product => product.BranchId == id && product.recNo > index && product.Status <= 1);
 
                 return Json(data.Take(20));
             }
@@ -138,18 +138,19 @@ namespace OnlineAuction.API
         public IHttpActionResult GetDisplayDetails(string id, string userID)
         {
 
+            double result = ComputeRating(id);
             //display details
             var data = db.tblProducts.Where(p => p.ProductId == id)
-                                     .AsEnumerable()
                                      .Select(pp => new
                                      {
                                          pp.ProductDescription,
                                          branchName = db.tblBranchShops.Where(b => b.BranchId == pp.BranchId).Select(bb => bb.BranchName).FirstOrDefault(),
                                          categoryName = db.tblProductCategories.Where(c => c.CategoryId == pp.CategoryId).Select(cc => cc.CategoryName).FirstOrDefault(),
                                          userRating = db.tblRatings.Where(r => r.UserId == userID && r.ProductId == id).Select(rr => rr.Rating).FirstOrDefault(),
-                                         productRate = ComputeRating(pp.ProductId),
+                                         productRate = result,
                                          countRate = db.tblRatings.Where(r => r.ProductId == id).Count()
                                      }).FirstOrDefault();
+
 
             return Json(data);
         }

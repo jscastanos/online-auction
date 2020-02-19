@@ -54,12 +54,13 @@
     }
 
     function usercount() {
-        r.get("../api/UserManagements/CountActive")
+        var branchID = localStorage.getItem("branchID")
+        r.get("../api/UserManagements/CountActive?branchId="+ branchID)
         .then(function (d) {
             //console.log(d.data)
             s.activecount = d.data
         })
-        r.get("../api/UserManagements/CountInactive")
+        r.get("../api/UserManagements/CountInactive?branchId=" + branchID)
         .then(function (d) {
             // console.log(d.data)
             s.inactivecount = d.data
@@ -69,7 +70,8 @@
 
     function loaddata() {
         s.isLoading = true;
-        r.get("../api/UserManagements/?id=" + lastId + "&key=" + s.sdata + "&Scode=" + s.Statuscode)
+        var branchID = localStorage.getItem("branchID")
+        r.get("../api/UserManagements/?id=" + lastId + "&key=" + s.sdata + "&Scode=" + s.Statuscode + "&branchId=" + branchID)
          .then(function (d) {
              console.log(d.data);
 

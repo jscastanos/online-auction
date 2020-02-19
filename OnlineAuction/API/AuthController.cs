@@ -43,7 +43,7 @@ namespace OnlineAuction.API
         {
             public string Username { get; set; }
             public string Password { get; set; }
-            public string CompanyName { get; set; }
+            public string BranchName { get; set; }
             public string Address { get; set; }
             public string EmailAddress { get; set; }
         }
@@ -71,7 +71,7 @@ namespace OnlineAuction.API
                 db.Entry(user).State = EntityState.Added;
 
                 tblBranchShop branch = new tblBranchShop();
-                branch.BranchName = comp.CompanyName;
+                branch.BranchName = comp.BranchName;
                 branch.EmailAddress = comp.EmailAddress;
                 branch.Address = comp.Address;
                 branch.userID = user.UsersId;
