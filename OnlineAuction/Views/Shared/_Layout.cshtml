@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<!DOCTYPE html>
 <html ng-app="app">
 <head>
@@ -58,3 +59,67 @@
     @RenderSection("jsFoot", required: false)
 </body>
 </html>
+=======
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title – AUCTION</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    @Styles.Render("~/css")
+    @Scripts.Render("~/js")
+    <link href="~/Content/kendo.default-v2.min.css" rel="stylesheet" />
+    <script src="~/Scripts/smart-table.min.js"></script>
+    <link href="~/Scripts/angucomplete.css" rel="stylesheet" />
+    <script src="~/Scripts/angucomplete.js"></script>
+    <script src="~/Scripts/angular-barcode.js"></script>
+    <script src="~/Scripts/jcs-auto-validate.min.js"></script>
+    <script src="~/Scripts/sweetalert2.js"></script>
+    <script src="~/Scripts/kendo/kendo.all.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('body').addClass(localStorage.getItem('sidebar'))
+        if ($('body').hasClass('sidebar-xs')) {
+            $("#oauctionNav").text("").append("<img src='../auction-logo.png' style='position: relative;left: 5px;top: -13px;height: 40px;'>");
+        } else {
+            $("#oauctionNav").text("ONLINE AUCTION");
+        }
+        localStorage.setItem("branchID", '@Session["branchID"].ToString()');
+        })
+    function sidebar() {
+
+        if ($('body').hasClass('sidebar-xs')) {
+            localStorage.setItem('sidebar', '');
+            $("#oauctionNav").text("ONLINE AUCTION");
+        } else {
+            localStorage.setItem('sidebar', 'sidebar-xs');
+            $("#oauctionNav").text("").append("<img src='../auction-logo.png' style='position: relative;left: 5px;top: -13px;height: 40px;'>");
+        }
+    }
+
+    </script>
+</head>
+
+
+<body class="has-detached-left navbar-top">
+    @Html.Partial("_navbar")
+    <div class="page-container">
+        <div class="page-content">
+            @Html.Partial("_sidebar")
+            <div class="content-wrapper">
+                <div class="content">
+                    @RenderBody()
+                    <script>
+                        console.log("%c ALERT !", "color:red; font-weight:bold; font-size:50pt;text-shadow:2px 2px 1px black,4px 4px 1px green,6px 6px 1px yellow,8px 8px 1px orange,10px 10px 1px blue;")
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    @RenderSection("jsFoot", required: false)
+</body>
+</html>
+>>>>>>> 2a29172e2df53d1d728d671143cab3dea4eea28b

@@ -3,6 +3,7 @@
     ViewBag.Title = "Register";
 }
 
+<script src="~/Scripts/ng-account.js"></script>
 
 <div class="content-wrapper" ng-controller="Registration">
     <!-- Content area -->
@@ -12,50 +13,45 @@
 
             <div class="text-center">
                 <div class="icon-object border-success text-success"><i class="icon-plus3"></i></div>
-                <h5 class="content-group">Create new account <small class="display-block">All fields are required {{testdis}}</small></h5>
+                <h5 class="content-group">Create new account <small class="display-block">All fields are required</small></h5>
             </div>
             <div class="panel-body">
                 <div id="registerDiv" class="tab-content panel-body front">
+                    <p style="color: red">{{error}}</p>
                     <div class="tab-pane active">
-                        <form ng-submit="addCom(xdata)" novalidate="novalidate">
+                        <form>
                             <div class="form-group has-feedback has-feedback-left">
                                 <input type="text" class="form-control" name="BranchName" ng-model="xdata.BranchName" placeholder="Company Name" required>
                                 <div class="form-control-feedback">
-                                    <i class=" icon-office text-muted"></i>
+                                    <i style="top: 10px"  class=" icon-office text-muted"></i>
                                 </div>
                             </div>
 
                             <div class="form-group has-feedback has-feedback-left">
                                 <input type="text" class="form-control" name="Address" ng-model="xdata.Address" placeholder="Current Address" required>
                                 <div class="form-control-feedback">
-                                    <i class=" icon-location4 text-muted"></i>
-                                </div>
-                            </div>
-                            <div class="form-group has-feedback has-feedback-left">
-                                <input type="number" class="form-control" max="11" name="Contact" ng-model="xdata.BranchContactNo" placeholder="Contact Number" required>
-                                <div class="form-control-feedback">
-                                    <i class=" icon-phone text-muted"></i>
+                                    <i style="top: 10px" class=" icon-location4 text-muted"></i>
                                 </div>
                             </div>
                             <div class="form-group has-feedback has-feedback-left">
                                 <input type="text" class="form-control" name="UserName" ng-model="xdata.EmailAddress" placeholder="Email" required>
                                 <div class="form-control-feedback">
-                                    <i class="icon-mention text-muted"></i>
+                                    <i style="top: 10px" class="icon-mention text-muted"></i>
                                 </div>
                             </div>
                             <div class="form-group has-feedback has-feedback-left">
                                 <input type="text" class="form-control" name="UserName" ng-model="xdata.Username" placeholder="Username" required>
                                 <div class="form-control-feedback">
-                                    <i class="icon-user-check text-muted"></i>
+                                    <i style="top: 10px" class="icon-user-check text-muted"></i>
                                 </div>
                             </div>
                             <div class="form-group has-feedback has-feedback-left">
                                 <input type="password" class="form-control" name="Password" ng-model="xdata.Password" placeholder="Create Password" required>
                                 <div class="form-control-feedback">
-                                    <i class="icon-user-check text-muted"></i>
+                                    <i style="top: 10px" class="icon-user-check text-muted"></i>
                                 </div>
                             </div>
-                            <button type="submit" class="btn bg-blue btn-block form-group">Register <i class="icon-circle-right2 position-right"></i></button>
+                            <button type="button" ng-click="addCom(xdata)" class="btn bg-blue btn-block form-group">Register <i class="icon-circle-right2 position-right"></i></button>
                             <div class="content-divider text-muted form-group"><span>Already have an account?</span></div>
                             <a href="@Url.Content("~/Account/Login")" class="btn btn-default btn-block content-group">Go to Login</a>
                         </form>

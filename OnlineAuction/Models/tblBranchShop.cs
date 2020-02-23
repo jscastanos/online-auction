@@ -21,5 +21,6 @@ namespace OnlineAuction.Models
         public string BranchContactNo { get; set; }
         public string EmailAddress { get; set; }
         public Nullable<int> Status { get; set; }
+        public string userID { get; set; }
     }
 }

@@ -30,7 +30,7 @@ namespace OnlineAuction.API
         // GET: api/Products
         public IHttpActionResult GettblProducts(int id, string key)
         {
-            var data = db.vProducts.Where(a => a.rowNum > id);
+            var data = db.vProducts.Where(a => a.rowNum > id && a.Status != 3);
 
             if (key != null && key != "")
             {

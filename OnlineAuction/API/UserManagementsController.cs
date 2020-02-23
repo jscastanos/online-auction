@@ -86,10 +86,10 @@ namespace OnlineAuction.API
         }
 
         //api/UserManagements
-        public IHttpActionResult GettblUserManagement(int id, string key, int Scode)
+        public IHttpActionResult GettblUserManagement(int id, string key, int Scode, string branchId)
         {
             //  string sampleID = "SWABE";
-            var predata = db.tblUserManagements.Where(u => u.recNo > id && u.Status == Scode)
+            var predata = db.tblUserManagements.Where(u => u.recNo > id && u.Status == Scode && (db.tblEmployeesInfoes.Where(e => e.EmpId == u.UsersId && e.BranchId == branchId).Count() > 0))
                 .Select(k => new
                 {
                     k.recNo,
@@ -125,15 +125,15 @@ namespace OnlineAuction.API
         }
 
         [Route("api/UserManagements/CountActive")]
-        public IHttpActionResult GetCountActive()
+        public IHttpActionResult GetCountActive(string branchId)
         {
-            return Json(db.tblUserManagements.Where(l => l.Status == 1).Count());
+            return Json(db.tblUserManagements.Where(l => l.Status == 1 && (db.tblEmployeesInfoes.Where(e => e.EmpId == l.UsersId && e.BranchId == branchId).Count() > 0)).Count());
         }
 
         [Route("api/UserManagements/CountInactive")]
-        public IHttpActionResult GetCountInactive()
+        public IHttpActionResult GetCountInactive(string branchId)
         {
-            return Json(db.tblUserManagements.Where(l => l.Status != 1).Count());
+            return Json(db.tblUserManagements.Where(l => l.Status != 1 && (db.tblUsersRoles.Where(r => r.RoleId == l.RoleId && r.recNo > 3).Count() > 0) && (db.tblEmployeesInfoes.Where(e => e.EmpId == l.UsersId && e.BranchId == branchId).Count() > 0)).Count());
         }
 
         // GET: api/UserManagements
