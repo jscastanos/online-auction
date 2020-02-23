@@ -166,8 +166,7 @@
     }
 
     s.setToAuction = function () {
-        var date = new Date($("#auctionpicker").val());
-
+        var date = $("#auctionpicker").val();
         h.put("../api/AuctionItems/auctionstatus?id=" + s.auctionRecno).then(function (d) {
                   
             s.tempArrAuction.Status = 0;

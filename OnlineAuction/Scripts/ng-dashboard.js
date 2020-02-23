@@ -18,7 +18,7 @@
 
     s.startDate = s.curMonth + "/" + s.curDay + "/" + s.curYear;
     s.endDate = s.curMonth + "/" + s.curDay + "/" + s.curYear;
-
+    
     getAuctionedData();
     rateProduct(10);
 
@@ -43,8 +43,8 @@
         var endDate = new Date($(this).data('daterangepicker').endDate._d);
         s.startDate = startDate;
         s.endDate = endDate;
-        alert(s.startDate);
-        alert(s.endDate);
+        //alert(s.startDate);
+        //alert(s.endDate);
     });
 
     $(window).scroll(function () {
@@ -74,9 +74,9 @@
         });
     }
 
-    s.dateTimeFormat = function (date) {
-        return moment(date).format("MMM DD, YYYY hh:mm")
-    }
+    //s.dateTimeFormat = function (date) {
+    //    return moment(date).format("MMM DD, YYYY hh:mm a")
+    //}
     
     function getAuctionedData() {
         s.isLoading = true;
@@ -89,6 +89,11 @@
             console.log(s.auctionData)
             s.total = d.data.total;
             s.totalSold = d.data.totalSold;
+            (s.auctionData).forEach(function (a) {
+                a.dateClaimLimit = new Date(new Date(a.DateTimeLimit).setHours(24 * 3));
+                
+            });
+            console.log(s.auctionData)
         });
     }
 
@@ -136,5 +141,11 @@
             getAuctionedData()
         });
 
+    }
+
+    s.notClaimAuction = function (id) {
+        h.put("../api/AuctionItems/notClaimAuction?id=" + id).then(function (d) {
+            getAuctionedData()
+        });
     }
 }])

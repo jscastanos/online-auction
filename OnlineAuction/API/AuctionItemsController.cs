@@ -38,7 +38,7 @@ namespace OnlineAuction.API
         [Route("api/AuctionItems/auctionData")]
         public IHttpActionResult GetAuctionData(int id, string key)
         {
-            var data = db.vAuctionProducts.Where(a => a.rowNum > id && a.Status < 3);
+            var data = db.vAuctionProducts.Where(a => a.rowNum > id && a.Status == 1);
 
             if (key != null && key != "")
             {
@@ -118,6 +118,17 @@ namespace OnlineAuction.API
         {
             db.tblAuctionItems.Where(a => a.recNo == id).ToList()
                 .ForEach(b => b.Status = 3);
+            db.SaveChanges();
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [Route("api/AuctionItems/notClaimAuction")]
+        public IHttpActionResult PutNotClaimAuction(int id)
+        {
+            var item = db.tblAuctionItems.SingleOrDefault(auc => auc.recNo == id);
+            item.Status = 2;
+            db.tblProducts.SingleOrDefault(prod => prod.ProductId == item.ProductId).Status = 0;
             db.SaveChanges();
 
             return StatusCode(HttpStatusCode.NoContent);

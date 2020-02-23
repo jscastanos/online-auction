@@ -58,7 +58,8 @@
                                     <tr>
                                         <th>Product</th>
                                         <th>Category</th>
-                                        <th>Date & Time</th>
+                                        <th>Bidding Date</th>
+                                        <th>Date Claim Limit</th>
                                         <th>Price</th>
                                         <th>Action</th>
                                     </tr>
@@ -88,13 +89,17 @@
                                             <span class="text-semibold no-margin">{{a.CategoryName}}</span>
                                         </td>
                                         <td>
-                                            <span class="text-muted text-size-small">{{dateTimeFormat(a.DateTimeLimit)}}</span>
+                                            <span class="text-muted text-size-small">{{a.DateTimeLimit | date: 'MMM dd, yyyy hh:mm a'}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-muted text-size-small">{{a.dateClaimLimit | date: 'MMM dd, yyyy hh:mm a' }}</span>
                                         </td>
                                         <td>
                                             <h6 class="text-semibold no-margin">{{a.AskPrice | currency : 'Php '}}</h6>
                                         </td>
                                         <td>
                                             <button class="btn btn-info" ng-click="claimAuction(a.recNo)">Claim!</button>
+                                            <button class="btn btn-danger" ng-click="notClaimAuction(a.recNo)">Not Claim!</button>
                                         </td>
                                     </tr>
                                 </tbody>

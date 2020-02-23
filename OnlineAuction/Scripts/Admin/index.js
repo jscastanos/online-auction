@@ -51,6 +51,7 @@ app.controller("adminCtrl", ["$scope", "$http", "$timeout", function (s, h, t) {
         function () {
             h.put("../api/bidders?id=" + bidder).then(function (d) {
                 swal("Verified!", f.concat(' ', m, ' ', l, ' has been verified.'), "success");
+                $("#viewInfoModal").modal("hide");
                 s.loadBidders();
             });
         });
@@ -67,10 +68,6 @@ app.controller("adminCtrl", ["$scope", "$http", "$timeout", function (s, h, t) {
                 s.biddersList = d.data;
             });
         }
-    }
-
-    s.viewAs = function () {
-
     }
 
     s.sliderButton = function (a) {
