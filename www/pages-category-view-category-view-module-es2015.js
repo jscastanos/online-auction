@@ -135,10 +135,11 @@ let CategoryViewPage = class CategoryViewPage {
                 this.categoryId = data.id;
                 this.categoryName = data.name;
                 Object(_services_storage_service__WEBPACK_IMPORTED_MODULE_7__["set"])("category", data);
+                Object(_services_storage_service__WEBPACK_IMPORTED_MODULE_7__["set"])("returnPage", "category");
                 this.loadData();
             }
             else {
-                Object(_services_storage_service__WEBPACK_IMPORTED_MODULE_7__["get"])("category").then((data) => {
+                Object(_services_storage_service__WEBPACK_IMPORTED_MODULE_7__["get"])("category").then(data => {
                     if (data != null) {
                         this.categoryId = data["id"];
                         this.categoryName = data["name"];
@@ -160,12 +161,14 @@ let CategoryViewPage = class CategoryViewPage {
     }
     loadData() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            this.setToDefault();
             yield this.getProducts();
             this.infiniteScroll.complete();
         });
     }
     getProducts() {
-        this.fetchProductsService = this.productsService.getProductsFromCategory(this.categoryId, this.index, this.user.status)
+        this.fetchProductsService = this.productsService
+            .getProductsFromCategory(this.categoryId, this.index, this.user.status)
             .subscribe(data => {
             for (let index of Object.keys(data)) {
                 this.products.push(data[index]);
@@ -176,19 +179,22 @@ let CategoryViewPage = class CategoryViewPage {
     goToView(item) {
         let data = {
             name: item.ProductName,
-            id: item.ProductId,
-            status: item.Status
+            id: item.ProductId
         };
         let params = {
             queryParams: {
                 q: JSON.stringify(data)
             }
         };
-        this.nav.navigateRoot(["/item-view"], params);
+        if (item.Status == 0) {
+            this.nav.navigateRoot(["/item-view"], params);
+        }
+        else {
+            this.nav.navigateRoot(["/auction-view"], params);
+        }
     }
-    ngOnDestroy() {
+    ionViewDidLeave() {
         this.fetchProductsService.unsubscribe();
-        this.setToDefault();
     }
 };
 CategoryViewPage.ctorParameters = () => [
@@ -205,11 +211,16 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 ], CategoryViewPage.prototype, "infiniteScroll", void 0);
 CategoryViewPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-category-view',
+        selector: "app-category-view",
         template: __webpack_require__(/*! raw-loader!./category-view.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/category-view/category-view.page.html"),
         styles: [__webpack_require__(/*! ../../home/home.page.scss */ "./src/app/home/home.page.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], src_app_services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"], _services_products_service__WEBPACK_IMPORTED_MODULE_3__["ProductsService"], src_app_services_common_service__WEBPACK_IMPORTED_MODULE_4__["CommonService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+        src_app_services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"],
+        _services_products_service__WEBPACK_IMPORTED_MODULE_3__["ProductsService"],
+        src_app_services_common_service__WEBPACK_IMPORTED_MODULE_4__["CommonService"]])
 ], CategoryViewPage);
 
 

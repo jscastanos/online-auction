@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar color="{{user.statusColor}}">
     <ion-buttons slot="start">
-      <ion-button [routerLink]="['/item-view']">
+      <ion-button (click)="closeModal()">
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{ itemName }}</ion-title>
+    <ion-title>{{ name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,21 +15,43 @@
       <ion-row>
         <ion-col size-xs="12">
           <img
-            src="{{url}}/Product/RetrieveImage?id={{itemID}}"
+            style="height: 300px;"
+            src="{{url}}Product/RetrieveImage?id={{id}}"
             onerror="this.onerror = null; this.src = '../assets/placeholder.png'"
           />
           <ion-text>
             <input
               type="number"
-              style="width: 100%; height: 60px; margin: 30px 0;"
-              placeholder="Enter bid amount"
+              class="bidInput"
+              placeholder="Enter amount"
               [(ngModel)]="amount"
             />
           </ion-text>
-          <ion-button color="primary" expand="full" (click)="bidNow(amount)"
-            >Place Bid</ion-button
-          >
         </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button
+            color="danger"
+            expand="full"
+            (click)="closeModal()"
+            shape="round"
+            style="margin-top: 20px; height: 60px;"
+            ><ion-icon name="close-circle"></ion-icon>
+            &nbsp; Cancel
+          </ion-button></ion-col
+        >
+        <ion-col>
+          <ion-button
+            color="success"
+            expand="full"
+            (click)="bidNow(amount)"
+            shape="round"
+            style="margin-top: 20px; height: 60px;"
+            ><ion-icon src="../../assets/hand-left.svg"></ion-icon>
+            &nbsp; Enter
+          </ion-button></ion-col
+        >
       </ion-row>
       <ion-row *ngIf="error != null">
         <ion-col>

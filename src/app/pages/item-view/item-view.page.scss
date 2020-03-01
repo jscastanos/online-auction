@@ -1,52 +1,20 @@
-img{
-    width: 100%;
+img {
+  width: 100%;
 }
 
-.itemName{
-    text-align: center;
+.itemName {
+  text-align: center;
 
-    h1{
-        font-size: 40px;
-    }
+  h1 {
+    font-size: 40px;
+  }
 }
 
-
-.badgeHolder{
-    position: absolute;
-
-    .bidBadge{
-      position: relative;
-      font-size: 25px;
-      top: 0;
-      left: 0;
-      padding: 4px 15px;
-      color: white;
-      background-color: firebrick;
-      z-index: 2;
-    }
-
-    .bidBadge::after{
-      content: " ";
-      position: absolute;
-      background-color: firebrick;
-      top: 12;
-      margin-left: 2px;
-      height: 30px;
-      width: 30px;
-      transform: rotate(45deg);
-      z-index: -1;
-    }
+.displayRate {
+  h1 {
+    color: gold;
   }
-
-  .displayRate{
-    h1{
-      color: gold
-    }
-    p{
-      margin-top: -20px
-    }
+  p {
+    margin-top: -20px;
   }
-
-  .userRate{
-    color: grey;
-  }
+}

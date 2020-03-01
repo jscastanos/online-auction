@@ -110,30 +110,30 @@ let HomePage = class HomePage {
         this.currItemStatus = 1;
         this.categorySliderOpts = {
             sliderOpts: {
-                slidesPerView: 2,
+                slidesPerView: 2
             },
-            style: 'box',
-            sliderBrowseAllText: 'See all categories',
-            slideRedirect: '/category-view',
+            style: "box",
+            sliderBrowseAllText: "See all categories",
+            slideRedirect: "/category-view",
             sliderId: 1,
-            requestUrl: '/category?id=0&key=',
+            requestUrl: "/category?id=0&key=",
             dataObject: {
-                id: 'CategoryId',
-                name: 'CategoryName'
+                id: "CategoryId",
+                name: "CategoryName"
             }
         };
         this.companySliderOpts = {
             sliderOpts: {
-                slidesPerView: 3,
+                slidesPerView: 3
             },
-            style: 'circle',
-            sliderBrowseAllText: 'See all companies',
-            slideRedirect: '/company-view',
+            style: "circle",
+            sliderBrowseAllText: "See all companies",
+            slideRedirect: "/company-view",
             sliderId: 2,
-            requestUrl: '/branch',
+            requestUrl: "/branch",
             dataObject: {
-                id: 'BranchId',
-                name: 'BranchName'
+                id: "BranchId",
+                name: "BranchName"
             }
         };
         this.user = this.common.user;
@@ -143,7 +143,9 @@ let HomePage = class HomePage {
     search(q) {
         this.searchResults = [];
         if (q != "") {
-            this.searchProduct = this.productsService.getSearchProduct(q).subscribe(data => {
+            this.searchProduct = this.productsService
+                .getSearchProduct(q)
+                .subscribe(data => {
                 this.didUserSearch = true;
                 if (Object.keys(data).length > 0) {
                     for (let d in data) {
@@ -162,20 +164,24 @@ let HomePage = class HomePage {
         if (this.user.status != 0)
             this.fetchAuction();
         PushNotifications.register();
-        PushNotifications.addListener('registration', (token) => {
-            console.log('Push registration success, token: ' + token.value);
+        PushNotifications.addListener("registration", (token) => {
+            console.log("Push registration success, token: " + token.value);
             //check token
-            this.profileService.checkTokenValidity(this.user.id, token.value).subscribe(result => {
+            this.profileService
+                .checkTokenValidity(this.user.id, token.value)
+                .subscribe(result => {
                 if (!result) {
                     //register token
-                    this.profileService.registerFCMToken(this.user.id, token.value).subscribe();
+                    this.profileService
+                        .registerFCMToken(this.user.id, token.value)
+                        .subscribe();
                 }
             });
         });
-        PushNotifications.addListener('registrationError', (error) => {
-            alert('Error on registration: ' + JSON.stringify(error));
+        PushNotifications.addListener("registrationError", (error) => {
+            alert("Error on registration: " + JSON.stringify(error));
         });
-        PushNotifications.addListener('pushNotificationReceived', (notification) => {
+        PushNotifications.addListener("pushNotificationReceived", (notification) => {
             var audio = new Audio("assets/audio.mp3");
             audio.play();
             let pn = Modals.alert({
@@ -183,7 +189,7 @@ let HomePage = class HomePage {
                 message: notification.body
             });
         });
-        PushNotifications.addListener('pushNotificationActionPerformed', (notification) => {
+        PushNotifications.addListener("pushNotificationActionPerformed", (notification) => {
             this.nav.navigateRoot("/notification");
         });
     }
@@ -199,13 +205,16 @@ let HomePage = class HomePage {
         this.infiniteScroll.complete();
     }
     fetchNotifCount() {
-        this.fetchNotif = this.profileService.notifs(this.user.id).subscribe(data => {
+        this.fetchNotif = this.profileService
+            .notifs(this.user.id)
+            .subscribe(data => {
             this.notifCount = Object.keys(data).length;
         });
     }
     fetchDisplay() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            this.fetchDisplayService = yield this.productsService.getDisplayItems(this.lazyLoadIndex.display)
+            this.fetchDisplayService = yield this.productsService
+                .getDisplayItems(this.lazyLoadIndex.display)
                 .subscribe(data => {
                 for (let index in data) {
                     //rating stars
@@ -218,10 +227,10 @@ let HomePage = class HomePage {
             });
         });
     }
-    ;
     fetchAuction() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            this.fetchAuctionService = yield this.productsService.getAuctionItems(this.lazyLoadIndex.auction)
+            this.fetchAuctionService = yield this.productsService
+                .getAuctionItems(this.lazyLoadIndex.auction)
                 .subscribe(data => {
                 for (let index in data) {
                     data[index]["DateTimeLimit"] = data[index]["DateTimeLimit"].split("T")[0];
@@ -233,9 +242,8 @@ let HomePage = class HomePage {
             });
         });
     }
-    ;
     segmentChanged(e) {
-        if (e.detail.value == 'display') {
+        if (e.detail.value == "display") {
             this.activeItems = this.displayItems;
             this.currItemStatus = 0;
         }
@@ -269,14 +277,19 @@ let HomePage = class HomePage {
                 q: JSON.stringify(data)
             }
         };
-        this.nav.navigateRoot(["/item-view"], params);
+        if (item.Status == 1) {
+            this.nav.navigateRoot(["/auction-view"], params);
+        }
+        else {
+            this.nav.navigateRoot(["/item-view"], params);
+        }
     }
     setToDefault() {
         this.displayItems = [];
         this.auctionItems = [];
         this.activeItems = [];
     }
-    ngOnDestroy() {
+    ionViewDidLeave() {
         this.setToDefault();
         this.fetchDisplayService.unsubscribe();
         if (this.fetchAuctionService != null)
@@ -299,11 +312,16 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 ], HomePage.prototype, "infiniteScroll", void 0);
 HomePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-home',
+        selector: "app-home",
         template: __webpack_require__(/*! raw-loader!./home.page.html */ "./node_modules/raw-loader/index.js!./src/app/home/home.page.html"),
         styles: [__webpack_require__(/*! ./home.page.scss */ "./src/app/home/home.page.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_profile_service__WEBPACK_IMPORTED_MODULE_8__["ProfileService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"], _services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"], _services_products_service__WEBPACK_IMPORTED_MODULE_2__["ProductsService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _services_common_service__WEBPACK_IMPORTED_MODULE_5__["CommonService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_profile_service__WEBPACK_IMPORTED_MODULE_8__["ProfileService"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"],
+        _services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"],
+        _services_products_service__WEBPACK_IMPORTED_MODULE_2__["ProductsService"],
+        _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"],
+        _services_common_service__WEBPACK_IMPORTED_MODULE_5__["CommonService"]])
 ], HomePage);
 
 

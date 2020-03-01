@@ -570,7 +570,7 @@ const routes = [
             },
             {
                 path: 'bid-view',
-                loadChildren: () => Promise.all(/*! import() | pages-bid-view-bid-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-bid-view-bid-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/bid-view/bid-view.module */ "./src/app/pages/bid-view/bid-view.module.ts")).then(m => m.BidViewPageModule)
+                loadChildren: () => __webpack_require__.e(/*! import() | pages-bid-view-bid-view-module */ "common").then(__webpack_require__.bind(null, /*! ./pages/bid-view/bid-view.module */ "./src/app/pages/bid-view/bid-view.module.ts")).then(m => m.BidViewPageModule)
             },
             {
                 path: 'notification',
@@ -604,6 +604,10 @@ const routes = [
                 loadChildren: () => Promise.all(/*! import() | pages-bidder-supporting-id-bidder-supporting-id-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-bidder-supporting-id-bidder-supporting-id-module")]).then(__webpack_require__.bind(null, /*! ./pages/bidder-supporting-id/bidder-supporting-id.module */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.module.ts")).then(m => m.BidderSupportingIdPageModule)
             },
         ]
+    },
+    {
+        path: 'auction-view',
+        loadChildren: () => Promise.all(/*! import() | pages-auction-view-auction-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-auction-view-auction-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/auction-view/auction-view.module */ "./src/app/pages/auction-view/auction-view.module.ts")).then(m => m.AuctionViewPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -1009,14 +1013,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let EnvService = class EnvService {
+    // URL = "http://localhost:69/";
+    // API_URL = "http://localhost:69/api/";
     constructor() {
-        this.URL = 'http://onlineauction-001-site1.dtempurl.com/';
-        this.API_URL = 'http://onlineauction-001-site1.dtempurl.com/api/';
+        this.URL = "http://onlineauction-001-site1.dtempurl.com/";
+        this.API_URL = "http://onlineauction-001-site1.dtempurl.com/api/";
     }
 };
 EnvService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
+        providedIn: "root"
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
 ], EnvService);

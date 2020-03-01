@@ -556,7 +556,7 @@ var routes = [
             },
             {
                 path: 'list',
-                loadChildren: function () { return Promise.all(/*! import() | pages-list-list-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-list-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/list/list.module */ "./src/app/pages/list/list.module.ts")).then(function (m) { return m.ListPageModule; }); }
+                loadChildren: function () { return __webpack_require__.e(/*! import() | pages-list-list-module */ "pages-list-list-module").then(__webpack_require__.bind(null, /*! ./pages/list/list.module */ "./src/app/pages/list/list.module.ts")).then(function (m) { return m.ListPageModule; }); }
             },
             {
                 path: 'company-view',
@@ -572,11 +572,11 @@ var routes = [
             },
             {
                 path: 'item-view',
-                loadChildren: function () { return Promise.all(/*! import() | pages-item-view-item-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-item-view-item-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/item-view/item-view.module */ "./src/app/pages/item-view/item-view.module.ts")).then(function (m) { return m.ItemViewPageModule; }); }
+                loadChildren: function () { return __webpack_require__.e(/*! import() | pages-item-view-item-view-module */ "pages-item-view-item-view-module").then(__webpack_require__.bind(null, /*! ./pages/item-view/item-view.module */ "./src/app/pages/item-view/item-view.module.ts")).then(function (m) { return m.ItemViewPageModule; }); }
             },
             {
                 path: 'bid-view',
-                loadChildren: function () { return Promise.all(/*! import() | pages-bid-view-bid-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-bid-view-bid-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/bid-view/bid-view.module */ "./src/app/pages/bid-view/bid-view.module.ts")).then(function (m) { return m.BidViewPageModule; }); }
+                loadChildren: function () { return __webpack_require__.e(/*! import() | pages-bid-view-bid-view-module */ "default~pages-auction-view-auction-view-module~pages-bid-view-bid-view-module").then(__webpack_require__.bind(null, /*! ./pages/bid-view/bid-view.module */ "./src/app/pages/bid-view/bid-view.module.ts")).then(function (m) { return m.BidViewPageModule; }); }
             },
             {
                 path: 'notification',
@@ -610,6 +610,10 @@ var routes = [
                 loadChildren: function () { return Promise.all(/*! import() | pages-bidder-supporting-id-bidder-supporting-id-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-bidder-supporting-id-bidder-supporting-id-module")]).then(__webpack_require__.bind(null, /*! ./pages/bidder-supporting-id/bidder-supporting-id.module */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.module.ts")).then(function (m) { return m.BidderSupportingIdPageModule; }); }
             },
         ]
+    },
+    {
+        path: 'auction-view',
+        loadChildren: function () { return Promise.all(/*! import() | pages-auction-view-auction-view-module */[__webpack_require__.e("default~pages-auction-view-auction-view-module~pages-bid-view-bid-view-module"), __webpack_require__.e("pages-auction-view-auction-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/auction-view/auction-view.module */ "./src/app/pages/auction-view/auction-view.module.ts")).then(function (m) { return m.AuctionViewPageModule; }); }
     },
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -1038,13 +1042,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var EnvService = /** @class */ (function () {
+    // URL = "http://localhost:69/";
+    // API_URL = "http://localhost:69/api/";
     function EnvService() {
-        this.URL = 'http://onlineauction-001-site1.dtempurl.com/';
-        this.API_URL = 'http://onlineauction-001-site1.dtempurl.com/api/';
+        this.URL = "http://onlineauction-001-site1.dtempurl.com/";
+        this.API_URL = "http://onlineauction-001-site1.dtempurl.com/api/";
     }
     EnvService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
+            providedIn: "root"
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], EnvService);

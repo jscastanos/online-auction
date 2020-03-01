@@ -77,6 +77,10 @@ const routes: Routes = [
 
     ]
   },
+  {
+    path: 'auction-view',
+    loadChildren: () => import('./pages/auction-view/auction-view.module').then( m => m.AuctionViewPageModule)
+  },
 ];
 
 @NgModule({

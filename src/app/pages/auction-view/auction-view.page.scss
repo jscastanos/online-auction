@@ -1,0 +1,43 @@
+img {
+  width: 100%;
+}
+
+.amount {
+  text-align: center;
+
+  h1 {
+    font-size: 40px;
+  }
+}
+
+.itemName {
+  text-overflow: ellipsis;
+  word-wrap: none;
+}
+
+.badgeHolder {
+  position: absolute;
+
+  .bidBadge {
+    position: relative;
+    font-size: 25px;
+    top: 0;
+    left: 0;
+    padding: 4px 15px;
+    color: white;
+    background-color: firebrick;
+    z-index: 2;
+  }
+
+  .bidBadge::after {
+    content: " ";
+    position: absolute;
+    background-color: firebrick;
+    top: 12;
+    margin-left: 2px;
+    height: 30px;
+    width: 30px;
+    transform: rotate(45deg);
+    z-index: -1;
+  }
+}

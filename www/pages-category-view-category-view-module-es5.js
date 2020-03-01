@@ -142,6 +142,7 @@ var CategoryViewPage = /** @class */ (function () {
                 _this.categoryId = data.id;
                 _this.categoryName = data.name;
                 Object(_services_storage_service__WEBPACK_IMPORTED_MODULE_7__["set"])("category", data);
+                Object(_services_storage_service__WEBPACK_IMPORTED_MODULE_7__["set"])("returnPage", "category");
                 _this.loadData();
             }
             else {
@@ -169,7 +170,9 @@ var CategoryViewPage = /** @class */ (function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getProducts()];
+                    case 0:
+                        this.setToDefault();
+                        return [4 /*yield*/, this.getProducts()];
                     case 1:
                         _a.sent();
                         this.infiniteScroll.complete();
@@ -180,7 +183,8 @@ var CategoryViewPage = /** @class */ (function () {
     };
     CategoryViewPage.prototype.getProducts = function () {
         var _this = this;
-        this.fetchProductsService = this.productsService.getProductsFromCategory(this.categoryId, this.index, this.user.status)
+        this.fetchProductsService = this.productsService
+            .getProductsFromCategory(this.categoryId, this.index, this.user.status)
             .subscribe(function (data) {
             for (var _i = 0, _a = Object.keys(data); _i < _a.length; _i++) {
                 var index = _a[_i];
@@ -192,19 +196,22 @@ var CategoryViewPage = /** @class */ (function () {
     CategoryViewPage.prototype.goToView = function (item) {
         var data = {
             name: item.ProductName,
-            id: item.ProductId,
-            status: item.Status
+            id: item.ProductId
         };
         var params = {
             queryParams: {
                 q: JSON.stringify(data)
             }
         };
-        this.nav.navigateRoot(["/item-view"], params);
+        if (item.Status == 0) {
+            this.nav.navigateRoot(["/item-view"], params);
+        }
+        else {
+            this.nav.navigateRoot(["/auction-view"], params);
+        }
     };
-    CategoryViewPage.prototype.ngOnDestroy = function () {
+    CategoryViewPage.prototype.ionViewDidLeave = function () {
         this.fetchProductsService.unsubscribe();
-        this.setToDefault();
     };
     CategoryViewPage.ctorParameters = function () { return [
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"] },
@@ -220,13 +227,99 @@ var CategoryViewPage = /** @class */ (function () {
     ], CategoryViewPage.prototype, "infiniteScroll", void 0);
     CategoryViewPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-category-view',
+            selector: "app-category-view",
             template: __webpack_require__(/*! raw-loader!./category-view.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/category-view/category-view.page.html"),
             styles: [__webpack_require__(/*! ../../home/home.page.scss */ "./src/app/home/home.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], src_app_services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"], _services_products_service__WEBPACK_IMPORTED_MODULE_3__["ProductsService"], src_app_services_common_service__WEBPACK_IMPORTED_MODULE_4__["CommonService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            src_app_services_env_service__WEBPACK_IMPORTED_MODULE_6__["EnvService"],
+            _services_products_service__WEBPACK_IMPORTED_MODULE_3__["ProductsService"],
+            src_app_services_common_service__WEBPACK_IMPORTED_MODULE_4__["CommonService"]])
     ], CategoryViewPage);
     return CategoryViewPage;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/products.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/services/products.service.ts ***!
+  \**********************************************/
+/*! exports provided: ProductsService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductsService", function() { return ProductsService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _env_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./env.service */ "./src/app/services/env.service.ts");
+
+
+
+
+var ProductsService = /** @class */ (function () {
+    function ProductsService(route, env) {
+        this.route = route;
+        this.env = env;
+    }
+    ProductsService.prototype.getProductsFromCategory = function (id, index, accountStatus) {
+        return this.route.get(this.env.API_URL + 'category/' + id + '/products?index=' + index + "&accountStatus=" + accountStatus);
+    };
+    ProductsService.prototype.getProductsFromCompany = function (id, index, accountStatus) {
+        return this.route.get(this.env.API_URL + 'company/' + id + '/products?index=' + index + "&accountStatus=" + accountStatus);
+    };
+    ProductsService.prototype.getCategories = function () {
+        return this.route.get(this.env.API_URL + 'category');
+    };
+    ProductsService.prototype.getCompanies = function () {
+        return this.route.get(this.env.API_URL + 'branch');
+    };
+    ProductsService.prototype.getDisplayItems = function (index) {
+        return this.route.get(this.env.API_URL + 'product/displays?index=' + index);
+    };
+    ProductsService.prototype.getAuctionItems = function (index) {
+        return this.route.get(this.env.API_URL + 'product/auctions?index=' + index);
+    };
+    ProductsService.prototype.getAuctionItemDetails = function (id) {
+        return this.route.get(this.env.API_URL + 'product/' + id + '/auction');
+    };
+    ProductsService.prototype.getAuctionItemBiddings = function (id, userID) {
+        return this.route.get(this.env.API_URL + 'product/' + id + '/biddings?userID=' + userID);
+    };
+    ProductsService.prototype.postBid = function (id, userID, amount) {
+        return this.route.post(this.env.API_URL + 'product/' + id + '/bid', {
+            userID: userID, amount: amount
+        });
+    };
+    ProductsService.prototype.getDisplayItemDetails = function (id, userID) {
+        return this.route.get(this.env.API_URL + 'product/' + id + '/display?userID=' + userID);
+    };
+    ProductsService.prototype.postRate = function (id, userID, rate) {
+        return this.route.post(this.env.API_URL + 'product/' + id + '/rate?userID=' + userID, rate);
+    };
+    ProductsService.prototype.getSearchProduct = function (query) {
+        return this.route.get(this.env.API_URL + 'product/search?query=' + query);
+    };
+    ProductsService.prototype.getUserBiddings = function (userID) {
+        return this.route.get(this.env.API_URL + 'bidders/biddings?userID=' + userID);
+    };
+    ProductsService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+        { type: _env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"] }
+    ]; };
+    ProductsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"]])
+    ], ProductsService);
+    return ProductsService;
 }());
 
 

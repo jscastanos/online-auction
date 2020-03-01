@@ -450,7 +450,7 @@ var ComponentsModule = /** @class */ (function () {
     }
     ComponentsModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_slider_slider_component__WEBPACK_IMPORTED_MODULE_4__["SliderComponent"],],
+            declarations: [_slider_slider_component__WEBPACK_IMPORTED_MODULE_4__["SliderComponent"]],
             exports: [_slider_slider_component__WEBPACK_IMPORTED_MODULE_4__["SliderComponent"]],
             imports: [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonicModule"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"]]
         })
@@ -499,8 +499,7 @@ var SliderComponent = /** @class */ (function () {
     }
     SliderComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.sliderService.getData(this.options.requestUrl)
-            .subscribe(function (data) {
+        this.sliderService.getData(this.options.requestUrl).subscribe(function (data) {
             for (var _i = 0, _a = Object.keys(data); _i < _a.length; _i++) {
                 var d = _a[_i];
                 _this.items.push(data[d]);
@@ -519,9 +518,6 @@ var SliderComponent = /** @class */ (function () {
         };
         this.router.navigate([this.options.slideRedirect], params);
     };
-    SliderComponent.prototype.openAll = function () {
-        this.router.navigate(['/browse-by-all']);
-    };
     SliderComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
         { type: src_app_services_slider_service__WEBPACK_IMPORTED_MODULE_3__["SliderService"] }
@@ -532,7 +528,7 @@ var SliderComponent = /** @class */ (function () {
     ], SliderComponent.prototype, "options", void 0);
     SliderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-slider',
+            selector: "app-slider",
             template: __webpack_require__(/*! raw-loader!./slider.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/slider/slider.component.html"),
             styles: [__webpack_require__(/*! ./slider.component.scss */ "./src/app/components/slider/slider.component.scss")]
         }),
@@ -553,87 +549,6 @@ var SliderComponent = /** @class */ (function () {
 /***/ (function(module, exports) {
 
 module.exports = ".itemList ion-grid {\n  background-color: #f5f5f5;\n}\n.itemList .item {\n  background-color: #fff;\n  border: 4px solid #f5f5f5;\n}\n.itemList .item ion-text {\n  padding: 0 5px;\n}\n.itemList .item ion-text h5 {\n  margin: 2px auto;\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 2;\n  font-size: 1em;\n}\n.itemList .item .price {\n  color: firebrick;\n}\n.itemList .badgeHolder {\n  position: absolute;\n}\n.itemList .badgeHolder .bidBadge {\n  position: relative;\n  font-size: 12px;\n  top: 0;\n  left: 0;\n  padding: 5px 10px;\n  color: white;\n  background-color: firebrick;\n  z-index: 2;\n}\n.itemList .badgeHolder .bidBadge::after {\n  content: \" \";\n  position: absolute;\n  background-color: firebrick;\n  top: 12;\n  margin-left: 2px;\n  height: 16px;\n  width: 16px;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  z-index: -1;\n}\n.itemList .badgeHolder .badge-success, .itemList .badgeHolder .badge-success::after {\n  background-color: seagreen !important;\n}\nion-list ion-label {\n  text-transform: uppercase;\n}\n.searchResult {\n  position: absolute !important;\n  z-index: 9999;\n  width: 100%;\n  top: 110px;\n  box-shadow: 5px 10px 8px #888888;\n}\n#notification-button ion-badge {\n  position: absolute;\n  top: -0.2rem;\n  right: 1rem;\n  border-radius: 50%;\n}\n#notification-button ion-badge ~ ion-icon {\n  margin-right: 1.2rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9EOlxcd29ya1xcUHJvamVjdHNcXEFjY1JlYWxTb2Z0XFxNb2JpbGVcXG9ubGluZWF1Y3Rpb25hcHAvc3JjXFxhcHBcXGhvbWVcXGhvbWUucGFnZS5zY3NzIiwic3JjL2FwcC9ob21lL2hvbWUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNFO0VBQ0UseUJBQUE7QUNBSjtBREdFO0VBQ0Usc0JBQUE7RUFDQSx5QkFBQTtBQ0RKO0FER0k7RUFDRSxjQUFBO0FDRE47QURFTTtFQUNFLGdCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxvQkFBQTtFQUNBLDRCQUFBO0VBQ0EscUJBQUE7RUFDQSxjQUFBO0FDQVI7QURHSTtFQUNFLGdCQUFBO0FDRE47QURLRTtFQUNFLGtCQUFBO0FDSEo7QURLSTtFQUNFLGtCQUFBO0VBQ0EsZUFBQTtFQUNBLE1BQUE7RUFDQSxPQUFBO0VBQ0EsaUJBQUE7RUFDQSxZQUFBO0VBQ0EsMkJBQUE7RUFDQSxVQUFBO0FDSE47QURNSTtFQUNFLFlBQUE7RUFDQSxrQkFBQTtFQUNBLDJCQUFBO0VBQ0EsT0FBQTtFQUNBLGdCQUFBO0VBQ0EsWUFBQTtFQUNBLFdBQUE7RUFDQSxnQ0FBQTtVQUFBLHdCQUFBO0VBQ0EsV0FBQTtBQ0pOO0FET0k7RUFDRSxxQ0FBQTtBQ0xOO0FEYUU7RUFDRSx5QkFBQTtBQ1ZKO0FEY0E7RUFDRSw2QkFBQTtFQUNBLGFBQUE7RUFDQSxXQUFBO0VBQ0EsVUFBQTtFQUNBLGdDQUFBO0FDWEY7QURlQztFQUNDLGtCQUFBO0VBQ0EsWUFBQTtFQUNFLFdBQUE7RUFDQSxrQkFBQTtBQ1pKO0FEZUU7RUFDQyxvQkFBQTtBQ2JIIiwiZmlsZSI6InNyYy9hcHAvaG9tZS9ob21lLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5pdGVtTGlzdHtcbiAgaW9uLWdyaWQge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmNWY1ZjU7XG4gIH1cblxuICAuaXRlbXtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xuICAgIGJvcmRlcjogNHB4IHNvbGlkICNmNWY1ZjU7XG5cbiAgICBpb24tdGV4dHtcbiAgICAgIHBhZGRpbmc6IDAgNXB4O1xuICAgICAgaDV7XG4gICAgICAgIG1hcmdpbjogMnB4IGF1dG87XG4gICAgICAgIG92ZXJmbG93OiBoaWRkZW47XG4gICAgICAgIGRpc3BsYXk6IC13ZWJraXQtYm94O1xuICAgICAgICAtd2Via2l0LWJveC1vcmllbnQ6IHZlcnRpY2FsOyAgXG4gICAgICAgIC13ZWJraXQtbGluZS1jbGFtcDogMjtcbiAgICAgICAgZm9udC1zaXplOiAxZW07XG4gICAgICB9XG4gICAgfVxuICAgIC5wcmljZXtcbiAgICAgIGNvbG9yOiBmaXJlYnJpY2s7XG4gICAgfVxuICB9XG5cbiAgLmJhZGdlSG9sZGVye1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcblxuICAgIC5iaWRCYWRnZXtcbiAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgIGZvbnQtc2l6ZTogMTJweDtcbiAgICAgIHRvcDogMDtcbiAgICAgIGxlZnQ6IDA7XG4gICAgICBwYWRkaW5nOiA1cHggMTBweDtcbiAgICAgIGNvbG9yOiB3aGl0ZTtcbiAgICAgIGJhY2tncm91bmQtY29sb3I6IGZpcmVicmljaztcbiAgICAgIHotaW5kZXg6IDI7XG4gICAgfVxuXG4gICAgLmJpZEJhZGdlOjphZnRlcntcbiAgICAgIGNvbnRlbnQ6IFwiIFwiO1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYmFja2dyb3VuZC1jb2xvcjogZmlyZWJyaWNrO1xuICAgICAgdG9wOiAxMjtcbiAgICAgIG1hcmdpbi1sZWZ0OiAycHg7XG4gICAgICBoZWlnaHQ6IDE2cHg7XG4gICAgICB3aWR0aDogMTZweDtcbiAgICAgIHRyYW5zZm9ybTogcm90YXRlKDQ1ZGVnKTtcbiAgICAgIHotaW5kZXg6IC0xO1xuICAgIH1cblxuICAgIC5iYWRnZS1zdWNjZXNzLCAuYmFkZ2Utc3VjY2Vzczo6YWZ0ZXJ7XG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiBzZWFncmVlbiAhaW1wb3J0YW50O1xuICAgIH1cbiAgICBcbiAgfVxuICBcbn1cblxuaW9uLWxpc3R7XG4gIGlvbi1sYWJlbHtcbiAgICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xuICB9XG59XG5cbi5zZWFyY2hSZXN1bHR7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZSAhaW1wb3J0YW50OyBcbiAgei1pbmRleDogOTk5OTsgXG4gIHdpZHRoOiAxMDAlOyBcbiAgdG9wOiAxMTBweDtcbiAgYm94LXNoYWRvdzogNXB4IDEwcHggOHB4ICM4ODg4ODg7XG59XG5cbiNub3RpZmljYXRpb24tYnV0dG9uIHtcblx0aW9uLWJhZGdlIHtcblx0XHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdFx0dG9wOiAtMC4ycmVtO1xuICAgIHJpZ2h0OiAxcmVtO1xuICAgIGJvcmRlci1yYWRpdXM6IDUwJTtcbiAgICBcblxuXHRcdCYgfiBpb24taWNvbiB7XG5cdFx0XHRtYXJnaW4tcmlnaHQ6IDEuMnJlbTtcblx0XHR9XG5cdH1cbn0iLCIuaXRlbUxpc3QgaW9uLWdyaWQge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjVmNWY1O1xufVxuLml0ZW1MaXN0IC5pdGVtIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcbiAgYm9yZGVyOiA0cHggc29saWQgI2Y1ZjVmNTtcbn1cbi5pdGVtTGlzdCAuaXRlbSBpb24tdGV4dCB7XG4gIHBhZGRpbmc6IDAgNXB4O1xufVxuLml0ZW1MaXN0IC5pdGVtIGlvbi10ZXh0IGg1IHtcbiAgbWFyZ2luOiAycHggYXV0bztcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgZGlzcGxheTogLXdlYmtpdC1ib3g7XG4gIC13ZWJraXQtYm94LW9yaWVudDogdmVydGljYWw7XG4gIC13ZWJraXQtbGluZS1jbGFtcDogMjtcbiAgZm9udC1zaXplOiAxZW07XG59XG4uaXRlbUxpc3QgLml0ZW0gLnByaWNlIHtcbiAgY29sb3I6IGZpcmVicmljaztcbn1cbi5pdGVtTGlzdCAuYmFkZ2VIb2xkZXIge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG59XG4uaXRlbUxpc3QgLmJhZGdlSG9sZGVyIC5iaWRCYWRnZSB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgZm9udC1zaXplOiAxMnB4O1xuICB0b3A6IDA7XG4gIGxlZnQ6IDA7XG4gIHBhZGRpbmc6IDVweCAxMHB4O1xuICBjb2xvcjogd2hpdGU7XG4gIGJhY2tncm91bmQtY29sb3I6IGZpcmVicmljaztcbiAgei1pbmRleDogMjtcbn1cbi5pdGVtTGlzdCAuYmFkZ2VIb2xkZXIgLmJpZEJhZGdlOjphZnRlciB7XG4gIGNvbnRlbnQ6IFwiIFwiO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGJhY2tncm91bmQtY29sb3I6IGZpcmVicmljaztcbiAgdG9wOiAxMjtcbiAgbWFyZ2luLWxlZnQ6IDJweDtcbiAgaGVpZ2h0OiAxNnB4O1xuICB3aWR0aDogMTZweDtcbiAgdHJhbnNmb3JtOiByb3RhdGUoNDVkZWcpO1xuICB6LWluZGV4OiAtMTtcbn1cbi5pdGVtTGlzdCAuYmFkZ2VIb2xkZXIgLmJhZGdlLXN1Y2Nlc3MsIC5pdGVtTGlzdCAuYmFkZ2VIb2xkZXIgLmJhZGdlLXN1Y2Nlc3M6OmFmdGVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogc2VhZ3JlZW4gIWltcG9ydGFudDtcbn1cblxuaW9uLWxpc3QgaW9uLWxhYmVsIHtcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbn1cblxuLnNlYXJjaFJlc3VsdCB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZSAhaW1wb3J0YW50O1xuICB6LWluZGV4OiA5OTk5O1xuICB3aWR0aDogMTAwJTtcbiAgdG9wOiAxMTBweDtcbiAgYm94LXNoYWRvdzogNXB4IDEwcHggOHB4ICM4ODg4ODg7XG59XG5cbiNub3RpZmljYXRpb24tYnV0dG9uIGlvbi1iYWRnZSB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgdG9wOiAtMC4ycmVtO1xuICByaWdodDogMXJlbTtcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xufVxuI25vdGlmaWNhdGlvbi1idXR0b24gaW9uLWJhZGdlIH4gaW9uLWljb24ge1xuICBtYXJnaW4tcmlnaHQ6IDEuMnJlbTtcbn0iXX0= */"
-
-/***/ }),
-
-/***/ "./src/app/services/products.service.ts":
-/*!**********************************************!*\
-  !*** ./src/app/services/products.service.ts ***!
-  \**********************************************/
-/*! exports provided: ProductsService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductsService", function() { return ProductsService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _env_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./env.service */ "./src/app/services/env.service.ts");
-
-
-
-
-var ProductsService = /** @class */ (function () {
-    function ProductsService(route, env) {
-        this.route = route;
-        this.env = env;
-    }
-    ProductsService.prototype.getProductsFromCategory = function (id, index, accountStatus) {
-        return this.route.get(this.env.API_URL + 'category/' + id + '/products?index=' + index + "&accountStatus=" + accountStatus);
-    };
-    ProductsService.prototype.getProductsFromCompany = function (id, index, accountStatus) {
-        return this.route.get(this.env.API_URL + 'company/' + id + '/products?index=' + index + "&accountStatus=" + accountStatus);
-    };
-    ProductsService.prototype.getCategories = function () {
-        return this.route.get(this.env.API_URL + 'category');
-    };
-    ProductsService.prototype.getCompanies = function () {
-        return this.route.get(this.env.API_URL + 'branch');
-    };
-    ProductsService.prototype.getDisplayItems = function (index) {
-        return this.route.get(this.env.API_URL + 'product/displays?index=' + index);
-    };
-    ProductsService.prototype.getAuctionItems = function (index) {
-        return this.route.get(this.env.API_URL + 'product/auctions?index=' + index);
-    };
-    ProductsService.prototype.getAuctionItemDetails = function (id) {
-        return this.route.get(this.env.API_URL + 'product/' + id + '/auction');
-    };
-    ProductsService.prototype.getAuctionItemBiddings = function (id, userID) {
-        return this.route.get(this.env.API_URL + 'product/' + id + '/biddings?userID=' + userID);
-    };
-    ProductsService.prototype.postBid = function (id, userID, amount) {
-        return this.route.post(this.env.API_URL + 'product/' + id + '/bid', {
-            userID: userID, amount: amount
-        });
-    };
-    ProductsService.prototype.getDisplayItemDetails = function (id, userID) {
-        return this.route.get(this.env.API_URL + 'product/' + id + '/display?userID=' + userID);
-    };
-    ProductsService.prototype.postRate = function (id, userID, rate) {
-        return this.route.post(this.env.API_URL + 'product/' + id + '/rate?userID=' + userID, rate);
-    };
-    ProductsService.prototype.getSearchProduct = function (query) {
-        return this.route.get(this.env.API_URL + 'product/search?query=' + query);
-    };
-    ProductsService.prototype.getUserBiddings = function (userID) {
-        return this.route.get(this.env.API_URL + 'bidders/biddings?userID=' + userID);
-    };
-    ProductsService.ctorParameters = function () { return [
-        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
-        { type: _env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"] }
-    ]; };
-    ProductsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"]])
-    ], ProductsService);
-    return ProductsService;
-}());
-
-
 
 /***/ }),
 
