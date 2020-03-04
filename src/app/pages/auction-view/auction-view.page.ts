@@ -208,6 +208,7 @@ export class AuctionViewPage implements OnInit {
 
   bidNow() {
     this.presentModal();
+    console.log("hey");
   }
 
   timeLeft(serverTime, auctionTime) {

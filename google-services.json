@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "564582188094",
+    "firebase_url": "https://online-auction-85ce1.firebaseio.com",
+    "project_id": "online-auction-85ce1",
+    "storage_bucket": "online-auction-85ce1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:564582188094:android:ca1687542b75788f25bd6f",
+        "android_client_info": {
+          "package_name": "com.onlineauction.auction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "564582188094-9n8jrj3u94ju38s2skrojmeoi9p7fqfm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvrvZKjm039zskhAfPYSaRg-otsKKZv-o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "564582188094-9n8jrj3u94ju38s2skrojmeoi9p7fqfm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

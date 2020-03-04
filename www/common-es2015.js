@@ -1120,17 +1120,17 @@ let ProfileService = class ProfileService {
         this.env = env;
     }
     register(user) {
-        return this.http.post(this.env.API_URL + 'bidder/register', {
+        return this.http.post(this.env.API_URL + "bidder/register", {
             UserName: user.username,
             Password: user.password,
             Bdate: user.Bdate
         });
     }
     checkUsernameAvailability(username) {
-        return this.http.get(this.env.API_URL + 'bidder/username/check?username=' + username);
+        return this.http.get(this.env.API_URL + "bidder/username/check?username=" + username);
     }
     updateProfile(id, profile) {
-        return this.http.put(this.env.API_URL + 'bidder/profile/' + id + "/update/", profile);
+        return this.http.put(this.env.API_URL + "bidder/profile/" + id + "/update/", profile);
     }
     saveImage(id, imageBase64, type) {
         return this.http.post(this.env.API_URL + "bidder/profile/" + id + "/image", {
@@ -1139,27 +1139,30 @@ let ProfileService = class ProfileService {
         });
     }
     getUserData(id) {
-        return this.http.get(this.env.API_URL + 'bidder/profile/' + id);
+        return this.http.get(this.env.API_URL + "bidder/profile/" + id);
     }
     checkCardImage(id) {
-        return this.http.get(this.env.API_URL + 'bidder/checkcardimage?id=' + id);
+        return this.http.get(this.env.API_URL + "bidder/checkcardimage?id=" + id);
     }
     updatePassword(id, oldPassword, newPassword) {
-        return this.http.put(this.env.API_URL + 'profile/' + id + '/updatePassword', {
+        return this.http.put(this.env.API_URL + "profile/" + id + "/updatePassword", {
             oldPassword: oldPassword,
             newPassword: newPassword
         });
     }
     checkTokenValidity(id, token) {
-        return this.http.get(this.env.API_URL + 'profile/' + id + '/checktoken?token=' + token);
+        return this.http.get(this.env.API_URL + "profile/" + id + "/checktoken?token=" + token);
     }
     registerFCMToken(id, token) {
-        return this.http.post(this.env.API_URL + 'profile/' + id + '/token', {
+        return this.http.post(this.env.API_URL + "profile/" + id + "/token", {
             token: token
         });
     }
     notifs(id) {
-        return this.http.get(this.env.API_URL + 'profile/' + id + '/notifs');
+        return this.http.get(this.env.API_URL + "profile/" + id + "/notifs");
+    }
+    seen(id) {
+        return this.http.post(this.env.API_URL + "seen", id);
     }
 };
 ProfileService.ctorParameters = () => [
@@ -1168,7 +1171,7 @@ ProfileService.ctorParameters = () => [
 ];
 ProfileService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
+        providedIn: "root"
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _env_service__WEBPACK_IMPORTED_MODULE_3__["EnvService"]])
 ], ProfileService);

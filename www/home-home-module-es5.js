@@ -111,6 +111,7 @@ var HomePage = /** @class */ (function () {
         this.searchResults = [];
         this.didUserSearch = false;
         this.currItemStatus = 1;
+        this.notifCount = 0;
         this.categorySliderOpts = {
             sliderOpts: {
                 slidesPerView: 2
@@ -214,7 +215,11 @@ var HomePage = /** @class */ (function () {
         this.fetchNotif = this.profileService
             .notifs(this.user.id)
             .subscribe(function (data) {
-            _this.notifCount = Object.keys(data).length;
+            for (var _i = 0, _a = Object.keys(data); _i < _a.length; _i++) {
+                var i = _a[_i];
+                if (!data[i].seen)
+                    _this.notifCount++;
+            }
         });
     };
     HomePage.prototype.fetchDisplay = function () {

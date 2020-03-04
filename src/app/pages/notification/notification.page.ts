@@ -36,24 +36,27 @@ export class NotificationPage implements OnInit {
       .subscribe(data => {
         if (Object.keys(data).length > 0) {
           for (let i in data) {
+            data[i].notifColor = data[i].seen != true ? "light" : "";
+            console.log(data[i]);
             this.items.push(data[i]);
           }
         }
       });
   }
   goToView(item) {
-    let data = {
-      name: item.ProductName,
-      id: item.ProductId,
-      status: 1
-    };
+    this.profileService.seen(item.id).subscribe(e => {
+      let data = {
+        name: item.ProductName,
+        id: item.ProductId
+      };
 
-    let params = {
-      queryParams: {
-        q: JSON.stringify(data)
-      }
-    };
-    this.nav.navigateRoot(["/item-view"], params);
+      let params = {
+        queryParams: {
+          q: JSON.stringify(data)
+        }
+      };
+      this.nav.navigateRoot(["/auction-view"], params);
+    });
   }
 
   ionViewDidLeave() {

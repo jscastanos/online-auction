@@ -108,6 +108,7 @@ let HomePage = class HomePage {
         this.searchResults = [];
         this.didUserSearch = false;
         this.currItemStatus = 1;
+        this.notifCount = 0;
         this.categorySliderOpts = {
             sliderOpts: {
                 slidesPerView: 2
@@ -208,7 +209,10 @@ let HomePage = class HomePage {
         this.fetchNotif = this.profileService
             .notifs(this.user.id)
             .subscribe(data => {
-            this.notifCount = Object.keys(data).length;
+            for (let i of Object.keys(data)) {
+                if (!data[i].seen)
+                    this.notifCount++;
+            }
         });
     }
     fetchDisplay() {

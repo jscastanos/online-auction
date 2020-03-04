@@ -537,78 +537,78 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     //APP
     {
-        path: '',
+        path: "",
         component: _layout_app_layout_app_layout_component__WEBPACK_IMPORTED_MODULE_3__["AppLayoutComponent"],
         children: [
             {
-                path: '',
+                path: "",
                 loadChildren: () => Promise.all(/*! import() | home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null, /*! ./home/home.module */ "./src/app/home/home.module.ts")).then(m => m.HomePageModule)
             },
             {
-                path: 'home',
+                path: "home",
                 loadChildren: () => Promise.all(/*! import() | home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null, /*! ./home/home.module */ "./src/app/home/home.module.ts")).then(m => m.HomePageModule)
             },
             {
-                path: 'list',
+                path: "list",
                 loadChildren: () => Promise.all(/*! import() | pages-list-list-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-list-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/list/list.module */ "./src/app/pages/list/list.module.ts")).then(m => m.ListPageModule)
             },
             {
-                path: 'company-view',
+                path: "company-view",
                 loadChildren: () => Promise.all(/*! import() | pages-company-view-company-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-company-view-company-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/company-view/company-view.module */ "./src/app/pages/company-view/company-view.module.ts")).then(m => m.CompanyViewPageModule)
             },
             {
-                path: 'category-view',
+                path: "category-view",
                 loadChildren: () => Promise.all(/*! import() | pages-category-view-category-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-category-view-category-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/category-view/category-view.module */ "./src/app/pages/category-view/category-view.module.ts")).then(m => m.CategoryViewPageModule)
             },
             {
-                path: 'profile',
+                path: "profile",
                 loadChildren: () => Promise.all(/*! import() | pages-profile-profile-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/profile/profile.module */ "./src/app/pages/profile/profile.module.ts")).then(m => m.ProfilePageModule)
             },
             {
-                path: 'item-view',
+                path: "item-view",
                 loadChildren: () => Promise.all(/*! import() | pages-item-view-item-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-item-view-item-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/item-view/item-view.module */ "./src/app/pages/item-view/item-view.module.ts")).then(m => m.ItemViewPageModule)
             },
             {
-                path: 'bid-view',
+                path: "bid-view",
                 loadChildren: () => __webpack_require__.e(/*! import() | pages-bid-view-bid-view-module */ "common").then(__webpack_require__.bind(null, /*! ./pages/bid-view/bid-view.module */ "./src/app/pages/bid-view/bid-view.module.ts")).then(m => m.BidViewPageModule)
             },
             {
-                path: 'notification',
+                path: "notification",
                 loadChildren: () => Promise.all(/*! import() | pages-notification-notification-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-notification-notification-module")]).then(__webpack_require__.bind(null, /*! ./pages/notification/notification.module */ "./src/app/pages/notification/notification.module.ts")).then(m => m.NotificationPageModule)
             },
+            {
+                path: "auction-view",
+                loadChildren: () => Promise.all(/*! import() | pages-auction-view-auction-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-auction-view-auction-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/auction-view/auction-view.module */ "./src/app/pages/auction-view/auction-view.module.ts")).then(m => m.AuctionViewPageModule)
+            }
         ]
     },
     //AUTH
     {
-        path: '',
+        path: "",
         component: _layout_auth_layout_auth_layout_component__WEBPACK_IMPORTED_MODULE_4__["AuthLayoutComponent"],
         children: [
             {
-                path: 'register',
+                path: "register",
                 loadChildren: () => Promise.all(/*! import() | auth-register-register-module */[__webpack_require__.e("default~auth-register-register-module~pages-terms-and-conditions-terms-and-conditions-module"), __webpack_require__.e("common"), __webpack_require__.e("auth-register-register-module")]).then(__webpack_require__.bind(null, /*! ./auth/register/register.module */ "./src/app/auth/register/register.module.ts")).then(m => m.RegisterPageModule)
             },
             {
-                path: 'login',
+                path: "login",
                 loadChildren: () => Promise.all(/*! import() | auth-login-login-module */[__webpack_require__.e("common"), __webpack_require__.e("auth-login-login-module")]).then(__webpack_require__.bind(null, /*! ./auth/login/login.module */ "./src/app/auth/login/login.module.ts")).then(m => m.LoginPageModule)
             },
             {
-                path: 'getting-started',
+                path: "getting-started",
                 loadChildren: () => Promise.all(/*! import() | auth-getting-started-getting-started-module */[__webpack_require__.e("common"), __webpack_require__.e("auth-getting-started-getting-started-module")]).then(__webpack_require__.bind(null, /*! ./auth/getting-started/getting-started.module */ "./src/app/auth/getting-started/getting-started.module.ts")).then(m => m.GettingStartedPageModule)
             },
             {
-                path: 'terms-and-conditions',
+                path: "terms-and-conditions",
                 loadChildren: () => __webpack_require__.e(/*! import() | pages-terms-and-conditions-terms-and-conditions-module */ "default~auth-register-register-module~pages-terms-and-conditions-terms-and-conditions-module").then(__webpack_require__.bind(null, /*! ./pages/terms-and-conditions/terms-and-conditions.module */ "./src/app/pages/terms-and-conditions/terms-and-conditions.module.ts")).then(m => m.TermsAndConditionsPageModule)
             },
             {
-                path: 'bidder-supporting-id',
+                path: "bidder-supporting-id",
                 loadChildren: () => Promise.all(/*! import() | pages-bidder-supporting-id-bidder-supporting-id-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-bidder-supporting-id-bidder-supporting-id-module")]).then(__webpack_require__.bind(null, /*! ./pages/bidder-supporting-id/bidder-supporting-id.module */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.module.ts")).then(m => m.BidderSupportingIdPageModule)
-            },
+            }
         ]
-    },
-    {
-        path: 'auction-view',
-        loadChildren: () => Promise.all(/*! import() | pages-auction-view-auction-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-auction-view-auction-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/auction-view/auction-view.module */ "./src/app/pages/auction-view/auction-view.module.ts")).then(m => m.AuctionViewPageModule)
-    },
+    }
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -1013,8 +1013,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let EnvService = class EnvService {
-    // URL = "http://localhost:69/";
-    // API_URL = "http://localhost:69/api/";
+    //  URL = "http://localhost:69/";
+    //  API_URL = "http://localhost:69/api/";
     constructor() {
         this.URL = "http://onlineauction-001-site1.dtempurl.com/";
         this.API_URL = "http://onlineauction-001-site1.dtempurl.com/api/";

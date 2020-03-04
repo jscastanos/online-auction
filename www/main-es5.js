@@ -543,78 +543,108 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     //APP
     {
-        path: '',
+        path: "",
         component: _layout_app_layout_app_layout_component__WEBPACK_IMPORTED_MODULE_3__["AppLayoutComponent"],
         children: [
             {
-                path: '',
-                loadChildren: function () { return Promise.all(/*! import() | home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null, /*! ./home/home.module */ "./src/app/home/home.module.ts")).then(function (m) { return m.HomePageModule; }); }
+                path: "",
+                loadChildren: function () {
+                    return Promise.all(/*! import() | home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null, /*! ./home/home.module */ "./src/app/home/home.module.ts")).then(function (m) { return m.HomePageModule; });
+                }
             },
             {
-                path: 'home',
-                loadChildren: function () { return Promise.all(/*! import() | home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null, /*! ./home/home.module */ "./src/app/home/home.module.ts")).then(function (m) { return m.HomePageModule; }); }
+                path: "home",
+                loadChildren: function () {
+                    return Promise.all(/*! import() | home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null, /*! ./home/home.module */ "./src/app/home/home.module.ts")).then(function (m) { return m.HomePageModule; });
+                }
             },
             {
-                path: 'list',
-                loadChildren: function () { return __webpack_require__.e(/*! import() | pages-list-list-module */ "pages-list-list-module").then(__webpack_require__.bind(null, /*! ./pages/list/list.module */ "./src/app/pages/list/list.module.ts")).then(function (m) { return m.ListPageModule; }); }
+                path: "list",
+                loadChildren: function () {
+                    return __webpack_require__.e(/*! import() | pages-list-list-module */ "pages-list-list-module").then(__webpack_require__.bind(null, /*! ./pages/list/list.module */ "./src/app/pages/list/list.module.ts")).then(function (m) { return m.ListPageModule; });
+                }
             },
             {
-                path: 'company-view',
-                loadChildren: function () { return Promise.all(/*! import() | pages-company-view-company-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-company-view-company-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/company-view/company-view.module */ "./src/app/pages/company-view/company-view.module.ts")).then(function (m) { return m.CompanyViewPageModule; }); }
+                path: "company-view",
+                loadChildren: function () {
+                    return Promise.all(/*! import() | pages-company-view-company-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-company-view-company-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/company-view/company-view.module */ "./src/app/pages/company-view/company-view.module.ts")).then(function (m) { return m.CompanyViewPageModule; });
+                }
             },
             {
-                path: 'category-view',
-                loadChildren: function () { return Promise.all(/*! import() | pages-category-view-category-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-category-view-category-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/category-view/category-view.module */ "./src/app/pages/category-view/category-view.module.ts")).then(function (m) { return m.CategoryViewPageModule; }); }
+                path: "category-view",
+                loadChildren: function () {
+                    return Promise.all(/*! import() | pages-category-view-category-view-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-category-view-category-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/category-view/category-view.module */ "./src/app/pages/category-view/category-view.module.ts")).then(function (m) { return m.CategoryViewPageModule; });
+                }
             },
             {
-                path: 'profile',
-                loadChildren: function () { return Promise.all(/*! import() | pages-profile-profile-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/profile/profile.module */ "./src/app/pages/profile/profile.module.ts")).then(function (m) { return m.ProfilePageModule; }); }
+                path: "profile",
+                loadChildren: function () {
+                    return Promise.all(/*! import() | pages-profile-profile-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/profile/profile.module */ "./src/app/pages/profile/profile.module.ts")).then(function (m) { return m.ProfilePageModule; });
+                }
             },
             {
-                path: 'item-view',
-                loadChildren: function () { return __webpack_require__.e(/*! import() | pages-item-view-item-view-module */ "pages-item-view-item-view-module").then(__webpack_require__.bind(null, /*! ./pages/item-view/item-view.module */ "./src/app/pages/item-view/item-view.module.ts")).then(function (m) { return m.ItemViewPageModule; }); }
+                path: "item-view",
+                loadChildren: function () {
+                    return __webpack_require__.e(/*! import() | pages-item-view-item-view-module */ "pages-item-view-item-view-module").then(__webpack_require__.bind(null, /*! ./pages/item-view/item-view.module */ "./src/app/pages/item-view/item-view.module.ts")).then(function (m) { return m.ItemViewPageModule; });
+                }
             },
             {
-                path: 'bid-view',
-                loadChildren: function () { return __webpack_require__.e(/*! import() | pages-bid-view-bid-view-module */ "default~pages-auction-view-auction-view-module~pages-bid-view-bid-view-module").then(__webpack_require__.bind(null, /*! ./pages/bid-view/bid-view.module */ "./src/app/pages/bid-view/bid-view.module.ts")).then(function (m) { return m.BidViewPageModule; }); }
+                path: "bid-view",
+                loadChildren: function () {
+                    return __webpack_require__.e(/*! import() | pages-bid-view-bid-view-module */ "default~pages-auction-view-auction-view-module~pages-bid-view-bid-view-module").then(__webpack_require__.bind(null, /*! ./pages/bid-view/bid-view.module */ "./src/app/pages/bid-view/bid-view.module.ts")).then(function (m) { return m.BidViewPageModule; });
+                }
             },
             {
-                path: 'notification',
-                loadChildren: function () { return Promise.all(/*! import() | pages-notification-notification-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-notification-notification-module")]).then(__webpack_require__.bind(null, /*! ./pages/notification/notification.module */ "./src/app/pages/notification/notification.module.ts")).then(function (m) { return m.NotificationPageModule; }); }
+                path: "notification",
+                loadChildren: function () {
+                    return Promise.all(/*! import() | pages-notification-notification-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-notification-notification-module")]).then(__webpack_require__.bind(null, /*! ./pages/notification/notification.module */ "./src/app/pages/notification/notification.module.ts")).then(function (m) { return m.NotificationPageModule; });
+                }
             },
+            {
+                path: "auction-view",
+                loadChildren: function () {
+                    return Promise.all(/*! import() | pages-auction-view-auction-view-module */[__webpack_require__.e("default~pages-auction-view-auction-view-module~pages-bid-view-bid-view-module"), __webpack_require__.e("pages-auction-view-auction-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/auction-view/auction-view.module */ "./src/app/pages/auction-view/auction-view.module.ts")).then(function (m) { return m.AuctionViewPageModule; });
+                }
+            }
         ]
     },
     //AUTH
     {
-        path: '',
+        path: "",
         component: _layout_auth_layout_auth_layout_component__WEBPACK_IMPORTED_MODULE_4__["AuthLayoutComponent"],
         children: [
             {
-                path: 'register',
-                loadChildren: function () { return Promise.all(/*! import() | auth-register-register-module */[__webpack_require__.e("default~auth-register-register-module~pages-terms-and-conditions-terms-and-conditions-module"), __webpack_require__.e("common"), __webpack_require__.e("auth-register-register-module")]).then(__webpack_require__.bind(null, /*! ./auth/register/register.module */ "./src/app/auth/register/register.module.ts")).then(function (m) { return m.RegisterPageModule; }); }
+                path: "register",
+                loadChildren: function () {
+                    return Promise.all(/*! import() | auth-register-register-module */[__webpack_require__.e("default~auth-register-register-module~pages-terms-and-conditions-terms-and-conditions-module"), __webpack_require__.e("common"), __webpack_require__.e("auth-register-register-module")]).then(__webpack_require__.bind(null, /*! ./auth/register/register.module */ "./src/app/auth/register/register.module.ts")).then(function (m) { return m.RegisterPageModule; });
+                }
             },
             {
-                path: 'login',
-                loadChildren: function () { return Promise.all(/*! import() | auth-login-login-module */[__webpack_require__.e("common"), __webpack_require__.e("auth-login-login-module")]).then(__webpack_require__.bind(null, /*! ./auth/login/login.module */ "./src/app/auth/login/login.module.ts")).then(function (m) { return m.LoginPageModule; }); }
+                path: "login",
+                loadChildren: function () {
+                    return Promise.all(/*! import() | auth-login-login-module */[__webpack_require__.e("common"), __webpack_require__.e("auth-login-login-module")]).then(__webpack_require__.bind(null, /*! ./auth/login/login.module */ "./src/app/auth/login/login.module.ts")).then(function (m) { return m.LoginPageModule; });
+                }
             },
             {
-                path: 'getting-started',
-                loadChildren: function () { return Promise.all(/*! import() | auth-getting-started-getting-started-module */[__webpack_require__.e("common"), __webpack_require__.e("auth-getting-started-getting-started-module")]).then(__webpack_require__.bind(null, /*! ./auth/getting-started/getting-started.module */ "./src/app/auth/getting-started/getting-started.module.ts")).then(function (m) { return m.GettingStartedPageModule; }); }
+                path: "getting-started",
+                loadChildren: function () {
+                    return Promise.all(/*! import() | auth-getting-started-getting-started-module */[__webpack_require__.e("common"), __webpack_require__.e("auth-getting-started-getting-started-module")]).then(__webpack_require__.bind(null, /*! ./auth/getting-started/getting-started.module */ "./src/app/auth/getting-started/getting-started.module.ts")).then(function (m) { return m.GettingStartedPageModule; });
+                }
             },
             {
-                path: 'terms-and-conditions',
-                loadChildren: function () { return __webpack_require__.e(/*! import() | pages-terms-and-conditions-terms-and-conditions-module */ "default~auth-register-register-module~pages-terms-and-conditions-terms-and-conditions-module").then(__webpack_require__.bind(null, /*! ./pages/terms-and-conditions/terms-and-conditions.module */ "./src/app/pages/terms-and-conditions/terms-and-conditions.module.ts")).then(function (m) { return m.TermsAndConditionsPageModule; }); }
+                path: "terms-and-conditions",
+                loadChildren: function () {
+                    return __webpack_require__.e(/*! import() | pages-terms-and-conditions-terms-and-conditions-module */ "default~auth-register-register-module~pages-terms-and-conditions-terms-and-conditions-module").then(__webpack_require__.bind(null, /*! ./pages/terms-and-conditions/terms-and-conditions.module */ "./src/app/pages/terms-and-conditions/terms-and-conditions.module.ts")).then(function (m) { return m.TermsAndConditionsPageModule; });
+                }
             },
             {
-                path: 'bidder-supporting-id',
-                loadChildren: function () { return Promise.all(/*! import() | pages-bidder-supporting-id-bidder-supporting-id-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-bidder-supporting-id-bidder-supporting-id-module")]).then(__webpack_require__.bind(null, /*! ./pages/bidder-supporting-id/bidder-supporting-id.module */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.module.ts")).then(function (m) { return m.BidderSupportingIdPageModule; }); }
-            },
+                path: "bidder-supporting-id",
+                loadChildren: function () {
+                    return Promise.all(/*! import() | pages-bidder-supporting-id-bidder-supporting-id-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-bidder-supporting-id-bidder-supporting-id-module")]).then(__webpack_require__.bind(null, /*! ./pages/bidder-supporting-id/bidder-supporting-id.module */ "./src/app/pages/bidder-supporting-id/bidder-supporting-id.module.ts")).then(function (m) { return m.BidderSupportingIdPageModule; });
+                }
+            }
         ]
-    },
-    {
-        path: 'auction-view',
-        loadChildren: function () { return Promise.all(/*! import() | pages-auction-view-auction-view-module */[__webpack_require__.e("default~pages-auction-view-auction-view-module~pages-bid-view-bid-view-module"), __webpack_require__.e("pages-auction-view-auction-view-module")]).then(__webpack_require__.bind(null, /*! ./pages/auction-view/auction-view.module */ "./src/app/pages/auction-view/auction-view.module.ts")).then(function (m) { return m.AuctionViewPageModule; }); }
-    },
+    }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1042,8 +1072,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var EnvService = /** @class */ (function () {
-    // URL = "http://localhost:69/";
-    // API_URL = "http://localhost:69/api/";
+    //  URL = "http://localhost:69/";
+    //  API_URL = "http://localhost:69/api/";
     function EnvService() {
         this.URL = "http://onlineauction-001-site1.dtempurl.com/";
         this.API_URL = "http://onlineauction-001-site1.dtempurl.com/api/";

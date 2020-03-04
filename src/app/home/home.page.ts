@@ -37,7 +37,7 @@ export class HomePage implements OnInit {
 
   currItemStatus = 1;
 
-  notifCount;
+  notifCount = 0;
 
   categorySliderOpts = {
     sliderOpts: {
@@ -176,7 +176,9 @@ export class HomePage implements OnInit {
     this.fetchNotif = this.profileService
       .notifs(this.user.id)
       .subscribe(data => {
-        this.notifCount = Object.keys(data).length;
+        for (let i of Object.keys(data)) {
+          if (!data[i].seen) this.notifCount++;
+        }
       });
   }
 
