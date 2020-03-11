@@ -44,6 +44,7 @@ namespace OnlineAuction.Controllers
             {
                 u = Session["username"] != null ? Session["username"].ToString() : u;
                 var cu = db.tblUserManagements.SingleOrDefault(ur => ur.UserName == u && ur.Password == p);
+                var empl = db.tblEmployeesInfoes.SingleOrDefault(emp => emp.EmpId == cu.UsersId);
 
                 if (cu != null)
                 {
@@ -72,14 +73,14 @@ namespace OnlineAuction.Controllers
                         if (cu.Status == 1)
                         {
 
-                            var empl = db.tblEmployeesInfoes.SingleOrDefault(emp => emp.EmpId == cu.UsersId);
-                            Session["branchID"] = empl.BranchId;
+                        var empl = db.tblEmployeesInfoes.SingleOrDefault(emp => emp.EmpId == cu.UsersId);
+                        Session["branchID"] = empl.BranchId;
 
                             if (empl.MiddleName != null)
-                                Session["fullName"] = fullName(empl.FirstName, empl.MiddleName, empl.LastName);
-                            else
-                                Session["fullName"] = fullName(empl.FirstName, "", empl.LastName);
-                            return RedirectToAction("Index", "Dashboard");
+                            Session["fullName"] = fullName(empl.FirstName, empl.MiddleName, empl.LastName);
+                        else
+                            Session["fullName"] = fullName(empl.FirstName, "", empl.LastName);
+                        return RedirectToAction("Index", "Dashboard");
                         }
                         else
                         {
@@ -87,7 +88,7 @@ namespace OnlineAuction.Controllers
                             return RedirectToAction("Login", "Account");
                         }
 
-
+                       
                     }
                 }
                 else
@@ -109,27 +110,27 @@ namespace OnlineAuction.Controllers
             try
             {
 
-                var data = db.tblBiddersInfoes.SingleOrDefault(x => x.BiddersId == id);
-                byte[] img = null; 
+            var data = db.tblBiddersInfoes.SingleOrDefault(x => x.BiddersId == id);
+            byte[] img = null;
 
-                 switch (type)
-                 {
+            switch (type)
+            {
                      case 0: img = data.UserImg != null ? data.UserImg : null;
-                         break;
+                    break;
                      case 1: img = data.CardImgFront != null ? data.CardImgFront : null;
-                         break;
+                    break;
                      case 2: img = data.CardImgBack != null ? data.CardImgBack : null;
-                         break;
-                 }
+                    break;
+            }
 
-                if (img != null)
-                {
+            if (img != null)
+            {
                     return File(img, "image/png");
-                }
-                else
-                {
-                    return File("~/nophoto.png", "image/png");
-                }
+            }
+            else
+            {
+                return File("~/nophoto.png", "image/png");
+            }
             }
             catch (Exception e)
             {

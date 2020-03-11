@@ -1,4 +1,4 @@
-﻿
+
 
 app.controller("adminCtrl", ["$scope", "$http", "$timeout", function (s, h, t) {
     s.url = "../api/Bidders/";

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -37,7 +37,7 @@ namespace OnlineAuction.API
 
         [Route("api/AuctionItems/auctionData")]
         public IHttpActionResult GetAuctionData(int id, string key, string branchID)
-            {
+        {
             var data = db.vAuctionProducts.Where(a => a.rowNum > id && a.productStatus == 1 && a.BranchId == branchID);
 
             if (key != null && key != "")

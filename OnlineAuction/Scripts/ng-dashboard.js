@@ -1,4 +1,4 @@
-﻿app.controller('dashboard', ['$scope', '$http', '$timeout', function (s, h, t) {
+app.controller('dashboard', ['$scope', '$http', '$timeout', function (s, h, t) {
 
     s.title = "Dashboard";
     s.filter = {};
@@ -108,7 +108,7 @@
         },
      function (e) {
          swal(e);
-     });
+        });
     }
 
     $("#item").kendoComboBox({
