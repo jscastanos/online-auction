@@ -79,6 +79,7 @@ namespace OnlineAuction.API
                     d.AskPrice,
                     d.DateClosed,
                     d.DateTimeLimit,
+                    serverTime = DateTime.Now,
                     winner = db.tblBiddersInfoes.Where(w => w.BiddersId == d.WinnerId).Select(b => b.UserName).FirstOrDefault(),
                     product.ProductDescription,
                     branchName = db.tblBranchShops.Where(b => b.BranchId == product.BranchId).Select(bb => bb.BranchName).FirstOrDefault(),
@@ -99,7 +100,7 @@ namespace OnlineAuction.API
             var data = db.tblAuctionItems.Where(a => a.AuctionId == id)
                                          .Select(aa => new
                                          {
-                                             userBidPrice = db.tblBiddings.Where(b => b.BiddersId == userID && b.AuctionId == aa.AuctionId).Select(p => p.BidPrice).FirstOrDefault(),
+                                             userBidPrice = db.tblBiddings.Where(b => b.BiddersId == userID && b.AuctionId == aa.AuctionId).Select(p => p.BidPrice).OrderByDescending(o => o.Value).FirstOrDefault(),
                                              highestBidPrice = db.tblBiddings.Where(b => b.AuctionId == aa.AuctionId).OrderByDescending(o => o.BidPrice).Take(1).Select(p => p.BidPrice).FirstOrDefault(),
                                              bidList = db.tblBiddings.Where(b => b.AuctionId == aa.AuctionId).Select(bd => new
                                              {
@@ -108,11 +109,12 @@ namespace OnlineAuction.API
                                                  bd.DateCreated,
                                                  bidderName = db.tblBiddersInfoes.Where(b => b.BiddersId == bd.BiddersId).Select(bb => bb.UserName).FirstOrDefault(),
                                           
-                                             }).OrderByDescending(o => o.BidPrice).ToList(),
-                                             aa.WinnerId
+                                             }).OrderByDescending(o => o.BidPrice).ToList().Take(5),
+                                             aa.WinnerId,
+                                             aa.AskPrice
 
-                                         }).FirstOrDefault();
-
+                                         })
+                                         .FirstOrDefault();
             return Json(data);
         }
 
@@ -173,6 +175,7 @@ namespace OnlineAuction.API
 
 
         }
+
 
         [Route("api/product/auctions")]
         public IHttpActionResult GetAuctions(int index)
@@ -318,14 +321,27 @@ namespace OnlineAuction.API
                         join b in db.tblAuctionItems on a.auctionID equals b.AuctionId
                         join c in db.tblProducts on b.ProductId equals c.ProductId
                         where a.biddersID == id
-                        select new { 
+                        select new
+                        {
                             b.ProductId,
                             c.ProductName,
                             a.seen,
                             a.id
-                        }).ToList();
+                        }).OrderByDescending(o => o.id).ToList();
 
-            return Json(data);
+            return Json(data.Take(20));
+        }
+
+
+        [Route("api/seen")]
+        public IHttpActionResult PostSeen([FromBody] int id)
+        {
+            var data = db.tblNotifications.Where(i => i.id == id).FirstOrDefault();
+
+            data.seen = true;
+            db.SaveChanges();
+
+            return Json(1);
         }
 
     }

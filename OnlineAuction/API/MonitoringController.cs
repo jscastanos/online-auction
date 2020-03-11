@@ -18,10 +18,13 @@ namespace OnlineAuction.API
         private OnlineAuctionEntities db = new OnlineAuctionEntities();
 
 
-        private int getPendingCount()
+        private int getPendingCount(string branchId)
         {
             var dateNow = DateTime.Now;
-            var pendingCount = db.tblAuctionItems.Where(w => w.WinnerId == null && (w.DateTimeLimit < dateNow || w.Status == 1) && (db.tblBiddings.Where(b => b.AuctionId == w.AuctionId).Count()) > 0 && w.Status != 2).Count();
+            var pendingCount = db.tblAuctionItems.Where(w => w.WinnerId == null && (w.DateTimeLimit < dateNow || w.Status == 1) && (db.tblBiddings.Where(b => b.AuctionId == w.AuctionId).Count()) > 0 && w.Status != 2
+                  && (db.tblProducts.FirstOrDefault(x => x.ProductId == w.ProductId).BranchId == branchId)
+
+                ).Count();
             return pendingCount;
         }
         [Route("setwinner/{aID}/{bID}")]
@@ -49,8 +52,8 @@ namespace OnlineAuction.API
         }
 
 
-        [Route("auctionAction/{id}/{type}")]
-        public IHttpActionResult PostActionAuction(int id, int type)
+        [Route("auctionAction/{id}/{type}/{branchId}")]
+        public IHttpActionResult PostActionAuction(int id, int type, string branchId)
         {
             try
             {
@@ -58,8 +61,16 @@ namespace OnlineAuction.API
                 var data = db.tblAuctionItems.SingleOrDefault(a => a.recNo == id);
                 data.Status = type;
                 data.DateClosed = dateNow;
+
+                if (type == 2)
+                {
+                    var productData = db.tblProducts.Where(p => p.ProductId == data.ProductId).FirstOrDefault();
+                    productData.Status = 0;
+
+                }
+
                 db.SaveChanges();
-                var pendingCount = getPendingCount();
+                var pendingCount = getPendingCount(branchId);
                 return Json(new { stat = 1, pendingCount = pendingCount });
             }
             catch (Exception)
@@ -68,11 +79,13 @@ namespace OnlineAuction.API
             }
         }
 
-        [Route("auctioneditemshistory")]
-        public IHttpActionResult GetAuctionedItemsHistory()
+        [Route("auctioneditemshistory/{branchId}")]
+        public IHttpActionResult GetAuctionedItemsHistory(string branchId)
         {
             var dateNow = DateTime.Now;
-            var data = db.tblAuctionItems.Where(w => w.Status == 2 || w.WinnerId != null || ((w.DateTimeLimit < dateNow || w.Status == 1) && (db.tblBiddings.Where(b => b.AuctionId == w.AuctionId).Count()) == 0)).Select(s => new
+            var data = db.tblAuctionItems.Where(w => (w.Status == 2 || w.WinnerId != null || ((w.DateTimeLimit < dateNow || w.Status == 1) && (db.tblBiddings.Where(b => b.AuctionId == w.AuctionId).Count()) == 0))
+                && (db.tblProducts.FirstOrDefault(x=> x.ProductId == w.ProductId).BranchId == branchId)
+                ).Select(s => new
             {
                 s.recNo,
                 s.DateTimeLimit,
@@ -83,6 +96,7 @@ namespace OnlineAuction.API
                 s.AuctionId,
                 s.ProductId,
                 s.WinnerId,
+                WinnerBidPrice = db.tblBiddings.FirstOrDefault(f => f.BiddersId == s.WinnerId).BidPrice,
                 toDate = (s.Status == 1 || s.Status == 2) ? s.DateClosed : s.DateTimeLimit,
                 winnerInfo = db.tblBiddersInfoes.Where(f => f.BiddersId == s.WinnerId).Select(sss => new
                 {
@@ -94,7 +108,7 @@ namespace OnlineAuction.API
                     sss.ViolationCount
                 }).FirstOrDefault(),
                 productName = db.tblProducts.FirstOrDefault(f => f.ProductId == s.ProductId).ProductName,
-                bidders = db.tblBiddings.Where(ww => ww.AuctionId == s.AuctionId).Select(ss => new
+                bidders = db.tblBiddings.Where(ww => ww.AuctionId == s.AuctionId).OrderByDescending(o => o.BidPrice).GroupBy(g => g.BiddersId).Select(ss => ss.OrderByDescending(o => o.BidPrice).FirstOrDefault()).Select(ss => new
                 {
                     ss.recNo,
                     ss.AuctionId,
@@ -114,15 +128,17 @@ namespace OnlineAuction.API
                 }).Take(3)
             });
 
-            var pendingCount = getPendingCount();
+            var pendingCount = getPendingCount(branchId);
             return Json(new { d = data, st = DateTime.Now, pendingCount = pendingCount });
         }
 
-        [Route("pendingauctioneditems")]
-        public IHttpActionResult GetPendingAuctionedItems()
+        [Route("pendingauctioneditems/{branchId}")]
+        public IHttpActionResult GetPendingAuctionedItems(string branchId)
         {
             var dateNow = DateTime.Now;
-            var data = db.tblAuctionItems.Where(w => w.WinnerId == null && (w.DateTimeLimit < dateNow || w.Status == 1) && (db.tblBiddings.Where(b => b.AuctionId == w.AuctionId).Count()) > 0 && w.Status != 2).Select(s => new
+            var data = db.tblAuctionItems.Where(w => w.WinnerId == null && (w.DateTimeLimit < dateNow || w.Status == 1) && (db.tblBiddings.Where(b => b.AuctionId == w.AuctionId).Count()) > 0 && w.Status != 2
+                && (db.tblProducts.FirstOrDefault(x => x.ProductId == w.ProductId).BranchId == branchId)
+                ).Select(s => new
             {
                 s.recNo,
                 s.DateTimeLimit,
@@ -134,7 +150,7 @@ namespace OnlineAuction.API
                 s.ProductId,
                 toDate = (s.Status == 1 || s.Status == 2) ? s.DateClosed : s.DateTimeLimit,
                 productName = db.tblProducts.FirstOrDefault(f => f.ProductId == s.ProductId).ProductName,
-                bidders = db.tblBiddings.Where(ww => ww.AuctionId == s.AuctionId).Select(ss => new
+                bidders = db.tblBiddings.Where(ww => ww.AuctionId == s.AuctionId).OrderByDescending(o => o.BidPrice).GroupBy(g => g.BiddersId).Select(ss => ss.OrderByDescending(o => o.BidPrice).FirstOrDefault()).Select(ss => new
                 {
                     ss.recNo,
                     ss.AuctionId,
@@ -155,11 +171,13 @@ namespace OnlineAuction.API
             });
             return Json(new { d = data, st = DateTime.Now });
         }
-        [Route("activeauctioneditems")]
-        public IHttpActionResult GetActiveAuctionedItems()
+        [Route("activeauctioneditems/{branchId}")]
+        public IHttpActionResult GetActiveAuctionedItems(string branchId)
         {
             var dateNow = DateTime.Now;
-            var data = db.tblAuctionItems.Where(w => w.DateTimeLimit > dateNow && (w.Status == null || w.Status == 0) && w.WinnerId == null).Select(s => new
+            var data = db.tblAuctionItems.Where(w => w.DateTimeLimit > dateNow && (w.Status == null || w.Status == 0) && w.WinnerId == null
+                && (db.tblProducts.FirstOrDefault(x => x.ProductId == w.ProductId).BranchId == branchId)
+                ).Select(s => new
             {
                 s.recNo,
                 s.DateTimeLimit,
@@ -171,7 +189,7 @@ namespace OnlineAuction.API
                 s.ProductId,
                 toDate = (s.Status == 1 || s.Status == 2) ? s.DateClosed : s.DateTimeLimit,
                 productName = db.tblProducts.FirstOrDefault(f => f.ProductId == s.ProductId).ProductName,
-                bidders = db.tblBiddings.Where(ww => ww.AuctionId == s.AuctionId).Select(ss => new
+                bidders = db.tblBiddings.Where(ww => ww.AuctionId == s.AuctionId).OrderByDescending(o => o.BidPrice).GroupBy(g => g.BiddersId).Select(ss => ss.OrderByDescending(o => o.BidPrice).FirstOrDefault()).Select(ss => new
                 {
                     ss.recNo,
                     ss.AuctionId,
@@ -191,7 +209,7 @@ namespace OnlineAuction.API
                 }).Take(3)
             });
 
-            var pendingCount = getPendingCount();
+            var pendingCount = getPendingCount(branchId);
             return Json(new { d = data, st = DateTime.Now, pendingCount = pendingCount });
         }
         public class img

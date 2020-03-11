@@ -61,9 +61,9 @@ namespace OnlineAuction.API
         }
 
         // GET: api/EmployeesInfoes/
-        public IHttpActionResult GettblEmployeesInfos(int id, string key)
+        public IHttpActionResult GettblEmployeesInfos(int id, string key, string branchId)
         {
-            var data = db.tblEmployeesInfoes.Where(u => u.recNo > id && u.Status != 1)
+            var data = db.tblEmployeesInfoes.Where(u => u.recNo > id && u.Status != 1 && u.BranchId == branchId)
                 .Select(k => new
                 {
                     k.recNo,

@@ -23,5 +23,6 @@ namespace OnlineAuction.Models
         public Nullable<int> Status { get; set; }
         public string ProductId { get; set; }
         public Nullable<decimal> totalrating { get; set; }
+        public string BranchId { get; set; }
     }
 }
