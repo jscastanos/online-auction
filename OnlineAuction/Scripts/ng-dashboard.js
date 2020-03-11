@@ -6,7 +6,7 @@
     s.auctionData = [];
     s.filter.auctionName = "";
     s.auctionlastId = 0;
-
+    s.branchID = localStorage.getItem("branchID");
     //s.startDate = moment().format("YYYY-MM-DD");
     //s.endDate = moment().format("YYYY-MM-DD");
 
@@ -80,7 +80,7 @@
 
     function getAuctionedData() {
         s.isLoading = true;
-        h.get("../api/AuctionItems/auctionData?id=" + s.auctionlastId + "&key=" + s.filter.auctionName).then(function (d) {
+        h.get("../api/AuctionItems/auctionData?id=" + s.auctionlastId + "&key=" + s.filter.auctionName + "&branchID=" + s.branchID).then(function (d) {
             s.isLoading = false;
             if (d.data.data.length > 0) {
                 s.auctionlastId = d.data.data[d.data.data.length - 1].rowNum
@@ -98,14 +98,17 @@
     }
 
     function rateProduct(itemid) {
-        h.get("../api/products/rateProduct?str=" + itemid).then(function (d) {
-            if (d.data != false) {
+        h.get("../api/products/rateProduct?str=" + itemid + "&branchID=" + s.branchID).then(function (d) {
+            //if (d.data != false) {
                 s.ratingTempArr = d.data;
-            }
-            else {
-                swal("Please Input Number!", "", "error");
-            }
-        });
+            //}
+            //else {
+            //    swal("Please Input Number!", "", "error");
+            //}
+        },
+     function (e) {
+         swal(e);
+     });
     }
 
     $("#item").kendoComboBox({
@@ -138,6 +141,7 @@
         h.put("../api/AuctionItems/claimAuction?id=" + id).then(function (d) {
             s.auctionlastId = 0;
             s.auctionData = [];
+            swal("Item Claimed!", "", "success"),
             getAuctionedData()
         });
 
@@ -145,6 +149,9 @@
 
     s.notClaimAuction = function (id) {
         h.put("../api/AuctionItems/notClaimAuction?id=" + id).then(function (d) {
+            s.auctionlastId = 0;
+            s.auctionData = [];
+            swal("Item Display!", "", "success"),
             getAuctionedData()
         });
     }

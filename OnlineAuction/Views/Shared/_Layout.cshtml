@@ -17,6 +17,11 @@
     <script src="~/Scripts/jcs-auto-validate.min.js"></script>
     <script src="~/Scripts/sweetalert2.js"></script>
     <script src="~/Scripts/kendo/kendo.all.min.js"></script>
+    <style>
+        .navbar-brand{
+            background-image: none !important;
+        }
+    </style>
     <script>
     $(document).ready(function () {
         $('body').addClass(localStorage.getItem('sidebar'))
@@ -26,7 +31,8 @@
             $("#oauctionNav").text("ONLINE AUCTION");
         }
         localStorage.setItem("branchID", '@Session["branchID"].ToString()');
-        })
+    })
+
     function sidebar() {
 
         if ($('body').hasClass('sidebar-xs')) {

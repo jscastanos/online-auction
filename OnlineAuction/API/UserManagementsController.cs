@@ -16,10 +16,6 @@ namespace OnlineAuction.API
     {
         private OnlineAuctionEntities db = new OnlineAuctionEntities();
 
-        public class searchemp
-        {
-            public string key { get; set; }
-        }
 
 
         [Route("api/UserManagements/sStatus")]
@@ -28,7 +24,6 @@ namespace OnlineAuction.API
             if (tblUserManagement.Status != 1)
             {
                 tblUserManagement.Status = 1;
-
             }
             else
             {
@@ -52,15 +47,28 @@ namespace OnlineAuction.API
             return Json("success");
         }
 
-        [Route("api/UserManagements/tblEmpList")]
-        public IHttpActionResult PosttblEmpList(searchemp s)
+        public class searchemp
         {
-            var empList = db.tblEmployeesInfoes.Where(a => a.FirstName.Contains(s.key) || a.LastName.Contains(s.key))
+            public string key { get; set; }
+        }
+
+        public class SearchList
+        {
+            public string EmpId { get; set; }
+            public string ConcatName { get; set; }
+        }
+
+        [Route("api/UserManagements/tblEmpList")]
+        public IHttpActionResult PosttblEmpList(searchemp s, string branchId)
+        {
+            var empList = db.tblEmployeesInfoes.Where(a => (a.FirstName.Contains(s.key) || a.LastName.Contains(s.key)) && a.BranchId == branchId && a.Status == 0)
                 .Select(x => new
                 {
                     x.EmpId,
                     ConcatName = x.FirstName + " " + x.MiddleName + " " + x.LastName
                 }).Take(5).ToList();
+
+
             return Json(empList);
         }
 
@@ -88,45 +96,40 @@ namespace OnlineAuction.API
         //api/UserManagements
         public IHttpActionResult GettblUserManagement(int id, string key, int Scode, string branchId)
         {
-            //  string sampleID = "SWABE";
-            var predata = db.tblUserManagements.Where(u => u.recNo > id && u.Status == Scode && (db.tblEmployeesInfoes.Where(e => e.EmpId == u.UsersId && e.BranchId == branchId).Count() > 0))
-                .Select(k => new
-                {
-                    k.recNo,
-                    k.UsersId,
-                    k.CreatedBy,
-                    k.DateCreated,
-                    k.UserName,
-                    k.Password,
-                    k.Status,
-                    k.RoleId,
-                    prestatus = db.tblEmployeesInfoes.FirstOrDefault(o => o.EmpId == k.UsersId).Status,
-                    nameDisplay = db.tblEmployeesInfoes.Where(l => l.EmpId == k.UsersId)
-                           .Select(c => new
-                           {
-                               subName = c.FirstName + " " + c.MiddleName + " " + c.LastName
-                           }),
-                    nameFirst = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).FirstName,
-                    nameMiddle = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).MiddleName,
-                    nameLast = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).LastName,
-                    roleDisplay = db.tblUsersRoles.FirstOrDefault(h => h.RoleId == k.RoleId).RoleName,
-                    nameBranchId = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).BranchId,
-                    conName = db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).FirstName + " " + db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).MiddleName + " " + db.tblEmployeesInfoes.FirstOrDefault(l => l.EmpId == k.UsersId).LastName
-                });
-            // var bybranch = db.tblEmployeesInfoes.Where(u => u.EmpId == sampleID)
-            var data = predata.Where(k => k.prestatus != 1);
+            var q = key == null ? "" : key;
 
-            if (key != null && key != "")
-            {
-                data = data.Where(w => w.nameFirst.Contains(key) || w.nameMiddle.Contains(key) || w.nameLast.Contains(key));
-            }
-            return Json(data.Take(10));
+
+            var predata = (from a in db.tblUserManagements
+                           join b in db.tblEmployeesInfoes on a.UsersId equals b.EmpId
+                           where a.recNo > id && a.Status == Scode && b.BranchId == branchId && (b.FirstName.Contains(q) || b.MiddleName.Contains(q) || b.LastName.Contains(q))
+                           select new
+                           {
+                               a.recNo,
+                               a.UsersId,
+                               a.CreatedBy,
+                               a.DateCreated,
+                               a.UserName,
+                               a.Password,
+                               a.Status,
+                               a.RoleId,
+                               prestatus = b.Status,
+                               nameFirst = b.FirstName,
+                               nameMiddle = b.MiddleName,
+                               nameLast = b.LastName,
+                               roleDisplay = db.tblUsersRoles.FirstOrDefault(h => h.RoleId == a.RoleId).RoleName,
+                               nameBranchId = b.BranchId,
+                               conName = b.FirstName + " " + b.MiddleName + " " + b.LastName
+
+                           });
+
+            return Json(predata.Take(10));
 
         }
 
         [Route("api/UserManagements/CountActive")]
         public IHttpActionResult GetCountActive(string branchId)
         {
+
             return Json(db.tblUserManagements.Where(l => l.Status == 1 && (db.tblEmployeesInfoes.Where(e => e.EmpId == l.UsersId && e.BranchId == branchId).Count() > 0)).Count());
         }
 
@@ -215,6 +218,9 @@ namespace OnlineAuction.API
                 tblUserManagement.CreatedBy = "CRTBY";
                 tblUserManagement.DateCreated = DateTime.Now;
                 tblUserManagement.Status = 0;
+                var data = db.tblEmployeesInfoes.Where(e => e.EmpId == tblUserManagement.UsersId).FirstOrDefault();
+                data.Status = 1;
+
                 var aRole = db.tblUserManagements.Add(tblUserManagement);
                 db.SaveChanges();
                 return Json("good");

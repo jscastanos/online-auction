@@ -34,11 +34,11 @@
                 <div class="panel panel-flat">
                     <div class="panel-heading">
                         <h6 class="panel-title">WINNER BOARD</h6>
-                        <div class="heading-elements">
+                        @*<div class="heading-elements">
                             <span class="heading-text">Total: <span class="text-bold text-danger-600 position-right">{{total | currency : 'Php '}}</span></span>
                             <span class="heading-text">Total Item Sold: <span class="text-bold text-danger-600 position-right">{{totalSold}}</span></span>
 
-                        </div>
+                        </div>*@
                     </div>
 
                     <div class="panel-body">
@@ -81,7 +81,7 @@
                                                 <div class="media-heading">
                                                     <a href="#" class="letter-icon-title">{{a.ProductName}}</a>
                                                 </div>
-                                                <div class="text-muted text-size-small"><i class="icon-checkmark3 text-size-mini position-left"></i> Winners Name</div>
+                                               @* <div class="text-muted text-size-small"><i class="icon-checkmark3 text-size-mini position-left"></i> Winners Name</div>*@
                                             </div>
                                         </td>
                                         <td>
@@ -128,6 +128,9 @@
                                 </div>
                             </div>
 
+                            <center>
+                                <p class="display-block" ng-if="ratingTempArr.length == 0"> No Rated Item</p>
+                            </center>
                             <ul class="progress-list">
                                 <li ng-repeat="a in ratingTempArr | orderBy: '-rating'">
                                     <label>{{a.ProductName}} <span>{{a.user}} Users</span></label>

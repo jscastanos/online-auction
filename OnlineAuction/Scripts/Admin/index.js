@@ -1,6 +1,4 @@
-﻿$(function () {
-    $(".sidebar-main-toggle").click()
-});
+﻿
 
 app.controller("adminCtrl", ["$scope", "$http", "$timeout", function (s, h, t) {
     s.url = "../api/Bidders/";

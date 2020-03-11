@@ -36,19 +36,32 @@ namespace OnlineAuction.API
         }
 
         [Route("api/AuctionItems/auctionData")]
-        public IHttpActionResult GetAuctionData(int id, string key)
-        {
-            var data = db.vAuctionProducts.Where(a => a.rowNum > id && a.Status == 1);
+        public IHttpActionResult GetAuctionData(int id, string key, string branchID)
+            {
+            var data = db.vAuctionProducts.Where(a => a.rowNum > id && a.productStatus == 1 && a.BranchId == branchID);
 
             if (key != null && key != "")
             {
                 data = data.Where(a => a.ProductName.Contains(key));
             }
 
-            return Json(new { data = data.Take(20), total = data.FirstOrDefault().total, totalSold = data.FirstOrDefault().totalProductSold });
+            if (data.Count() > 0) {
+                return Json(new { data = data.Take(20), total = data.Sum(a => a.total), totalSold = data.Sum(a => a.totalProductSold) });
+            }
+            else
+            {
+                return Json(data = null);
+            }
         }
 
+            //GET = query
+            //POST = add data
+            //PUT = update
+            //DELETE = remove
+
+
         [Route("api/AuctionItems/auctionstatus")]
+        [HttpGet]
         public IHttpActionResult PutAuctionStatus(string id)
         {
             db.tblProducts.Where(a => a.ProductId == id).ToList()
@@ -116,8 +129,10 @@ namespace OnlineAuction.API
         [Route("api/AuctionItems/claimAuction")]
         public IHttpActionResult PutclaimAuction(int id)
         {
-            db.tblAuctionItems.Where(a => a.recNo == id).ToList()
-                .ForEach(b => b.Status = 3);
+            var data = db.tblAuctionItems.Where(a => a.recNo == id).FirstOrDefault();
+            data.Status = 3;
+            db.tblProducts.Where(a => a.ProductId == data.ProductId).ToList().ForEach(f => f.Status = 3);
+
             db.SaveChanges();
 
             return StatusCode(HttpStatusCode.NoContent);

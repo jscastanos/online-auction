@@ -69,16 +69,25 @@ namespace OnlineAuction.Controllers
                     else
                     {
 
-                        var empl = db.tblEmployeesInfoes.SingleOrDefault(emp => emp.EmpId == cu.UsersId);
-                        Session["branchID"] = empl.BranchId;
+                        if (cu.Status == 1)
+                        {
 
-                        if(empl.MiddleName != null)
-                            Session["fullName"] = fullName(empl.FirstName, empl.MiddleName, empl.LastName);
+                            var empl = db.tblEmployeesInfoes.SingleOrDefault(emp => emp.EmpId == cu.UsersId);
+                            Session["branchID"] = empl.BranchId;
+
+                            if (empl.MiddleName != null)
+                                Session["fullName"] = fullName(empl.FirstName, empl.MiddleName, empl.LastName);
+                            else
+                                Session["fullName"] = fullName(empl.FirstName, "", empl.LastName);
+                            return RedirectToAction("Index", "Dashboard");
+                        }
                         else
-                            Session["fullName"] = fullName(empl.FirstName, "", empl.LastName);
-                        return RedirectToAction("Index", "Dashboard");
+                        {
+                            Session["Error"] = "Account not verified please contact your administrator";
+                            return RedirectToAction("Login", "Account");
+                        }
 
-                       
+
                     }
                 }
                 else
@@ -97,27 +106,36 @@ namespace OnlineAuction.Controllers
         [AllowAnonymous]
         public ActionResult RetrieveImage(string id, int type)
         {
-            var data = db.tblBiddersInfoes.SingleOrDefault(x => x.BiddersId == id);
-            byte[] img = null;
-
-            switch (type)
+            try
             {
-                case 0: img = data.UserImg;
-                    break;
-                case 1: img = data.CardImgFront;
-                    break;
-                case 2: img = data.CardImgBack;
-                    break;
-            }
 
-            if (img != null)
-            {
-                return File(img, "image/jpeg");
+                var data = db.tblBiddersInfoes.SingleOrDefault(x => x.BiddersId == id);
+                byte[] img = null; 
+
+                 switch (type)
+                 {
+                     case 0: img = data.UserImg != null ? data.UserImg : null;
+                         break;
+                     case 1: img = data.CardImgFront != null ? data.CardImgFront : null;
+                         break;
+                     case 2: img = data.CardImgBack != null ? data.CardImgBack : null;
+                         break;
+                 }
+
+                if (img != null)
+                {
+                    return File(img, "image/png");
+                }
+                else
+                {
+                    return File("~/nophoto.png", "image/png");
+                }
             }
-            else
+            catch (Exception e)
             {
                 return File("~/nophoto.png", "image/png");
             }
+            
         }
 
         public string fullName(string a, string b, string c)

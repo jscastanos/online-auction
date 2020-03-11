@@ -11,12 +11,13 @@
     s.auctionData = [];
     s.filter.auctionName = "";
     s.strLimit = 50;
+    s.branchID = localStorage.getItem("branchID");
 
     getAuctionedData();
 
     function getAuctionedData() {
         s.isLoading = true;
-        h.get("../api/AuctionItems/auctionData?id=" + s.auctionlastId + "&key=" + s.filter.auctionName).then(function (d) {
+        h.get("../api/AuctionItems/auctionData?id=" + s.auctionlastId + "&key=" + s.filter.auctionName + "&branchID=" + s.branchID).then(function (d) {
             s.isLoading = false;
             if (d.data.data.length > 0) {
                 s.auctionlastId = d.data.data[d.data.data.length - 1].rowNum

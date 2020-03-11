@@ -10,6 +10,7 @@
             <div class="page-title">
                 <h4><i class="icon icon-station position-left"></i> <span class="text-semibold"> Auction Monitoring</span></h4>
                 <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                <input type="hidden" id="branchId" value="@Session["branchID"].ToString()" />
             </div>
 
         </div>
@@ -42,7 +43,24 @@
                                 </a>
                             </li>
                         </ul>
+
+
+                        <div class="navbar-right">
+                            <ul class="nav navbar-nav">
+
+                                <li class="dropdown">
+
+                                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="icon-statistics position-left"></i> <span class="text-semibold">Report</span> <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="" data-toggle="modal" data-target="#modal_DailyWeeklyMonthlyReport"><i class="icon-printer2"></i> Bid Result Report</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -52,8 +70,8 @@
                 <div class="tab-pane fade active in" id="ongoing">
                     <ul class="media-list">
                         <li class="media panel panel-body stack-media-on-mobile" ng-repeat="a in activeAuctionedItems | orderBy:'DateTimeLimit' track by a.recNo">
-                            <a href="~/Images/image.png" class="media-left" data-popup="lightbox">
-                                <img src="~/Images/image.png" width="125" alt="">
+                            <a href="" class="media-left">
+                                <img src="@Url.Content("~/Product/RetrieveImage/"){{a.ProductId}}" width="125" alt="">
                             </a>
 
                             <div class="media-body">
@@ -64,7 +82,7 @@
                                     <li><div><span class="text-muted">Auctioned:</span> {{a.DateCreated | date:'MMM dd, yyyy hh:mm a'}}</div></li>
                                     <li><div><span class="text-muted">Ask Price:</span> Php {{a.AskPrice | number:2}}</div></li>
                                     <li><div><span class="text-muted">Bids:</span> {{a.bidders.length}}</div></li>
-                                    <li><div><span class="text-muted">Date Claim Limit:</span> {{a.bidders.length}}</div></li>
+                                    @*<li><div><span class="text-muted">Date Claim Limit:</span> {{a.bidders.length}}</div></li>*@
                                 </ul>
                             </div>
                             <div class="media-body">
@@ -102,8 +120,8 @@
                 <div class="tab-pane fade row" id="pending">
                     <div class="col-md-12" ng-repeat="a in pendingAuctionedItems | orderBy:'-toDate' track by a.recNo" ng-init="a.index = $index">
                         <div class="media panel panel-body stack-media-on-mobile">
-                            <a href="~/Images/image.png" class="media-left" data-popup="lightbox">
-                                <img src="~/Images/image.png" width="125" alt="">
+                            <a href="" class="media-left">
+                                <img src="@Url.Content("~/Product/RetrieveImage/"){{a.ProductId}}" width="125" alt="">
                             </a>
 
                             <div class="media-body">
@@ -136,9 +154,9 @@
                                 </button>
                             </div>
                         </div>
-                        <div ng-show="pendingAuctionedItems && pendingAuctionedItems.length == 0">
-                            <h6 class="text-italic text-bold text-uppercase text-muted text-center">NO RESULTS FOUND</h6>
-                        </div>
+                    </div>
+                    <div ng-show="pendingAuctionedItems && pendingAuctionedItems.length == 0">
+                        <h6 class="text-italic text-bold text-uppercase text-muted text-center">NO RESULTS FOUND</h6>
                     </div>
                 </div>
 
@@ -158,7 +176,7 @@
                                     <li><div><span class="text-muted">To:</span> {{a.toDate | date:'MMM dd, yyyy hh:mm a'}}</div></li>
                                     <li><div><span class="text-muted">Ask Price:</span> Php {{a.AskPrice | number:2}}</div></li>
                                     <li><div><span class="text-muted">Bids:</span> {{a.bidders.length}}</div></li>
-                                    <li><div><span class="text-muted">Winner:</span> <span ng-if="!a.WinnerId" class="text-semibold">None</span> <span ng-if="a.WinnerId">{{a.winnerInfo.LastName | capitalize}}, {{a.winnerInfo.FirstName | capitalize}} {{a.winnerInfo.MiddleName | limitTo:1 | capitalize}}{{a.winnerInfo.MiddleName ? '.':''}}</span></div></li>
+                                    <li><div><span class="text-muted">Winner:</span> <span ng-if="!a.WinnerId" class="text-semibold">None</span> <span ng-if="a.WinnerId">{{a.winnerInfo.LastName | capitalize}}, {{a.winnerInfo.FirstName | capitalize}} {{a.winnerInfo.MiddleName | limitTo:1 | capitalize}}{{a.winnerInfo.MiddleName ? '.':''}} <span class="text-muted">(Php {{a.WinnerBidPrice|number:2}})</span></span></div></li>
                                     <li>
                                         <div>
                                             <span class="text-muted">Status:</span>
@@ -171,16 +189,16 @@
 
                             </div>
                             <div class="media-right pt-10">
-                                <a href="~/Images/image.png" class="media-right" data-popup="lightbox">
-                                    <img src="~/Images/image.png" width="125" alt="">
+                                <a href="" class="media-right" >
+                                    <img src="@Url.Content("~/Product/RetrieveImage/"){{a.ProductId}}" width="125" alt="">
                                 </a>
                             </div>
 
 
                         </div>
-                        <li ng-show="auctionedItemsHistory && auctionedItemsHistory.length == 0">
-                            <h6 class="text-italic text-bold text-uppercase text-muted text-center">NO RESULTS FOUND</h6>
-                        </li>
+                    </div>
+                    <div ng-show="auctionedItemsHistory && auctionedItemsHistory.length == 0">
+                        <h6 class="text-italic text-bold text-uppercase text-muted text-center">NO RESULTS FOUND</h6>
                     </div>
                 </div>
                 <!-- AUCTION HISTORY END-->
@@ -188,6 +206,116 @@
         </div>
 
     </div>
+
+
+
+
+
+
+
+
+    <!-- Daily, Weekly, Monthly Report modal -->
+    <div id="modal_DailyWeeklyMonthlyReport" class="modal fade" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h5 class="modal-title">Bid Report</h5>
+                </div>
+
+
+                <div class="modal-body">
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="panel panel-flat ">
+                                <div class="panel-body text-center">
+                                    <div class="icon-object border-success text-success"><i class="icon-calendar"></i></div>
+                                    <h5 class="text-semibold">Daily Report</h5>
+
+
+                                </div>
+
+                                <div class="panel-body">
+
+                                    <label>Select Day:</label>
+                                    <div class="input-group">
+
+                                        <input type="date" class="form-control" ng-model="currentDate" id="daily" required autofocus>
+                                        <span class="input-group-btn">
+                                            <a href="" class="btn bg-teal-400" ng-click="printReport(3, '@Session["branchID"].ToString()','@Session["userID"].ToString()')"><i class="icon-printer"></i></a>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="panel panel-flat">
+                                <div class="panel-body text-center">
+                                    <div class="icon-object border-warning text-warning"><i class="icon-calendar5"></i></div>
+                                    <h5 class="text-semibold">Weekly Report</h5>
+
+                                </div>
+
+                                <div class="panel-body">
+
+                                    <label>Select Week:</label>
+                                    <div class="input-group">
+                                        <input type="week" class="form-control" ng-model="currentDate" id="week" required autofocus>
+                                        <span class="input-group-btn">
+                                            <a href="" class="btn bg-teal-400" ng-click="printReport(1,'@Session["branchID"].ToString()','@Session["userID"].ToString()')"><i class="icon-printer"></i></a>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="panel panel-flat">
+                                <div class="panel-body text-center">
+                                    <div class="icon-object border-blue text-blue"><i class="icon-calendar52"></i></div>
+                                    <h5 class="text-semibold">Monthly Report</h5>
+                                </div>
+
+                                <div class="panel-body">
+
+                                    <label>Select Month:</label>
+                                    <div class="input-group">
+                                        <input type="month" class="form-control" id="month" ng-model="currentDate" required autofocus>
+                                        <span class="input-group-btn">
+                                            <a href="" class="btn bg-teal-400" ng-click="printReport(2, '@Session["branchID"].ToString()','@Session["userID"].ToString()')"><i class="icon-printer"></i></a>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+        <!-- / Daily, Weekly, Monthly Report modal -->
+        <!-- /parent div -->
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
     <script>
         $('[data-popup="lightbox"]').fancybox({
             padding: 3
