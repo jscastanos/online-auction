@@ -95,6 +95,9 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-12" ng-if="alldata.length == 0">
+                <h6 class="text-italic text-bold text-uppercase text-muted text-center">NO RESULTS FOUND</h6>
+            </div>
         </div>
 
         @*<div class="panel panel-flat">
@@ -149,7 +152,7 @@
                     <div class="modal-header bg-success">
                         <button type="button" class="close" ng-click="refresh()" data-dismiss="modal">&times;</button>
                         <h6 class="modal-title">
-                            <i class="icon-add-to-list"></i> Role
+                            <i class="icon-add-to-list"></i> Role 
                         </h6>
                     </div>
                     <div class="modal-body">
@@ -165,7 +168,7 @@
                                                               selectedobject="personalNameBtn"
                                                               selectedvalue="empList.EmpId"
                                                               selectedvaluefield="EmpId"
-                                                              url="../api/UserManagements/tblEmpList"
+                                                              url="../api/UserManagements/tblEmpList?branchId={{branchID}}"
                                                               titlefield="ConcatName"
                                                               minlength="1"
                                                               inputclass="form-control"

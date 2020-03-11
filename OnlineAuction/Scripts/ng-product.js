@@ -18,13 +18,14 @@
     s.test = "";
     s.strLimit = 50;
     s.uploadImgID = false;
-
+    s.branchID = localStorage.getItem("branchID");
+    
     getAuctionData();
 
     function getAuctionData() {
         s.isLoading = true;
        
-        h.get("../api/products?id=" + s.lastId + "&key=" + s.filter.productName).then(function (d) {
+        h.get("../api/products?id=" + s.lastId + "&key=" + s.filter.productName + "&branchID=" + s.branchID).then(function (d) {
             s.isLoading = false;
             if (d.data.length > 0) {
                 s.lastId = d.data[d.data.length - 1].rowNum
@@ -130,7 +131,7 @@
                
     s.addProduct = function () {
         s.tempArr.CategoryID = $("#catName").val();
-        s.tempArr.BranchID = $("#branchID").val();
+        s.tempArr.BranchID = s.branchID;
       
         if (s.add == true) {                                         
             h.post("../api/products/add", s.tempArr).then(function (d) {

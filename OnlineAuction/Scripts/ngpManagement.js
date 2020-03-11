@@ -7,7 +7,7 @@
     var lastId = 0;
     s.sdata = "";
     loaddata();
-
+    s.branchId = "";
 
 
     s.testsearch = function () {
@@ -17,8 +17,10 @@
     }
     
     function loaddata() {
+        s.branchId = localStorage.getItem("branchID")
+
         s.isLoading = true;
-        r.get("../api/EmployeesInfoes/?id=" + lastId + "&key=" + s.sdata)
+        r.get("../api/EmployeesInfoes/?id=" + lastId + "&key=" + s.sdata + "&branchId=" + s.branchId)
          .then(function (d) {
              
              angular.forEach(d.data, function (v, key) {

@@ -10,8 +10,9 @@
     s.sdata = "";
     s.Statuscode = 1;
     s.selected = {};
-    usercount();
+    s.branchID = "";
     loaddata();
+    usercount();
 
 
     s.testsearch = function () {
@@ -54,24 +55,22 @@
     }
 
     function usercount() {
-        var branchID = localStorage.getItem("branchID")
-        r.get("../api/UserManagements/CountActive?branchId="+ branchID)
+        r.get("../api/UserManagements/CountActive?branchId="+ s.branchID)
         .then(function (d) {
             //console.log(d.data)
             s.activecount = d.data
         })
-        r.get("../api/UserManagements/CountInactive?branchId=" + branchID)
+        r.get("../api/UserManagements/CountInactive?branchId=" + s.branchID)
         .then(function (d) {
             // console.log(d.data)
             s.inactivecount = d.data
-            console.log(s.inactivecount)
         })
     }
 
     function loaddata() {
         s.isLoading = true;
-        var branchID = localStorage.getItem("branchID")
-        r.get("../api/UserManagements/?id=" + lastId + "&key=" + s.sdata + "&Scode=" + s.Statuscode + "&branchId=" + branchID)
+        s.branchID = localStorage.getItem("branchID")
+        r.get("../api/UserManagements/?id=" + lastId + "&key=" + s.sdata + "&Scode=" + s.Statuscode + "&branchId=" + s.branchID)
          .then(function (d) {
              console.log(d.data);
 
@@ -95,14 +94,12 @@
     s.switchID = {}
     s.cStatus = function (Sstatus) {
         s.switchID = Sstatus
-        console.log(s.switchID)
         r.put("../api/UserManagements/sStatus", s.switchID)
 
         .then(function (d) {
             s.alldata = [];
             lastId = 0;
             loaddata();
-            console.log(d.data)
         })
     }
 
@@ -125,7 +122,8 @@
     // s.personelCount = null;
     s.newItem = [];
     s.rdata = function () {
-        loadposition()
+        loadposition();
+        console.log(s.branchID)
         //if (s.newItem == 0) {
         //    swal({
         //        title: 'No Role',
@@ -150,7 +148,6 @@
             adata.UsersId = empdata;
         }
 
-        console.log(adata);
         r.post("../api/UserManagements", adata)
     .then(function (d) {
         lastId = 0;
@@ -188,10 +185,8 @@
     //s.selected = {};
     s.saveUOF = function (selected) {
         s.selected = selected
-        console.log(s.selected)
         r.put("../api/UserManagements/uRolechangeName", s.selected)
         .then(function (d) {
-            console.log(d.data)
             if (d.data == "success") {
                 lastId = 0;
                 s.alldata = [];

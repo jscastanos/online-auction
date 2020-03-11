@@ -28,9 +28,9 @@ namespace OnlineAuction.API
 
         }
         // GET: api/Products
-        public IHttpActionResult GettblProducts(int id, string key)
+        public IHttpActionResult GettblProducts(int id, string key, string branchID)
         {
-            var data = db.vProducts.Where(a => a.rowNum > id && a.Status != 3);
+            var data = db.vProducts.Where(a => a.rowNum > id && a.Status != 3 && a.BranchId == branchID);
 
             if (key != null && key != "")
             {
@@ -139,14 +139,14 @@ namespace OnlineAuction.API
         }
 
         [Route("api/products/rateProduct")]
-        public IHttpActionResult GetrateProduct(string str)
+        public IHttpActionResult GetrateProduct(string str, string branchID)
         {
 
             int id;
 
             if (int.TryParse(str, out id))
             {
-                var data = db.tblProducts.Where(a => a.Status == 0).Select(b => new
+                var data = db.tblProducts.Where(a => a.BranchId == branchID).Select(b => new
                 {
                     b.ProductId,
                     b.ProductName,

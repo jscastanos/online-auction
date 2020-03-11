@@ -1,5 +1,8 @@
 ﻿app.controller('monitoring', ["$scope", "$http", "$interval", "$timeout", function (s, h, _i, _t) {
 
+
+    s.branchId = $("#branchId").val();
+
     s.currentTab = 1;
     var refreshInterval = null;
     var timerInterval = null;
@@ -22,7 +25,7 @@
     s.auctionAction = function (id, type, index, elem) {
         var parent = $($(elem.target).parent()).parent();
         $(parent).block(blockOptions)
-        h.post('../api/monitoring/auctionAction/' + id + '/' + type).then(function (d) {
+        h.post('../api/monitoring/auctionAction/' + id + '/' + type + '/' + s.branchId).then(function (d) {
             if (d.data.stat == 1) {
                     switch (s.currentTab) {
                         case 1:
@@ -84,7 +87,7 @@
         })
     }
     s.loadactiveAuctionedItems = function () {
-        h.get('../api/Monitoring/activeAuctionedItems').then(function (d) {
+        h.get('../api/Monitoring/activeAuctionedItems/' + s.branchId).then(function (d) {
             s.activeAuctionedItems = d.data.d;
             s.pendingCount = d.data.pendingCount;
             angular.forEach(s.activeAuctionedItems, function (v, k) {
@@ -106,13 +109,13 @@
         })
     }
     s.loadPendingAuctionedItems = function () {
-        h.get('../api/Monitoring/pendingauctioneditems').then(function (d) {
+        h.get('../api/Monitoring/pendingauctioneditems/' + s.branchId).then(function (d) {
             s.pendingAuctionedItems = d.data.d;
             s.pendingCount = d.data.d.length;
         })
     }
     s.loadAuctionedItemsHistory = function () {
-        h.get('../api/Monitoring/auctioneditemshistory').then(function (d) {
+        h.get('../api/Monitoring/auctioneditemshistory/' + s.branchId).then(function (d) {
             s.auctionedItemsHistory = d.data.d;
             s.pendingCount = d.data.pendingCount;
         })
@@ -132,6 +135,84 @@
     }
 
     init();
+
+
+
+
+
+
+
+
+
+
+
+    // Report
+    s.printReport = function (type, branchId, userID) {
+
+    
+        if (type == 1) {
+
+
+            var a = ($("#week").val()).split('-W');
+            if ($("#week").val()) {
+                window.open("../reports/rptWebForm.aspx?t=1&branchId=" + branchId + "&id=" + userID + "&year=" + a[0] + "&week=" + a[1]);
+            }
+            else {
+                swal("Invalid Date!", "", "error")
+            }
+        }
+
+        else if (type == 2) {
+
+
+            if ($("#month").val()) {
+                window.open("../reports/rptWebForm.aspx?t=2&branchId=" + branchId + "&id=" + userID + "&month=" + $("#month").val());
+            }
+            else {
+                swal("Invalid Date!", "", "error")
+            }
+        }
+
+        else {
+
+
+            var a = ($("#daily").val());
+
+
+            if ($("#daily").val()) {
+                window.open("../reports/rptWebForm.aspx?t=3&branchId=" + branchId + "&id=" + userID + "&date=" + a);
+            }
+            else {
+                swal("Invalid Date!", "", "error")
+            }
+
+        }
+      
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }])
 app.filter('capitalize', function () {
     return function (input, scope) {

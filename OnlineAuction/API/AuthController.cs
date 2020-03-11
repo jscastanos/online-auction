@@ -67,6 +67,7 @@ namespace OnlineAuction.API
                 user.RoleId = "2";
                 user.UsersId = Guid.NewGuid().ToString("N").Substring(0, 5).ToUpper();
                 user.DateCreated = DateTime.Now;
+                user.Status = 1;
 
                 db.Entry(user).State = EntityState.Added;
 
