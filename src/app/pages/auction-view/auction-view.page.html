@@ -15,7 +15,8 @@
       <ion-col>
         <div class="badgeHolder">
           <div class="bidBadge">
-            {{ biddingDetails.WinnerId == null ? timeLimit : "Bidding Ended"}}
+            {{ biddingDetails.WinnerId != null ? "Bidding Ended" :
+            !isBidTimeLimitOver ? timeLimit : "Bidding Ended" }}
           </div>
         </div>
         <img
@@ -35,10 +36,17 @@
         </ion-item>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="biddingDetails.WinnerId != null">
+    <ion-row *ngIf="biddingDetails.WinnerId != null;">
       <ion-col>
         <ion-item color="success">
           Bid winner is {{winner.bidderName}}
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="isBidTimeLimitOver">
+      <ion-col>
+        <ion-item color="warning">
+          Bid winner: TBA
         </ion-item>
       </ion-col>
     </ion-row>
@@ -53,7 +61,7 @@
 
       <ion-col
         size="4"
-        *ngIf="biddingDetails != null && biddingDetails.WinnerId == null"
+        *ngIf="biddingDetails != null && biddingDetails.WinnerId == null && !isBidTimeLimitOver"
       >
         <ion-button
           color="primary"

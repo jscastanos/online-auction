@@ -29,6 +29,7 @@ export class AuctionViewPage implements OnInit {
   displayDetails;
   ratingStars;
   timer;
+  isBidTimeLimitOver = false;
   returnTo = {
     page: null,
     id: null,
@@ -166,13 +167,17 @@ export class AuctionViewPage implements OnInit {
           this.itemDetails.DateTimeLimit
         );
 
-        //start countdown
-        this.timer = interval(1000).subscribe(x => {
-          this.timeLimit = this.timeLeft(
-            this.itemDetails.serverTime,
-            this.itemDetails.DateTimeLimit
-          );
-        });
+        if (this.itemDetails.serverTime > this.itemDetails.DateTimeLimit) {
+          this.isBidTimeLimitOver = true;
+        } else {
+          //start countdown
+          this.timer = interval(1000).subscribe(x => {
+            this.timeLimit = this.timeLeft(
+              this.itemDetails.serverTime,
+              this.itemDetails.DateTimeLimit
+            );
+          });
+        }
 
         this.getAuctionItemBiddings();
       });
