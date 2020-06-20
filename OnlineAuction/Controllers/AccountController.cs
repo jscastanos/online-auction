@@ -44,7 +44,7 @@ namespace OnlineAuction.Controllers
             {
                 u = Session["username"] != null ? Session["username"].ToString() : u;
                 var cu = db.tblUserManagements.SingleOrDefault(ur => ur.UserName == u && ur.Password == p);
-                var empl = db.tblEmployeesInfoes.SingleOrDefault(emp => emp.EmpId == cu.UsersId);
+              //  var empl = db.tblEmployeesInfoes.SingleOrDefault(emp => emp.EmpId == cu.UsersId);
 
                 if (cu != null)
                 {
