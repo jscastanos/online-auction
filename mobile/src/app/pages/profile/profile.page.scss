@@ -1,0 +1,46 @@
+.profileImage{
+    margin-top: 20px;
+
+    ion-icon{
+        position: absolute;
+        right: 50px;
+        font-size: 25px;
+        color: #a2a4ab;
+    }
+    
+    img{
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+                    
+            &.danger{
+                border: 5px dashed #F04141;
+            }
+
+            &.primary{
+                border: 5px #3880FF dashed;
+            }
+    }
+
+    
+}
+
+.text-center{
+    text-align: center;
+}
+
+ion-list{
+    ion-list-header{
+        ion-label{ font-weight: 900;}
+    }
+
+    ion-item{
+        p {
+            margin: 0 10px;
+        }
+    }
+}
+
+.edit-form{
+    margin: 15px 25px 35px 25px;
+}

@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar color="{{user.statusColor}}">
+    <ion-buttons slot="start">
+      <ion-button (click)="goTo()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ itemName }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="isLoaded">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <img
+          style="height: 300px;"
+          src="{{url}}/Product/RetrieveImage?id={{itemId}}"
+          onerror="this.onerror = null; this.src = '../assets/placeholder.png'"
+        />
+      </ion-col>
+    </ion-row>
+
+    <ion-row
+      style="margin: 10px 0"
+      *ngIf="displayDetails != null && !userWillRate"
+    >
+      <ion-col
+        size="12"
+        *ngIf="displayDetails.userRating == null; else userRate"
+        class="itemName userRate"
+      >
+        <ion-text>
+          <h4>Please rate this product</h4>
+          <h1>
+            <ion-label (click)="rateNow(1)">
+              <ion-icon name="star-outline"></ion-icon>
+            </ion-label>
+            <ion-label (click)="rateNow(2)">
+              <ion-icon name="star-outline"></ion-icon>
+            </ion-label>
+            <ion-label (click)="rateNow(3)">
+              <ion-icon name="star-outline"></ion-icon>
+            </ion-label>
+            <ion-label (click)="rateNow(4)">
+              <ion-icon name="star-outline"></ion-icon>
+            </ion-label>
+            <ion-label (click)="rateNow(5)">
+              <ion-icon name="star-outline"></ion-icon>
+            </ion-label>
+          </h1>
+        </ion-text>
+      </ion-col>
+      <ng-template #userRate>
+        <ion-col>
+          <ion-item color="success">
+            You rate {{displayDetails.userRating}} for this product
+          </ion-item>
+        </ion-col>
+      </ng-template>
+    </ion-row>
+    <ion-row>
+      <ion-col class="itemName">
+        <ion-text>
+          <h2>{{itemName}}</h2>
+          <p style="color: grey">{{branchName}} | {{categoryName}}</p>
+        </ion-text>
+
+        <ion-text *ngIf="displayDetails != null" class="displayRate">
+          <h1>
+            <ion-label *ngFor="let rate of ratingStars">
+              <ion-icon name="{{rate}}"></ion-icon>
+            </ion-label>
+          </h1>
+          <p>
+            {{displayDetails.productRate | number : '1.2-2'}} of
+            {{displayDetails.countRate}} users
+          </p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-text>
+          <h5>About this item</h5>
+          <p>{{itemDescription != null ? itemDescription : "NONE"}}</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <!-- enf for viewers -->
+  </ion-grid>
+</ion-content>

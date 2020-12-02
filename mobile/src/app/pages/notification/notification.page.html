@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="{{user.statusColor}}">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/home']">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Notification
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <div *ngFor="let item of items" (click)="goToView(item)">
+      <ion-item class="item" color="{{item.notifColor}}">
+        <ion-avatar slot="start">
+          <img
+            src="{{url}}/Product/RetrieveImage?id={{item.ProductId}}"
+            onerror="this.onerror = null; this.src = '../assets/placeholder.png'"
+          />
+        </ion-avatar>
+        <ion-label>
+          <h2>
+            {{item.ProductName}}
+          </h2>
+          <ion-icon
+            *ngIf="item.seen"
+            name="radio-button-off"
+            style="float: right;"
+          ></ion-icon>
+          <ion-icon
+            *ngIf="!item.seen"
+            name="radio-button-on"
+            style="float: right;"
+          ></ion-icon>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

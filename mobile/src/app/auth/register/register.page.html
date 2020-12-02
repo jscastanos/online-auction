@@ -1,0 +1,100 @@
+<ion-content>
+  <div class="overlay">
+    <form class="register" [formGroup]="registerForm" (ngSubmit)="register(registerForm, formDirective)"
+      #formDirective="ngForm">
+      <ion-grid>
+        <ion-row>
+          <ion-col size-xs="12">
+            <ion-text>
+              <h1>AUCTION</h1>
+            </ion-text>
+          </ion-col>
+          <ion-col>
+            <ion-text size-xs="12">
+              <h5>Create an account</h5>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size-xs="12" class="ion-align-self-center">
+            <div class="ion-padding">
+              <ion-item class="ion-margin-top">
+                <ion-icon name="person"></ion-icon>
+                <ion-input type="text" required formControlName="username" placeholder="Username"
+                  (keyup)="updateValidation('username')"></ion-input>
+              </ion-item>
+              <ion-label color="danger" *ngIf="validations.username_available">
+                * Username Not Available
+              </ion-label>
+              <br />
+              <ion-label color="danger" *ngIf="validations.username">
+                * Please Provide Username
+              </ion-label>
+
+
+              <ion-item class="ion-margin-top">
+                <ion-icon name="key"></ion-icon>
+                <ion-input type="password" required formControlName="password" placeholder="Password"
+                  (keyup)="updateValidation('password')"></ion-input>
+              </ion-item>
+              <ion-label color="danger" *ngIf="validations.password">
+                * Please Provide Password
+              </ion-label>
+              <ion-item class="ion-margin-top">
+                <ion-icon name="key"></ion-icon>
+                <ion-input type="password" required formControlName="confirm_password" placeholder="Confirm Password"
+                  (keyup)="updateValidation('confirm_password')">
+                </ion-input>
+              </ion-item>
+              <ion-label color="danger" *ngIf="validations.confirm_password">
+                * Please Re-Type Password
+              </ion-label>
+              <ion-label color="danger"
+                *ngIf="!registerForm.get('confirm_password').errors && registerForm.hasError('passwordNotMatch')">
+                * Password and Confirm Password don't match
+              </ion-label>
+
+              <ion-item class="ion-margin-top">
+                <ion-icon name="calendar"></ion-icon>
+                <ion-datetime displayFormat="D MMM YYYY" formControlName="DOB" placeholder="Date Of Birth"
+                  (ionChange)="updateValidation('DOB')">
+                </ion-datetime>
+              </ion-item>
+              <ion-label color="danger" *ngIf="validations.DOB">
+                * You must provide your date of birth
+              </ion-label>
+
+              <ion-label color="danger" *ngIf="validations.underAge">
+                * You are a minor. You can't join this app.
+              </ion-label>
+
+              <div style="margin-top: 50px;">
+                <ion-label>
+                  <ion-checkbox formControlName="readTAC" (ionChange)="updateValidation('readTAC')"></ion-checkbox> I
+                  have read the <a (click)="openTAC()">terms and conditions</a>
+                </ion-label>
+                <br />
+                <ion-label *ngIf="!validations.readTAC" color="danger">
+                  * You need to agree with our terms and conditions
+                </ion-label>
+              </div>
+
+            </div>
+
+            <div class="ion-padding">
+              <ion-button disabled={{btnDisabled}} color="primary" shape="round" size="md" type="submit" expand="full">
+                REGISTER
+              </ion-button>
+            </div>
+          </ion-col>
+          <ion-col>
+            <ion-text>
+              <h5>Already have an account.
+                <a [routerLink]="['../login']">Log In</a> </h5>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>

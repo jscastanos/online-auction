@@ -1,0 +1,126 @@
+<ion-content>
+  <div class="overlay">
+    <form #form="ngForm" (ngSubmit)="sendData()" class="getting-started">
+      <ion-grid>
+        <ion-row>
+          <ion-col size-xs="12">
+            <ion-text>
+              <h1>Let's setup few more things</h1>
+            </ion-text>
+          </ion-col>
+          <ion-col size-xs="12">
+            <ion-text>
+              <h2>{{title}}</h2>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+        <!-- step 1 -->
+        <ion-row *ngIf="step == 0">
+          <ion-col size-xs="12">
+            <div class="ion-padding">
+              <ion-item class="ion-margin-top">
+                <ion-icon name="person"></ion-icon>
+                <ion-input type="text" name="FirstName" ngModel placeholder="First Name"></ion-input>
+              </ion-item>
+              <ion-item class="ion-margin-top">
+                <ion-icon name="person"></ion-icon>
+                <ion-input type="text" name="MiddleName" ngModel placeholder="Middle Name"></ion-input>
+              </ion-item>
+
+              <ion-item class="ion-margin-top">
+                <ion-icon name="person"></ion-icon>
+                <ion-input type="text" name="LastName" ngModel placeholder="Last Name"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <!-- step 2 -->
+        <ion-row *ngIf="step == 1">
+          <ion-col size-xs="12">
+            <div class="ion-padding">
+              <ion-item class="ion-margin-top">
+                <ion-icon name="home"></ion-icon>
+                <ion-input type="text" ngModel name="add" placeholder="Block No.\Street No.\House No. "></ion-input>
+              </ion-item>
+              <ion-item class="ion-margin-top">
+                <ion-icon name="home"></ion-icon>
+                <ion-input type="text" ngModel name="barangay" placeholder="Barangay"></ion-input>
+              </ion-item>
+              <ion-item class="ion-margin-top">
+                <ion-icon name="home"></ion-icon>
+                <ion-input type="text" ngModel name="city" placeholder="City"></ion-input>
+              </ion-item>
+              <ion-item class="ion-margin-top">
+                <ion-icon name="home"></ion-icon>
+                <ion-input type="text" ngModel name="province" placeholder="Province"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <!-- step 3 -->
+        <ion-row *ngIf="step == 2">
+          <ion-col size-xs="12">
+            <div class="ion-padding">
+              <ion-item class="ion-margin-top">
+                <ion-icon name="call"></ion-icon>
+                <ion-input type="number" ngModel name="ContactNo" placeholder="Contact No."></ion-input>
+              </ion-item>
+              <ion-item class="ion-margin-top">
+                <ion-icon name="briefcase"></ion-icon>
+                <ion-input type="text" ngModel name="Occupation" placeholder="Occupation"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+        <!-- step 4 -->
+        <ion-row *ngIf="step == 3">
+          <ion-col size-xs="12">
+            <div class="ion-padding">
+              <ion-row>
+                <ion-col class="image" size-xs="8" offset-xs="2" size-md="6" offset-md="3">
+                  <img [src]="'data:image/png;base64,' + image" alt=""
+                    onerror="this.onerror=null; this.src='../assets/placeholder.png'" />
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size-xs="6" size-lg="4" offset-lg="2">
+                  <ion-button (click)="capture()" shape="round" expand="full">
+                    <ion-icon name="camera"></ion-icon>
+                    <ion-label>Capture</ion-label>
+                  </ion-button>
+                </ion-col>
+                <ion-col size="6" size-lg="4">
+                  <ion-button (click)="upload()" shape="round" expand="full">
+                    <ion-icon name="images"></ion-icon>
+                    <ion-label>Upload </ion-label>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-col>
+          <ion-col size-xs="12" size-lg="6" offset-lg="3">
+            <ion-button color="primary" shape="round" size="md" type="submit" expand="full">Let's Go</ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size-xs="10" offset="1">
+            <ion-text>
+              <p>All fields are optional, you can leave it blank and finish it later.</p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </form>
+
+  </div>
+</ion-content>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="step != 3">
+  <ion-fab-button (click)="formWizard(form)">
+    <ion-icon name="arrow-forward"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

@@ -1,0 +1,86 @@
+.itemList{
+  ion-grid {
+    background-color: #f5f5f5;
+  }
+
+  .item{
+    background-color: #fff;
+    border: 4px solid #f5f5f5;
+
+    ion-text{
+      padding: 0 5px;
+      h5{
+        margin: 2px auto;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;  
+        -webkit-line-clamp: 2;
+        font-size: 1em;
+      }
+    }
+    .price{
+      color: firebrick;
+    }
+  }
+
+  .badgeHolder{
+    position: absolute;
+
+    .bidBadge{
+      position: relative;
+      font-size: 12px;
+      top: 0;
+      left: 0;
+      padding: 5px 10px;
+      color: white;
+      background-color: firebrick;
+      z-index: 2;
+    }
+
+    .bidBadge::after{
+      content: " ";
+      position: absolute;
+      background-color: firebrick;
+      top: 12;
+      margin-left: 2px;
+      height: 16px;
+      width: 16px;
+      transform: rotate(45deg);
+      z-index: -1;
+    }
+
+    .badge-success, .badge-success::after{
+      background-color: seagreen !important;
+    }
+    
+  }
+  
+}
+
+ion-list{
+  ion-label{
+    text-transform: uppercase;
+  }
+}
+
+.searchResult{
+  position: absolute !important; 
+  z-index: 9999; 
+  width: 100%; 
+  top: 110px;
+  box-shadow: 5px 10px 8px #888888;
+}
+
+#notification-button {
+	ion-badge {
+		position: absolute;
+		top: -0.2rem;
+    right: 1rem;
+    border-radius: 50%;
+    
+
+		& ~ ion-icon {
+			margin-right: 1.2rem;
+		}
+	}
+}

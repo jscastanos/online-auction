@@ -1,0 +1,8 @@
+{
+  "name": "AuctionApp",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

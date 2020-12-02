@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="{{user.statusColor}}">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/home']">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ categoryName }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none" class="itemList">
+    <ion-grid>
+      <ion-row *ngIf="products.length > 0; else nodata">
+        <ion-col size-xs="6" *ngFor="let item of products" class="item" (click)="goToView(item)">
+          <div class="badgeHolder">
+            <div class="bidBadge" [ngClass]="{'badge-success' : item.Status == 1}">
+              {{item.Status == 1 ? "On Auction" : "For Display"}}
+            </div>
+          </div>
+          <img src="{{url}}/Product/RetrieveImage?id={{item.ProductId}}"
+            onerror="this.onerror = null; this.src = '../assets/placeholder.png'" />
+          <ion-text>
+            <h5>{{item.ProductName}}</h5>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ng-template #nodata>
+        <ion-row>
+          <ion-col>No Items</ion-col>
+        </ion-row>
+      </ng-template>
+    </ion-grid>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="10px" (ionInfinite)="loadData()">
+    <ion-infinite-scroll-content style="padding-top: 10px;" loadingSpinner="crescent">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="{{user.statusColor}}">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      My Active Biddings
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item class="item" *ngFor="let item of items" (click)="goToView(item)">
+      <ion-avatar slot="start">
+        <img
+          src="{{url}}/Product/RetrieveImage?id={{item.ProductId}}"
+          onerror="this.onerror = null; this.src = '../assets/placeholder.png'"
+        />
+      </ion-avatar>
+      <ion-label>
+        <h2>
+          {{item.ProductName}}
+        </h2>
+        <h3>{{item.BidPrice | currency : '&#8369;'}}</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none" *ngIf="items.length == 0">
+      <h2>No Items</h2>
+    </ion-item>
+  </ion-list>
+</ion-content>

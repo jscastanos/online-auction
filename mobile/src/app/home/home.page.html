@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar color="{{user.statusColor}}">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-badge color="light" *ngIf="user.status == 0" [routerLink]="['/profile']">
+        Unverified</ion-badge>
+
+      <ion-button id="notification-button" fill="clear" [routerLink]="['/notification']">
+        <ion-badge color="danger" *ngIf="notifCount != null || notifCount != 0">{{notifCount}}</ion-badge>
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar color="{{user.statusColor}}">
+    <ion-searchbar placeholder="Search Items" [(ngModel)]="searchQuery" (ionChange)="search(searchQuery)">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<div class="searchResult" *ngIf="didUserSearch">
+  <ion-list>
+    <div *ngIf="searchResults.length > 0; else noresult">
+      <ion-item *ngFor="let result of searchResults" (click)="goToView(result)">
+        {{result.ProductName}}
+      </ion-item>
+    </div>
+    <ng-template #noresult>
+      <ion-item>
+        No Result
+      </ion-item>
+    </ng-template>
+  </ion-list>
+</div>
+
+<ion-content>
+  <ion-item *ngIf="user.status == 0">
+    <ion-text>
+      Your account is unverified. Unverified account is limited to viewing only.
+      <a routerLink="/profile">Go to Details</a>
+    </ion-text>
+  </ion-item>
+
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-label>browse by categories</ion-label>
+    </ion-list-header>
+    <app-slider [options]="categorySliderOpts"></app-slider>
+  </ion-list>
+
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-label>browse by company</ion-label>
+    </ion-list-header>
+    <app-slider [options]="companySliderOpts"></app-slider>
+  </ion-list>
+
+  <ion-list lines="none" class="itemList">
+    <ion-segment value="auction" (ionChange)="segmentChanged($event)" color="primary">
+      <ion-segment-button size-xs="6" value="auction" *ngIf="user.status != 0">
+        <ion-label>Auction</ion-label>
+      </ion-segment-button>
+      <ion-segment-button size-xs="6" value="display">
+        <ion-label>On Display</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size-xs="6" *ngFor="let item of activeItems" class="item" (click)="goToView(item)">
+          <div class="badgeHolder" *ngIf="item.DateTimeLimit != null">
+            <div class="bidBadge">
+              Until {{item.DateTimeLimit}}
+            </div>
+          </div>
+          <img src="{{url}}/Product/RetrieveImage?id={{item.ProductId}}"
+            onerror="this.onerror = null; this.src = '../assets/placeholder.png'" />
+          <ion-text>
+            <h5>{{item.ProductName}}</h5>
+            <h2 *ngIf="item.rate != null">
+              <ion-label *ngFor="let rate of item.ratingStars" style="display: inline; color: gold">
+                <ion-icon name="{{rate}}"></ion-icon>
+              </ion-label>
+              <ion-label style="font-size: 15px; text-transform: lowercase;">{{item.rate | number : '1.2-2'}} rating
+              </ion-label>
+            </h2>
+            <h5 class="price" *ngIf="item.CurrentBidPrice != null || item.AskPrice != null">
+              {{(item.CurrentBidPrice != null ? item.CurrentBidPrice : item.AskPrice) | currency : '&#8369; '}}
+            </h5>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="10px" (ionInfinite)="loadData()">
+    <ion-infinite-scroll-content style="padding-top: 10px;" loadingSpinner="crescent">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

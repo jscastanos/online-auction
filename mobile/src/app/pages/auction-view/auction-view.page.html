@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar color="{{user.statusColor}}">
+    <ion-buttons slot="start">
+      <ion-button (click)="goTo()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ itemName }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="isLoaded">
+  <ion-grid *ngIf="biddingDetails != null">
+    <ion-row>
+      <ion-col>
+        <div class="badgeHolder">
+          <div class="bidBadge">
+            {{ biddingDetails.WinnerId != null ? "Bidding Ended" :
+            !isBidTimeLimitOver ? timeLimit : "Bidding Ended" }}
+          </div>
+        </div>
+        <img
+          style="height: 300px;"
+          src="{{url}}/Product/RetrieveImage?id={{itemId}}"
+          onerror="this.onerror = null; this.src = '../assets/placeholder.png'"
+        />
+      </ion-col>
+    </ion-row>
+
+    <ion-row
+      *ngIf="biddingDetails.userBidPrice != null && biddingDetails.WinnerId == null"
+      ><ion-col>
+        <ion-item color="success">
+          Your latest bid price is {{biddingDetails.userBidPrice | currency :
+          '&#8369; ' }}
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="biddingDetails.WinnerId != null;">
+      <ion-col>
+        <ion-item color="success">
+          Bid winner is {{winner.bidderName}}
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="isBidTimeLimitOver">
+      <ion-col>
+        <ion-item color="warning">
+          Bid winner: TBA
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="itemName">
+        <ion-text>
+          <h2>{{itemName}}</h2>
+          <p style="color: grey">{{branchName}} | {{categoryName}}</p>
+        </ion-text>
+      </ion-col>
+
+      <ion-col
+        size="4"
+        *ngIf="biddingDetails != null && biddingDetails.WinnerId == null && !isBidTimeLimitOver"
+      >
+        <ion-button
+          color="primary"
+          expand="full"
+          (click)="bidNow()"
+          shape="round"
+          style="margin-top: 20px; height: 60px;"
+          ><ion-icon src="../../assets/hand-left.svg"></ion-icon>
+          &nbsp; Bid
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="amount">
+        <ion-text>
+          <h1>
+            {{ (biddingDetails.highestBidPrice != undefined ?
+            biddingDetails.highestBidPrice : itemDetails.AskPrice) | currency :
+            '&#8369; '}}
+          </h1>
+          <span
+            >(Starts at {{itemDetails.AskPrice | currency : '&#8369; '}})</span
+          >
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            Biddings
+          </ion-item>
+          <ion-item *ngFor="let bidders of biddingDetails.bidList">
+            <ion-avatar slot="start">
+              <img
+                src="{{url}}/account/retrieveImage?id={{bidders.BiddersId}}&type=0"
+              />
+            </ion-avatar>
+            <ion-label>
+              <h1>{{bidders.bidderName}}</h1>
+              <h3>{{bidders.BidPrice | currency : '&#8369; '}}</h3>
+              <p>{{bidders.DateCreated}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
