@@ -1,0 +1,325 @@
+<link href="~/Content/animate.min.css" rel="stylesheet" />
+<script src="~/Scripts/fancybox.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/blockui.min.js"></script>
+<script src="~/Scripts/ngMonitoring.js?@DateTime.Now.Ticks"></script>
+<div ng-controller="monitoring" ng-cloak>
+    <div class="page-header">
+
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon icon-station position-left"></i> <span class="text-semibold"> Auction Monitoring</span></h4>
+                <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                <input type="hidden" id="branchId" value="@Session["branchID"].ToString()" />
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="navbar navbar-default navbar-component navbar-xs">
+                    <ul class="nav navbar-nav visible-xs-block">
+                        <li class="full-width text-center"><a data-toggle="collapse" data-target="#navbar-filter"><i class="icon-menu7"></i></a></li>
+                    </ul>
+                    <div class="navbar-collapse collapse" id="navbar-filter">
+                        <ul class="nav navbar-nav">
+                            <li ng-click="tabChange(1,'loadactiveAuctionedItems')" class="active">
+                                <a href="#ongoing" data-toggle="tab" aria-expanded="false">
+                                    <i class="icon-statistics position-left"></i> Ongoing
+                                </a>
+                            </li>
+                            <li ng-click="tabChange(2,'loadPendingAuctionedItems')">
+                                <a href="#pending" data-toggle="tab" aria-expanded="true">
+                                    <span ng-if="pendingCount > 0" class="badge bg-orange-400" style="font-size:8px">{{pendingCount}}</span>
+                                    <i class="icon-make-group position-left">
+                                    </i> Pending Winner
+                                </a>
+                            </li>
+                            <li ng-click="tabChange(3,'loadAuctionedItemsHistory')">
+                                <a href="#history" data-toggle="tab" aria-expanded="true">
+                                    <i class="icon-history position-left"></i> History
+                                </a>
+                            </li>
+                        </ul>
+
+
+                        <div class="navbar-right">
+                            <ul class="nav navbar-nav">
+
+                                <li class="dropdown">
+
+                                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="icon-statistics position-left"></i> <span class="text-semibold">Report</span> <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="" data-toggle="modal" data-target="#modal_DailyWeeklyMonthlyReport"><i class="icon-printer2"></i> Bid Result Report</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+        <div class="tabbable">
+            <div class="tab-content">
+                <!-- ACTIVE AUCTION -->
+                <div class="tab-pane fade active in" id="ongoing">
+                    <ul class="media-list">
+                        <li class="media panel panel-body stack-media-on-mobile" ng-repeat="a in activeAuctionedItems | orderBy:'DateTimeLimit' track by a.recNo">
+                            <a href="" class="media-left">
+                                <img src="@Url.Content("~/Product/RetrieveImage/"){{a.ProductId}}" width="125" alt="">
+                            </a>
+
+                            <div class="media-body">
+                                <h5 class="media-heading text-semibold text-uppercase">
+                                    {{a.productName}}
+                                </h5>
+                                <ul class="list-condensed list-unstyled mb-10">
+                                    <li><div><span class="text-muted">Auctioned:</span> {{a.DateCreated | date:'MMM dd, yyyy hh:mm a'}}</div></li>
+                                    <li><div><span class="text-muted">Ask Price:</span> Php {{a.AskPrice | number:2}}</div></li>
+                                    <li><div><span class="text-muted">Bids:</span> {{a.bidders.length}}</div></li>
+                                    @*<li><div><span class="text-muted">Date Claim Limit:</span> {{a.bidders.length}}</div></li>*@
+                                </ul>
+                            </div>
+                            <div class="media-body">
+                                <div class="media-heading text-semibold">
+                                    Bidders
+                                </div>
+                                <ul class="list-inline list-inline-separate mb-10" ng-repeat="b in a.bidders | orderBy:'-BidPrice'">
+                                    <li><a href="" class="text-muted">{{$index+1}}. {{b.biddersInfo.LastName | capitalize}}, {{b.biddersInfo.FirstName | capitalize}} {{b.biddersInfo.MiddleName | limitTo:1 | capitalize}}{{b.biddersInfo.MiddleName ? '.':''}}</a></li>
+                                    <li><a href="" class="text-muted text-semibold">Php {{b.BidPrice | number:2}}</a></li>
+                                </ul>
+                                <div ng-show="a.bidders.length == 0" class="text-bold text-italic text-muted"> No Bidders Yet</div>
+
+                            </div>
+
+                            <div class="media-right text-center">
+                                <div class="text-muted">Ends in</div>
+
+                                <h5 class="no-margin text-semibold {{a.class}}{{getTimeLeft(a.duration._data) == 'Closed' ? 'text-danger':''}}">{{getTimeLeft(a.duration._data,a)}} </h5>
+                                <button type="button" class="btn border-teal-400 bg-white mt-15 text-teal-400 text-semibold" style="min-width:120px" ng-click="auctionAction(a.recNo, 1, $index, $event)">
+                                    <i class="icon-alarm-check position-left"></i>
+                                    END NOW
+                                </button>
+                                <button type="button" class="btn border-danger-400 bg-white mt-15 text-danger-400 text-semibold" style="min-width:120px" ng-click="auctionAction(a.recNo, 2, $index, 'auc-')">
+                                    <i class="icon-unlink2 position-left"></i>
+                                    WITHDRAW
+                                </button>
+                            </div>
+                        </li>
+                        <li ng-show="activeAuctionedItems && activeAuctionedItems.length == 0">
+                            <h6 class="text-italic text-bold text-uppercase text-muted text-center">NO RESULTS FOUND</h6>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tab-pane fade row" id="pending">
+                    <div class="col-md-12" ng-repeat="a in pendingAuctionedItems | orderBy:'-toDate' track by a.recNo" ng-init="a.index = $index">
+                        <div class="media panel panel-body stack-media-on-mobile">
+                            <a href="" class="media-left">
+                                <img src="@Url.Content("~/Product/RetrieveImage/"){{a.ProductId}}" width="125" alt="">
+                            </a>
+
+                            <div class="media-body">
+                                <h5 class="media-heading text-semibold text-uppercase">
+                                    {{a.productName}}
+                                </h5>
+                                <ul class="list-condensed list-unstyled mb-10">
+                                    <li><div><span class="text-muted">Auctioned:</span> {{a.DateCreated | date:'MMM dd, yyyy hh:mm a'}}</div></li>
+                                    <li><div><span class="text-muted">Closed:</span> {{a.toDate | date:'MMM dd, yyyy hh:mm a'}}</div></li>
+                                    <li><div><span class="text-muted">Ask Price:</span> Php {{a.AskPrice | number:2}}</div></li>
+                                    <li><div><span class="text-muted">Bids:</span> {{a.bidders.length}}</div></li>
+                                </ul>
+                            </div>
+                            <div class="media-body">
+                                <div class="media-heading text-semibold">
+                                    Bidders
+                                </div>
+                                <ul class="list-inline list-inline-separate mb-10" ng-repeat="b in a.bidders | orderBy:'-BidPrice'">
+                                    <li><a href="" class="text-muted">{{$index+1}}. {{b.biddersInfo.LastName | capitalize}}, {{b.biddersInfo.FirstName | capitalize}} {{b.biddersInfo.MiddleName | limitTo:1 | capitalize}}{{b.biddersInfo.MiddleName ? '.':''}}</a></li>
+                                    <li><a href="" class="text-muted text-semibold">Php {{b.BidPrice | number:2}}</a></li>
+                                    <li><a href="" class="text-teal-400"><span class="text-success-400" ng-click="setWinner(b.BiddersId, b.AuctionId, a.index)">Set as winner</span></a></li>
+                                </ul>
+                                <div ng-show="a.bidders.length == 0" class="text-bold text-italic text-muted"> No Bidders Yet</div>
+                            </div>
+                            <div class="media-right text-center">
+                                <h6></h6>
+                                <button type="button" class="btn border-danger-400 bg-white mt-15 text-danger-400 text-semibold" style="min-width:120px" ng-click="auctionAction(a.recNo, 2, $index, $event)">
+                                    <i class="icon-unlink2 position-left"></i>
+                                    WITHDRAW
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                        <div ng-show="pendingAuctionedItems && pendingAuctionedItems.length == 0">
+                            <h6 class="text-italic text-bold text-uppercase text-muted text-center">NO RESULTS FOUND</h6>
+                        </div>
+                    </div>
+
+
+                <!-- AWARD PENDING END -->
+                <!-- AUCTION HISTORY-->
+                <div class="tab-pane fade row" id="history">
+                    <div class="col-md-4" ng-repeat="a in auctionedItemsHistory | orderBy:'-toDate' track by a.recNo">
+                        <div class="media panel panel-body stack-media-on-mobile">
+
+                            <h5 class="media-heading text-semibold text-uppercase">
+                                {{a.productName}}
+                            </h5>
+                            <div class="media-body">
+                                <ul class="list-condensed list-unstyled mb-10">
+                                    <li><div><span class="text-muted">From:</span> {{a.DateCreated | date:'MMM dd, yyyy hh:mm a'}}</div></li>
+                                    <li><div><span class="text-muted">To:</span> {{a.toDate | date:'MMM dd, yyyy hh:mm a'}}</div></li>
+                                    <li><div><span class="text-muted">Ask Price:</span> Php {{a.AskPrice | number:2}}</div></li>
+                                    <li><div><span class="text-muted">Bids:</span> {{a.bidders.length}}</div></li>
+                                    <li><div><span class="text-muted">Winner:</span> <span ng-if="!a.WinnerId" class="text-semibold">None</span> <span ng-if="a.WinnerId">{{a.winnerInfo.LastName | capitalize}}, {{a.winnerInfo.FirstName | capitalize}} {{a.winnerInfo.MiddleName | limitTo:1 | capitalize}}{{a.winnerInfo.MiddleName ? '.':''}} <span class="text-muted">(Php {{a.WinnerBidPrice|number:2}})</span></span></div></li>
+                                    <li>
+                                        <div>
+                                            <span class="text-muted">Status:</span>
+                                            <span class="label label-danger text-semibold" ng-if="a.Status == 2">Canceled</span>
+                                            <span class="label label-success text-semibold" ng-if="a.WinnerId != null">Sold</span>
+                                            <span class="label label-default text-semibold" ng-if="a.Status != 2 && a.WinnerId == null">Not Sold</span>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="media-right pt-10">
+                                <a href="" class="media-right" >
+                                    <img src="@Url.Content("~/Product/RetrieveImage/"){{a.ProductId}}" width="125" alt="">
+                                </a>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div ng-show="auctionedItemsHistory && auctionedItemsHistory.length == 0">
+                            <h6 class="text-italic text-bold text-uppercase text-muted text-center">NO RESULTS FOUND</h6>
+                    </div>
+                </div>
+                <!-- AUCTION HISTORY END-->
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Daily, Weekly, Monthly Report modal -->
+    <div id="modal_DailyWeeklyMonthlyReport" class="modal fade" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h5 class="modal-title">Bid Report</h5>
+                </div>
+
+
+                <div class="modal-body">
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="panel panel-flat ">
+                                <div class="panel-body text-center">
+                                    <div class="icon-object border-success text-success"><i class="icon-calendar"></i></div>
+                                    <h5 class="text-semibold">Daily Report</h5>
+
+
+                                </div>
+
+                                <div class="panel-body">
+
+                                    <label>Select Day:</label>
+                                    <div class="input-group">
+
+                                        <input type="date" class="form-control" ng-model="currentDate" id="daily" required autofocus>
+                                        <span class="input-group-btn">
+                                            <a href="" class="btn bg-teal-400" ng-click="printReport(3, '@Session["branchID"].ToString()','@Session["userID"].ToString()')"><i class="icon-printer"></i></a>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="panel panel-flat">
+                                <div class="panel-body text-center">
+                                    <div class="icon-object border-warning text-warning"><i class="icon-calendar5"></i></div>
+                                    <h5 class="text-semibold">Weekly Report</h5>
+
+                                </div>
+
+                                <div class="panel-body">
+
+                                    <label>Select Week:</label>
+                                    <div class="input-group">
+                                        <input type="week" class="form-control" ng-model="currentDate" id="week" required autofocus>
+                                        <span class="input-group-btn">
+                                            <a href="" class="btn bg-teal-400" ng-click="printReport(1,'@Session["branchID"].ToString()','@Session["userID"].ToString()')"><i class="icon-printer"></i></a>
+                                        </span>
+        </div>
+
+    </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="panel panel-flat">
+                                <div class="panel-body text-center">
+                                    <div class="icon-object border-blue text-blue"><i class="icon-calendar52"></i></div>
+                                    <h5 class="text-semibold">Monthly Report</h5>
+                                </div>
+
+                                <div class="panel-body">
+
+                                    <label>Select Month:</label>
+                                    <div class="input-group">
+                                        <input type="month" class="form-control" id="month" ng-model="currentDate" required autofocus>
+                                        <span class="input-group-btn">
+                                            <a href="" class="btn bg-teal-400" ng-click="printReport(2, '@Session["branchID"].ToString()','@Session["userID"].ToString()')"><i class="icon-printer"></i></a>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+        <!-- / Daily, Weekly, Monthly Report modal -->
+        <!-- /parent div -->
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        $('[data-popup="lightbox"]').fancybox({
+            padding: 3
+        });
+
+    </script>
+</div>

@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "CategoryReference";
+}
+
+<script src="~/Scripts/ng-catRef.js"></script>
+
+<style>
+    .scroll-to-top {
+        position: fixed;
+        right: 6px;
+        z-index: 1000;
+        bottom: 13px;
+    }
+
+        .scroll-to-top button {
+            box-shadow: 0 2px 5px 1px rgba(0,0,0,0.4);
+            /*background:#ff0057 !important;
+         border-color:#ff0057 !important;*/
+        }
+
+</style>
+<div ng-controller="categoryRef">
+    <div class="scroll-to-top" ng-if="showScrollToTop" ng-click="scrollToTop()">
+        <button type="button" class="btn bg-warning btn-float btn-rounded"><i class="icon-arrow-up16"></i></button>
+    </div>
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="fa fa-file position-left"></i> <span class="text-semibold"> {{name}}</span></h4>
+                <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+            </div>
+            <div class="heading-elements">
+                <div class="heading-btn-group">
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="row">
+            <div class="col-md-4">
+                <button data-toggle="modal" data-target="#newCat" class="btn bg-success heading-btn text-uppercase" style="margin-bottom:20px">
+                    Add new category
+                </button>
+
+                <div class="panel panel-flat no-margin no-padding">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="bg-teal-400 border-blue">
+                                    <th>CATEGORY NAME</th>
+                                    <th class="text-center">ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="a in categoryData">
+                                    <td>{{a.CategoryName | uppercase}}</td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-success" ng-click="updateCat(a.recNo)"><i class="fa fa-pencil"></i></button>
+                                        <button type="button" class="btn btn-danger" ng-click="removeCat(a.recNo)"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr ng-if="productData.length == 0">
+                                    <td class="text-center" colspan="5">
+                                        <i>NO PRODUCT</i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="newCat" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header bg-primary" ng-if="add">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h6 class="modal-title"><i class="fa fa-plus"></i>&nbsp;&nbsp; ADD CATEGORY</h6>
+                </div>
+                <div class="modal-header bg-success" ng-if="update">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h6 class="modal-title"><i class="fa fa-pencil"></i>&nbsp;&nbsp; UPDATE CATEGORY</h6>
+                </div>
+
+                <div class="modal-body">
+                    <form ng-submit="addCat()">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Category Name" ng-model="tempArr.CategoryName" required>
+                                <span class="input-group-addon bg-blue" ng-if="add"><i class="icon-check"></i></span>
+                                <span class="input-group-addon bg-success" ng-if="update"><i class="icon-check"></i></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary" style="width:100%" ng-if="add">Save Data</button>
+                                <button type="submit" class="btn btn-success" style="width:100%" ng-if="update">Save Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

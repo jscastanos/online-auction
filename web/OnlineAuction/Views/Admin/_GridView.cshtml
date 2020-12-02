@@ -1,0 +1,126 @@
+﻿<script src="~/Scripts/Admin/index.js"></script>
+<script src="~/Scripts/sweet_alert.min.js"></script>
+<script src="~/Scripts/fancybox.min.js"></script>
+<script>
+    // Lightbox
+    $(document).ready(function () {
+        setTimeout(function () {
+            $('[data-popup="lightbox"]').fancybox({
+                padding: 3
+            });
+        }, 2000)
+    })
+
+</script>
+
+<link rel="stylesheet" href="../Content/customFlip.css" />
+<div class="row">
+    <div ng-show="grid" class="col-lg-4 col-md-6" ng-repeat="data in biddersList | filter: infoSearch" >
+        <div class="panel panel-body">
+            <div class="media">
+                <div class="media-left">
+                    <a href="../Account/RetrieveImage?id={{data.BiddersId}}&type=0" data-popup="lightbox">
+                        <img src="../Account/RetrieveImage?id={{data.BiddersId}}&type=0" class="img-circle img-lg" alt="">
+                    </a>
+               
+                </div>
+
+                <div class="media-body">
+                    <h6 class="media-heading">{{data.FirstName}} {{data.MiddleName}} {{data.LastName}}</h6>
+                    <label class="label label-rounded label-{{data.Status == 0 ? 'danger' : 'primary'}} " style="">{{data.Status == 0 ? "Not Verified" : "Verified"}}</label>
+                </div>
+
+                <div class="media-right media-middle">
+                    <ul class="icons-list">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li ng-click="viewInfo(data.recNo, data.Status)"><a href=""><i class="icon-profile"></i>View</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-offset-3 col-md-6" ng-if="!biddersList.length != 0">
+        <div class="panel panel-body">
+            <div class="media">
+                <div class="media-left">
+                    <a href="../Images/nophoto.png" data-popup="lightbox">
+                        <img src="../Images/nophoto.png" class="img-circle img-lg" alt="">
+                    </a>
+                </div>
+
+                <div class="media-body">
+                    <h6 class="media-heading">{{status}}</h6>
+                    <span class="text-muted">{{statusDescription}}</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="viewInfoModal" class="modal fade in">
+    <div class="modal-dialog" style="width: 330px">
+        <div class="modal-content">
+            <!-- User details (with sample pattern) -->
+            <div class="content-group">
+                <button type="button" class="close" data-dismiss="modal" style="position: relative; margin: 10px; color: white; z-index: 1000;"><i class="icon-close2"></i></button>
+                <div class="panel-body bg-blue border-radius-top text-center">
+                    <div class="content-group-sm">
+                        <h5 class="text-semibold no-margin-bottom">
+                            {{biddersInfo.FirstName}} {{biddersInfo.LastName}}
+                        </h5>
+                        <span class="display-block">{{facing}}</span>
+                    </div>
+
+                    <div class="display-inline-block content-group-sm">
+                        <a href="@Url.Content("~/Account/RetrieveImage?id="){{biddersInfo.BiddersId}}&type=1" data-popup="lightbox" target="_blank">
+                            <img ng-show="first" src="@Url.Content("~/Account/RetrieveImage?id="){{biddersInfo.BiddersId}}&type=1" class="imgimg-responsive" alt="" style="width: 120px; height: 120px;">
+                        </a>
+                        <a href="@Url.Content("~/Account/RetrieveImage?id="){{biddersInfo.BiddersId}}&type=2" data-popup="lightbox" target="_blank">
+                            <img ng-show="!first" src="@Url.Content("~/Account/RetrieveImage?id="){{biddersInfo.BiddersId}}&type=2" class="img-responsive" alt="" style="width: 120px; height: 120px;">
+                        </a>
+                    </div>
+
+
+                    <ul class="list-inline no-margin-bottom">
+                        <li ng-click="sliderButton(0)"><a href="" id="sliderLeft" class="btn bg-blue-700 btn-rounded btn-icon"><i class="icon-arrow-left12"></i></a></li>
+                        <li ng-show="!verifiedButton" ng-click="verify(biddersInfo.BiddersId, biddersInfo.FirstName, biddersInfo.MiddleName, biddersInfo.LastName)"><a href="" class="btn bg-blue-700 btn-rounded btn-icon" style="width: 95px">Verify</a></li>
+                        <li ng-show="verifiedButton"><a href="" class="btn bg-blue-700 btn-rounded btn-icon" disabled="" style="width: 95px">Verified</a></li>
+                        <li ng-click="sliderButton(1)"><a href="" id="sliderRight" class="btn bg-blue-700 btn-rounded btn-icon"><i class="icon-arrow-right13"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="panel panel-body no-border-top no-border-radius-top">
+                    <div class="form-group mt-5">
+                        <label class="text-semibold">Full name:</label>
+                        <span class="pull-right-sm">{{biddersInfo.FirstName}} {{biddersInfo.MiddleName}} {{biddersInfo.LastName}}</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="text-semibold">Phone number:</label>
+                        <span class="pull-right-sm">{{biddersInfo.ContactNo}}</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="text-semibold">Address:</label>
+                        <span class="pull-right-sm">{{biddersInfo.Address}}</span>
+                    </div>
+
+                    <div class="form-group no-margin-bottom">
+                        <label class="text-semibold">Occupation:</label>
+                        <span class="pull-right-sm">{{biddersInfo.Occupation}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- /user details (with sample pattern) -->
+
+        </div>
+    </div>
+</div>

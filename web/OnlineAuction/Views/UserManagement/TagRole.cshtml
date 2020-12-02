@@ -1,0 +1,268 @@
+﻿@{
+    
+    ViewBag.Title = "TagRole";
+}
+<style>
+    a {
+        color: hotpink;
+    }
+</style>
+<script src="~/Scripts/switch.min.js"></script>
+<script src="~/Scripts/switchery.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/daterangepicker.js"></script>
+<script src="~/Scripts/ngtRole.js"></script>
+<div ng-controller="tManagement">
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-bag position-left"></i> <span class="text-semibold">Employee</span></h4>
+                <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+            </div>
+
+
+        </div>
+        <div class="breadcrumb-line breadcrumb-line-component">
+            <ul class="nav navbar-nav" >
+                
+                <li ng-click="initData1()"><a href="#" style="color:black"><i class="icon-user-check position-left" ></i> Active <span class="badge bg-warning-400" ng-hide="activecount == 0">{{activecount}}</span></a></li>
+                <li ng-model="Status" ng-click="initData2()" ><a href="#" style="color:black"><i class="icon-user-lock position-left"></i> Inactive <span class="badge bg-warning-400" ng-hide="inactivecount == 0">{{inactivecount}}</span></a></li>
+                @*<li class="active">Basic inputs</li>*@
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <div class="panel panel-flat">
+            <div class="panel-body no-padding-bottom">
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <div class="has-feedback has-feedback-left">
+                                <input style="width:100%;" ng-model="sdata" ng-change="testsearch(sdata)" id="searchinput" class="form-control" type="text" placeholder="Search Employee" />
+                                <div class="form-control-feedback">
+                                    <i class="icon-search4 text-size-large text-muted"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-md-offset-1 mb-20">
+                        <span class="text-semibold">
+                            <button type="button" class="btn bg-teal-400 btn-block text-size-large text-uppercase" data-toggle="modal" ng-click="rdata()">
+                                <i class=" icon-new-tab2">
+                                </i>&nbsp;New User
+                            </button>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6" ng-repeat="i in alldata">
+                <div class="panel panel-body" >
+                    <div class="media">
+                        <div class="media-left">
+                            @*<a id="m{{a.UID}}" href="" data-popup="lightbox">
+                                <img ng-attr-id="{{'pic_'+a.UID}}" ng-src="~/images/personnel//{{a.personID}}.jpg" onerror="this.src='../images/image.png'" class="img-circle img-lg" alt="no photo">
+                            </a>*@
+                            <a href="#" data-popup="lightbox">
+                                <img src="/images/image.png" style="width: 70px; height: 70px;" class="img-circle img-md" alt="">
+                            </a>
+                        </div>
+
+                        <div class="media-body">
+                            <h6 class="media-heading">{{(i.nameLast + ', ' + i.nameFirst + (i.nameMiddle != null ? ' ' + (i.nameMiddle | limitTo:1) + '.' : '') + (i.xname != null ? ', ' + i.xname + '.' : '')) | uppercase}}</h6>
+                            <span class="text-muted">{{i.roleDisplay}} ({{i.RoleId}}) / {{i.DateCreated| date:'MMM dd, yyyy'}}</span>
+                            <span class="label {{i.Status == 0? 'bg-danger': i.Status == 1 ? 'bg-success': ''}}">{{i.Status == 1? "Active" :"Inactive"}}</span>
+                        </div>
+                        <div class="media-right media-middle">
+                            <ul class="icons-list">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li ng-click="editName(i)"><a href="#"><i class="icon-pencil7 pull-right"></i> Edit </a></li>
+                                        <li ng-show="i.Status == 0" ng-click="cStatus(i)"><a href="#"><i class="icon-user-check pull-right"></i> Activate</a></li>
+                                        <li ng-show="i.Status == 1" ng-click="cStatus(i)"><a href="#"><i class="icon-user-lock pull-right"></i> Deactivate</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12" ng-if="alldata.length == 0">
+                <h6 class="text-italic text-bold text-uppercase text-muted text-center">NO RESULTS FOUND</h6>
+            </div>
+        </div>
+
+        @*<div class="panel panel-flat">
+            <div class="panel-body no-margin no-padding">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="bg-teal-400">
+                                <td>#</td>
+                                <th>Name</th>
+                                <th>Date Created</th>
+                                <th>Position</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="i in alldata">
+                                <td>{{$index+1}}</td>
+                                <td>{{i.conName| uppercase}}</td>
+                                <td>{{i.DateCreated| date:'MMM dd, yyyy'}}</td>
+                                <td>{{i.roleDisplay | uppercase }}</td>
+
+                                <td>
+                                    <div class="checkbox checkbox-switchery switchery-sm">
+                                        <label>
+                                            <input type="checkbox" ng-checked="i.Status" ng-click="cStatus(i)" class="switchery">
+                                        
+                                        </label>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm btn-icon" data-toggle="modal" ng-click="editName(i)"><i class="icon-pencil"></i></button>
+                                  
+                                </td>
+                            </tr>
+                            <tr ng-if="lengthdata== 0">
+                                <td colspan="5" class="text-center text-muted text-italic text-semibold">NO RESULT FOUND</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>*@
+    </div>
+
+    <div id="Add" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <form ng-submit="addUsr(adata,empList.EmpId)">
+                    <div class="modal-header bg-success">
+                        <button type="button" class="close" ng-click="refresh()" data-dismiss="modal">&times;</button>
+                        <h6 class="modal-title">
+                            <i class="icon-add-to-list"></i> Role 
+                        </h6>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="row mt-10">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="input-group" style="width:100%">
+                                                <angucomplete id="personalName"
+                                                              placeholder="Employee Name"
+                                                              searchvar="ConcatName"
+                                                              selectedobject="personalNameBtn"
+                                                              selectedvalue="empList.EmpId"
+                                                              selectedvaluefield="EmpId"
+                                                              url="../api/UserManagements/tblEmpList?branchId={{branchID}}"
+                                                              titlefield="ConcatName"
+                                                              minlength="1"
+                                                              inputclass="form-control"
+                                                              field-required="true" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" ng-model="adata.UserName" id="usrnm" placeholder="Username" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-user"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="password" ng-model="adata.Password" id="psswrd" placeholder="Password" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-user-lock"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group" id="slctrole">
+                                                <select ng-options="item.RoleId as item.RoleName for item in newItem track by item.RoleId"
+                                                        ng-model="adata.RoleId"
+                                                        class="form-control" required>
+                                                    <option value="" disabled selected class="text-muted"> – POSITION – </option>
+                                                </select>
+                                                <span class="input-group-addon"><i class="icon-insert-template"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-block">Continue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="Edit" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <form ng-submit="saveUOF(selected)">
+                    <div class="modal-header bg-success">
+                        <button type="button" class="close" ng-click="refresh()" data-dismiss="modal">&times;</button>
+                        <h6 class="modal-title">
+                            <i class="icon-add-to-list"></i> Role
+                        </h6>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="row mt-10">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input type="text" ng-model="selected.conName" disabled class="form-control" placeholder="Name" required>
+                                                    <span class="input-group-addon"><i class="icon-user"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" ng-model="selected.UserName" placeholder="Username" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-user"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="password" ng-model="selected.Password" placeholder="Password" class="form-control" required>
+                                                <span class="input-group-addon"><i class="icon-user-lock"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <select ng-model="selected.RoleId" ng-options="item.RoleId as item.RoleName for item in newItem"
+                                                        class="form-control" required></select>
+                                                <span class="input-group-addon"><i class="icon-insert-template"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-block">Continue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
